@@ -1,0 +1,21 @@
+name = "julia2nix"
+uuid = "393ab781-533d-4207-828b-ae5a02ad719c"
+authors = ["JuliaCN", "colinxs <me@colinxsummers.com>", "contributors"]
+version = "0.1.0"
+
+[deps]
+ArgParse = "c7e460c6-2fb9-53a9-8c5b-16f535851c63"
+CodecBase = "6c391c72-fb7b-5838-ba82-7cfb1bcfecbf"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+Git = "d7ba0133-e1db-5d97-8f8c-041e4b3a1eb2"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+LibGit2 = "76f85450-5226-5b5a-8eaa-529ad045b433"
+Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+SHA = "ea8e919c-243c-51af-8825-aaa63cd721ce"
+TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+TranscodingStreams = "3bb67fe8-82b1-5028-8e26-92a6c54297fa"
+URIs = "5c2747f8-b7ea-4ff2-ba2e-563bfd36b1d4"
