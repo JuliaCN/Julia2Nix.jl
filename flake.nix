@@ -16,8 +16,18 @@
           self.overlays.default
         ];
       in rec {
+        lib = {
+          inherit
+            (pkgs)
+            julia2nix
+            ;
+        };
         packages = {
-          inherit (pkgs) julia2nix;
+          example = lib.julia2nix {
+            importManifest = ./Manifest.toml;
+            importProject = ./Project.toml;
+            packages = ./testenv/Depot.nix;
+          };
         };
         devShells.default = import ./nix/devshell.nix {inherit pkgs inputs;};
       })

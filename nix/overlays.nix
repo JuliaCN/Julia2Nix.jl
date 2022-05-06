@@ -1,5 +1,10 @@
 {inputs}: {
   default = final: prev: {
-    julia2nix = prev.callPackage ./. {julia = prev.julia_17-bin;};
+    julia2nix = args:
+      prev.callPackage ./build {
+        inherit inputs;
+        pkgs = prev;
+      }
+      args;
   };
 }
