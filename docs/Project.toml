@@ -2,4 +2,4 @@
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 LiveServer = "16fef848-5104-11e9-1b77-fb7a48bbb589"
 Org = "587fedb0-ad84-11e9-2bd6-d15ea4be1f9e"
-julia2nix = "393ab781-533d-4207-828b-ae5a02ad719c"
+julia2nix = "959efae9-d930-411d-bc19-361dc384df77"

@@ -30,12 +30,11 @@ jobs:
 
     - name: Check julia2nix tests
       run: |
-        nix develop --show-trace --command -- init test
-        nix develop --show-trace --command -- mktest $PRJ_ROOT/test/runtests.jl
+        nix develop --show-trace --command -- mktest
 
     - name: Build Doc
       run: |
-        nix develop --show-trace --command -- init docs
+        nix develop --show-trace --command -- init-dev docs
         nix develop --show-trace --command -- mkdoc
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

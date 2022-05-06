@@ -11,7 +11,7 @@ help = "run pkgs.instantiate() in project"
 [[commands]]
 name = "init"
 command = '''
-        julia --project=$PRJ_ROOT/"$@" -e '
+        julia --project=$PRJ_ROOT -e '
         using Pkg;
         Pkg.instantiate();'
 '''
@@ -21,7 +21,7 @@ help = "run pkgs.instantiate() in project :: develop"
 name = "mktest"
 category = "tests"
 command = '''
-        julia --project=$PRJ_ROOT/test "$@"
+        julia --project=$PRJ_ROOT -e 'import Pkg; Pkg.test()'
 '''
 help = "make runtests"
 

@@ -236,12 +236,6 @@ version = "2.9.12+0"
 deps = ["Libdl"]
 uuid = "83775a58-1f1d-513f-b197-d71354ab007a"
 
-[[deps.julia2nix]]
-deps = ["ArgParse", "CodecBase", "Dates", "Git", "HTTP", "JSON", "LibGit2", "Pkg", "Printf", "Random", "SHA", "TOML", "Test", "TranscodingStreams", "URIs"]
-path = "/home/gtrun/ghq/github.com/JuliaCN/julia2nix"
-uuid = "393ab781-533d-4207-828b-ae5a02ad719c"
-version = "0.1.0"
-
 [[deps.nghttp2_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850ede-7688-5339-a07c-302acd2aaf8d"
