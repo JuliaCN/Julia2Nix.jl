@@ -28,7 +28,7 @@ function select_registry_fetchers(opts::Options)
                 end
                 fetcher = Fetcher(
                     GIT_FETCHER,
-                    Dict("name" => name, "url" => remote_url, "rev" => repo_meta.rev),
+                    Dict("name" => name, "url" => remote_url, "rev" => repo_meta.rev, "ref" => repo_meta.ref),
                 )
                 push!(fetchers, fetcher)
             end
