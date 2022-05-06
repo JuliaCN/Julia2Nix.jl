@@ -19,8 +19,8 @@ jobs:
           system-features = nixos-test benchmark big-parallel kvm recursive-nix
 
 
-    - name: Nix Flake Check
-      run: nix -Lv flake check
+    # - name: Nix Flake Check
+    #   run: nix -Lv flake check
 
     - name: Check Julia Version
       run: nix develop --show-trace --command -- julia --version
