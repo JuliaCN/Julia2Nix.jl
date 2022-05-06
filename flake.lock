@@ -21,22 +21,6 @@
         "type": "github"
       }
     },
-    "flake-compat": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1650374568,
-        "narHash": "sha256-Z+s0J8/r907g149rllvwhb4pKi8Wam5ij0st8PwAh+E=",
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "rev": "b4a34015c698c7793d592d66adbab377907a2be8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "locked": {
         "lastModified": 1642700792,
@@ -70,11 +54,11 @@
     "general-registry": {
       "flake": false,
       "locked": {
-        "lastModified": 1651792446,
-        "narHash": "sha256-G/oaLowRJtLXdJLPCekLvhIreH8cJ/TGF0uynVIjO/4=",
+        "lastModified": 1651792917,
+        "narHash": "sha256-F/BGA3qxFrDG2a5iHVqskXt3lNB0PVu5gJAvCkIR9Zs=",
         "owner": "JuliaRegistries",
         "repo": "General",
-        "rev": "e46fe846d930c9e96d61b2a0fd452f74e74ba4e9",
+        "rev": "893fa71211750668c41e2d9602f80e40277185a2",
         "type": "github"
       },
       "original": {
@@ -102,7 +86,6 @@
     "root": {
       "inputs": {
         "devshell": "devshell",
-        "flake-compat": "flake-compat",
         "flake-utils": "flake-utils_2",
         "general-registry": "general-registry",
         "nixpkgs": "nixpkgs"

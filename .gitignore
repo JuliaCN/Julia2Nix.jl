@@ -1,0 +1,6 @@
+# -*- mode: gitignore; -*-
+
+## nixos
+result
+
+docs/build

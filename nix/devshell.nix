@@ -7,6 +7,7 @@ pkgs.devshell.mkShell ({extraModulesPath, ...}: {
   name = "julia2nix.jl";
   imports = [
     "${extraModulesPath}/git/hooks.nix"
+    (pkgs.devshell.importTOML ./commands.toml)
   ];
 
   packages = with pkgs; [
