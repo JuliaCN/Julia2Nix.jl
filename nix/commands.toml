@@ -1,23 +1,29 @@
 [[commands]]
-name = "init"
-category = "julia"
+name = "init-dev"
 command = '''
-        julia --project=$PRJ_ROOT -e '
+        julia --project=$PRJ_ROOT/"$@" -e '
         using Pkg;
+        Pkg.develop(PackageSpec(; path=pwd()));
         Pkg.instantiate();'
 '''
 help = "run pkgs.instantiate() in project"
 
 [[commands]]
-name = "mkdoc-init"
-category = "doc"
+name = "init"
 command = '''
-        julia --project=$PRJ_ROOT/docs -e '
+        julia --project=$PRJ_ROOT/"$@" -e '
         using Pkg;
-        Pkg.develop(PackageSpec(; path=pwd()));
         Pkg.instantiate();'
 '''
-help = "init doc pkgs"
+help = "run pkgs.instantiate() in project :: develop"
+
+[[commands]]
+name = "mktest"
+category = "tests"
+command = '''
+        julia --project=$PRJ_ROOT/test "$@"
+'''
+help = "make runtests"
 
 [[commands]]
 name = "mkdoc"

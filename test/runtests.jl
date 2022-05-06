@@ -4,6 +4,6 @@ include("preamble.jl")
     include("file.jl")
     include("archive.jl")
     include("crate.jl")
-    include("git.jl")
-    include("github.jl")
+    # include("git.jl") failed by missing path?
+    # include("github.jl")
 end
