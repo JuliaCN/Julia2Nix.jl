@@ -30,6 +30,7 @@ pkgs.devshell.mkShell ({
     julia_17-bin
     nixUnstable
     nix-prefetch
+    nixpkgs-fmt
     cacert # Needed for network access
     alejandra
     nodePackages.prettier

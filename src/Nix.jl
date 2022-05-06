@@ -66,7 +66,7 @@ function print(io::IO, xs::Union{AbstractVector,Tuple})
     return nothing
 end
 
-nixfmt(io::IO, x) = _format(io, x, `nixfmt`)
+nixfmt(io::IO, x) = _format(io, x, `alejandra`)
 function nixpkgs_fmt(io::IO, x)
     # needs to be formatted twice to be idempotent? 
     return _format(io, x, pipeline(`nixpkgs-fmt`, `nixpkgs-fmt`))
