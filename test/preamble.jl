@@ -9,10 +9,10 @@ using julia2nix
 using julia2nix: run_suppress, sanitize_name, git_short_rev, url_name
 using julia2nix: Base32Nix, SRI, Hash
 
-noall(cmd::Cmd) = pipeline(cmd; stdout=devnull, stderr=devnull)
+noall(cmd::Cmd) = pipeline(cmd; stdout = devnull, stderr = devnull)
 
 function nix_file_sha256(path)
-    return Hash(strip(run_suppress(`nix hash file $path`, out=true)))
+    return Hash(strip(run_suppress(`nix hash file $path`, out = true)))
 end
 
 function nix_dir_sha256(path)
@@ -21,7 +21,7 @@ end
 
 function nix_eval_source_attr(dir, attr)
     expr = "(import $(dir)/NixManifest.nix {}).$(attr)"
-    return strip(run_suppress(`nix eval --impure --raw --expr $expr`, out=true))
+    return strip(run_suppress(`nix eval --impure --raw --expr $expr`, out = true))
 end
 
 function compare_source_attr(dir, truth, attr::AbstractString)
@@ -38,7 +38,7 @@ function compare_source_attrs(dir, truth)
     end
 end
 
-function with_unpack(fn::Function, archive_path::AbstractString; strip::Bool=false)
+function with_unpack(fn::Function, archive_path::AbstractString; strip::Bool = false)
     mktempdir() do dst
         if endswith(archive_path, ".zip")
             run_suppress(`$(p7zip_jll.p7zip()) x $archive_path -o$(dst)`)
@@ -58,7 +58,8 @@ function with_unpack(fn::Function, archive_path::AbstractString; strip::Bool=fal
                             for file in files
                                 srcfile = joinpath(root, file)
                                 dstfile = joinpath(
-                                    stripdst, relpath(joinpath(dst, root, srcfile), onlydir)
+                                    stripdst,
+                                    relpath(joinpath(dst, root, srcfile), onlydir),
                                 )
                                 mkpath(dirname(dstfile))
                                 cp(srcfile, dstfile)
@@ -74,13 +75,13 @@ function with_unpack(fn::Function, archive_path::AbstractString; strip::Bool=fal
     end
 end
 
-function with_clone_and_checkout(fn, url, ref_or_rev; leave_git=false)
+function with_clone_and_checkout(fn, url, ref_or_rev; leave_git = false)
     mktempdir() do dir
         out = joinpath(dir, "out")
         run_suppress(`$(git()) clone $(url) $(out)`)
         run_suppress(`$(git()) -C $(out) checkout $(ref_or_rev)`)
         if !leave_git
-            rm(joinpath(out, ".git"); recursive=true, force=true)
+            rm(joinpath(out, ".git"); recursive = true, force = true)
         end
         fn(out)
     end

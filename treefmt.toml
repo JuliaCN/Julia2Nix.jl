@@ -8,3 +8,7 @@ command = "prettier"
 options = ["--plugin", "prettier-plugin-toml", "--write"]
 includes = ["*.md", "*.yaml", "*.toml", "*.json"]
 excludes = ["Manifest.toml", "Project.toml"]
+# [formatter.julia]
+# command = "julia"
+# option = ["-e", "import Pkg; using JuliaFormatter;format(\".\")"]
+# includes = ["*.jl"]

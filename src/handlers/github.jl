@@ -4,14 +4,21 @@
 #
 
 const ARCHIVE_MIME_TYPES = (
-    "application/x-xz", "application/gzip", "application/x-bzip2", "application/x-bzip", "application/zip", "application/x-7z-compressed"
+    "application/x-xz",
+    "application/gzip",
+    "application/x-bzip2",
+    "application/x-bzip",
+    "application/zip",
+    "application/x-7z-compressed",
 )
 
 const GITHUB_SCHEMA = SchemaSet(
     SimpleSchema("owner", String, true),
     SimpleSchema("repo", String, true),
     ExclusiveSchema(
-        ("rev", "branch", "tag", "release", "latest_semver_tag"), (String, String, String, String, Bool), true
+        ("rev", "branch", "tag", "release", "latest_semver_tag"),
+        (String, String, String, String, Bool),
+        true,
     ),
     DependentSchema("assets", Union{Bool,Vector{String}}, ("release",), (String,), false),
     SimpleSchema("submodule", Bool, false),
@@ -42,7 +49,14 @@ function github_handler(name::AbstractString, spec::AbstractDict)
         ver = string(ver)
         meta["tag"] = tag
     elseif haskey(spec, "release")
-        tag, rev, ver, assets = github_get_release(owner, repo, spec["release"], get(spec, "assets", false), builtin, extraArgs)
+        tag, rev, ver, assets = github_get_release(
+            owner,
+            repo,
+            spec["release"],
+            get(spec, "assets", false),
+            builtin,
+            extraArgs,
+        )
         meta["tag"] = tag
         meta["assets"] = assets
     else
@@ -53,7 +67,7 @@ function github_handler(name::AbstractString, spec::AbstractDict)
     source_name = sanitize_name(get(spec, "name", git_short_rev(rev)))
     if submodule
         new_spec = subset(spec, keys(DEFAULT_SCHEMA_SET)..., "submodule", "builtin")
-        new_spec["name"] = source_name 
+        new_spec["name"] = source_name
         new_spec["url"] = url
         new_spec["rev"] = rev
         new_spec["extraArgs"] = extraArgs
@@ -62,12 +76,16 @@ function github_handler(name::AbstractString, spec::AbstractDict)
         return source
     else
         new_spec = subset(spec, keys(DEFAULT_SCHEMA_SET)...)
-        new_spec["name"] = source_name 
+        new_spec["name"] = source_name
         new_spec["url"] = "https://github.com/$(owner)/$(repo)/archive/$(rev).tar.gz"
         new_spec["extraArgs"] = extraArgs
         source = archive_handler(name, new_spec)
         return Source(;
-            pname=name, version=ver, fetcher_name=source.fetcher_name, fetcher_args=source.fetcher_args, meta
+            pname = name,
+            version = ver,
+            fetcher_name = source.fetcher_name,
+            fetcher_args = source.fetcher_args,
+            meta,
         )
     end
 end
@@ -93,19 +111,21 @@ function github_get_release(owner, repo, release, assets, builtin, extraArgs)
     if assets isa Bool
         assets = assets ? map(a -> a["name"], rel["assets"]) : []
     else
-        assets = collect(Iterators.flatten(
-            map(assets) do asset
-                m = match(r"r\"(.*)\"", asset)
-                if m === nothing
-                    return [asset]
-                else
-                    reg = Regex(only(m.captures))
-                    return filter(map(a -> a["name"], rel["assets"])) do name
-                        match(reg, name) !== nothing
+        assets = collect(
+            Iterators.flatten(
+                map(assets) do asset
+                    m = match(r"r\"(.*)\"", asset)
+                    if m === nothing
+                        return [asset]
+                    else
+                        reg = Regex(only(m.captures))
+                        return filter(map(a -> a["name"], rel["assets"])) do name
+                            match(reg, name) !== nothing
+                        end
                     end
-                end
-            end,
-        ))
+                end,
+            ),
+        )
     end
 
     assets_dict = Dict()
@@ -114,7 +134,8 @@ function github_get_release(owner, repo, release, assets, builtin, extraArgs)
     # https://$TOKEN:@api.github.com/repos/$REPO/releases/assets/$asset_id \
     # -O $2
 
-    fetcher_args = Dict{Symbol,Any}(:curlOpts => "-L --header Accept:application/octet-stream")
+    fetcher_args =
+        Dict{Symbol,Any}(:curlOpts => "-L --header Accept:application/octet-stream")
     for (k, v) in extraArgs
         fetcher_args[Symbol(k)] = v
     end
@@ -124,7 +145,7 @@ function github_get_release(owner, repo, release, assets, builtin, extraArgs)
 
         fetcher_args = copy(fetcher_args)
         fetcher_args[:url] = info["browser_download_url"]
-        if info["content_type"] in ARCHIVE_MIME_TYPES 
+        if info["content_type"] in ARCHIVE_MIME_TYPES
             fetcher_name = "pkgs.fetchzip"
             hash = try
                 get_sha256(fetcher_name, fetcher_args)
@@ -133,7 +154,7 @@ function github_get_release(owner, repo, release, assets, builtin, extraArgs)
                 get_sha256(fetcher_name, fetcher_args)
             end
             version = version_string(hash)
-            fetcher_args[:hash] = string(hash) 
+            fetcher_args[:hash] = string(hash)
         else
             fetcher_name = "pkgs.fetchurl"
             fetcher_args[:hash] = string(get_sha256(fetcher_name, fetcher_args))
@@ -153,7 +174,7 @@ function github_api_get(owner, repo, endpoint)
     return github_get(url, headers)
 end
 
-function github_get(url::String, headers::Dict=Dict())
+function github_get(url::String, headers::Dict = Dict())
     if !haskey(headers, "Authorization") && haskey(ENV, "GITHUB_TOKEN")
         headers["Authorization"] = "token $(ENV["GITHUB_TOKEN"])"
     end

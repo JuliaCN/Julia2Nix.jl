@@ -19,7 +19,10 @@ function crate_handler(name::AbstractString, spec::AbstractDict)
     source = archive_handler(name, new_spec)
 
     return Source(;
-        pname, version, fetcher_name=source.fetcher_name, fetcher_args=source.fetcher_args
+        pname,
+        version,
+        fetcher_name = source.fetcher_name,
+        fetcher_args = source.fetcher_args,
     )
 end
 

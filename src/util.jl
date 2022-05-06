@@ -1,15 +1,15 @@
-function get_sha256(args::Vector{String}=String[])
+function get_sha256(args::Vector{String} = String[])
     args = append!(["--hash-algo", "sha256", "--output", "raw"], args)
-    hash = strip(run_suppress(`nix-prefetch $args`, out=true))
-    return Hash(strip(run_suppress(`nix hash to-sri --type sha256 $hash`, out=true)))
+    hash = strip(run_suppress(`nix-prefetch $args`, out = true))
+    return Hash(strip(run_suppress(`nix hash to-sri --type sha256 $hash`, out = true)))
 end
 
-function get_sha256_expr(expr::String, args::Vector{String}=String[]) 
+function get_sha256_expr(expr::String, args::Vector{String} = String[])
     expr = """
            with (import <nixpkgs> { });
            $expr
            """
-    return get_sha256(append!([expr], args)) 
+    return get_sha256(append!([expr], args))
 end
 
 function get_sha256(fetcher_name::String, fetcher_args::Dict{Symbol,<:Any})
@@ -26,7 +26,7 @@ function get_sha256(fetcher_name::String, fetcher_args::Dict{Symbol,<:Any})
         return get_sha256(args)
     else
         expr = "$fetcher_name $(Nix.print(fetcher_args))"
-        return get_sha256_expr(expr) 
+        return get_sha256_expr(expr)
     end
 end
 
@@ -49,7 +49,7 @@ function build_source(fetcher_name, fetcher_args)
     return run_suppress(`nix eval --expr $expr`)
 end
 
-function nixpkgs(args::AbstractDict=Dict())
+function nixpkgs(args::AbstractDict = Dict())
     return "(import (import $(DEFAULT_NIX)).inputs.nixpkgs $(Nix.print(args)))"
 end
 
@@ -74,7 +74,7 @@ function sanitize_name(name)
 
     # Replace invalid character ranges with a "-"
     allowed = r"[^a-zA-Z0-9\+\._\?=-]"
-    name = replace(name, allowed => '_', count=1)
+    name = replace(name, allowed => '_', count = 1)
 
     # Limit to 211 characters (minus 4 chars for ".drv")
     name = name[begin:min(length(name), 207)]
@@ -87,7 +87,7 @@ end
 
 quote_string(s) = "'$s'"
 
-function run_suppress(cmd; out=false)
+function run_suppress(cmd; out = false)
     if get(ENV, "JULIA_DEBUG", nothing) == string(@__MODULE__)
         return out ? read(cmd, String) : (run(cmd); nothing)
     end
@@ -96,7 +96,7 @@ function run_suppress(cmd; out=false)
     cmd = pipeline(cmd; stdout)
 
     pty_slave, pty_master = open_fake_pty()
-    p = run(cmd, pty_slave, pty_slave, pty_slave; wait=false)
+    p = run(cmd, pty_slave, pty_slave, pty_slave; wait = false)
     wait(p)
     Base.close_stdio(pty_slave)
 
@@ -145,14 +145,15 @@ end
 function parse_config(config)
     p = convert(Dict{String,Any}, copy(config))
     validate_config(p)
-    p                  = convert(Dict{String,Any}, copy(config))
-    p["verbose"]       = get(p, "verbose", false)
-    p["recursive"]     = get(p, "recursive", false)
+    p = convert(Dict{String,Any}, copy(config))
+    p["verbose"] = get(p, "verbose", false)
+    p["recursive"] = get(p, "recursive", false)
     p["ignore-script"] = get(p, "ignore-script", false)
-    p["run-test"]      = get(p, "run-test", false)
-    p["dry-run"]       = get(p, "dry-run", false)
-    max_workers        = sum(l -> match(r"^nixbld[0-9]+:", l) !== nothing, readlines(`getent passwd`))
-    p["workers"]       = max(1, min(max_workers, get(p, "workers", 1)))
+    p["run-test"] = get(p, "run-test", false)
+    p["dry-run"] = get(p, "dry-run", false)
+    max_workers =
+        sum(l -> match(r"^nixbld[0-9]+:", l) !== nothing, readlines(`getent passwd`))
+    p["workers"] = max(1, min(max_workers, get(p, "workers", 1)))
     p["no-update-julia-registries"] = get(p, "no-update-julia-registries", false)
     return p
 end
@@ -171,7 +172,7 @@ prefix_name(name) = "source-" * name
 function replace_variables(s::String, vars::Dict)
     for (k, v) in vars
         p = "@{{ $k }}"
-        s = replace(s, p => v       )
+        s = replace(s, p => v)
     end
     return s
 end
@@ -181,11 +182,11 @@ function tryparse_version(ver)
     return parsed === nothing ? ver : string(parsed)
 end
 
-function run_jobs(jobs; workers=1)
+function run_jobs(jobs; workers = 1)
     if workers == 1
-        foreach(job -> job(), jobs) 
+        foreach(job -> job(), jobs)
     else
-        asyncmap(job -> job(), jobs; ntasks=workers)
+        asyncmap(job -> job(), jobs; ntasks = workers)
         # Threads.@threads for job in jobs
         #     job()
         # end
@@ -202,8 +203,10 @@ function indented_printstyled(io::IO, args...; kwargs...)
     printstyled(io, pad, args...; kwargs...)
 end
 
-indented_printstyledln(args...; kwargs...) = indented_printstyledln(stdout, args...; kwargs...)
-indented_printstyledln(io::IO, args...; kwargs...) = indented_printstyled(io, args..., '\n'; kwargs...)
+indented_printstyledln(args...; kwargs...) =
+    indented_printstyledln(stdout, args...; kwargs...)
+indented_printstyledln(io::IO, args...; kwargs...) =
+    indented_printstyled(io, args..., '\n'; kwargs...)
 
 function Base.setindex(x::AbstractDict, v, k)
     y = copy(x)
@@ -211,7 +214,7 @@ function Base.setindex(x::AbstractDict, v, k)
     return y
 end
 
-function copy_into(src, dst; force=false)
+function copy_into(src, dst; force = false)
     isdir(dst) || nixsourcerer_error("dst must be a directory")
     if isfile(src)
         cp(src, joinpath(dst, basename(src)))
@@ -232,4 +235,3 @@ function copy_into(src, dst; force=false)
         end
     end
 end
-

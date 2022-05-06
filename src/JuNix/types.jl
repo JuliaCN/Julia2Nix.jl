@@ -12,7 +12,7 @@ end
 
 function Nix.print(io::IO, fetcher::Fetcher)
     print(io, fetcher.name, " ")
-    Nix.print(io, fetcher.args; sort=true)
+    Nix.print(io, fetcher.args; sort = true)
     return nothing
 end
 
@@ -25,7 +25,7 @@ end
 
 function collect_registries()
     map(Pkg.Types.collect_registries()) do regspec
-        RegistryInfo(; regspec.name, uuid=UUID(regspec.uuid), regspec.url, regspec.path)
+        RegistryInfo(; regspec.name, uuid = UUID(regspec.uuid), regspec.url, regspec.path)
     end
 end
 

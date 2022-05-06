@@ -2,25 +2,25 @@ using Printf
 const BASE32NIX = "0123456789abcdfghijklmnpqrsvwxyz"
 
 function base32nix(h)
-	hexLen = length(h.value)
-	outLen = (hexLen*8-1) ÷ 5 + 1
+    hexLen = length(h.value)
+    outLen = (hexLen * 8 - 1) ÷ 5 + 1
 
     io = IOBuffer()
 
     get(i) = checkbounds(Bool, h.value, i) ? h.value[i] : 0
 
-    for n in (outLen-1):-1:0 
+    for n = (outLen-1):-1:0
         n = UInt(n)
         b = UInt(n * 5)
         i = UInt(b ÷ 8)
         j = UInt(b % 8)
 
-        v1 = UInt(get(i+1) >> j)
-        v2 = UInt(get(i+2) << (8 - j))
+        v1 = UInt(get(i + 1) >> j)
+        v2 = UInt(get(i + 2) << (8 - j))
         v = UInt(v1 | v2)
 
-		i = Int(v) % length(BASE32NIX)
-        c = BASE32NIX[i+1] 
+        i = Int(v) % length(BASE32NIX)
+        c = BASE32NIX[i+1]
         write(io, c)
     end
     return String(take!(io))
@@ -34,22 +34,22 @@ function _base32nix(in, out, out_idx)
     i = UInt(b ÷ 8)
     j = UInt(b % 8)
 
-    v1 = UInt(get(i+1) >> j)
-    v2 = UInt(get(i+2) << (8 - j))
+    v1 = UInt(get(i + 1) >> j)
+    v2 = UInt(get(i + 2) << (8 - j))
     v = UInt(v1 | v2)
 
     i = Int(v) % length(BASE32NIX)
-    c = BASE32NIX[i+1] 
+    c = BASE32NIX[i+1]
 
     out[out_idx] = c
 end
 
 function base32nix_vec(h)
-	hexLen = length(h.value)
-	outLen = (hexLen*8-1) ÷ 5 + 1
+    hexLen = length(h.value)
+    outLen = (hexLen * 8 - 1) ÷ 5 + 1
     out = zeros(UInt8, outLen)
-    for n in (outLen-1):-1:0 
-        _base32nix(h.value, n, out, n+1)
+    for n = (outLen-1):-1:0
+        _base32nix(h.value, n, out, n + 1)
     end
     return String(out)
 end

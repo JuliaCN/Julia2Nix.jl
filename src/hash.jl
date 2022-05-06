@@ -21,12 +21,13 @@ struct Hash{E,A}
     end
 end
 
-function Hash(sri::AbstractString) 
-    m = match(r"(.*)-(.*)", sri) 
+function Hash(sri::AbstractString)
+    m = match(r"(.*)-(.*)", sri)
     m === nothing && nixsourcerer_error("Not an SRI hash: $h")
 
     algorithm, value_enc = m.captures
-    A = algorithm == "md5" ? MD5() :
+    A =
+        algorithm == "md5" ? MD5() :
         algorithm == "sha1" ? SHA1() :
         algorithm == "sha256" ? SHA256() :
         algorithm == "sha512" ? SHA512() :
@@ -35,7 +36,7 @@ function Hash(sri::AbstractString)
 end
 
 value(h::Hash) = h.value
-algorithm(::Hash{E,A}) where {E,A} = A 
+algorithm(::Hash{E,A}) where {E,A} = A
 encoding(::Hash{E,A}) where {E,A} = Encoding
 
 function Base.convert(::Type{<:Hash{E}}, h::Hash) where {E}
@@ -48,12 +49,12 @@ function Base.show(io::IO, h::Hash)
     return nothing
 end
 
-function Base.string(h::Hash{E}; encoding::Encoding=E) where {E}
+function Base.string(h::Hash{E}; encoding::Encoding = E) where {E}
     if encoding === Base32Nix()
         sri = convert(Hash{SRI()}, h)
         s = strip(read(`nix hash to-base32 $sri`, String))
     else
-        encoder = 
+        encoder =
             encoding === Base16() ? Base16Encoder() :
             encoding === Base32() ? Base32Encoder() :
             encoding === Base64() ? Base64Encoder() :
@@ -64,4 +65,4 @@ function Base.string(h::Hash{E}; encoding::Encoding=E) where {E}
     return encoding === SRI() ? "$(sri_prefix(algorithm(h)))-$(s)" : s
 end
 
-version_string(h::Hash) = git_short_rev(string(h; encoding=Base32Nix()))
+version_string(h::Hash) = git_short_rev(string(h; encoding = Base32Nix()))

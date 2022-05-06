@@ -15,10 +15,9 @@ include("preamble.jl")
         "test1.fetcherArgs.url" => url,
         "test1.fetcherArgs.hash " => string(hash),
         "test1.fetcherArgs.name" => name,
-
         "test2.fetcherName" => "builtins.fetchurl",
         "test2.fetcherArgs.url" => url,
-        "test2.fetcherArgs.sha256" => string(hash, encoding=Base32Nix()),
+        "test2.fetcherArgs.sha256" => string(hash, encoding = Base32Nix()),
         "test2.fetcherArgs.name" => name,
     )
     runtest(toml, truth)

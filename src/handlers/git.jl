@@ -2,7 +2,11 @@
 
 const GIT_SCHEMA = SchemaSet(
     SimpleSchema("url", String, true),
-    ExclusiveSchema(("rev", "branch", "tag", "latest_semver_tag"), (String, String, String, Bool), true),
+    ExclusiveSchema(
+        ("rev", "branch", "tag", "latest_semver_tag"),
+        (String, String, String, Bool),
+        true,
+    ),
     SimpleSchema("submodule", Bool, false),
     SimpleSchema("variables", Dict, false),
     SimpleSchema("extraArgs", Dict, false),
@@ -13,10 +17,10 @@ function git_handler(name, spec)
     builtin = get(spec, "builtin", false)
     submodule = get(spec, "submodule", false)
     variables = get(spec, "variables", Dict())
-    url = replace_variables(spec["url"], variables) 
+    url = replace_variables(spec["url"], variables)
     meta = Dict{String,Any}("variables" => variables)
     extraArgs = get(spec, "extraArgs", Dict())
-    
+
     if haskey(spec, "rev")
         # TODO is this correct when not sourceifying commit? 
         # It's what Nix builtins.fetchGit defaults to.
@@ -27,7 +31,7 @@ function git_handler(name, spec)
     elseif haskey(spec, "branch")
         ref = "refs/heads/$(spec["branch"])"
         rev = git_ref2rev(url, ref)
-        ver = spec["branch"] 
+        ver = spec["branch"]
     elseif haskey(spec, "tag")
         ref = "refs/tags/$(spec["tag"])"
         rev = git_ref2rev(url, ref)
@@ -43,9 +47,9 @@ function git_handler(name, spec)
     meta["ref"] = ref
     meta["rev"] = rev
 
-    fetcher_args = Dict{Symbol,Any}(Symbol(k) => v for (k,v) in extraArgs)
+    fetcher_args = Dict{Symbol,Any}(Symbol(k) => v for (k, v) in extraArgs)
     fetcher_args[:name] = sanitize_name(get(spec, "name", git_short_rev(rev)))
-    fetcher_args[:url] = url 
+    fetcher_args[:url] = url
     fetcher_args[:rev] = rev
     if builtin
         fetcher_name = "builtins.fetchGit"
@@ -57,22 +61,22 @@ function git_handler(name, spec)
         # TODO fetchgit doesn't have ref option
         fetcher_name = "pkgs.fetchgit"
         fetcher_args[:fetchSubmodules] = submodule
-        
+
         hash = get_sha256(fetcher_name, fetcher_args)
 
         if builtin
-            fetcher_args[:sha256] = string(hash, encoding=Base32Nix())
+            fetcher_args[:sha256] = string(hash, encoding = Base32Nix())
         else
-            fetcher_args[:hash] = string(hash) 
+            fetcher_args[:hash] = string(hash)
         end
     end
 
-    return Source(; pname=name, version=ver, fetcher_name, fetcher_args)
+    return Source(; pname = name, version = ver, fetcher_name, fetcher_args)
 end
 
 # TODO kind of a hack
 function git_ref2rev(url::AbstractString, ref::AbstractString)
-    output = strip(run_suppress(`$(git()) ls-remote $url $ref`, out=true))
+    output = strip(run_suppress(`$(git()) ls-remote $url $ref`, out = true))
     lines = split(output, '\n')
     @assert length(lines) == 1
     columns = split(lines[1], '\t')
@@ -101,12 +105,12 @@ function git_latest_semver_tag(url::AbstractString; prefix::AbstractString = "")
         ],
     )
     cmd = `$(git()) $args`
-    lines = readlines(pipeline(cmd, stderr=stderr))
+    lines = readlines(pipeline(cmd, stderr = stderr))
     parsed = map(lines) do l
         rev, ref = split(strip(l))
         m = match(r"^refs/tags/(.*)", ref)
-        if m === nothing 
-            return (rev, ref, nothing, nothing) 
+        if m === nothing
+            return (rev, ref, nothing, nothing)
         else
             tag = only(m.captures)
             return (rev, ref, tag, tryparse(VersionNumber, tag))

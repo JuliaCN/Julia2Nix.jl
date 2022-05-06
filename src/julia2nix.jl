@@ -20,16 +20,17 @@ using Test
 using TranscodingStreams, CodecBase
 
 
-Base.include(@__MODULE__, joinpath(Sys.BINDIR, "..", "share", "julia", "test", "testhelpers", "FakePTYs.jl"))
+Base.include(
+    @__MODULE__,
+    joinpath(Sys.BINDIR, "..", "share", "julia", "test", "testhelpers", "FakePTYs.jl"),
+)
 using .FakePTYs: open_fake_pty
 
 export update
 export update_package
 export Nix
 
-const NO_HASH_FETCHERS = (
-    "builtins.fetchGit",
-)
+const NO_HASH_FETCHERS = ("builtins.fetchGit",)
 
 const UPDATE_SCRIPT_FILENAME = "nix_update.jl"
 const FLAKE_FILENAME = "flake.nix"
@@ -67,7 +68,7 @@ const SCHEMAS = Dict(
     "crate" => CRATE_SCHEMA,
     "git" => GIT_SCHEMA,
     "docker" => DOCKER_SCHEMA,
-    "snap" => SNAP_SCHEMA
+    "snap" => SNAP_SCHEMA,
 )
 
 const HANDLERS = Dict(
@@ -77,7 +78,7 @@ const HANDLERS = Dict(
     "crate" => crate_handler,
     "git" => git_handler,
     "docker" => docker_handler,
-    "snap" => snap_handler
+    "snap" => snap_handler,
 )
 
 const DEFAULT_NIX = joinpath(@__DIR__, "../../default.nix")

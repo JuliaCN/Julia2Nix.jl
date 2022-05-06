@@ -20,11 +20,16 @@ function docker_handler(name, spec)
         "--arch",
         get(spec, "arch", get_docker_arch()),
     ]
-    haskey(spec, "image_digest") && append!(args, [ "--image-digest", spec["image_digest"] ])
-    info = JSON.parse(strip(run_suppress(`nix-prefetch-docker $args`; out=true)))
+    haskey(spec, "image_digest") && append!(args, ["--image-digest", spec["image_digest"]])
+    info = JSON.parse(strip(run_suppress(`nix-prefetch-docker $args`; out = true)))
     fetcher_name = "pkgs.dockerTools.pullImage"
     fetcher_args = Dict(Symbol(k) => v for (k, v) in info)
-    return Source(; pname=name, version=info["finalImageTag"], fetcher_name, fetcher_args)
+    return Source(;
+        pname = name,
+        version = info["finalImageTag"],
+        fetcher_name,
+        fetcher_args,
+    )
 end
 
 # See: 

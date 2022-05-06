@@ -1,6 +1,10 @@
-update(path::AbstractString, args...; kwargs...) = update([ path ], args...; kwargs...)
+update(path::AbstractString, args...; kwargs...) = update([path], args...; kwargs...)
 
-function update(paths::Vector{<:AbstractString}=[pwd()]; config::AbstractDict=default_config(), io=stdout)
+function update(
+    paths::Vector{<:AbstractString} = [pwd()];
+    config::AbstractDict = default_config(),
+    io = stdout,
+)
     config = parse_config(config)
     setup(config)
 
@@ -12,7 +16,7 @@ function update(paths::Vector{<:AbstractString}=[pwd()]; config::AbstractDict=de
     if config["recursive"]
         for path in paths
             if isdir(path)
-                for (root, dirs, files) in walkdir(path; topdown=false)
+                for (root, dirs, files) in walkdir(path; topdown = false)
                     for dir in dirs
                         subpath = joinpath(root, dir)
                         should_update(subpath) && push!(allpaths, subpath)
@@ -37,15 +41,15 @@ function update(paths::Vector{<:AbstractString}=[pwd()]; config::AbstractDict=de
         n = !j && !s && has_project(path)
         s, j, f, n = map(x -> x ? "+" : "-", (s, j, f, n))
         str = @sprintf "%-4sS%-3sJ%-3sF%-3sN%-3s%-10s" "" s j f n ""
-        printstyled(io, str; color=:magenta)
+        printstyled(io, str; color = :magenta)
         return println(path == "." ? ". (cwd)" : path)
     end
 
-    printstyledln(io, "Updating the following paths:"; color=:blue, bold=true)
-    printstyledln(io, "S = Update (S)cript | "; color=:blue, bold=true)
-    printstyledln(io, "J = (J)ulia Project | "; color=:blue, bold=true)
-    printstyledln(io, "F = (F)lake | "; color=:blue, bold=true)
-    printstyledln(io, "N = (N)ix Project"; color=:blue, bold=true)
+    printstyledln(io, "Updating the following paths:"; color = :blue, bold = true)
+    printstyledln(io, "S = Update (S)cript | "; color = :blue, bold = true)
+    printstyledln(io, "J = (J)ulia Project | "; color = :blue, bold = true)
+    printstyledln(io, "F = (F)lake | "; color = :blue, bold = true)
+    printstyledln(io, "N = (N)ix Project"; color = :blue, bold = true)
 
     println()
     foreach(print_path, allpaths)
@@ -59,10 +63,15 @@ function update(paths::Vector{<:AbstractString}=[pwd()]; config::AbstractDict=de
     # Since we're updating N paths with M packages each try not to use N*M workers
     # workers = min(length(allpaths), config["workers"])
     # workers = config["workers"] = round(Int, sqrt(workers), RoundUp)
-    run_jobs(jobs, workers=config["workers"])
+    run_jobs(jobs, workers = config["workers"])
 
     println()
-    printstyledln(io, "Done! Congrats on updating $(length(allpaths)) package(s):"; color=:blue, bold=true)
+    printstyledln(
+        io,
+        "Done! Congrats on updating $(length(allpaths)) package(s):";
+        color = :blue,
+        bold = true,
+    )
 
     return nothing
 end
@@ -70,15 +79,17 @@ end
 function setup(config)
     # We don't want overlays or anything else as it breaks nix-prefetch
     # TODO don't use <nixpkgs>?>
-    nixpkgs = strip(run_suppress(`nix eval --impure --expr '<nixpkgs>'`; out=true))
+    nixpkgs = strip(run_suppress(`nix eval --impure --expr '<nixpkgs>'`; out = true))
     isdir(nixpkgs) || nixsourcerer_error("Could not locate <nixpkgs> in NIX_PATH")
     ENV["NIX_PATH"] = "nixpkgs=$(nixpkgs)"
 
-    ENV["NIX_SOURCERER_WORKERS"] = config["workers"] 
+    ENV["NIX_SOURCERER_WORKERS"] = config["workers"]
 
     # We only want to update the registry once per session
     if !config["no-update-julia-registries"]
-        run_suppress(`julia --startup-file=no --history-file=no -e 'using Pkg; Pkg.Registry.update()'`)
+        run_suppress(
+            `julia --startup-file=no --history-file=no -e 'using Pkg; Pkg.Registry.update()'`,
+        )
         # Pkg.Registry.update()
     end
 
@@ -87,29 +98,34 @@ end
 
 function _update(path; config, io)
     jobs = []
-    push!(jobs, () -> printstyledln(io, "Updating $(cleanpath(path))"; color=:yellow, bold=true))
+    push!(
+        jobs,
+        () ->
+            printstyledln(io, "Updating $(cleanpath(path))"; color = :yellow, bold = true),
+    )
     io = IOContext(io, :indent => get(io, :indent, 0) + PAD_WIDTH)
     if has_update_script(path)
         push!(jobs, _run_update_script(path; config, io))
     else
         has_julia_project(path) && push!(jobs, _update_julia_project(path; config, io))
-        has_flake(path)  && push!(jobs, _update_flake(path; config, io))
+        has_flake(path) && push!(jobs, _update_flake(path; config, io))
         has_project(path) && append!(jobs, _update_package(path; config, io))
     end
     # TODO gets printed early because async
     # push!(jobs, () -> printstyledln(io, "Finished updating $(cleanpath(path))"; color=:yellow, bold=true))
-    return jobs 
+    return jobs
 end
 
-run_update_script(path::String; config=default_config(), io=stdout) = _run_update_script(path; config, io)()
+run_update_script(path::String; config = default_config(), io = stdout) =
+    _run_update_script(path; config, io)()
 function _run_update_script(path::String; config, io)
     config = parse_config(config)
     () -> begin
         indented_printstyledln(
             io,
             "Updating using script at $(cleanpath(get_update_script(path))). Skipped NixManifest.toml/$(FLAKE_FILENAME)/Manifest.toml.";
-            color=:green,
-            bold=true,
+            color = :green,
+            bold = true,
         )
         if !config["dry-run"]
             path = get_update_script(path)
@@ -122,12 +138,9 @@ function _run_update_script(path::String; config, io)
                     Pkg.instantiate(update_registry=false)
                     include("$path")
                     """
-            jlcmd = [
-                "julia",
-                "-e",
-            ]
+            jlcmd = ["julia", "-e"]
 
-            args = [ "--option max-jobs 1", "--option cores 0" ]
+            args = ["--option max-jobs 1", "--option cores 0"]
             !config["verbose"] && push!(args, "--quiet")
             if isfile(shell_file)
                 push!(jlcmd, "'$preamble'")
@@ -142,19 +155,25 @@ function _run_update_script(path::String; config, io)
             env = copy(ENV)
             env["JULIA_PROJECT"] = dirname(path)
             # TODO run_suppress?
-            run(setenv(cmd, env, dir=dirname(path)))
+            run(setenv(cmd, env, dir = dirname(path)))
         end
 
         return nothing
     end
 end
 
-update_flake(path; config=default_config(), io=stdout) = _update_flake(path; config, io)()
+update_flake(path; config = default_config(), io = stdout) =
+    _update_flake(path; config, io)()
 function _update_flake(path; config, io)
     config = parse_config(config)
-    () -> begin 
+    () -> begin
         path = dirname(get_flake(path))
-        indented_printstyledln(io, "Updating flake at $(cleanpath(get_flake(path)))"; color=:green, bold=true)
+        indented_printstyledln(
+            io,
+            "Updating flake at $(cleanpath(get_flake(path)))";
+            color = :green,
+            bold = true,
+        )
         if !config["dry-run"]
             run_suppress(`nix flake update $path`)
         end
@@ -162,27 +181,39 @@ function _update_flake(path; config, io)
     end
 end
 
-update_julia_project(path; config=default_config(), io=stdout) = _update_julia_project(path; config, io)()
+update_julia_project(path; config = default_config(), io = stdout) =
+    _update_julia_project(path; config, io)()
 function _update_julia_project(path; config, io)
     config = parse_config(config)
     () -> begin
         path = get_julia_project(path)
-        indented_printstyledln(io, "Updating Julia project at $(cleanpath(get_julia_project(path)))"; color=:green, bold=true)
+        indented_printstyledln(
+            io,
+            "Updating Julia project at $(cleanpath(get_julia_project(path)))";
+            color = :green,
+            bold = true,
+        )
         if !config["dry-run"]
-            run_suppress(`julia --project=$path --startup-file=no --history-file=no -e 'using Pkg; Pkg.update()'`)
+            run_suppress(
+                `julia --project=$path --startup-file=no --history-file=no -e 'using Pkg; Pkg.update()'`,
+            )
         end
         return nothing
     end
 end
 
-function update_package(path::AbstractString=pwd(); config=default_config(), io=stdout) 
+function update_package(
+    path::AbstractString = pwd();
+    config = default_config(),
+    io = stdout,
+)
     config = parse_config(config)
     jobs = _update_package(path; config, io)
-    run_jobs(jobs, workers=config["workers"])
+    run_jobs(jobs, workers = config["workers"])
     return nothing
 end
 
-function _update_package(path; config, io) 
+function _update_package(path; config, io)
     config = parse_config(config)
     if config["verbose"]
         ENV["JULIA_DEBUG"] = string(@__MODULE__)
@@ -204,21 +235,42 @@ function _update_package(path; config, io)
 
     jobs = []
     l = ReentrantLock()
-    push!(jobs, () -> indented_printstyledln(io, "Updating NixManifest.toml at $(cleanpath(get_project(path)))"; color=:green, bold=true))
+    push!(
+        jobs,
+        () -> indented_printstyledln(
+            io,
+            "Updating NixManifest.toml at $(cleanpath(get_project(path)))";
+            color = :green,
+            bold = true,
+        ),
+    )
     for name in names
-        push!(jobs, () -> begin
-            lock(l) do
-                update!(package, name; config, io=IOContext(io, :indent => get(io, :indent, 0) + PAD_WIDTH))
-                write_package(package)
-            end
-            return nothing
-        end)
+        push!(
+            jobs,
+            () -> begin
+                lock(l) do
+                    update!(
+                        package,
+                        name;
+                        config,
+                        io = IOContext(io, :indent => get(io, :indent, 0) + PAD_WIDTH),
+                    )
+                    write_package(package)
+                end
+                return nothing
+            end,
+        )
     end
 
     return jobs
 end
 
-function update!(package::Package, name::AbstractString; config=default_config(), io=stdout)
+function update!(
+    package::Package,
+    name::AbstractString;
+    config = default_config(),
+    io = stdout,
+)
     config = parse_config(config)
     path = cleanpath(dirname(package.project_file))
     try
@@ -228,7 +280,7 @@ function update!(package::Package, name::AbstractString; config=default_config()
             merge_recursively!(manifest_source.meta, get(project_spec, "meta", Dict()))
             package.manifest.sources[name] = manifest_source
         end
-        indented_printstyledln(io, "Updated package $name from $path"; color=:green)
+        indented_printstyledln(io, "Updated package $name from $path"; color = :green)
     catch e
         nixsourcerer_error("Could not update source $name from $path")
         rethrow()
@@ -236,11 +288,17 @@ function update!(package::Package, name::AbstractString; config=default_config()
     return package
 end
 
-should_update(path) = has_update_script(path) || has_project(path) || has_flake(path) || has_julia_project(path)
+should_update(path) =
+    has_update_script(path) ||
+    has_project(path) ||
+    has_flake(path) ||
+    has_julia_project(path)
 
 has_file(file_or_dir, filename) = isfile(get_file(file_or_dir, filename))
 function get_file(file_or_dir, filename)
-    file = isfile(file_or_dir) && basename(file_or_dir) == filename ? file_or_dir : joinpath(file_or_dir, filename)
+    file =
+        isfile(file_or_dir) && basename(file_or_dir) == filename ? file_or_dir :
+        joinpath(file_or_dir, filename)
     return abspath(file)
 end
 
@@ -256,8 +314,11 @@ has_julia_project(path) = has_file(path, JULIA_PROJECT_FILENAME)
 get_project(path) = get_file(path, PROJECT_FILENAME)
 has_project(path) = has_file(path, PROJECT_FILENAME)
 
-get_manifest(path) =
-    get_file(isfile(path) && basename(path) == PROJECT_FILENAME ? dirname(path) : path, MANIFEST_FILENAME)
-has_manifest(path) =
-    has_file(isfile(path) && basename(path) == PROJECT_FILENAME ? dirname(path) : path, MANIFEST_FILENAME)
-
+get_manifest(path) = get_file(
+    isfile(path) && basename(path) == PROJECT_FILENAME ? dirname(path) : path,
+    MANIFEST_FILENAME,
+)
+has_manifest(path) = has_file(
+    isfile(path) && basename(path) == PROJECT_FILENAME ? dirname(path) : path,
+    MANIFEST_FILENAME,
+)

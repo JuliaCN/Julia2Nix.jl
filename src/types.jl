@@ -84,7 +84,13 @@ mutable struct Source
 end
 
 function Source(;
-    pname, version, name="$(pname)-$(version)", fetcher_name, fetcher_args, meta=Dict{String,Any}(), outPath=nothing
+    pname,
+    version,
+    name = "$(pname)-$(version)",
+    fetcher_name,
+    fetcher_args,
+    meta = Dict{String,Any}(),
+    outPath = nothing,
 )
     return Source(pname, version, name, fetcher_name, fetcher_args, meta, outPath)
 end
@@ -177,9 +183,12 @@ function validate(schema::DependentSchema, spec)
     elseif haskey(spec, schema.ikey)
         T = schema.itype
         V = typeof(spec[schema.ikey])
-        V <: T || nixsourcerer_error("Expected key \"$(schema.ikey)\" to be of type $T, got $V.")
+        V <: T ||
+            nixsourcerer_error("Expected key \"$(schema.ikey)\" to be of type $T, got $V.")
         for (dkey, T) in zip(schema.dkeys, schema.dtypes)
-            haskey(spec, dkey) || nixsourcerer_error("Must specify \"$(schema.dkeys)\" if providing \"$(schema.ikey)\"")
+            haskey(spec, dkey) || nixsourcerer_error(
+                "Must specify \"$(schema.dkeys)\" if providing \"$(schema.ikey)\"",
+            )
             V = typeof(spec[dkey])
             V <: T || nixsourcerer_error("Expected key \"$dkey\" to be of type $T, got $V.")
         end
@@ -192,10 +201,13 @@ end
 
 SchemaSet(schemas::Schema...) = SchemaSet(schemas)
 
-Base.keys(schema::SchemaSet) = foldl((a, b) -> (a..., keys(b)...), schema.schemas; init=())
+Base.keys(schema::SchemaSet) =
+    foldl((a, b) -> (a..., keys(b)...), schema.schemas; init = ())
 
 const DEFAULT_SCHEMA_SET = SchemaSet(
-    SimpleSchema("type", String, true), SimpleSchema("builtin", Bool, false), SimpleSchema("meta", Dict, false)
+    SimpleSchema("type", String, true),
+    SimpleSchema("builtin", Bool, false),
+    SimpleSchema("meta", Dict, false),
 )
 
 function validate(set::SchemaSet, spec)
@@ -242,7 +254,7 @@ function validate(project::Project)
     end
 end
 
-function read_project(project_file::AbstractString=PROJECT_FILENAME)
+function read_project(project_file::AbstractString = PROJECT_FILENAME)
     raw = TOML.parsefile(project_file)
     # TODO hack
     for v in values(raw)
@@ -251,7 +263,7 @@ function read_project(project_file::AbstractString=PROJECT_FILENAME)
     return Project(raw)
 end
 
-function write_project(project::Project, project_file::AbstractString=PROJECT_FILENAME)
+function write_project(project::Project, project_file::AbstractString = PROJECT_FILENAME)
     open(project_file, "w") do io
         TOML.print(io, project.specs)
     end
@@ -269,7 +281,7 @@ Manifest() = Manifest(Dict{String,Source}())
 
 function validate(manifest::Manifest) end
 
-function read_manifest(manifest_file::AbstractString=MANIFEST_FILENAME)
+function read_manifest(manifest_file::AbstractString = MANIFEST_FILENAME)
     manifest_file = abspath(manifest_file)
     attrs = ["pname", "version", "name", "fetcherName", "fetcherArgs", "meta", "outPath"]
     expr = """
@@ -295,7 +307,8 @@ function read_manifest(manifest_file::AbstractString=MANIFEST_FILENAME)
             )
             manifest
     """
-    json = JSON.parse(strip(run_suppress(`nix eval --impure --json --expr $expr`; out=true)))
+    json =
+        JSON.parse(strip(run_suppress(`nix eval --impure --json --expr $expr`; out = true)))
 
     manifest = Manifest()
     for (name, source) in json
@@ -319,10 +332,13 @@ function read_manifest(manifest_file::AbstractString=MANIFEST_FILENAME)
     return manifest
 end
 
-function write_manifest(manifest::Manifest, manifest_file::AbstractString=MANIFEST_FILENAME)
-    io = IOBuffer(; append=true)
+function write_manifest(
+    manifest::Manifest,
+    manifest_file::AbstractString = MANIFEST_FILENAME,
+)
+    io = IOBuffer(; append = true)
     write(io, "{ pkgs ? import <nixpkgs> {} }:")
-    Nix.print(io, manifest.sources; sort=true)
+    Nix.print(io, manifest.sources; sort = true)
     open(manifest_file, "w") do f
         Nix.nixpkgs_fmt(f, io)
     end

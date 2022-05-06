@@ -5,7 +5,7 @@ macro genmodule()
     end
 end
 
-function test(parent::AbstractString=pwd(); config::AbstractDict=Dict())
+function test(parent::AbstractString = pwd(); config::AbstractDict = Dict())
     isdir(parent) || nixsourcerer_error("Not a directory: $(parent)")
 
     if get(config, "verbose", false)
@@ -13,12 +13,12 @@ function test(parent::AbstractString=pwd(); config::AbstractDict=Dict())
     end
 
     paths = String[]
-    has_test(parent) && push!(paths, parent) 
+    has_test(parent) && push!(paths, parent)
     if get(config, "recursive", false)
         for (root, dirs, files) in walkdir(path)
             for dir in dirs
                 path = joinpath(root, dir)
-                has_test(path) && push!(paths, path) 
+                has_test(path) && push!(paths, path)
             end
         end
     end

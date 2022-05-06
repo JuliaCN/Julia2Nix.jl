@@ -31,23 +31,22 @@ function convert_sha256(data::String, base::Symbol)
     else
         error("Unknown base $base")
     end
-    return strip(run_suppress(`nix-hash --type sha256 $flag $data`, out=true))
+    return strip(run_suppress(`nix-hash --type sha256 $flag $data`, out = true))
 end
 
 function fetch_sha256(fetcher::Fetcher, opts::Options)
     parsed = parse_fetcher(fetcher, opts)
-    expr = 
-    """
-        { nixpkgs ? <nixpkgs> }:
-        let pkgs = import nixpkgs { };
-        in with pkgs; $(fetcher.name)
-    """
+    expr = """
+               { nixpkgs ? <nixpkgs> }:
+               let pkgs = import nixpkgs { };
+               in with pkgs; $(fetcher.name)
+           """
     cmd = `nix-prefetch $expr $(parsed)`
     @debug cmd
-    return strip(run_suppress(cmd; out=true))
+    return strip(run_suppress(cmd; out = true))
 end
 
-function parse_fetcher(fetcher::Fetcher, opts::Options=Options())
+function parse_fetcher(fetcher::Fetcher, opts::Options = Options())
     args = copy(fetcher.args)
     parsed = ["--hash-algo", "sha256", "--output", "raw"]
 

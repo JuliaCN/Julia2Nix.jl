@@ -7,7 +7,11 @@ function select_registry_fetchers(opts::Options)
         if haskey(pkg_server_urls, reg.uuid)
             url = "$(pkg_server_urls[reg.uuid])#registry.tar.gz"
             push!(
-                fetchers, Fetcher(ARCHIVE_FETCHER, Dict("name" => name, "url" => url, "stripRoot" => false))
+                fetchers,
+                Fetcher(
+                    ARCHIVE_FETCHER,
+                    Dict("name" => name, "url" => url, "stripRoot" => false),
+                ),
             )
         end
         if is_git_repo(reg.path)
@@ -23,7 +27,8 @@ function select_registry_fetchers(opts::Options)
                     remote_url = only(repo_meta.remote_urls)
                 end
                 fetcher = Fetcher(
-                    GIT_FETCHER, Dict("name" => name, "url" => remote_url, "rev" => repo_meta.rev)
+                    GIT_FETCHER,
+                    Dict("name" => name, "url" => remote_url, "rev" => repo_meta.rev),
                 )
                 push!(fetchers, fetcher)
             end
@@ -49,16 +54,28 @@ function select_pkg_fetchers(pkgs::Vector{PackageInfo}, opts::Options)
                 fetchers,
                 Fetcher(
                     ARCHIVE_FETCHER,
-                    Dict("name" => name, "url" => url, "stripRoot" => false, "name" => name), 
+                    Dict(
+                        "name" => name,
+                        "url" => url,
+                        "stripRoot" => false,
+                        "name" => name,
+                    ),
                 ),
             )
         end
         for url in pkg.archives
-            push!(fetchers, Fetcher(ARCHIVE_FETCHER, Dict("name" => name, "url" => pkg.url)))
+            push!(
+                fetchers,
+                Fetcher(ARCHIVE_FETCHER, Dict("name" => name, "url" => pkg.url)),
+            )
         end
         for repo in pkg.repos
             push!(
-                fetchers, Fetcher(GIT_FETCHER, Dict("name" => name, "url" => repo, "rev" => pkg.tree_hash))
+                fetchers,
+                Fetcher(
+                    GIT_FETCHER,
+                    Dict("name" => name, "url" => repo, "rev" => pkg.tree_hash),
+                ),
             )
         end
     end
@@ -85,7 +102,11 @@ function select_artifact_fetchers(pkgs::Vector{PackageInfo}, opts::Options)
             # Prefer using Pkg server even though we don't have a sha256
             url = "$(opts.pkg_server)/artifact/$(artifact.tree_hash)#artifact.tar.gz"
             push!(
-                fetchers, Fetcher(ARCHIVE_FETCHER, Dict("name" => name, "url" => url, "stripRoot" => false))
+                fetchers,
+                Fetcher(
+                    ARCHIVE_FETCHER,
+                    Dict("name" => name, "url" => url, "stripRoot" => false),
+                ),
             )
         elseif isempty(artifact.downloads)
             @warn "Artifact $artifact_name ($(artifact.tree_hash)) has no downloads"
@@ -94,7 +115,10 @@ function select_artifact_fetchers(pkgs::Vector{PackageInfo}, opts::Options)
             for dl in artifact.downloads
                 push!(
                     fetchers,
-                    Fetcher(ARCHIVE_FETCHER, Dict("name" => name, "url" => dl.url, "sha256" => dl.sha256)),
+                    Fetcher(
+                        ARCHIVE_FETCHER,
+                        Dict("name" => name, "url" => dl.url, "sha256" => dl.sha256),
+                    ),
                 )
             end
         end
@@ -130,7 +154,7 @@ function select_fetchers(tofetch::Dict{K,Vector{Fetcher}}, opts::Options) where 
         end
 
         # readers
-        for i in 1:(opts.nworkers)
+        for i = 1:(opts.nworkers)
             @async begin
                 for (key, fetchers) in jobs
                     fetcher = select_fetcher(fetchers, opts)
@@ -140,17 +164,17 @@ function select_fetchers(tofetch::Dict{K,Vector{Fetcher}}, opts::Options) where 
         end
 
         bar = MiniProgressBar(;
-            indent=2,
-            header="Progress",
-            color=Base.info_color(),
-            percentage=false,
-            always_reprint=true,
-            max=length(tofetch),
+            indent = 2,
+            header = "Progress",
+            color = Base.info_color(),
+            percentage = false,
+            always_reprint = true,
+            max = length(tofetch),
         )
         try
             start_progress(stdout, bar)
             selected = Dict{K,FetcherResult}()
-            for i in 1:length(tofetch)
+            for i = 1:length(tofetch)
                 bar.current = i
 
                 key, fetcher = take!(results)

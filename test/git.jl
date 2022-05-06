@@ -11,7 +11,8 @@ include("preamble.jl")
     toml = Dict(
         "test1" => Dict("type" => "git", "url" => url, "rev" => rev),
         "test2" => Dict("type" => "git", "url" => url, "rev" => rev, "builtin" => true),
-        "test3" => Dict("type" => "git", "url" => url, "rev" => rev, "submodule" => true),
+        "test3" =>
+            Dict("type" => "git", "url" => url, "rev" => rev, "submodule" => true),
         "test4" => Dict("type" => "git", "url" => url, "tag" => tag),
     )
     truth = Dict(
@@ -20,7 +21,6 @@ include("preamble.jl")
         "test1.fetcherArgs.rev" => rev,
         "test1.fetcherArgs.hash" => string(hash),
         "test1.fetcherArgs.name" => git_short_rev(rev),
-
         "test2.fetcherName" => "builtins.fetchGit",
         "test2.fetcherArgs.url" => url,
         "test2.fetcherArgs.rev" => rev,
@@ -32,12 +32,11 @@ include("preamble.jl")
         "test3.fetcherArgs.rev" => rev,
         "test3.fetcherArgs.hash" => string(hash),
         "test3.fetcherArgs.name" => git_short_rev(rev),
-
         "test4.fetcherName" => "pkgs.fetchgit",
         "test4.fetcherArgs.url" => url,
         "test4.fetcherArgs.rev" => rev,
         "test4.fetcherArgs.hash" => string(hash),
-        "test4.fetcherArgs.name" => git_short_rev(rev) 
+        "test4.fetcherArgs.name" => git_short_rev(rev),
     )
     runtest(toml, truth)
 end

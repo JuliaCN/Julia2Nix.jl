@@ -41,7 +41,7 @@ function print(io::IO, x::Pair; kwargs...)
     return nothing
 end
 
-function print(io::IO, xs::AbstractDict; sort::Bool=false)
+function print(io::IO, xs::AbstractDict; sort::Bool = false)
     write(io, '{')
     ks = sort ? Base.sort(collect(keys(xs))) : keys(xs)
     for k in ks

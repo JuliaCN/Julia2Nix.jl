@@ -24,5 +24,14 @@ command = "julia --project=$PRJ_ROOT/docs $PRJ_ROOT/docs/make.jl"
 help = "make julia doc"
 
 [[commands]]
-category = "format"
+category = "fmt"
 package = "treefmt"
+
+
+[[commands]]
+name = "jlfmt"
+category = "fmt"
+command = '''
+        julia -e 'import Pkg; using JuliaFormatter;format(".")'
+'''
+help = "format julia code"

@@ -10,7 +10,7 @@ function parse_commandline()
         arg_type = String
         action = :store_arg
         nargs = '*'
-        default = [ pwd() ]
+        default = [pwd()]
         "-n", "--names"
         help = "Source names to update in `path`"
         required = false
@@ -29,7 +29,7 @@ function parse_commandline()
         # help = "Whether to skip any update.jl scripts and just update NixManifest"
         # action = :store_true
         "--no-update-julia-registries"
-        help = "Whether to skip updating local Julia registries" 
+        help = "Whether to skip updating local Julia registries"
         action = :store_true
         "--run-test"
         help = "Whether to run tests instead of update."

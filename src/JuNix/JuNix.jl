@@ -41,7 +41,7 @@ function load_registries!(pkgs::Vector{PackageInfo})
                 uuid = string(pkg.uuid)
                 if haskey(known, uuid)
                     meta = TOML.parsefile(
-                        joinpath(reg.path, known[uuid]["path"], "Package.toml")
+                        joinpath(reg.path, known[uuid]["path"], "Package.toml"),
                     )
                     push!(pkg.repos, meta["repo"])
                     push!(pkg.registries, reg)
@@ -53,9 +53,8 @@ function load_registries!(pkgs::Vector{PackageInfo})
 end
 
 function load_artifacts!(pkginfo::PackageInfo)
-    artifacts_file = Pkg.Artifacts.find_artifacts_toml(
-        joinpath(pkginfo.depot, pkginfo.path)
-    )
+    artifacts_file =
+        Pkg.Artifacts.find_artifacts_toml(joinpath(pkginfo.depot, pkginfo.path))
     if artifacts_file !== nothing
         artifacts_meta = TOML.parsefile(artifacts_file)
         for (name, metas) in artifacts_meta
@@ -66,13 +65,14 @@ function load_artifacts!(pkginfo::PackageInfo)
             for meta in metas
                 artifactinfo = ArtifactInfo(;
                     name,
-                    tree_hash=SHA1(meta["git-tree-sha1"]),
-                    arch=get(meta, "arch", nothing),
-                    os=get(meta, "os", nothing),
-                    libc=get(meta, "libc", nothing),
-                    lazy=get(meta, "lazy", false),
-                    downloads=map(
-                        d -> (url=d["url"], sha256=d["sha256"]), get(meta, "downloads", [])
+                    tree_hash = SHA1(meta["git-tree-sha1"]),
+                    arch = get(meta, "arch", nothing),
+                    os = get(meta, "os", nothing),
+                    libc = get(meta, "libc", nothing),
+                    lazy = get(meta, "lazy", false),
+                    downloads = map(
+                        d -> (url = d["url"], sha256 = d["sha256"]),
+                        get(meta, "downloads", []),
                     ),
                 )
                 push!(pkginfo.artifacts[name], artifactinfo)
@@ -144,9 +144,13 @@ function generate_depot(
 end
 
 function write_depot(
-    depot::Dict{String,Fetcher}, meta::Dict{String,Any}, opts::Options, package_path::String, out_path::String
+    depot::Dict{String,Fetcher},
+    meta::Dict{String,Any},
+    opts::Options,
+    package_path::String,
+    out_path::String,
 )
-    io = IOBuffer(; append=true)
+    io = IOBuffer(; append = true)
     write(io, "{ pkgs ? import <nixpkgs> {} }: {\n")
     write(io, "meta = ")
     Nix.print(io, meta)
@@ -172,7 +176,7 @@ function write_depot(
     end
 end
 
-function main(package_path::String, opts::Options=Options())
+function main(package_path::String, opts::Options = Options())
     if opts.pkg_server !== nothing
         ENV["JULIA_PKG_SERVER"] = opts.pkg_server
         @assert Pkg.pkg_server() == opts.pkg_server
