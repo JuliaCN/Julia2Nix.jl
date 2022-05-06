@@ -14,6 +14,18 @@ pkgs.devshell.mkShell ({
     (pkgs.devshell.importTOML ./commands.toml)
   ];
 
+  commands = [
+    {
+      name = "mktest";
+      category = "tests";
+      command = ''
+        export NIX_PATH=nixpkgs=${pkgs.path}
+        julia --project=$PRJ_ROOT -e 'import Pkg; Pkg.test()'
+      '';
+      help = "make runtests";
+    }
+  ];
+
   packages = with pkgs; [
     julia_17-bin
     nixUnstable

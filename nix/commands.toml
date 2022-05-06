@@ -18,14 +18,6 @@ command = '''
 help = "run pkgs.instantiate() in project :: develop"
 
 [[commands]]
-name = "mktest"
-category = "tests"
-command = '''
-        julia --project=$PRJ_ROOT -e 'import Pkg; Pkg.test()'
-'''
-help = "make runtests"
-
-[[commands]]
 name = "mkdoc"
 category = "doc"
 command = "julia --project=$PRJ_ROOT/docs $PRJ_ROOT/docs/make.jl"
