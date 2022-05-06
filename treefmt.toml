@@ -1,0 +1,10 @@
+[formatter.nix]
+command = "alejandra"
+includes = ["*.nix"]
+excludes = [""]
+
+[formatter.prettier]
+command = "prettier"
+options = ["--plugin", "prettier-plugin-toml", "--write"]
+includes = ["*.md", "*.yaml", "*.toml", "*.json"]
+excludes = ["Manifest.toml", "Project.toml"]

@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+  pull_request:
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -21,12 +23,12 @@ jobs:
       run: nix -Lv flake check
 
     - name: Check Julia Version
-      run: nix -Lv develop -c julia --version
+      run: nix develop --command -- julia --version --show-trace
 
     - name: Build julia2nix with nix develop
-      run: nix -Lv develop -c julia --version
+      run: nix develop --command -- init --show-trace
 
     - name: Build Doc
       run: |
-        nix -Lv develop -c mkdoc-init
-        nix -Lv develop -c mkdoc
+        nix develop --command -- mkdoc-init --show-trace
+        nix develop --command -- mkdoc --show-trace

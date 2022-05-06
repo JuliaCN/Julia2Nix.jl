@@ -3,7 +3,11 @@
   inputs,
   ...
 }:
-pkgs.devshell.mkShell ({extraModulesPath, ...}: {
+pkgs.devshell.mkShell ({
+  extraModulesPath,
+  lib,
+  ...
+}: {
   name = "julia2nix.jl";
   imports = [
     "${extraModulesPath}/git/hooks.nix"
@@ -14,7 +18,14 @@ pkgs.devshell.mkShell ({extraModulesPath, ...}: {
     julia_17-bin
     nixUnstable
     nix-prefetch
-    nixpkgs-fmt
     cacert # Needed for network access
+    alejandra
+    nodePackages.prettier
+    nodePackages.prettier-plugin-toml
   ];
+  devshell.startup.nodejs-setuphook =
+    lib.stringsWithDeps.noDepEntry
+    ''
+      export NODE_PATH=${pkgs.nodePackages.prettier-plugin-toml}/lib/node_modules:$NODE_PATH
+    '';
 })
