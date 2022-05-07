@@ -17,8 +17,8 @@ using HTTP
 using Base: UUID, SHA1
 using LibGit2
 
-using ..julia2nix
-using ..julia2nix: run_suppress
+using ..Julia2Nix
+using ..Julia2Nix: run_suppress
 
 const PKGS_ARCHIVE_FETCHER = "pkgs.fetchzip"
 const PKGS_GIT_FETCHER = "pkgs.fetchgit"

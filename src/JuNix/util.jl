@@ -1,4 +1,4 @@
-# TODO move to julia2nix?
+# TODO move to Julia2Nix?
 function get_archive_url_for_version(url::String, ref)
     if (m = match(r"https://github.com/(.*?)/(.*?).git", url)) !== nothing
         return "https://api.github.com/repos/$(m.captures[1])/$(m.captures[2])/tarball/$(ref)"

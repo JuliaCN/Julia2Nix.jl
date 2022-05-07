@@ -1,6 +1,6 @@
 include("preamble.jl")
 
-@testset "julia2nix.jl" begin
+@testset "Julia2Nix.jl" begin
     include("file.jl")
     include("archive.jl")
     include("crate.jl")

@@ -1,4 +1,4 @@
-name = "julia2nix"
+name = "Julia2Nix"
 uuid = "959efae9-d930-411d-bc19-361dc384df77"
 authors = ["JuliaCN", "colinxs <me@colinxsummers.com>", "contributors"]
 version = "0.1.0"

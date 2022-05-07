@@ -2,7 +2,7 @@
 # TODO bootstrap nixpkgs
 # TODO make manifest read data from project rather than copying over info?
 
-module julia2nix
+module Julia2Nix
 
 using Base
 using TOML

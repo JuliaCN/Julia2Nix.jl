@@ -5,9 +5,9 @@ using GitCommand
 using p7zip_jll
 using Test
 
-using julia2nix
-using julia2nix: run_suppress, sanitize_name, git_short_rev, url_name
-using julia2nix: Base32Nix, SRI, Hash
+using Julia2Nix
+using Julia2Nix: run_suppress, sanitize_name, git_short_rev, url_name
+using Julia2Nix: Base32Nix, SRI, Hash
 
 noall(cmd::Cmd) = pipeline(cmd; stdout = devnull, stderr = devnull)
 
