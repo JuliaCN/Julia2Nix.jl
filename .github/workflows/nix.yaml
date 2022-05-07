@@ -1,0 +1,40 @@
+name: "Nix"
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.4.0
+
+    - uses: cachix/install-nix-action@v17
+      with:
+        install_url: https://github.com/numtide/nix-unstable-installer/releases/download/nix-2.9.0pre20220428_660835d/install
+        extra_nix_config: |
+          experimental-features = nix-command flakes
+          system-features = nixos-test benchmark big-parallel kvm recursive-nix
+
+
+    - name: Nix Flake Check
+      run: nix -Lv flake check
+
+    - name: Check Julia Version
+      run: nix develop --show-trace --command -- julia --version
+
+    - name: Build julia2nix with nix develop
+      run: nix develop --show-trace --command -- init
+
+    - name: Check julia2nix tests
+      run: |
+        nix develop --show-trace --command -- mktest
+
+    - name: Build Doc
+      run: |
+        nix develop --show-trace --command -- init-dev docs
+        nix develop --show-trace --command -- mkdoc
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

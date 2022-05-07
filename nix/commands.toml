@@ -1,0 +1,37 @@
+[[commands]]
+name = "init-dev"
+command = '''
+        julia --project=$PRJ_ROOT/"$@" -e '
+        using Pkg;
+        Pkg.develop(PackageSpec(; path=pwd()));
+        Pkg.instantiate();'
+'''
+help = "run pkgs.instantiate() in project"
+
+[[commands]]
+name = "init"
+command = '''
+        julia --project=$PRJ_ROOT -e '
+        using Pkg;
+        Pkg.instantiate();'
+'''
+help = "run pkgs.instantiate() in project :: develop"
+
+[[commands]]
+name = "mkdoc"
+category = "doc"
+command = "julia --project=$PRJ_ROOT/docs $PRJ_ROOT/docs/make.jl"
+help = "make julia doc"
+
+[[commands]]
+category = "fmt"
+package = "treefmt"
+
+
+[[commands]]
+name = "jlfmt"
+category = "fmt"
+command = '''
+        julia -e 'import Pkg; using JuliaFormatter;format(".")'
+'''
+help = "format julia code"

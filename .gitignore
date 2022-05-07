@@ -1,0 +1,7 @@
+# -*- mode: gitignore; -*-
+
+## nixos
+result
+
+docs/build
+docs/Manifest.toml
