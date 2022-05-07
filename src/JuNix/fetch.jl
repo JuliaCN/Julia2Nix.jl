@@ -1,6 +1,6 @@
 function select_registry_fetchers(opts::Options)
     tofetch = Dict{RegistryInfo,Vector{Fetcher}}()
-    pkg_server_urls = Pkg.Types.pkg_server_registry_urls()
+    pkg_server_urls = Pkg.Registry.pkg_server_registry_urls()
     for reg in collect_registries()
         fetchers = tofetch[reg] = Fetcher[]
         name = "registry-$(reg.name)"
@@ -28,7 +28,12 @@ function select_registry_fetchers(opts::Options)
                 end
                 fetcher = Fetcher(
                     GIT_FETCHER,
-                    Dict("name" => name, "url" => remote_url, "rev" => repo_meta.rev, "ref" => repo_meta.ref),
+                    Dict(
+                        "name" => name,
+                        "url" => remote_url,
+                        "rev" => repo_meta.rev,
+                        "ref" => repo_meta.ref,
+                    ),
                 )
                 push!(fetchers, fetcher)
             end

@@ -24,8 +24,16 @@ Base.@kwdef mutable struct RegistryInfo
 end
 
 function collect_registries()
-    map(Pkg.Registry.reachable_registries()) do regspec
-        RegistryInfo(; regspec.name, uuid = UUID(regspec.uuid), regspec.url, regspec.path)
+    registry_instances = if VERSION >= v"1.7.0"
+        # https://github.com/JuliaLang/Pkg.jl/pull/2072
+        Pkg.Registry.reachable_registries()
+    else
+        Pkg.Types.collect_registries()
+    end
+    map(registry_instances) do regspec
+        repo = hasfield(typeof(regspec), :repo) ? regspec.repo : nothing
+        url = something(regspec.url, repo)
+        RegistryInfo(; regspec.name, uuid = UUID(regspec.uuid), url, regspec.path)
     end
 end
 

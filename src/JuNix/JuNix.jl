@@ -176,7 +176,11 @@ function write_depot(
     end
 end
 
-function main(package_path::String, opts::Options = Options())
+function main(
+    package_path::String,
+    opts::Options = Options(),
+    out_path::String = package_path,
+)
     if opts.pkg_server !== nothing
         ENV["JULIA_PKG_SERVER"] = opts.pkg_server
         @assert Pkg.pkg_server() == opts.pkg_server
