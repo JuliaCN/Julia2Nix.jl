@@ -24,7 +24,7 @@ Base.@kwdef mutable struct RegistryInfo
 end
 
 function collect_registries()
-    map(Pkg.Types.collect_registries()) do regspec
+    map(Pkg.Registry.reachable_registries()) do regspec
         RegistryInfo(; regspec.name, uuid = UUID(regspec.uuid), regspec.url, regspec.path)
     end
 end

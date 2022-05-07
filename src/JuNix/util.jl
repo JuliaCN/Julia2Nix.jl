@@ -14,7 +14,9 @@ end
 
 function get_source_path(ctx::Context, name::String, uuid::UUID, tree_hash::SHA1)
     spec = Pkg.Types.PackageSpec(; name, uuid, tree_hash)
-    path = Pkg.Operations.source_path(ctx, spec)
+    # if VERSION <= v"1.7.0-"
+    # Pkg.Operations.source_path(ctx, pkg)
+    path = Pkg.Operations.source_path(ctx.env.project_file, spec)
     for depot in DEPOT_PATH
         if startswith(normpath(path), normpath(depot))
             return depot, relpath(normpath(path), normpath(depot))

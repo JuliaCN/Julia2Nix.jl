@@ -82,8 +82,9 @@ function load_artifacts!(pkginfo::PackageInfo)
     return pkginfo
 end
 
+
 function load_packages(ctx::Context)
-    alldeps = Pkg.dependencies(ctx)
+    alldeps = Pkg.dependencies(ctx.env)
     pkgs = PackageInfo[]
     for (uuid, pkgspec) in alldeps
         # TODO version from Project.toml?
@@ -105,7 +106,6 @@ function load_packages(ctx::Context)
                 pkgspec.is_tracking_repo,
                 pkgspec.is_tracking_registry,
             )
-
             if pkg.is_tracking_repo
                 push!(pkg.repos, pkgspec.git_source)
             end
