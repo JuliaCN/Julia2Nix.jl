@@ -32,6 +32,10 @@ jobs:
       run: |
         nix develop --show-trace --command -- mktest
 
+    - name: Check write Depot.nix
+      run: |
+        nix develop --show-trace --command -- julia --project=./. testenv/writeDepot.jl
+
     - name: Build Doc
       run: |
         nix develop --show-trace --command -- init-dev docs
