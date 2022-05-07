@@ -24,6 +24,12 @@ git-tree-sha1 = "744128fbfc6fe0739085d995b1756f1856964d4c"
 uuid = "6c391c72-fb7b-5838-ba82-7cfb1bcfecbf"
 version = "0.3.0"
 
+[[deps.CodecZlib]]
+deps = ["TranscodingStreams", "Zlib_jll"]
+git-tree-sha1 = "ded953804d019afa9a3f98981d99b33e3db7b6da"
+uuid = "944b1d66-785c-5afd-91f1-9de20f533193"
+version = "0.7.0"
+
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"

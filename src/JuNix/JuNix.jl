@@ -16,6 +16,8 @@ using TOML
 using HTTP
 using Base: UUID, SHA1
 using LibGit2
+using CodecZlib
+using Tar
 
 using ..Julia2Nix
 using ..Julia2Nix: run_suppress
