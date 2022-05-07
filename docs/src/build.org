@@ -1,0 +1,4 @@
+#+title: Build
+
+* Julia Wrapped
+*julia-wrapped* wraps the libraries and JULIA_DEPOT_PATH, which can be loaded easily in a sandbox environment.

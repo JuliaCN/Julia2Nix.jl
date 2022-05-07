@@ -16,9 +16,11 @@ using TOML
 using HTTP
 using Base: UUID, SHA1
 using LibGit2
+using CodecZlib
+using Tar
 
-using ..julia2nix
-using ..julia2nix: run_suppress
+using ..Julia2Nix
+using ..Julia2Nix: run_suppress
 
 const PKGS_ARCHIVE_FETCHER = "pkgs.fetchzip"
 const PKGS_GIT_FETCHER = "pkgs.fetchgit"
@@ -82,8 +84,9 @@ function load_artifacts!(pkginfo::PackageInfo)
     return pkginfo
 end
 
+
 function load_packages(ctx::Context)
-    alldeps = Pkg.dependencies(ctx)
+    alldeps = Pkg.dependencies(ctx.env)
     pkgs = PackageInfo[]
     for (uuid, pkgspec) in alldeps
         # TODO version from Project.toml?
@@ -105,7 +108,6 @@ function load_packages(ctx::Context)
                 pkgspec.is_tracking_repo,
                 pkgspec.is_tracking_registry,
             )
-
             if pkg.is_tracking_repo
                 push!(pkg.repos, pkgspec.git_source)
             end
@@ -176,7 +178,11 @@ function write_depot(
     end
 end
 
-function main(package_path::String, opts::Options = Options())
+function main(
+    package_path::String,
+    opts::Options = Options(),
+    out_path::String = package_path,
+)
     if opts.pkg_server !== nothing
         ENV["JULIA_PKG_SERVER"] = opts.pkg_server
         @assert Pkg.pkg_server() == opts.pkg_server

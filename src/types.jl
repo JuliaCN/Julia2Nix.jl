@@ -1,14 +1,14 @@
 ####
-#### julia2nixError
+#### Julia2NixError
 ####
 
-struct julia2nixError <: Exception
+struct Julia2NixError <: Exception
     msg::String
 end
 
-nixsourcerer_error(msg::String...) = throw(julia2nixError(join(msg)))
+nixsourcerer_error(msg::String...) = throw(Julia2NixError(join(msg)))
 
-Base.showerror(io::IO, err::julia2nixError) = print(io, err.msg)
+Base.showerror(io::IO, err::Julia2NixError) = print(io, err.msg)
 
 ####
 #### Fetcher 

@@ -5,3 +5,5 @@ result
 
 docs/build
 docs/Manifest.toml
+.cache
+docs/src/*.md

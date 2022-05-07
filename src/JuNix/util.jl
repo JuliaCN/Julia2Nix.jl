@@ -1,4 +1,4 @@
-# TODO move to julia2nix?
+# TODO move to Julia2Nix?
 function get_archive_url_for_version(url::String, ref)
     if (m = match(r"https://github.com/(.*?)/(.*?).git", url)) !== nothing
         return "https://api.github.com/repos/$(m.captures[1])/$(m.captures[2])/tarball/$(ref)"
@@ -14,7 +14,9 @@ end
 
 function get_source_path(ctx::Context, name::String, uuid::UUID, tree_hash::SHA1)
     spec = Pkg.Types.PackageSpec(; name, uuid, tree_hash)
-    path = Pkg.Operations.source_path(ctx, spec)
+    # if VERSION <= v"1.7.0-"
+    # Pkg.Operations.source_path(ctx, pkg)
+    path = Pkg.Operations.source_path(ctx.env.project_file, spec)
     for depot in DEPOT_PATH
         if startswith(normpath(path), normpath(depot))
             return depot, relpath(normpath(path), normpath(depot))

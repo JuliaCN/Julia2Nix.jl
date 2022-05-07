@@ -4,7 +4,7 @@ include("preamble.jl")
 
 @testset "crate" begin
     pname = "lscolors"
-    version = julia2nix.parse_crate_version("lscolors", "stable")
+    version = Julia2Nix.parse_crate_version("lscolors", "stable")
     url = "https://crates.io/api/v1/crates/$(pname)/$(version)/download#crate.tar.gz"
     hash = with_unpack(nix_dir_sha256, download(url); strip = true)
     name = sanitize_name("$(pname)-$(version)")

@@ -16,9 +16,9 @@ end
 makedocs(;
     format = Documenter.HTML(),
     pages = ["Introduction" => "index.md", "Usage" => "usage.md"],
-    repo = "https://github.com/JuliaCN/julia2nix/blob/{commit}{path}#L{line}",
-    sitename = "julia2nix",
-    authors = "JuliaCN and contributors: https://github.com/JuliaCN/julia2nix/graphs/contributors",
+    repo = "https://github.com/JuliaCN/Julia2Nix/blob/{commit}{path}#L{line}",
+    sitename = "Julia2Nix",
+    authors = "JuliaCN and contributors: https://github.com/JuliaCN/Julia2Nix/graphs/contributors",
 )
 
-deploydocs(; repo = "github.com/JuliaCN/julia2nix", devbranch = "main")
+deploydocs(; repo = "github.com/JuliaCN/Julia2Nix", devbranch = "main")

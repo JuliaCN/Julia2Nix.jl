@@ -23,9 +23,50 @@ Base.@kwdef mutable struct RegistryInfo
     path::String
 end
 
+# Old registry might use "url" while new registry uses "repo"
 function collect_registries()
-    map(Pkg.Types.collect_registries()) do regspec
-        RegistryInfo(; regspec.name, uuid = UUID(regspec.uuid), regspec.url, regspec.path)
+    registry_instances = if VERSION >= v"1.7.0"
+        # https://github.com/JuliaLang/Pkg.jl/pull/2072
+        Pkg.Registry.reachable_registries()
+    else
+        Pkg.Types.collect_registries()
+    end
+    # Julia 1.7 supports in-memory tarball reading
+    for regspec in registry_instances
+        tarball_path = get_tarball_registry_path(regspec.path)
+        isnothing(tarball_path) && continue
+        reg_dir = joinpath(dirname(regspec.path), regspec.name)
+        isdir(reg_dir) && continue
+        # if the registry tarball is not yet extracted, do it here so that
+        # future operations don't need to handle different scenarios
+        extract_tarball(tarball_path, reg_dir)
+    end
+    map(registry_instances) do regspec
+        repo = hasfield(typeof(regspec), :repo) ? regspec.repo : nothing
+        url = something(regspec.url, repo)
+        path = if isnothing(get_tarball_registry_path(regspec.path))
+            regspec.path
+        else
+            joinpath(dirname(regspec.path), regspec.name)
+        end
+        RegistryInfo(;regspec.name, uuid=UUID(regspec.uuid), url, path)
+    end
+end
+
+function get_tarball_registry_path(path)
+    endswith(path, ".toml") || return nothing
+    regspec = TOML.parsefile(path)
+    tarball_name = regspec["path"]
+    endswith(tarball_name, "tar.gz") || return nothing
+    tarball_path = joinpath(dirname(path), tarball_name)
+    isfile(tarball_path) || return nothing
+    return tarball_path
+end
+
+function extract_tarball(tarball_path, dir)
+    open(tarball_path) do tar_gz
+        tar = GzipDecompressorStream(tar_gz)
+        Tar.extract(tar, dir)
     end
 end
 

@@ -12,7 +12,7 @@
   packageMeta = lib.importTOML ../Project.toml;
 in
   stdenv.mkDerivation rec {
-    pname = "julia2nix";
+    pname = "Julia2Nix";
     version = packageMeta.version;
     src = ./.;
 

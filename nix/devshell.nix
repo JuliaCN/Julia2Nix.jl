@@ -8,7 +8,7 @@ pkgs.devshell.mkShell ({
   lib,
   ...
 }: {
-  name = "julia2nix.jl";
+  name = "Julia2Nix.jl";
   imports = [
     "${extraModulesPath}/git/hooks.nix"
     (pkgs.devshell.importTOML ./commands.toml)
@@ -21,6 +21,7 @@ pkgs.devshell.mkShell ({
       command = ''
         export NIX_PATH=nixpkgs=${pkgs.path}
         julia --project=$PRJ_ROOT -e 'import Pkg; Pkg.test()'
+        julia --project=./. testenv/writeDepot.jl
       '';
       help = "make runtests";
     }
