@@ -29,36 +29,47 @@
             packages = ./testenv/Depot.nix;
           };
         };
-        devShells.default = import ./nix/devshell.nix {inherit pkgs inputs;};
+        devShells = import ./nix/devshell {inherit pkgs inputs;};
       })
     )
     // {
       overlays = import ./nix/overlays.nix {inherit inputs;};
 
-      packages.x86_64-linux = {
+      packages.x86_64-linux = (system: {
         inherit
-          (self.pkgs.x86_64-linux)
+          (self.pkgs.${system})
           julia_17-bin
           julia_16-bin
           ;
-        julia_18-beta-bin = self.pkgs.x86_64-linux.julia_18-beta-bin "x86_64-linux";
-      };
-
-      packages.aarch64-linux = {
-        julia_18-beta-bin = self.pkgs.x86_64-linux.julia_18-beta-bin "aarch64-linux";
-      };
-
-      packages.aarch64-darwin = {
-        julia_18-beta-bin = self.pkgs.aarch64-darwin.lib.installApp {
-          inherit (self.pkgs.aarch64-darwin.julia-sources.julia-18-beta-macaarch64) pname src;
-          version = "1.8";
+        julia_18-beta-bin = self.pkgs.${system}.julia-bin {
+          inherit system;
+          version = "18-beta";
         };
-      };
-      packages.x86_64-darwin = {
+      }) "x86_64-linux";
+
+      packages.aarch64-linux = (system: {
+        julia_18-beta-bin = self.pkgs.${system}.julia-bin {
+          inherit system;
+          version = "18-beta";
+        };
+      }) "aarch64-linux";
+
+      packages.aarch64-darwin = (system: {
+        julia_18-beta-bin = self.pkgs.${system}.lib.installApp {
+          inherit system;
+          version = "18-beta";
+        };
+      }) "aarch64-darwin";
+
+      packages.x86_64-darwin = (system: {
         julia_18-beta-bin = self.pkgs.x86_64-darwin.lib.installApp {
-          inherit (self.pkgs.x86_64-darwin.julia-sources.julia-18-beta-mac64) pname src;
-          version = "1.8";
+          inherit system;
+          version = "18-beta";
         };
-      };
+        julia_17-bin = self.pkgs.x86_64-darwin.lib.installApp {
+          inherit system;
+          version = "17-release";
+        };
+      }) "x86_64-darwin";
     };
 }

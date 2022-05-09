@@ -11,7 +11,8 @@ pkgs.devshell.mkShell ({
   name = "Julia2Nix.jl";
   imports = [
     "${extraModulesPath}/git/hooks.nix"
-    (pkgs.devshell.importTOML ./commands.toml)
+    (pkgs.devshell.importTOML ./main.toml)
+    (import ./packages.nix inputs)
   ];
 
   commands = [

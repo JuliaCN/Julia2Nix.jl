@@ -3,19 +3,19 @@
   lib,
   fetchurl,
   undmg,
+  julia-sources,
   ...
 }: {
-  pname,
+  system,
   version,
-  src,
   postInstall ? "",
   sourceRoot ? ".",
   extraBuildInputs ? [],
   ...
 }:
-stdenvNoCC.mkDerivation
-{
-  inherit src pname version;
+stdenvNoCC.mkDerivation rec {
+  name = pname;
+  inherit (julia-sources."julia-${version}-${system}") pname src;
 
   buildInputs = [undmg] ++ extraBuildInputs;
 
@@ -33,10 +33,9 @@ stdenvNoCC.mkDerivation
       runHook preInstall
 
       mkdir -p "$out/Applications"
-      cp -r "${appname}.app" "$out/Applications/${appname}.app"
-      ln -s $out/Applications/${appname}.app/Contents/Resources/julia/bin $out/bin
+      cp -r *.app "$out/Applications"
+      ln -s $out/Applications/*.app/Contents/Resources/julia/bin $out/bin
 
-      runHook postInstall
     ''
     + postInstall;
 
