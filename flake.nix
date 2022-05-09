@@ -50,12 +50,14 @@
 
       packages.aarch64-darwin = {
         julia_18-beta-bin = self.pkgs.aarch64-darwin.lib.installApp {
-          inherit (self.pkgs.aarch64-darwin.julia-sources.julia-18-beta-macaarch64) pname version src;
+          inherit (self.pkgs.aarch64-darwin.julia-sources.julia-18-beta-macaarch64) pname src;
+          version = "1.8";
         };
       };
       packages.x86_64-darwin = {
         julia_18-beta-bin = self.pkgs.x86_64-darwin.lib.installApp {
-          inherit (self.pkgs.x86_64-darwin.julia-sources.julia-18-beta-macaarch64) pname version src;
+          inherit (self.pkgs.x86_64-darwin.julia-sources.julia-18-beta-mac64) pname src;
+          version = "1.8";
         };
       };
     };

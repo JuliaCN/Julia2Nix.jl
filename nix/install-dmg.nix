@@ -1,5 +1,5 @@
 {
-  stdenv,
+  stdenvNoCC,
   lib,
   fetchurl,
   undmg,
@@ -13,7 +13,7 @@
   extraBuildInputs ? [],
   ...
 }:
-stdenv.mkDerivation
+stdenvNoCC.mkDerivation
 {
   inherit src pname version;
 
@@ -27,12 +27,16 @@ stdenv.mkDerivation
   ];
 
   installPhase = let
-    appname = lib.removeSuffix "-darwin" pname;
+    appname = "Julia-${version}";
   in
     ''
       runHook preInstall
+
       mkdir -p "$out/Applications"
       cp -r "${appname}.app" "$out/Applications/${appname}.app"
+      ln -s $out/Applications/${appname}.app/Contents/Resources/julia/bin $out/bin
+
+      runHook postInstall
     ''
     + postInstall;
 
