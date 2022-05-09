@@ -10,12 +10,13 @@
 
   outputs = {self, ...} @ inputs:
     (
-      inputs.flake-utils.lib.eachSystem ["x86_64-linux"] (system: let
+      inputs.flake-utils.lib.eachDefaultSystem (system: let
         pkgs = inputs.nixpkgs.legacyPackages.${system}.appendOverlays [
           inputs.devshell.overlay
           self.overlays.default
         ];
       in rec {
+        inherit pkgs;
         lib = {
           inherit
             (pkgs)
@@ -24,8 +25,7 @@
         };
         packages = {
           example = lib.julia2nix {
-            importManifest = ./Manifest.toml;
-            importProject = ./Project.toml;
+            src = ./.;
             packages = ./testenv/Depot.nix;
           };
         };
@@ -34,5 +34,31 @@
     )
     // {
       overlays = import ./nix/overlays.nix {inherit inputs;};
+
+      packages.x86_64-linux = {
+        inherit
+          (self.pkgs.x86_64-linux)
+          julia_17-bin
+          julia_16-bin
+          ;
+        julia_18-beta-bin = self.pkgs.x86_64-linux.julia_18-beta-bin "x86_64-linux";
+      };
+
+      packages.aarch64-linux = {
+        julia_18-beta-bin = self.pkgs.x86_64-linux.julia_18-beta-bin "aarch64-linux";
+      };
+
+      packages.aarch64-darwin = {
+        julia_18-beta-bin = self.pkgs.aarch64-darwin.lib.installApp {
+          inherit (self.pkgs.aarch64-darwin.julia-sources.julia-18-beta-macaarch64) pname src;
+          version = "1.8";
+        };
+      };
+      packages.x86_64-darwin = {
+        julia_18-beta-bin = self.pkgs.x86_64-darwin.lib.installApp {
+          inherit (self.pkgs.x86_64-darwin.julia-sources.julia-18-beta-mac64) pname src;
+          version = "1.8";
+        };
+      };
     };
 }

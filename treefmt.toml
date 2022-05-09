@@ -1,7 +1,7 @@
 [formatter.nix]
 command = "alejandra"
 includes = ["*.nix"]
-excludes = [""]
+excludes = ["nix/toolchain/_sources/*"]
 
 [formatter.prettier]
 command = "prettier"

@@ -1,0 +1,86 @@
+{
+  "julia-17-release-mac64": {
+    "cargoLocks": null,
+    "extract": null,
+    "name": "julia-17-release-mac64",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-rp0pcO2Jh7nEjxZrFfAtva4Bf0jhBlIlQK3ZAw8Qbw4=",
+      "type": "url",
+      "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.7/julia-1.7.2-mac64.dmg"
+    },
+    "version": "1.7.2-mac64.dmg"
+  },
+  "julia-17-release-macaarch64": {
+    "cargoLocks": null,
+    "extract": null,
+    "name": "julia-17-release-macaarch64",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-Qg2OODnD45QH9TZc6zv7hImaRAkV7IljkFaAFbP/pLk=",
+      "type": "url",
+      "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.7/julia-1.7.2-macaarch64.dmg"
+    },
+    "version": "1.7.2-macaarch64.dmg"
+  },
+  "julia-18-beta-aarch64-linux": {
+    "cargoLocks": null,
+    "extract": null,
+    "name": "julia-18-beta-aarch64-linux",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-Q9I/EUoqghfzAHK7mGE+1FqZMBBtvnQVd5Y1cfGGr8c=",
+      "type": "url",
+      "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.8/julia-1.8.0-beta3-linux-aarch64.tar.gz"
+    },
+    "version": "1.8.0-beta3-linux-aarch64.tar.gz"
+  },
+  "julia-18-beta-mac64": {
+    "cargoLocks": null,
+    "extract": null,
+    "name": "julia-18-beta-mac64",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-+IC1597HvrlxUJI4MF003rpXfQZdqhWEXuNNnIBRly8=",
+      "type": "url",
+      "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.8/julia-1.8.0-beta3-mac64.dmg"
+    },
+    "version": "1.8.0-beta3-mac64.dmg"
+  },
+  "julia-18-beta-macaarch64": {
+    "cargoLocks": null,
+    "extract": null,
+    "name": "julia-18-beta-macaarch64",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-ZxFOvZyDXpPXj9MMou0HeCEV7v09tCYERyBUeoi+9Wg=",
+      "type": "url",
+      "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.8/julia-1.8.0-beta3-macaarch64.dmg"
+    },
+    "version": "1.8.0-beta3-macaarch64.dmg"
+  },
+  "julia-18-beta-x86_64-linux": {
+    "cargoLocks": null,
+    "extract": null,
+    "name": "julia-18-beta-x86_64-linux",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-dJsvPGgyp7NEBIOOV53pTDaRcyUMBwcTg8tJnxSBJlU=",
+      "type": "url",
+      "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-1.8.0-beta3-linux-x86_64.tar.gz"
+    },
+    "version": "1.8.0-beta3-linux-x86_64.tar.gz"
+  }
+}
