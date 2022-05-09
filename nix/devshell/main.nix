@@ -28,16 +28,19 @@ pkgs.devshell.mkShell ({
     }
   ];
 
-  packages = with pkgs; [
-    julia_17-bin
-    nixUnstable
-    nix-prefetch
-    nixpkgs-fmt
-    cacert # Needed for network access
-    alejandra
-    nodePackages.prettier
-    nodePackages.prettier-plugin-toml
-  ];
+  packages = with pkgs;
+    [
+      nixUnstable
+      nix-prefetch
+      nixpkgs-fmt
+      cacert # Needed for network access
+      alejandra
+      nodePackages.prettier
+      nodePackages.prettier-plugin-toml
+    ]
+    ++ lib.optionals pkgs.stdenv.isLinux [
+      julia_17-bin
+    ];
   devshell.startup.nodejs-setuphook =
     lib.stringsWithDeps.noDepEntry
     ''

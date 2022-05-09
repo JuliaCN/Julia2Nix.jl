@@ -19,7 +19,7 @@ stdenvNoCC.mkDerivation rec {
 
   buildInputs = [undmg] ++ extraBuildInputs;
 
-  sourceRoot = sourceRoot;
+  inherit sourceRoot;
 
   phases = [
     "unpackPhase"

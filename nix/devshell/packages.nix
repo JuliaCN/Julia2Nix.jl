@@ -13,7 +13,7 @@ inputs: {
     ]
     ++ lib.optionals pkgs.stdenv.buildPlatform.isDarwin [
       {
-        package = "${inputs.self.packages.${pkgs.system}.julia_17-bin}";
+        package = inputs.self.packages.${pkgs.system}.julia_17-bin;
       }
     ];
 }
