@@ -21,6 +21,8 @@ jobs:
 
     # - name: Nix Flake Check
     #   run: nix -Lv flake check
+    - name: Nix Flake Show
+      run: nix flake show
 
     - name: Check Julia Version
       run: nix develop --show-trace --command -- julia --version
