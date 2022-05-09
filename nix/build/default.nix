@@ -4,6 +4,9 @@
 }: {
   julia ? pkgs.julia_17-bin,
   extraLibs ? [],
+  src ? ./.,
+  importManifest ? src + "/Manifest.toml",
+  importProject ? src + "/Project.toml",
   makeWrapperArgs ? "",
   ...
 } @ args: let
