@@ -19,4 +19,15 @@
         package = inputs.self.packages.${pkgs.system}.julia_17-bin;
       }
     ];
+
+  packages = with pkgs;
+    lib.optionals pkgs.stdenv.isLinux [
+      julia_17-bin
+    ]
+    ++ [
+      alejandra
+      nixUnstable
+      nix-prefetch
+      cacert # Needed for network access
+    ];
 }

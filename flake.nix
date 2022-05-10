@@ -66,5 +66,12 @@
           version = "17-release";
         };
       }) "x86_64-darwin";
+    } {
+      templates = {
+        devshell = {
+          description = "The devshell template which contains several Julia Packages";
+          path = ./templates/dev;
+        };
+      };
     };
 }

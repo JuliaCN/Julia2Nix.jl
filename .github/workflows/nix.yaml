@@ -30,6 +30,10 @@ jobs:
     - name: Build julia2nix with nix develop
       run: nix develop --show-trace --command -- init
 
+    - name: Check Template Shells
+      run: |
+        nix develop ./templates/dev --show-trace --override-input julia2nix ./. --command -- julia --version
+
     - name: Check julia2nix tests
       run: |
         nix develop --show-trace --command -- mktest
