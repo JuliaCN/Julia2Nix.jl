@@ -40,8 +40,10 @@
           (inputs.self.${system}.julia2nix.packages)
           julia_17-bin
           julia_16-bin
-          test-depot
           ;
+        test-depot = self.lib.${system}.buildDepot {
+          depot = ./Depot.nix;
+        };
         julia_18-beta-bin = inputs.self.${system}.julia2nix.library.installBin {
           inherit system;
           version = "18-beta";
