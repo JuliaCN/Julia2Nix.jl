@@ -4,6 +4,7 @@
   autoPatchelfHook,
   julia_17-bin,
   julia-sources,
+  ...
 }: {
   version,
   system,
@@ -27,4 +28,5 @@ stdenv.mkDerivation {
 
     runHook postInstall
   '';
+  meta.mainProgram = "julia";
 }

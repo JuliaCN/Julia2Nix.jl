@@ -3,6 +3,7 @@
 ## nixos
 result
 
+.std
 docs/build
 docs/Manifest.toml
 .cache

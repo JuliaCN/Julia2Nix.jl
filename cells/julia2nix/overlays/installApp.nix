@@ -41,5 +41,6 @@ stdenvNoCC.mkDerivation rec {
 
   meta = {
     platforms = lib.platforms.darwin;
+    mainProgram = "julia";
   };
 }
