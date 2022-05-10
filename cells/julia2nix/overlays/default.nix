@@ -6,6 +6,9 @@
     lib = prev.lib.extend (
       lfinal: lprev: {
         installApp = import ./installApp.nix final;
+
+        buildDepot = args: import ./build/depot.nix final args;
+
         julia2nix = args:
           import ./build {
             inherit inputs;

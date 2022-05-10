@@ -7,9 +7,6 @@
 
     std.url = "github:gtrunsec/std/custom";
     std.inputs.nixpkgs.follows = "nixpkgs";
-
-    data-merge.url = "github:divnix/data-merge";
-    data-merge.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {self, ...} @ inputs:
@@ -33,6 +30,7 @@
         ];
       }
       {
+        lib = inputs.std.harvest inputs.self ["julia2nix" "library"];
         devShells = inputs.std.harvest inputs.self ["julia2nix" "devshells"];
         overlays = inputs.std.harvest inputs.self ["julia2nix" "overlays"];
       })
@@ -42,6 +40,7 @@
           (inputs.self.${system}.julia2nix.packages)
           julia_17-bin
           julia_16-bin
+          test-depot
           ;
         julia_18-beta-bin = inputs.self.${system}.julia2nix.library.installBin {
           inherit system;

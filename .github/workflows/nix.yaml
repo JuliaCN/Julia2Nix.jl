@@ -38,6 +38,10 @@ jobs:
       run: |
         nix develop --show-trace --command -- mktest
 
+    - name: Build Depot Path
+      run: |
+        nix build .#packages.x86_64-linux.test-depot --print-build-logs
+
     - name: Build Doc
       run: |
         nix develop --show-trace --command -- init-dev docs
