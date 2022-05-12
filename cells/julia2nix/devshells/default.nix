@@ -40,7 +40,6 @@ in
           command = ''
             export NIX_PATH=nixpkgs=${pkgs.path}
             julia --project=$PRJ_ROOT -e 'import Pkg; Pkg.test()'
-            julia --project=./. testenv/writeDepot.jl
           '';
           help = "make runtests";
         }

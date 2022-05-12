@@ -44,13 +44,21 @@
           julia_17-bin
           julia_16-bin
           ;
+
         test-depot = self.lib.${system}.buildDepot {
           depot = ./Depot.nix;
         };
-        build = self.lib.${system}.buildPackage {
+
+        build-project = self.lib.${system}.buildProject {
           src = ./.;
-          name = "Ju";
+          name = "Example-Project";
         };
+
+        build-package = self.lib.${system}.buildPackage {
+          src = ./.;
+          name = "Example-PackageDeps";
+        };
+
         julia_18-beta-bin = inputs.self.${system}.julia2nix.library.installBin {
           inherit system;
           version = "18-beta";
