@@ -57,6 +57,13 @@ in
         }
       ];
 
+      env = [
+        {
+          name = "NIX_PATH";
+          value = "nixpkgs=${pkgs.path}";
+        }
+      ];
+
       packages = with nixpkgs; [
         alejandra
         nodePackages.prettier
@@ -69,11 +76,4 @@ in
           export NODE_PATH=${nixpkgs.nodePackages.prettier-plugin-toml}/lib/node_modules:$NODE_PATH
         '';
     };
-
-    env = [
-      {
-        name = "NIX_PATH";
-        value = "nixpkgs=${nixpkgs.path}";
-      }
-    ];
   }

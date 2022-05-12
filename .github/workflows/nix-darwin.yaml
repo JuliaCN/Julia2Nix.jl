@@ -16,9 +16,9 @@ jobs:
       run: |
         nix develop --show-trace --command -- init
 
-    - name: Check julia2nix tests
-      run: |
-        nix develop --show-trace --command -- mktest
+    # - name: Check julia2nix tests
+    #   run: |
+    #     nix develop --show-trace --command -- mktest
 
     - name: Write Depot.nix
       run: |
