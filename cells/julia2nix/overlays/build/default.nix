@@ -14,7 +14,7 @@
   src,
   importManifest ? src + "/Manifest.toml",
   importProject ? src + "/Project.toml",
-  makeWrapperArgs ? "",
+  makeWrapperArgs ? [],
   extraBuildInputs ? [],
   depot ? src + "/Depot.nix",
   precompile ? true,
@@ -30,18 +30,12 @@
   # Wrapped Julia with libraries and environment variables.
   # Note: setting The PYTHON environment variable is recommended to prevent packages
   # from trying to obtain their own with Conda.
-  julia-wrapped = runCommand "julia-wrapped" {buildInputs = [makeWrapper];} ''
-    mkdir -p $out/bin
-    makeWrapper ${julia}/bin/julia $out/bin/julia \
-                --suffix LD_LIBRARY_PATH : "${lib.makeLibraryPath extraLibs}" \
-                --set PYTHON ${python3}/bin/python
-  '';
   depotPath = lib.buildDepot {inherit depot;};
 in
   stdenv.mkDerivation {
     name = (lib.importTOML importProject).name or args.name;
-    buildInputs = [julia-wrapped makeWrapper git cacert] ++ extraBuildInputs;
-    inherit src precompile;
+    buildInputs = [julia makeWrapper] ++ extraBuildInputs;
+    inherit src precompile makeWrapperArgs;
 
     preInstall = ''
       mkdir -p $out
@@ -86,6 +80,7 @@ in
 
         makeWrapper ${julia}/bin/julia $out/bin/julia \
         --add-flags "-L $out/config/startup.jl" \
+        --prefix PATH ":" "${lib.makeBinPath extraBuildInputs}" \
         --suffix JULIA_DEPOT_PATH : "$TMPDIR" $makeWrapperArgs
 
         runHook postInstall
