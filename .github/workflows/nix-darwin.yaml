@@ -12,8 +12,9 @@ jobs:
       with:
         skip_adding_nixpkgs_channel: true
 
-    - name: Build julia2nix with nix develop
-      run: nix develop --show-trace --command -- init
+    - name: Init julia2nix.jl with nix develop
+      run: |
+        nix develop --show-trace --command -- init
 
     - name: Check julia2nix tests
       run: |

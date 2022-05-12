@@ -46,12 +46,14 @@ in
         {
           name = "writeDepot";
           category = "tests";
-          command = l.optionalString pkgs.stdenv.buildPlatform.isDarwin ''
-            julia --project=./. testenv/writeDepotDarwin.jl
-          '' + l.optionalString pkgs.stdenv.buildPlatform.isLinux ''
-            julia --project=./. testenv/writeDepot.jl
-          '';
-          help = "make runtests";
+          command =
+            l.optionalString pkgs.stdenv.buildPlatform.isDarwin ''
+              julia --project=./. testenv/writeDepotDarwin.jl
+            ''
+            + l.optionalString pkgs.stdenv.buildPlatform.isLinux ''
+              julia --project=./. testenv/writeDepot.jl
+            '';
+          help = "write Depot.nix";
         }
       ];
 
@@ -67,4 +69,11 @@ in
           export NODE_PATH=${nixpkgs.nodePackages.prettier-plugin-toml}/lib/node_modules:$NODE_PATH
         '';
     };
+
+    env = [
+      {
+        name = "NIX_PATH";
+        value = "nixpkgs=${nixpkgs.path}";
+      }
+    ];
   }
