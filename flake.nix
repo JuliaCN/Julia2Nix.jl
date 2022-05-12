@@ -52,6 +52,8 @@
         build-project = self.lib.${system}.buildProject {
           src = ./.;
           name = "Example-Project";
+          extraBuildInputs = with inputs.nixpkgs.legacyPackages.${system}; [alejandra nixUnstable nix-prefetch cacert];
+          makeWrapperArgs = ["--set NIX_PATH nixpkgs=${inputs.nixpkgs.legacyPackages.${system}.path}"];
         };
 
         build-package = self.lib.${system}.buildPackage {
