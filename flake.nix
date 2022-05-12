@@ -47,6 +47,10 @@
         test-depot = self.lib.${system}.buildDepot {
           depot = ./Depot.nix;
         };
+        build = self.lib.${system}.buildPackage {
+          src = ./.;
+          name = "Ju";
+        };
         julia_18-beta-bin = inputs.self.${system}.julia2nix.library.installBin {
           inherit system;
           version = "18-beta";

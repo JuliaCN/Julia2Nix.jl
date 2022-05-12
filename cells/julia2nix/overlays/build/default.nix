@@ -1,13 +1,23 @@
 {
-  pkgs,
-  inputs,
+  stdenv,
+  julia_17-bin,
+  runCommand,
+  makeWrapper,
+  lib,
+  python3,
+  cacert,
+  git,
+  ...
 }: {
-  julia ? pkgs.julia_17-bin,
+  julia ? julia_17-bin,
   extraLibs ? [],
-  src ? ./.,
+  src,
   importManifest ? src + "/Manifest.toml",
   importProject ? src + "/Project.toml",
   makeWrapperArgs ? "",
+  extraBuildInputs ? [],
+  depot ? src + "/Depot.nix",
+  precompile ? true,
   ...
 } @ args: let
   # Extra libraries for Julia's LD_LIBRARY_PATH.
@@ -19,26 +29,57 @@
   # Wrapped Julia with libraries and environment variables.
   # Note: setting The PYTHON environment variable is recommended to prevent packages
   # from trying to obtain their own with Conda.
-  julia-wrapped = pkgs.runCommand "julia-wrapped" {buildInputs = [pkgs.makeWrapper];} ''
+  julia-wrapped = runCommand "julia-wrapped" {buildInputs = [makeWrapper];} ''
     mkdir -p $out/bin
     makeWrapper ${julia}/bin/julia $out/bin/julia \
-                --suffix LD_LIBRARY_PATH : "${pkgs.lib.makeLibraryPath extraLibs}" \
-                --set PYTHON ${pkgs.python3}/bin/python
+                --suffix LD_LIBRARY_PATH : "${lib.makeLibraryPath extraLibs}" \
+                --set PYTHON ${python3}/bin/python
   '';
+  depotPath = lib.buildDepot {inherit depot;};
 in
-  pkgs.callPackage ./common.nix ({
-      julia = julia-wrapped;
+  stdenv.mkDerivation {
+    name = (lib.importTOML importProject).name or args.name;
+    buildInputs = [julia-wrapped makeWrapper git cacert] ++ extraBuildInputs;
+    inherit src precompile;
 
-      # Run Pkg.precompile() to precompile all packages?
-      precompile = true;
+    installPhase = ''
+      runHook preInstall
 
-      # Extra arguments to makeWrapper when creating the final Julia wrapper.
-      # By default, it will just put the new depot at the end of JULIA_DEPOT_PATH.
-      # You can add additional flags here.
-      inherit makeWrapperArgs;
-      # Extra buildInputs for building the Julia depot. Useful if your packages have
-      # additional build-time dependencies not managed through the Artifacts.toml system.
-      # Defaults to extraLibs, but can be configured independently.
-      extraBuildInputs = extraLibs;
-    }
-    // args)
+        mkdir -p $out
+        export HOME=$(pwd)
+        echo "Copying dependencies"
+        export JULIA_DEPOT_PATH=$out
+        cp -r ${depotPath}/packages $out
+        cp -r ${depotPath}/artifacts $out
+
+        cp -rf --no-preserve=mode,ownership ${importProject} Project.toml
+        cp -rf --no-preserve=mode,ownership ${importManifest} Manifest.toml
+
+        echo "instantiating Packages"
+        julia -e ' \
+        using Pkg
+          Pkg.Registry.add(RegistrySpec(path="${depotPath}/registries/General"))
+          Pkg.activate(".")
+          Pkg.instantiate()
+          '
+
+          if [[ -n "$precompile" ]]; then
+          julia -e ' \
+            using Pkg
+            Pkg.activate(".")
+            Pkg.precompile()
+          '
+        fi
+
+          julia -e ' \
+            using Pkg
+            # Remove the registry to save space
+            Pkg.Registry.rm("General")
+            '
+
+            makeWrapper ${julia}/bin/julia $out/bin/julia \
+            --suffix JULIA_DEPOT_PATH : "${depotPath}" $makeWrapperArgs
+
+            runHook postInstall
+    '';
+  }

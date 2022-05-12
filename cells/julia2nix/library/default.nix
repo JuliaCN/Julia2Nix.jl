@@ -6,5 +6,5 @@
     cell.overlays.default
   ];
 in {
-  inherit (nixpkgs.lib) installBin installApp buildDepot;
+  inherit (nixpkgs.lib) installBin installApp buildDepot buildPackage;
 }

@@ -3,6 +3,7 @@
   lib,
   symlinkJoin,
   callPackage,
+  git,
   ...
 }: {depot}: let
   depotFile = callPackage depot {};
@@ -12,6 +13,7 @@
       src = v;
       dontConfigure = true;
       dontBuild = true;
+      dontFixup = true;
       sourceRoot = ".";
       unpackPhase = ''
         unpackDir="$TMPDIR/unpack"

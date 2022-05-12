@@ -4,17 +4,13 @@
 }: {
   default = final: prev: {
     lib = prev.lib.extend (
-      lfinal: lprev: {
+      lfinal: lprev: rec {
         installApp = import ./installApp.nix final;
 
         buildDepot = args: import ./build/depot.nix final args;
 
-        julia2nix = args:
-          import ./build {
-            inherit inputs;
-            pkgs = prev;
-          }
-          args;
+        buildPackage = args: (import ./build final) args;
+
         installBin = args: (import ./installBin.nix final) args;
       }
     );

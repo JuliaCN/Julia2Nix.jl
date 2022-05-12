@@ -19,7 +19,8 @@
       {
         package = inputs.self.packages.${pkgs.system}.julia_17-bin;
       }
-    ] ++ lib.optionals pkgs.stdenv.buildPlatform.isLinux [
+    ]
+    ++ lib.optionals pkgs.stdenv.buildPlatform.isLinux [
       {
         package = inputs.self.packages.${pkgs.system}.julia_17-bin;
       }
