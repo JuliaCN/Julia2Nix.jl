@@ -26,4 +26,4 @@ jobs:
 
     - name: Build Depot Package
       run: |
-        nix build .#packages.x86_64-linux.build-package --print-build-logs
+        nix build .#packages.x86_64-darwin.build-package --print-build-logs

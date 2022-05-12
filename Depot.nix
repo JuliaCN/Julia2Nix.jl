@@ -1,6 +1,48 @@
 {pkgs ? import <nixpkgs> {}}: {
   meta = {"pkgServer" = "https://pkg.julialang.org";};
   depot = {
+    "artifacts/02d9b78ed041cc654102f58897ae46fac83ca63f" = pkgs.fetchzip {
+      "name" = "artifact-02d9b78ed041cc654102f58897ae46fac83ca63f";
+      "sha256" = "sha256-cnWpf7v2sw5QKehDEYJ4GSATVkJkb2naRE6Ie0WiTL4=";
+      "stripRoot" = false;
+      "url" = "https://pkg.julialang.org/artifact/02d9b78ed041cc654102f58897ae46fac83ca63f#artifact.tar.gz";
+    };
+    "artifacts/2e8fae88dcadc37883e31246fe7397f4f1039f88" = pkgs.fetchzip {
+      "name" = "artifact-2e8fae88dcadc37883e31246fe7397f4f1039f88";
+      "sha256" = "sha256-lRAr3t81krlKh9H+nX0+3l0lLS8ndwth6DiZl//MDdU=";
+      "stripRoot" = false;
+      "url" = "https://pkg.julialang.org/artifact/2e8fae88dcadc37883e31246fe7397f4f1039f88#artifact.tar.gz";
+    };
+    "artifacts/33c5e3a13ad6427f86436f577c0edce1e468ac80" = pkgs.fetchzip {
+      "name" = "artifact-33c5e3a13ad6427f86436f577c0edce1e468ac80";
+      "sha256" = "sha256-yHv+b8WLS2yJKgp6tbVsvEtiki5DNBKGuXiNaRjo+Oo=";
+      "stripRoot" = false;
+      "url" = "https://pkg.julialang.org/artifact/33c5e3a13ad6427f86436f577c0edce1e468ac80#artifact.tar.gz";
+    };
+    "artifacts/4f01ca82b02afe6cdbe200a8f5c9849eac642482" = pkgs.fetchzip {
+      "name" = "artifact-4f01ca82b02afe6cdbe200a8f5c9849eac642482";
+      "sha256" = "sha256-hTvFbVORfMtTcljGl1LY7kgFXlNE5kO41v0R4IlLhFY=";
+      "stripRoot" = false;
+      "url" = "https://pkg.julialang.org/artifact/4f01ca82b02afe6cdbe200a8f5c9849eac642482#artifact.tar.gz";
+    };
+    "artifacts/75b2da9ed2ec48588460be0f3a8bb489212012e9" = pkgs.fetchzip {
+      "name" = "artifact-75b2da9ed2ec48588460be0f3a8bb489212012e9";
+      "sha256" = "sha256-7H51NyO9z23atWsvSneFbjyfrbcabGW8jwzns7pJOzg=";
+      "stripRoot" = false;
+      "url" = "https://pkg.julialang.org/artifact/75b2da9ed2ec48588460be0f3a8bb489212012e9#artifact.tar.gz";
+    };
+    "artifacts/dc526f26fb179a3f68eb13fcbe5d2d2a5aa7eeac" = pkgs.fetchzip {
+      "name" = "artifact-dc526f26fb179a3f68eb13fcbe5d2d2a5aa7eeac";
+      "sha256" = "sha256-27PVVCJaJplznvzgGGwQE3ksOuaUarHOYmDfMKSbUug=";
+      "stripRoot" = false;
+      "url" = "https://pkg.julialang.org/artifact/dc526f26fb179a3f68eb13fcbe5d2d2a5aa7eeac#artifact.tar.gz";
+    };
+    "artifacts/fac7e6d8fc4c5775bf5118ab494120d2a0db4d64" = pkgs.fetchzip {
+      "name" = "artifact-fac7e6d8fc4c5775bf5118ab494120d2a0db4d64";
+      "sha256" = "sha256-wuSLI2PZ4SczLDqodN7CYjI7hswN1ZegUo86Tvnawq4=";
+      "stripRoot" = false;
+      "url" = "https://pkg.julialang.org/artifact/fac7e6d8fc4c5775bf5118ab494120d2a0db4d64#artifact.tar.gz";
+    };
     "packages/ArgParse/bylyV" = pkgs.fetchzip {
       "name" = "package-ArgParse";
       "sha256" = "sha256-qBM1thqt0id4UridMeChGWigvDVP+PuOBpSyIT9YJAs=";
@@ -123,9 +165,9 @@
     };
     "registries/General" = pkgs.fetchzip {
       "name" = "registry-General";
-      "sha256" = "sha256-czx2C+ma+rO02kYezasSNP1r/UbVx5gqkqV+yWSSS+s=";
+      "sha256" = "sha256-rNgUczCGJymYf/nd5hbo9zbe7BF+jhKLu1aKuYxbwP0=";
       "stripRoot" = false;
-      "url" = "https://pkg.julialang.org/registry/23338594-aafe-5451-b93e-139f81909106/e2b8cd1c7cc1fbb5e59f5def8d41c936cf4194bb#registry.tar.gz";
+      "url" = "https://pkg.julialang.org/registry/23338594-aafe-5451-b93e-139f81909106/0e843b4cd86ac0405a8a8948054a975cf164aca2#registry.tar.gz";
     };
   };
 }

@@ -9,5 +9,5 @@ opts = JuNix.Options(;
     force_overwrite = true,
     check_store=true,
 )
-x = JuNix.main(joinpath(@__DIR__, ".."), "Depot-macos.nix", opts)
+x = JuNix.main(joinpath(@__DIR__, ".."), "Depot.nix", opts)
 nothing
