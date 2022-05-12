@@ -7,7 +7,7 @@ opts = JuNix.Options(;
     os = Set(["linux"]),
     libc = Set(["glibc"]),
     force_overwrite = true,
-    # check_store=true,
+    check_store=true,
 )
 x = JuNix.main(joinpath(@__DIR__, "."), opts)
 nothing

@@ -6,7 +6,7 @@ struct Julia2NixError <: Exception
     msg::String
 end
 
-nixsourcerer_error(msg::String...) = throw(Julia2NixError(join(msg)))
+julia2nix_error(msg::String...) = throw(Julia2NixError(join(msg)))
 
 Base.showerror(io::IO, err::Julia2NixError) = print(io, err.msg)
 
@@ -138,10 +138,10 @@ function validate(schema::SimpleSchema, spec)
         T = schema.type
         V = typeof(spec[key])
         if !(V <: T)
-            nixsourcerer_error("Expected key \"$key\" to be of type $T, got $V")
+            julia2nix_error("Expected key \"$key\" to be of type $T, got $V")
         end
     elseif schema.required
-        nixsourcerer_error("Must specify \"$key\"")
+        julia2nix_error("Must specify \"$key\"")
     end
 end
 
@@ -160,10 +160,10 @@ function validate(schema::ExclusiveSchema, spec)
         T = schema.types[idx]
         V = typeof(spec[key])
         if !(V <: T)
-            nixsourcerer_error("Expected key \"$key\" to be of type $T, got $V.")
+            julia2nix_error("Expected key \"$key\" to be of type $T, got $V.")
         end
     elseif schema.required
-        nixsourcerer_error("Must specify exactly one of \"$(schema.keys)\".")
+        julia2nix_error("Must specify exactly one of \"$(schema.keys)\".")
     end
 end
 
@@ -179,18 +179,18 @@ Base.keys(schema::DependentSchema) = (schema.ikey, schema.dkeys...)
 
 function validate(schema::DependentSchema, spec)
     if schema.required && !haskey(spec, schema.ikey)
-        nixsourcerer_error("Must specify \"$(schema.ikey)\"")
+        julia2nix_error("Must specify \"$(schema.ikey)\"")
     elseif haskey(spec, schema.ikey)
         T = schema.itype
         V = typeof(spec[schema.ikey])
         V <: T ||
-            nixsourcerer_error("Expected key \"$(schema.ikey)\" to be of type $T, got $V.")
+            julia2nix_error("Expected key \"$(schema.ikey)\" to be of type $T, got $V.")
         for (dkey, T) in zip(schema.dkeys, schema.dtypes)
-            haskey(spec, dkey) || nixsourcerer_error(
+            haskey(spec, dkey) || julia2nix_error(
                 "Must specify \"$(schema.dkeys)\" if providing \"$(schema.ikey)\"",
             )
             V = typeof(spec[dkey])
-            V <: T || nixsourcerer_error("Expected key \"$dkey\" to be of type $T, got $V.")
+            V <: T || julia2nix_error("Expected key \"$dkey\" to be of type $T, got $V.")
         end
     end
 end
@@ -221,7 +221,7 @@ end
 function check_unknown_keys(set::SchemaSet, spec)
     unknown = setdiff(keys(spec), keys(set))
     if length(unknown) > 0
-        nixsourcerer_error("Unknown key(s): $(Tuple(unknown))")
+        julia2nix_error("Unknown key(s): $(Tuple(unknown))")
     end
 end
 
@@ -241,14 +241,14 @@ function validate(project::Project)
     for (name, spec) in project.specs
         try
             if !haskey(spec, "type")
-                nixsourcerer_error("\"type\" not specified")
+                julia2nix_error("\"type\" not specified")
             elseif !haskey(SCHEMAS, spec["type"])
-                nixsourcerer_error("Unknown type \"$(spec["type"])\"")
+                julia2nix_error("Unknown type \"$(spec["type"])\"")
             else
                 validate(SCHEMAS[spec["type"]], spec)
             end
         catch e
-            nixsourcerer_error("Could not parse spec \"$name\": ", sprint(showerror, e))
+            julia2nix_error("Could not parse spec \"$name\": ", sprint(showerror, e))
             rethrow()
         end
     end

@@ -20,13 +20,16 @@
           "x86_64-linux"
         ];
         organelles = [
+          (inputs.std.installables "packages")
+
+          (inputs.std.devshells "devshells")
+          (inputs.std.functions "devshellProfiles")
+
           (inputs.std.functions "library")
           (inputs.std.functions "flow")
           (inputs.std.functions "overlays")
-          (inputs.std.devshells "devshells")
-          (inputs.std.devshells "containerJobs")
-          (inputs.std.devshells "devshellProfiles")
-          (inputs.std.installables "packages")
+
+          (inputs.std.data "containerJobs")
         ];
       }
       {

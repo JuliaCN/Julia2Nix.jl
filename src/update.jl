@@ -80,7 +80,7 @@ function setup(config)
     # We don't want overlays or anything else as it breaks nix-prefetch
     # TODO don't use <nixpkgs>?>
     nixpkgs = strip(run_suppress(`nix eval --impure --expr '<nixpkgs>'`; out = true))
-    isdir(nixpkgs) || nixsourcerer_error("Could not locate <nixpkgs> in NIX_PATH")
+    isdir(nixpkgs) || julia2nix_error("Could not locate <nixpkgs> in NIX_PATH")
     ENV["NIX_PATH"] = "nixpkgs=$(nixpkgs)"
 
     ENV["NIX_SOURCERER_WORKERS"] = config["workers"]
@@ -226,7 +226,7 @@ function _update_package(path; config, io)
         names = config["names"]
         for name in config["names"]
             if !haskey(package.project.specs, name)
-                nixsourcerer_error("Key $name missing from $(package.project_file)")
+                julia2nix_error("Key $name missing from $(package.project_file)")
             end
         end
     else
@@ -282,7 +282,7 @@ function update!(
         end
         indented_printstyledln(io, "Updated package $name from $path"; color = :green)
     catch e
-        nixsourcerer_error("Could not update source $name from $path")
+        julia2nix_error("Could not update source $name from $path")
         rethrow()
     end
     return package

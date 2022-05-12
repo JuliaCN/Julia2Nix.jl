@@ -6,7 +6,7 @@ macro genmodule()
 end
 
 function test(parent::AbstractString = pwd(); config::AbstractDict = Dict())
-    isdir(parent) || nixsourcerer_error("Not a directory: $(parent)")
+    isdir(parent) || julia2nix_error("Not a directory: $(parent)")
 
     if get(config, "verbose", false)
         ENV["JULIA_DEBUG"] = string(@__MODULE__)

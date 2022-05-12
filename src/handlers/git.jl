@@ -41,7 +41,7 @@ function git_handler(name, spec)
         ref, rev, tag, ver = git_latest_semver_tag(url)
         meta["tag"] = tag
     else
-        nixsourcerer_error("Unknown spec: ", string(spec))
+        julia2nix_error("Unknown spec: ", string(spec))
     end
 
     meta["ref"] = ref

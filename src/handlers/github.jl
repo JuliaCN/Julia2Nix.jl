@@ -60,7 +60,7 @@ function github_handler(name::AbstractString, spec::AbstractDict)
         meta["tag"] = tag
         meta["assets"] = assets
     else
-        nixsourcerer_error("Unknown spec: ", string(spec))
+        julia2nix_error("Unknown spec: ", string(spec))
     end
     meta["rev"] = rev
 
@@ -96,10 +96,10 @@ end
 
 function github_get_release(owner, repo, release, assets, builtin, extraArgs)
     # if builtin && get(ENV, "GITHUB_TOKEN", nothing) !== nothing
-    #     nixsourcerer_error("Cannot use builtin fetcher for assets when GITHUB_TOKEN is provided")
+    #     julia2nix_error("Cannot use builtin fetcher for assets when GITHUB_TOKEN is provided")
     # end
     if builtin
-        nixsourcerer_error("Cannot use builtin fetcher for GitHub assets")
+        julia2nix_error("Cannot use builtin fetcher for GitHub assets")
     end
 
     rel = github_api_get(owner, repo, "releases/$release")

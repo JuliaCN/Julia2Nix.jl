@@ -161,7 +161,7 @@ end
 function validate_config(config::AbstractDict)
     # TODO does this make sense?
     # if get(config, "recursive", true) && haskey(config, "names")
-    #     nixsourcerer_error("Cannot specify 'recursive' and 'names' at the same time")
+    #     julia2nix_error("Cannot specify 'recursive' and 'names' at the same time")
     # end
 end
 
@@ -215,7 +215,7 @@ function Base.setindex(x::AbstractDict, v, k)
 end
 
 function copy_into(src, dst; force = false)
-    isdir(dst) || nixsourcerer_error("dst must be a directory")
+    isdir(dst) || julia2nix_error("dst must be a directory")
     if isfile(src)
         cp(src, joinpath(dst, basename(src)))
     else

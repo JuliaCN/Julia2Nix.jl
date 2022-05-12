@@ -23,15 +23,14 @@ end
 
 function Hash(sri::AbstractString)
     m = match(r"(.*)-(.*)", sri)
-    m === nothing && nixsourcerer_error("Not an SRI hash: $h")
+    m === nothing && julia2nix_error("Not an SRI hash: $h")
 
     algorithm, value_enc = m.captures
     A =
         algorithm == "md5" ? MD5() :
         algorithm == "sha1" ? SHA1() :
         algorithm == "sha256" ? SHA256() :
-        algorithm == "sha512" ? SHA512() :
-        nixsourcerer_error("Unknown hash type: $algorithm")
+        algorithm == "sha512" ? SHA512() : julia2nix_error("Unknown hash type: $algorithm")
     return Hash{SRI(),A}(transcode(Base64Decoder(), String(value_enc)))
 end
 
@@ -59,7 +58,7 @@ function Base.string(h::Hash{E}; encoding::Encoding = E) where {E}
             encoding === Base32() ? Base32Encoder() :
             encoding === Base64() ? Base64Encoder() :
             encoding === SRI() ? Base64Encoder() :
-            nixsourcerer_error("Unknown encoding: $(encoding)")
+            julia2nix_error("Unknown encoding: $(encoding)")
         s = String(transcode(encoder, value(h)))
     end
     return encoding === SRI() ? "$(sri_prefix(algorithm(h)))-$(s)" : s

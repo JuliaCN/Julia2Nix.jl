@@ -49,7 +49,7 @@ function collect_registries()
         else
             joinpath(dirname(regspec.path), regspec.name)
         end
-        RegistryInfo(;regspec.name, uuid=UUID(regspec.uuid), url, path)
+        RegistryInfo(; regspec.name, uuid = UUID(regspec.uuid), url, path)
     end
 end
 
