@@ -1,0 +1,28 @@
+name: nix-macos
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: cachix/install-nix-action@v17
+      with:
+        skip_adding_nixpkgs_channel: true
+
+    - name: Build julia2nix with nix develop
+      run: nix develop --show-trace --command -- init
+
+    - name: Check julia2nix tests
+      run: |
+        nix develop --show-trace --command -- mktest
+
+    - name: Write Depot.nix
+      run: |
+        nix develop --show-trace --command -- writeDepot
+
+    - name: Build Depot Package
+      run: |
+        nix build .#packages.x86_64-linux.build-package --print-build-logs

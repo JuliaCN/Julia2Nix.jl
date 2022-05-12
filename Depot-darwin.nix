@@ -1,6 +1,42 @@
 {pkgs ? import <nixpkgs> {}}: {
   meta = {"pkgServer" = "https://pkg.julialang.org";};
   depot = {
+    "artifacts/177d0c3c85c9de270494ca5bb483d7a6d15b3ee8" = pkgs.fetchzip {
+      "name" = "artifact-177d0c3c85c9de270494ca5bb483d7a6d15b3ee8";
+      "sha256" = "sha256-jBCnCtt6eV1MoKs3l8SCR2gKrygFwNJ+cWOrdY+7qWs=";
+      "stripRoot" = false;
+      "url" = "https://pkg.julialang.org/artifact/177d0c3c85c9de270494ca5bb483d7a6d15b3ee8#artifact.tar.gz";
+    };
+    "artifacts/397fee52d94fc3404c3e466a6a8277ad9fdde715" = pkgs.fetchzip {
+      "name" = "artifact-397fee52d94fc3404c3e466a6a8277ad9fdde715";
+      "sha256" = "sha256-Tp1Q8oPQ7SamF928ZIjMCIu100OdllZAEBTvS6hoXVQ=";
+      "stripRoot" = false;
+      "url" = "https://pkg.julialang.org/artifact/397fee52d94fc3404c3e466a6a8277ad9fdde715#artifact.tar.gz";
+    };
+    "artifacts/3bb83a2812f716f0d1610026d1e470dbf92a952e" = pkgs.fetchzip {
+      "name" = "artifact-3bb83a2812f716f0d1610026d1e470dbf92a952e";
+      "sha256" = "sha256-JNIU9fteGZQ9AihMOV7xxo8EJTtv6zZAB8kUFRdPre8=";
+      "stripRoot" = false;
+      "url" = "https://pkg.julialang.org/artifact/3bb83a2812f716f0d1610026d1e470dbf92a952e#artifact.tar.gz";
+    };
+    "artifacts/571cdee3242d2dddfc82ce9b2b9a25ba523c78e9" = pkgs.fetchzip {
+      "name" = "artifact-571cdee3242d2dddfc82ce9b2b9a25ba523c78e9";
+      "sha256" = "sha256-o88+vGpOB0OJu0cQeAafvQ7FbXuKNaXVvNaNvR/Qcx4=";
+      "stripRoot" = false;
+      "url" = "https://pkg.julialang.org/artifact/571cdee3242d2dddfc82ce9b2b9a25ba523c78e9#artifact.tar.gz";
+    };
+    "artifacts/fc4adbf1d7551761c1693502d0b221eb0f780b59" = pkgs.fetchzip {
+      "name" = "artifact-fc4adbf1d7551761c1693502d0b221eb0f780b59";
+      "sha256" = "sha256-fUz5SEJFfxllAohsYmGUUPP2+kHOo7LWo6eOr91sOrM=";
+      "stripRoot" = false;
+      "url" = "https://pkg.julialang.org/artifact/fc4adbf1d7551761c1693502d0b221eb0f780b59#artifact.tar.gz";
+    };
+    "artifacts/fce62671858920d3556be53bfdb2604f9dd979c6" = pkgs.fetchzip {
+      "name" = "artifact-fce62671858920d3556be53bfdb2604f9dd979c6";
+      "sha256" = "sha256-sG1MjUmM8NmfVMTdTbrfvF8V2RJcfnRIUC6likBLA7k=";
+      "stripRoot" = false;
+      "url" = "https://pkg.julialang.org/artifact/fce62671858920d3556be53bfdb2604f9dd979c6#artifact.tar.gz";
+    };
     "packages/ArgParse/bylyV" = pkgs.fetchzip {
       "name" = "package-ArgParse";
       "sha256" = "sha256-qBM1thqt0id4UridMeChGWigvDVP+PuOBpSyIT9YJAs=";
@@ -123,9 +159,9 @@
     };
     "registries/General" = pkgs.fetchzip {
       "name" = "registry-General";
-      "sha256" = "sha256-czx2C+ma+rO02kYezasSNP1r/UbVx5gqkqV+yWSSS+s=";
+      "sha256" = "sha256-5NhDFH3wimp7c6d/dhenPfo5JM3f7kx9zBFo6hSd1kg=";
       "stripRoot" = false;
-      "url" = "https://pkg.julialang.org/registry/23338594-aafe-5451-b93e-139f81909106/e2b8cd1c7cc1fbb5e59f5def8d41c936cf4194bb#registry.tar.gz";
+      "url" = "https://pkg.julialang.org/registry/23338594-aafe-5451-b93e-139f81909106/8338d118f371c38c86dea770a123d8a488be6ade#registry.tar.gz";
     };
   };
 }

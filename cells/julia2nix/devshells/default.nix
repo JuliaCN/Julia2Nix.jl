@@ -38,8 +38,18 @@ in
           name = "mktest";
           category = "tests";
           command = ''
-            export NIX_PATH=nixpkgs=${pkgs.path}
             julia --project=$PRJ_ROOT -e 'import Pkg; Pkg.test()'
+            # julia --project=./. testenv/writeDepot.jl
+          '';
+          help = "make runtests";
+        }
+        {
+          name = "writeDepot";
+          category = "tests";
+          command = l.optionalString pkgs.stdenv.buildPlatform.isDarwin ''
+            julia --project=./. testenv/writeDepotDarwin.jl
+          '' + l.optionalString pkgs.stdenv.buildPlatform.isLinux ''
+            julia --project=./. testenv/writeDepot.jl
           '';
           help = "make runtests";
         }

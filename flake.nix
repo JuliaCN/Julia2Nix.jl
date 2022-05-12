@@ -83,6 +83,13 @@
           inherit system;
           version = "17-release";
         };
+
+        build-package = self.lib.${system}.buildPackage {
+          src = ./.;
+          name = "Example-PackageDeps";
+          depot = ./Depot-darwin.nix;
+          julia = self.packages.${system}.julia_17-bin;
+        };
       }) "x86_64-darwin";
     } {
       templates = {

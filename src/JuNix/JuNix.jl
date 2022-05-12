@@ -151,6 +151,7 @@ function write_depot(
     opts::Options,
     package_path::String,
     out_path::String,
+    name::String,
 )
     io = IOBuffer(; append = true)
     write(io, "{ pkgs ? import <nixpkgs> {} }: {\n")
@@ -172,7 +173,7 @@ function write_depot(
         error("$depotfile_path already exists!")
     else
         @info "Writing depot to $depotfile_path"
-        open(normpath(joinpath(out_path, "Depot.nix")), "w") do f
+        open(normpath(joinpath(out_path, name)), "w") do f
             Nix.nixfmt(f, io)
         end
     end
@@ -180,6 +181,7 @@ end
 
 function main(
     package_path::String,
+    name::String,
     opts::Options = Options(),
     out_path::String = package_path,
 )
@@ -204,7 +206,7 @@ function main(
         artifact_fetchers = select_artifact_fetchers(pkgs, opts)
 
         depot = generate_depot(registry_fetchers, pkg_fetchers, artifact_fetchers)
-        write_depot(depot, meta, opts, package_path, out_path)
+        write_depot(depot, meta, opts, package_path, out_path, name)
         return pkgs
     end
 end
