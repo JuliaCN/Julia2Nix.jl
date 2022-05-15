@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-release.url = "github:nixos/nixpkgs/release-21.11";
 
     nix2container.url = "github:nlewo/nix2container";
     nix2container.inputs.nixpkgs.follows = "nixpkgs";
@@ -43,6 +44,7 @@
           (inputs.self.${system}.julia2nix.packages)
           julia_17-bin
           julia_16-bin
+          gr
           ;
 
         test-depot = self.lib.${system}.buildDepot {
@@ -53,12 +55,20 @@
           src = ./.;
           name = "Example-Project";
           extraBuildInputs = with inputs.nixpkgs.legacyPackages.${system}; [alejandra nixUnstable nix-prefetch cacert];
-          makeWrapperArgs = ["--set NIX_PATH nixpkgs=${inputs.nixpkgs.legacyPackages.${system}.path}"];
+          makeWrapperArgs = [
+            "--set NIX_PATH nixpkgs=${inputs.nixpkgs.legacyPackages.${system}.path}"
+          ];
+        };
+
+        julia-wrapped = self.lib.${system}.julia-wrapped {
+          julia = self.packages.${system}.julia_17-bin;
+          GR = true;
         };
 
         build-package = self.lib.${system}.buildPackage {
           src = ./.;
           name = "Example-PackageDeps";
+          julia = self.packages.${system}.julia-wrapped;
         };
 
         julia_18-beta-bin = inputs.self.${system}.julia2nix.library.installBin {

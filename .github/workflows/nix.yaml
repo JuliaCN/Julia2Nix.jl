@@ -1,4 +1,4 @@
-name: "Nix"
+name: "nix-linux"
 on:
   push:
     branches:
@@ -37,6 +37,10 @@ jobs:
     - name: Check julia2nix tests
       run: |
         nix develop --show-trace --command -- mktest
+
+    - name: Build Julia Wrapped
+      run: |
+        nix run .#packages.x86_64-linux.julia-wrapped --print-build-logs -- --version
 
     - name: Build Depot Path
       run: |

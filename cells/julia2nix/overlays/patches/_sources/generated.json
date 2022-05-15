@@ -1,0 +1,16 @@
+{
+  "gr-latest-x86_64-linux": {
+    "cargoLocks": null,
+    "extract": null,
+    "name": "gr-latest-x86_64-linux",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-NV2Byf4qAWvBwxyzFLGfx5mpm2lvvJJNVWS7kfljIJA=",
+      "type": "url",
+      "url": "https://gr-framework.org/downloads/gr-0.64.2-Debian-x86_64.tar.gz"
+    },
+    "version": "19853152"
+  }
+}
