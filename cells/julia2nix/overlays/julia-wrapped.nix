@@ -3,19 +3,21 @@
   makeWrapper,
   gr,
   lib,
+  julia_17-bin,
   ...
 }: {
-  julia,
+  julia ? julia_17-bin,
   makeWrapperArgs ? [],
-  GR,
+  GR ? false,
+  bin ? "julia",
   ...
 } @ args:
 runCommand "julia-wrapped" {
-  buildInputs = [makeWrapper];
+  buildInputs = [makeWrapper julia];
   inherit makeWrapperArgs;
   meta.mainProgram = "julia";
 } ''
   mkdir -p $out
-  makeWrapper ${julia}/bin/julia $out/bin/julia \
+  makeWrapper ${julia}/bin/julia $out/bin/${bin} \
   ${lib.optionalString GR "--set GRDIR ${gr}"} $makeWrapperArgs
 ''
