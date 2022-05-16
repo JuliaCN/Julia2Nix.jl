@@ -4,10 +4,14 @@
     nixpkgs-release.url = "github:nixos/nixpkgs/release-21.11";
 
     nix2container.url = "github:nlewo/nix2container";
-    nix2container.inputs.nixpkgs.follows = "nixpkgs";
 
     std.url = "github:gtrunsec/std/custom";
     std.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-filter.url = "github:/numtide/nix-filter";
+    nix-filter.inputs.nixpkgs.follows = "nixpkgs";
+
+    cells-lab.url = "github:gtrunsec/DevSecOps-Cells-Lab";
   };
 
   outputs = {self, ...} @ inputs:
@@ -30,7 +34,7 @@
           (inputs.std.functions "flow")
           (inputs.std.functions "overlays")
 
-          (inputs.std.data "containerJobs")
+          (inputs.std.runnables "containerJobs")
         ];
       }
       {
@@ -45,6 +49,7 @@
           julia_17-bin
           julia_16-bin
           gr
+          image-build-package
           ;
 
         test-depot = self.lib.${system}.buildDepot {
@@ -52,7 +57,15 @@
         };
 
         build-project = self.lib.${system}.buildProject {
-          src = ./.;
+          src = inputs.nix-filter.lib.filter {
+            root = ./.;
+            include = [
+              (inputs.nix-filter.lib.inDirectory ./src)
+              ./Manifest.toml
+              ./Project.toml
+              ./Depot.nix
+              ];
+          };
           name = "Example-Project";
           extraBuildInputs = with inputs.nixpkgs.legacyPackages.${system}; [alejandra nixUnstable nix-prefetch cacert];
           makeWrapperArgs = [
