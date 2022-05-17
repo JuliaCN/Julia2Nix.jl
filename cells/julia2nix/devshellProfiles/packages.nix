@@ -6,23 +6,25 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  inherit (cell) packages;
+in {
   commands =
     [
       {
         name = "julia18";
-        command = "${inputs.self.packages.${pkgs.system}.julia_18-beta-bin}/bin/julia";
-        help = inputs.self.packages.${pkgs.system}.julia_18-beta-bin.pname;
+        command = "${packages.julia_18-bin}/bin/julia";
+        help = packages.julia_18-bin.pname;
       }
     ]
     ++ lib.optionals pkgs.stdenv.buildPlatform.isDarwin [
       {
-        package = inputs.self.packages.${pkgs.system}.julia_17-bin;
+        package = packages.julia_17-bin;
       }
     ]
     ++ lib.optionals pkgs.stdenv.buildPlatform.isLinux [
       {
-        package = inputs.self.packages.${pkgs.system}.julia_17-bin;
+        package = packages.julia_17-bin;
       }
     ];
 

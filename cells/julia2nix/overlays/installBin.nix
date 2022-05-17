@@ -4,11 +4,9 @@
   autoPatchelfHook,
   julia_17-bin,
   julia-sources,
-  ...
-}: {
-  version,
   system,
-}:
+  ...
+}: {version}:
 stdenv.mkDerivation {
   inherit (julia-sources."julia-${version}-${system}") src pname version;
 

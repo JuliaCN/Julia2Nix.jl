@@ -122,16 +122,15 @@
         "yants": "yants"
       },
       "locked": {
-        "lastModified": 1652155926,
-        "narHash": "sha256-BVHssgy3yyuWcmCH4ZDd3ERKyl63dNpmvqxFA8e/Ee4=",
-        "owner": "gtrunsec",
+        "lastModified": 1652784712,
+        "narHash": "sha256-ofwGapSWqzUVgIxwwmjlrOVogfjV4yd6WpY8fNfMc2o=",
+        "owner": "divnix",
         "repo": "std",
-        "rev": "277e40330a482fe7d4cdf5cf8bb2770a25a79942",
+        "rev": "3667d2d868352b0bf47c83440da48bee9f2fab47",
         "type": "github"
       },
       "original": {
-        "owner": "gtrunsec",
-        "ref": "custom",
+        "owner": "divnix",
         "repo": "std",
         "type": "github"
       }

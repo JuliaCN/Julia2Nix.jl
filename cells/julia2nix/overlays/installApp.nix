@@ -4,9 +4,9 @@
   fetchurl,
   undmg,
   julia-sources,
+  system,
   ...
 }: {
-  system,
   version,
   postInstall ? "",
   sourceRoot ? ".",

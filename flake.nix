@@ -6,7 +6,7 @@
     nix2container.url = "github:nlewo/nix2container";
     nix2container.inputs.nixpkgs.follows = "nixpkgs";
 
-    std.url = "github:gtrunsec/std/custom";
+    std.url = "github:divnix/std";
     std.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -42,8 +42,8 @@
       packages.x86_64-linux = (system: {
         inherit
           (inputs.self.${system}.julia2nix.packages)
-          julia_17-bin
           julia_16-bin
+          julia_17-bin
           gr
           ;
 
@@ -70,29 +70,17 @@
           name = "Example-PackageDeps";
           julia = self.packages.${system}.julia-wrapped;
         };
-
-        julia_18-beta-bin = inputs.self.${system}.julia2nix.library.installBin {
-          inherit system;
-          version = "18-beta";
-        };
       }) "x86_64-linux";
 
       packages.aarch64-darwin = (system: {
-        julia_18-beta-bin = inputs.self.${system}.julia2nix.library.installApp {
-          inherit system;
-          version = "18-beta";
-        };
+        inherit
+          (inputs.self.${system}.julia2nix.packages)
+          julia_18-bin
+          ;
       }) "aarch64-darwin";
 
       packages.x86_64-darwin = (system: {
-        julia_18-beta-bin = inputs.self.${system}.julia2nix.library.installApp {
-          inherit system;
-          version = "18-beta";
-        };
-        julia_17-bin = inputs.self.${system}.julia2nix.library.installApp {
-          inherit system;
-          version = "17-release";
-        };
+        inherit (inputs.self.${system}.julia2nix.packages) julia_17-bin julia_18-bin;
 
         build-package = self.lib.${system}.buildPackage {
           src = ./.;
