@@ -45,7 +45,9 @@ in
       echo "Copying dependencies"
       export JULIA_DEPOT_PATH=$out
       cp -r ${depotPath}/packages $out
+      if [ -d "${depotPath}/artifacts" ]; then
       cp -r ${depotPath}/artifacts $out
+      fi
 
       cp -rf --no-preserve=mode,ownership ${importProject} Project.toml
       cp -rf --no-preserve=mode,ownership ${importManifest} Manifest.toml

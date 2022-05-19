@@ -3,8 +3,8 @@
 :END:
 #+title: Usage
 
-
 * JuNix
+
 JuNix provides an interface to call the nix-fetch from within Julia.
 
 * Flakes

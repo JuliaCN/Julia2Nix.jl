@@ -10,4 +10,4 @@ docs/Manifest.toml
 docs/src/*.md
 
 
-templates/*/*.lock
+templates/*/flake.lock
