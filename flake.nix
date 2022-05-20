@@ -51,6 +51,11 @@
           depot = ./Depot.nix;
         };
 
+        build-conda = self.lib.${system}.buildProject {
+          src = ./templates/rust-plot;
+          name = "build-conda";
+        };
+
         build-project = self.lib.${system}.buildProject {
           src = ./.;
           name = "Example-Project";
