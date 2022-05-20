@@ -51,6 +51,11 @@
           depot = ./Depot.nix;
         };
 
+        build-conda = self.lib.${system}.buildProject {
+          src = ./testenv/conda;
+          name = "build-conda";
+        };
+
         build-project = self.lib.${system}.buildProject {
           src = ./.;
           name = "Example-Project";

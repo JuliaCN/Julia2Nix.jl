@@ -69,10 +69,11 @@
           JULIA_DIR = inputs.julia2nix.packages.${system}.julia_17-bin;
         };
       in {
-        packages = { default = plot-rs;
-                   julia = julia-wrapped;
-                   inherit build-package;
-                   };
+        packages = {
+          default = plot-rs;
+          julia = julia-wrapped;
+          inherit build-package;
+        };
         devShells = import ./devshell {inherit inputs pkgs;};
       })
     )

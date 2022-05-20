@@ -18,6 +18,7 @@
   extraBuildInputs ? [],
   depot ? src + "/Depot.nix",
   precompile ? true,
+  extraInstallPhase ? "",
   extraStartup ? "",
   ...
 } @ args: let
@@ -44,55 +45,55 @@ in
       export HOME=$(pwd)
       echo "Copying dependencies"
       export JULIA_DEPOT_PATH=$out
-      cp -r ${depotPath}/packages $out
+      cp -rf --no-preserve=mode,ownership ${depotPath}/packages $out
       if [ -d "${depotPath}/artifacts" ]; then
-      cp -r ${depotPath}/artifacts $out
+      cp -rf --no-preserve=mode,ownership ${depotPath}/artifacts $out
       fi
 
       cp -rf --no-preserve=mode,ownership ${importProject} Project.toml
       cp -rf --no-preserve=mode,ownership ${importManifest} Manifest.toml
-    '';
-    installPhase = ''
-      runHook preInstall
 
-      echo "instantiating Packages"
-      julia -e ' \
-
-      using Pkg
-        Pkg.Registry.add(RegistrySpec(path="${depotPath}/registries/General"))
-        Pkg.activate(".")
-        Pkg.instantiate()
-        '
-
-        if [[ -n "$precompile" ]]; then
-        julia -e ' \
-          using Pkg
-          Pkg.activate(".")
-          Pkg.precompile()
-        '
-        fi
-
-        # Remove the registry to save space
-        julia -e 'using Pkg; Pkg.Registry.rm("General")'
-
-        # https://github.com/JuliaLang/Pkg.jl/issues/3067
-        # https://github.com/GunnarFarneback/LocalRegistry.jl
-        # Do you need the local registry instead?
-        TMPDIR=$(mktemp -d -p /tmp)
-
-        makeWrapper ${julia}/bin/julia $out/bin/julia \
-        --add-flags "-L $out/config/startup.jl" \
-        --prefix PATH ":" "${lib.makeBinPath extraBuildInputs}" \
-        --suffix JULIA_DEPOT_PATH : "$TMPDIR" $makeWrapperArgs
-
-        runHook postInstall
-    '';
-
-    postInstall = ''
-      cat > $out/config/startup.jl <<EOF
+      cat > $out/startup.jl <<EOF
       push!(Base.DEPOT_PATH, "${depotPath}")
       ${extraStartup}
       EOF
+    '';
+    installPhase = ''
+       runHook preInstall
+
+       echo "instantiating Packages"
+
+       ${extraInstallPhase}
+
+       julia -e ' \
+       using Pkg
+         Pkg.Registry.add(RegistrySpec(path="${depotPath}/registries/General"))
+         Pkg.activate(".")
+         Pkg.instantiate()
+         '
+
+       # https://github.com/JuliaLang/Pkg.jl/issues/3067
+       # https://github.com/GunnarFarneback/LocalRegistry.jl
+       # Do you need the local registry instead?
+       TMPDIR=$(mktemp -d -p /tmp)
+
+       makeWrapper ${julia}/bin/julia $out/bin/julia \
+       --add-flags "-L $out/startup.jl" \
+       --prefix PATH ":" "${lib.makeBinPath extraBuildInputs}" \
+       --suffix JULIA_DEPOT_PATH : "$TMPDIR" $makeWrapperArgs
+
+      if [[ -n "$precompile" ]]; then
+      $out/bin/julia -e ' \
+        using Pkg
+        Pkg.activate(".")
+        Pkg.precompile()
+      '
+      fi
+
+      # Remove the registry to save space
+      julia -e 'using Pkg; Pkg.Registry.rm("General")'
+
+      runHook postInstall
     '';
 
     meta.mainProgram = "julia";
