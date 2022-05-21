@@ -15,7 +15,7 @@ end
 
 makedocs(;
     format = Documenter.HTML(),
-    pages = ["Introduction" => "index.md", "Usage" => "usage.md"],
+    pages = ["Introduction" => "intro.md", "Usage" => "usage.md"],
     repo = "https://github.com/JuliaCN/Julia2Nix/blob/{commit}{path}#L{line}",
     sitename = "Julia2Nix",
     authors = "JuliaCN and contributors: https://github.com/JuliaCN/Julia2Nix/graphs/contributors",

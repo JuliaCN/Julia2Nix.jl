@@ -1,0 +1,41 @@
+baseURL = "https://JuliaCN.github.io/Julia2Nix.jl"
+languageCode = "en-us"
+title = "Julia2Nix.jl"
+theme = "cortex"
+
+[params]
+email = "gtrunsec@hardenedlinux.org"
+footer = "Icon by Freepik. Built with ♥ with Org-mode and Hugo."
+
+[markup]
+
+[markup.goldmark]
+
+[markup.goldmark.extensions]
+definitionList = true
+footnote = true
+linkify = true
+strikethrough = true
+table = true
+taskList = true
+typographer = true
+
+[markup.goldmark.parser]
+attribute = true
+autoHeadingID = true
+
+[markup.goldmark.renderer]
+hardWraps = false
+unsafe = true
+xHTML = false
+
+[markup.highlight]
+codeFences = true
+guessSyntax = false
+hl_Lines = ""
+lineNoStart = 1
+lineNos = false
+lineNumbersInTable = true
+noClasses = true
+style = "friendly"
+tabWidth = "4"

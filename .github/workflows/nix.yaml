@@ -48,7 +48,7 @@ jobs:
 
     - name: Build Julia2Project and write Depot.nix
       run: |
-        nix run .#packages.x86_64-linux.build-project --print-build-logs -- testenv/writeDepot.jl
+        nix develop -c nix run .#packages.x86_64-linux.build-project --print-build-logs -- testenv/writeDepot.jl
 
     - name: Build jlrs -> call_julia
       run: |
@@ -57,6 +57,13 @@ jobs:
     - name: Build Doc
       run: |
         nix develop --show-trace --command -- init-dev docs
+        nix develop --show-trace --command -- mkdoc-jl
         nix develop --show-trace --command -- mkdoc
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@v4.3.3
+      with:
+        branch: gh-pages
+        folder: ./docs/publish/public

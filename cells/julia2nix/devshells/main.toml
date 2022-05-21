@@ -18,10 +18,16 @@ command = '''
 help = "run pkgs.instantiate() in project :: develop"
 
 [[commands]]
-name = "mkdoc"
+name = "mkdoc-jl"
 category = "doc"
 command = "julia --project=$PRJ_ROOT/docs $PRJ_ROOT/docs/make.jl"
 help = "make julia doc"
+
+[[commands]]
+name = "mkdoc"
+category = "doc"
+command = "nix run .#x86_64-linux.julia2nix.entrypoints.mkdoc    "
+help = "make org-roam doc"
 
 [[commands]]
 category = "fmt"

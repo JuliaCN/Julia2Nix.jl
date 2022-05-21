@@ -11,6 +11,9 @@
 
     nix-filter.url = "github:/numtide/nix-filter";
     nix-filter.inputs.nixpkgs.follows = "nixpkgs";
+
+    cells-lab.url = "github:gtrunsec/DevSecOps-Cells-Lab";
+    org-roam-book-template.follows = "cells-lab/org-roam-book-template";
   };
 
   outputs = {self, ...} @ inputs:
@@ -25,6 +28,8 @@
         ];
         organelles = [
           (inputs.std.installables "packages")
+
+          (inputs.std.runnables "entrypoints")
 
           (inputs.std.devshells "devshells")
           (inputs.std.functions "devshellProfiles")
