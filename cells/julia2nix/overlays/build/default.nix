@@ -54,8 +54,10 @@ in
       cp -rf --no-preserve=mode,ownership ${importProject} Project.toml
       cp -rf --no-preserve=mode,ownership ${importManifest} Manifest.toml
 
-      cat > $out/config/startup.jl <<EOF
+      cat > $out/startup.jl <<EOF
       push!(Base.DEPOT_PATH, "${depotPath}")
+      import Pkg
+      Pkg.activate("${src}")
       ${extraStartup}
       EOF
     '';
@@ -80,12 +82,12 @@ in
 
 
        makeWrapper ${julia}/bin/julia $out/bin/julia \
-       --add-flags "-L $out/config/startup.jl" \
+       --add-flags "-L $out/startup.jl" \
        --suffix JULIA_DEPOT_PATH : $TMPDIR $makeWrapperArgs
 
 
       if [[ -n "$precompile" ]]; then
-      julia -e ' \
+      $out/bin/julia -e ' \
         using Pkg
         Pkg.activate(".")
         Pkg.precompile()

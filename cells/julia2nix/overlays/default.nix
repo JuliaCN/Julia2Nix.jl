@@ -9,10 +9,10 @@
 
         buildDepot = args: import ./build/depot.nix final args;
 
-        buildPackage = args: (import ./build final) args;
+        buildEnv = args: (import ./build final) args;
 
         buildProject = {...} @ args:
-          (buildPackage args
+          (buildEnv args
             // {
             })
           .overrideAttrs (old: {

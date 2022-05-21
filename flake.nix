@@ -60,7 +60,7 @@
           depot = ./Depot.nix;
         };
 
-        build-conda = self.lib.${system}.buildProject {
+        build-conda = self.lib.${system}.buildEnv {
           src = ./testenv/conda;
           name = "build-conda";
           extraInstallPhase = ''

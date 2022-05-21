@@ -6,5 +6,5 @@
     cell.overlays.default
   ];
 in {
-  inherit (nixpkgs.lib) installBin installApp buildDepot buildPackage buildProject julia-wrapped;
+  inherit (nixpkgs.lib) installBin installApp buildDepot buildEnv buildProject julia-wrapped;
 }
