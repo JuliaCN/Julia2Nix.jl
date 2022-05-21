@@ -106,7 +106,7 @@
           };
         };
 
-        build-package = self.lib.${system}.buildPackage {
+        build-env = self.lib.${system}.buildEnv {
           src = ./.;
           name = "Example-PackageDeps";
           julia = self.packages.${system}.julia-wrapped;
