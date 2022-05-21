@@ -53,6 +53,7 @@
           julia_16-bin
           julia_17-bin
           gr
+          conda
           ;
 
         test-depot = self.lib.${system}.buildDepot {
@@ -62,7 +63,15 @@
         build-conda = self.lib.${system}.buildProject {
           src = ./testenv/conda;
           name = "build-conda";
-          extraBuildDepot = {};
+          extraInstallPhase = ''
+            mkdir -p $out/conda
+            cat > $out/packages/Conda/x2UxR/deps/deps.jl <<EOF
+            const ROOTENV = "$out/conda"
+            const MINICONDA_VERSION = "3"
+            const USE_MINIFORGE = true
+            const CONDA_EXE = "$out/conda/bin/conda"
+            EOF
+          '';
         };
 
         build-project = self.lib.${system}.buildProject {

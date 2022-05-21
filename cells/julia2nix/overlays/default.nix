@@ -36,5 +36,6 @@
     patch-sources = prev.callPackage ./patches/_sources/generated.nix {};
 
     gr = inputs.nixpkgs-release.legacyPackages.${prev.system}.callPackage ./patches/gr.nix {inherit patch-sources;};
+    conda = prev.callPackage ./patches/conda.nix {};
   };
 }

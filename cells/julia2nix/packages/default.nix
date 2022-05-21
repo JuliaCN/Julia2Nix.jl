@@ -10,7 +10,7 @@
     cell.overlays.default
   ];
 in {
-  inherit (nixpkgs) julia_16-bin gr;
+  inherit (nixpkgs) julia_16-bin gr conda;
 
   julia_17-bin = (version:
     (lib.optionalAttrs (nixpkgs.system == "x86_64-linux") nixpkgs.julia_17-bin)

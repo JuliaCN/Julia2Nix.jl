@@ -50,23 +50,33 @@
         });
         julia-wrapped = inputs.julia2nix.lib.${system}.julia-wrapped {
           julia = inputs.julia2nix.packages.${system}.julia_17-bin;
-          pythonEnv =
-            pkgs.python3.buildEnv.override
-            {
-              extraLibs = with pkgs.python3Packages; [matplotlib pyqt5];
-              ignoreCollisions = true;
-            };
+          enable = {
+            python =
+              pkgs.python3.buildEnv.override
+              {
+                extraLibs = with pkgs.python3Packages; [matplotlib pyqt5];
+                ignoreCollisions = true;
+              };
+          };
         };
         build-package = inputs.julia2nix.lib.${system}.buildPackage {
           src = ./.;
           name = "Plot-PackageDeps";
           julia = julia-wrapped;
+          extraInstallPhase = ''
+            mkdir -p $out/conda
+            cat > $out/packages/Conda/x2UxR/deps/deps.jl <<EOF
+            const ROOTENV = "$out/conda"
+            const MINICONDA_VERSION = "3"
+            const USE_MINIFORGE = true
+            const CONDA_EXE = "$out/conda/bin/conda"
+            EOF
+          '';
         };
 
         plot = craneLib.buildPackage {
           src = ./.;
           # cargoExtraArgs = "--target wasm32-wasi";
-
           # Tests currently need to be run via `cargo wasi` which
           # isn't packaged in nixpkgs yet...
           doCheck = false;
