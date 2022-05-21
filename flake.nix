@@ -62,6 +62,7 @@
 
         build-project = self.lib.${system}.buildProject {
           src = inputs.nix-filter.lib.filter {
+            root = ./.;
             include = [
               (inputs.nix-filter.lib.inDirectory ./src)
               ./Depot.nix
