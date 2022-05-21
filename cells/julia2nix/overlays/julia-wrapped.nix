@@ -9,23 +9,29 @@
 }: {
   julia ? julia_17-bin,
   makeWrapperArgs ? [],
-  pythonEnv ? {},
-  GR ? false,
+  enable ? {},
   bin ? "julia",
   extraBuildInputs ? [],
   ...
 }: let
+  enable' =
+    lib.recursiveUpdate {
+      GR = false;
+      python = {};
+    }
+    enable;
+
   makeWrapperArgs_ =
     lib.optionals (extraBuildInputs != []) [
       "--prefix PATH : ${lib.makeBinPath extraBuildInputs}"
       "--suffix LD_LIBRARY_PATH : ${lib.makeLibraryPath extraBuildInputs}"
     ]
-    ++ lib.optionals GR [
+    ++ lib.optionals enable'.GR [
       "--set GRDIR ${gr}"
     ]
-    ++ lib.optionals (pythonEnv != {}) [
-      "--set PYTHON ${pythonEnv}/bin/python"
-      "--set PYTHONPATH ${pythonEnv}/${python3.sitePackages}"
+    ++ lib.optionals (enable.python != {}) [
+      "--set PYTHON ${enable.python}/bin/python"
+      "--set PYTHONPATH ${enable.python}/${python3.sitePackages}"
     ]
     ++ makeWrapperArgs;
 in

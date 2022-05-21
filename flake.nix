@@ -79,16 +79,19 @@
 
         julia-wrapped = self.lib.${system}.julia-wrapped {
           julia = self.packages.${system}.julia_17-bin;
-          GR = true;
+
           makeWrapperArgs = [
             "--set NIX_PATH nixpkgs=${inputs.nixpkgs.legacyPackages.${system}.path}"
           ];
-          pythonEnv =
-            inputs.nixpkgs.legacyPackages.${system}.python3.buildEnv.override
-            {
-              extraLibs = with inputs.nixpkgs.legacyPackages.${system}.python3Packages; [xlrd matplotlib pyqt5];
-              ignoreCollisions = true;
-            };
+          enable = {
+            GR = true;
+            python =
+              inputs.nixpkgs.legacyPackages.${system}.python3.buildEnv.override
+              {
+                extraLibs = with inputs.nixpkgs.legacyPackages.${system}.python3Packages; [xlrd matplotlib pyqt5];
+                ignoreCollisions = true;
+              };
+          };
         };
 
         build-package = self.lib.${system}.buildPackage {

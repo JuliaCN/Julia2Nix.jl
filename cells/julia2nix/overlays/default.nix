@@ -23,9 +23,8 @@
               '';
 
             makeWrapperArgs = ["--add-flags --project=${placeholder "out"}/src"];
-
-            meta.mainProgram = "julia-project";
           });
+
         installBin = args: (import ./installBin.nix final) args;
 
         julia-wrapped = args: (import ./julia-wrapped.nix final) args;
