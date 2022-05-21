@@ -24,6 +24,6 @@ jobs:
       run: |
         nix develop --show-trace --command -- writeDepot
 
-    - name: Build Depot Package
+    - name: Build Julia2nix Project
       run: |
-        nix build .#packages.x86_64-darwin.build-package --print-build-logs
+        nix run .#packages.x86_64-linux.build-project --print-build-logs -- testenv/writeDepotDarwin.jl

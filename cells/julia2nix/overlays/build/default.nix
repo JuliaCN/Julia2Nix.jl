@@ -19,6 +19,7 @@
   precompile ? true,
   extraInstallPhase ? "",
   extraStartup ? "",
+  makeWrapperArgs ? [],
   extraBuildDepot ? {},
   ...
 } @ args: let
@@ -32,9 +33,6 @@
   # Note: setting The PYTHON environment variable is recommended to prevent packages
   # from trying to obtain their own with Conda.
   depotPath = lib.buildDepot (lib.recursiveUpdate {inherit depot;} extraBuildDepot);
-  makeWrapperArgs = [ "--add-flags -L $out/startup.jl"
-                      "--suffix JULIA_DEPOT_PATH : $TMPDIR"
-                    ] ++ lib.optionals julia.makeWrapperArgs;
 in
   stdenv.mkDerivation {
     name = (lib.importTOML importProject).name or args.name;
@@ -81,7 +79,10 @@ in
        TMPDIR=$(mktemp -d -p /tmp)
 
 
-       makeWrapper ${julia}/bin/julia $out/bin/julia $makeWrapperArgs
+       makeWrapper ${julia}/bin/julia $out/bin/julia \
+       --add-flags "-L $out/startup.jl" \
+       --suffix JULIA_DEPOT_PATH : $TMPDIR $makeWrapperArgs
+
 
       if [[ -n "$precompile" ]]; then
       $out/bin/julia -e ' \

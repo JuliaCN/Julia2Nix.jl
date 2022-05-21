@@ -86,9 +86,6 @@
 
         julia-wrapped = self.lib.${system}.julia-wrapped {
           julia = self.packages.${system}.julia_17-bin;
-          makeWrapperArgs = [
-            "--set NIX_PATH nixpkgs=${inputs.nixpkgs.legacyPackages.${system}.path}"
-          ];
           enable = {
             GR = true;
             python =
@@ -117,11 +114,17 @@
       packages.x86_64-darwin = (system: {
         inherit (inputs.self.${system}.julia2nix.packages) julia_17-bin julia_18-bin;
 
-        build-package = self.lib.${system}.buildPackage {
+        build-project = self.lib.${system}.buildProject {
           src = ./.;
           name = "Example-PackageDeps";
           depot = ./Depot-darwin.nix;
-          julia = self.packages.${system}.julia_17-bin;
+          julia = self.lib.${system}.julia-wrapped {
+            julia = self.packages.${system}.julia_17-bin;
+            extraBuildInputs = with inputs.nixpkgs.legacyPackages.${system}; [alejandra nixUnstable nix-prefetch cacert];
+            makeWrapperArgs = [
+              "--set NIX_PATH nixpkgs=${inputs.nixpkgs.legacyPackages.${system}.path}"
+            ];
+          };
         };
       }) "x86_64-darwin";
     } {
