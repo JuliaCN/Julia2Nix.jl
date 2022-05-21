@@ -66,6 +66,13 @@
           name = "build-conda";
           package = self.packages.${system}.julia-wrapped;
           extraInstallPhase = ''
+            mkdir -p $out/conda
+            cat > $out/packages/Conda/x2UxR/deps/deps.jl <<EOF
+            const ROOTENV = "$out/conda"
+            const MINICONDA_VERSION = "3"
+            const USE_MINIFORGE = true
+            const CONDA_EXE = "$out/conda/bin/conda"
+            EOF
           '';
         };
 

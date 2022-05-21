@@ -1,19 +1,16 @@
-{
-  lib,
-  pkgs,
+{pkgs}: {
   enableJulia ? true,
-  package,
   enableConda ? true,
+  juliaVersion ? "julia_18",
   condaInstallationPath ? "~/.conda",
   condaJlEnv ? "conda_jl",
-  gr,
   pythonVersion ? "3.9",
   enableGraphical ? true,
   enableNVIDIA ? false,
   enableNode ? true,
   ...
 }:
-with lib; let
+with pkgs.lib; let
   standardPackages = pkgs:
     with pkgs;
       [
@@ -107,25 +104,31 @@ with lib; let
       linuxPackages.nvidia_x11
     ];
 
+  juliaPackages = pkgs: version:
+    with pkgs; let
+      julias = callPackage ./julia.nix {};
+    in [julias."${version}"];
+
   condaPackages = pkgs:
-    with pkgs; [(callPackage ../overlays/patches/conda.nix {installationPath = condaInstallationPath;})];
+    with pkgs; [(callPackage ../../overlays/patches/conda.nix {installationPath = condaInstallationPath;})];
 
   targetPkgs = pkgs:
     (standardPackages pkgs)
     ++ optionals enableGraphical (graphicalPackages pkgs)
-    ++ optionals enableJulia [package]
+    ++ optionals enableJulia (juliaPackages pkgs juliaVersion)
     ++ optionals enableConda (condaPackages pkgs)
     ++ optionals enableNVIDIA (nvidiaPackages pkgs);
 
   std_envvars = ''
     export EXTRA_CCFLAGS="-I/usr/include"
     export FONTCONFIG_FILE=/etc/fonts/fonts.conf
+    export SSL_CERT_FILE=${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt
     export LIBARCHIVE=${pkgs.libarchive.lib}/lib/libarchive.so
   '';
 
   graphical_envvars = ''
     export QTCOMPOSE=${pkgs.xorg.libX11}/share/X11/locale
-    export GRDIR=${gr}
+    export GRDIR=${pkgs.gr}
   '';
 
   conda_envvars = ''

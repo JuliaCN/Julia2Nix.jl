@@ -11,6 +11,7 @@
   ];
 in {
   inherit (nixpkgs) julia_16-bin gr conda;
+
   julia-fhs = nixpkgs.julia-fhs "julia" "julia";
 
   julia_17-bin = (version:
