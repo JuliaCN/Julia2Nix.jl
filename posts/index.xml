@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Julia2Nix.jl</title>
+    <link>https://JuliaCN.github.io/Julia2Nix.jl/posts/</link>
+    <description>Recent content in Posts on Julia2Nix.jl</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://JuliaCN.github.io/Julia2Nix.jl/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Api</title>
+      <link>https://JuliaCN.github.io/Julia2Nix.jl/posts/api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://JuliaCN.github.io/Julia2Nix.jl/posts/api/</guid>
+      <description>Working with a project To build the Manifest.toml of packages in the project run:
+nix build .\#packages.x86_64-linux.build-package </description>
+    </item>
+    
+    <item>
+      <title>Build</title>
+      <link>https://JuliaCN.github.io/Julia2Nix.jl/posts/build/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://JuliaCN.github.io/Julia2Nix.jl/posts/build/</guid>
+      <description>Julia Wrapped julia-wrapped wraps the libraries and JULIA_DEPOT_PATH, which can be loaded easily in a sandbox environment.</description>
+    </item>
+    
+    <item>
+      <title>Flake</title>
+      <link>https://JuliaCN.github.io/Julia2Nix.jl/posts/flake/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://JuliaCN.github.io/Julia2Nix.jl/posts/flake/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Graph</title>
+      <link>https://JuliaCN.github.io/Julia2Nix.jl/posts/graph/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://JuliaCN.github.io/Julia2Nix.jl/posts/graph/</guid>
+      <description>GraphML </description>
+    </item>
+    
+    <item>
+      <title>Introduction</title>
+      <link>https://JuliaCN.github.io/Julia2Nix.jl/posts/intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://JuliaCN.github.io/Julia2Nix.jl/posts/intro/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Usage</title>
+      <link>https://JuliaCN.github.io/Julia2Nix.jl/posts/usage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://JuliaCN.github.io/Julia2Nix.jl/posts/usage/</guid>
+      <description>JuNix JuNix provides an interface to call the nix-fetch from within Julia.
+Flakes Templates </description>
+    </item>
+    
+  </channel>
+</rss>
