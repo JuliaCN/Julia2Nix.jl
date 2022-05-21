@@ -16,10 +16,9 @@
   ...
 }: let
   makeWrapperArgs_ =
-    [
+    lib.optionals (extraBuildInputs != []) [
       "--prefix PATH : ${lib.makeBinPath extraBuildInputs}"
-      "--prefix LD_LIBRARY_PATH : $LD_LIBRARY_PATH"
-      "--prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath extraBuildInputs}"
+      "--suffix LD_LIBRARY_PATH : ${lib.makeLibraryPath extraBuildInputs}"
     ]
     ++ lib.optionals GR [
       "--set GRDIR ${gr}"
