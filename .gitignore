@@ -11,3 +11,4 @@ docs/src/*.md
 
 
 templates/*/flake.lock
+target

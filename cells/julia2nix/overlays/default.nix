@@ -21,10 +21,9 @@
               + ''
                 cp -r ${args.src} $out/src
               '';
-            postFixup = ''
-              makeWrapper $out/bin/julia $out/bin/julia-project \
-              --add-flags "--project=$out/src"
-            '';
+
+            makeWrapperArgs = ["--add-flags --project=${placeholder "out"}/src"];
+
             meta.mainProgram = "julia-project";
           });
         installBin = args: (import ./installBin.nix final) args;

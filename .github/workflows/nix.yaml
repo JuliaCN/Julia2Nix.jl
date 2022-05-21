@@ -50,6 +50,10 @@ jobs:
       run: |
         nix run .#packages.x86_64-linux.build-project --print-build-logs -- testenv/writeDepot.jl
 
+    - name: Build jlrs -> call_julia
+      run: |
+        nix develop --show-trace --command -- jlrs-call-julia
+
     - name: Build Doc
       run: |
         nix develop --show-trace --command -- init-dev docs

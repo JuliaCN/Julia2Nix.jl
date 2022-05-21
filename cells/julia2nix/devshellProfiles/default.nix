@@ -6,4 +6,5 @@
   inherit (inputs) nixpkgs std self;
 in {
   packages = import ./packages.nix args;
+  checks = import ./checks.nix args;
 }

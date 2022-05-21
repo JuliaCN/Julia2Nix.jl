@@ -5,7 +5,7 @@
   callPackage,
   git,
   ...
-}: {depot}: let
+}: {depot, ...}: let
   depotFile = callPackage depot {};
   srcs = lib.mapAttrs (n: v:
     stdenvNoCC.mkDerivation {

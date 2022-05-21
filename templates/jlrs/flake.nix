@@ -22,7 +22,11 @@
 
     cheatsheet.url = "github:GTrunSec/cheatsheet";
     cheatsheet.inputs.nixpkgs.follows = "nixpkgs";
+
     julia2nix.url = "github:JuliaCN/julia2nix";
+
+    jlrs.url = "github:Taaitaaiger/jlrs";
+    jlrs.flake = false;
   };
 
   outputs = inputs @ {
@@ -59,7 +63,7 @@
           julia = julia-wrapped;
         };
 
-        plot-rs = craneLib.buildPackage {
+        plot = craneLib.buildPackage {
           src = ./.;
           # cargoExtraArgs = "--target wasm32-wasi";
 
@@ -68,11 +72,16 @@
           doCheck = false;
           JULIA_DIR = inputs.julia2nix.packages.${system}.julia_17-bin;
         };
+        call-julia = craneLib.buildPackage {
+          src = ./call_julia;
+          doCheck = true;
+          JULIA_DIR = inputs.julia2nix.packages.${system}.julia_17-bin;
+        };
       in {
         packages = {
-          default = plot-rs;
+          default = plot;
           julia = julia-wrapped;
-          inherit build-package;
+          inherit build-package call-julia;
         };
         devShells = import ./devshell {inherit inputs pkgs;};
       })

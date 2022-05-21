@@ -30,6 +30,7 @@ in
         ]
         ++ [
           cell.devshellProfiles.packages
+          cell.devshellProfiles.checks
         ];
 
       commands = [

@@ -8,6 +8,9 @@
 
     std.url = "github:divnix/std";
     std.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-filter.url = "github:/numtide/nix-filter";
+    nix-filter.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {self, ...} @ inputs:
@@ -54,10 +57,18 @@
         build-conda = self.lib.${system}.buildProject {
           src = ./testenv/conda;
           name = "build-conda";
+          extraBuildDepot = {};
         };
 
         build-project = self.lib.${system}.buildProject {
-          src = ./.;
+          src = inputs.nix-filter.lib.filter {
+            include = [
+              (inputs.nix-filter.lib.inDirectory ./src)
+              ./Depot.nix
+              ./Project.toml
+              ./Manifest.toml
+            ];
+          };
           name = "Example-Project";
           extraBuildInputs = with inputs.nixpkgs.legacyPackages.${system}; [alejandra nixUnstable nix-prefetch cacert];
           makeWrapperArgs = [
@@ -108,6 +119,10 @@
         devshell = {
           description = "The devshell template which contains several Julia Packages";
           path = ./templates/dev;
+        };
+        jlrs = {
+          description = "The tempalte which contains jlrs development of Nix";
+          path = ./templates/jlrs;
         };
       };
     };

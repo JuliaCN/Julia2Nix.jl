@@ -20,6 +20,7 @@
   precompile ? true,
   extraInstallPhase ? "",
   extraStartup ? "",
+  extraBuildDepot ? {},
   ...
 } @ args: let
   # Extra libraries for Julia's LD_LIBRARY_PATH.
@@ -31,12 +32,12 @@
   # Wrapped Julia with libraries and environment variables.
   # Note: setting The PYTHON environment variable is recommended to prevent packages
   # from trying to obtain their own with Conda.
-  depotPath = lib.buildDepot {inherit depot;};
+  depotPath = lib.buildDepot (lib.recursiveUpdate {inherit depot;} extraBuildDepot);
 in
   stdenv.mkDerivation {
     name = (lib.importTOML importProject).name or args.name;
     buildInputs = [julia makeWrapper] ++ extraBuildInputs;
-    inherit src precompile makeWrapperArgs;
+    inherit src precompile makeWrapperArgs depotPath;
 
     preInstall = ''
       mkdir -p $out
@@ -79,7 +80,6 @@ in
 
        makeWrapper ${julia}/bin/julia $out/bin/julia \
        --add-flags "-L $out/startup.jl" \
-       --prefix PATH ":" "${lib.makeBinPath extraBuildInputs}" \
        --suffix JULIA_DEPOT_PATH : "$TMPDIR" $makeWrapperArgs
 
       if [[ -n "$precompile" ]]; then

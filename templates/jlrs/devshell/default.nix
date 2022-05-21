@@ -13,7 +13,6 @@
       packages = [
         pkgs.rust-final
         pkgs.cargo-edit
-        inputs.self.packages.${pkgs.system}.build-package
       ];
       env = [];
     };
