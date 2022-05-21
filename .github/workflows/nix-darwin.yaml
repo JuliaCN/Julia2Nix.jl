@@ -26,4 +26,4 @@ jobs:
 
     - name: Build Julia2nix Project
       run: |
-        nix run .#packages.x86_64-linux.build-project --print-build-logs -- testenv/writeDepotDarwin.jl
+        nix run .#packages.x86_64-darwin.build-project --print-build-logs -- testenv/writeDepotDarwin.jl
