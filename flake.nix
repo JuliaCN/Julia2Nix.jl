@@ -122,8 +122,8 @@
           src = ./.;
           name = "Example-PackageDeps";
           depot = ./Depot-darwin.nix;
-          julia = self.lib.${system}.julia-wrapped {
-            julia = self.packages.${system}.julia_17-bin;
+          package = self.lib.${system}.julia-wrapped {
+            package = self.packages.${system}.julia_17-bin;
             extraBuildInputs = with inputs.nixpkgs.legacyPackages.${system}; [alejandra nixUnstable nix-prefetch cacert];
             makeWrapperArgs = [
               "--set NIX_PATH nixpkgs=${inputs.nixpkgs.legacyPackages.${system}.path}"
