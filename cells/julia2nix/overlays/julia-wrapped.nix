@@ -29,9 +29,9 @@
     ++ lib.optionals enable'.GR [
       "--set GRDIR ${gr}"
     ]
-    ++ lib.optionals (enable.python != {}) [
-      "--set PYTHON ${enable.python}/bin/python"
-      "--set PYTHONPATH ${enable.python}/${python3.sitePackages}"
+    ++ lib.optionals (enable'.python != {}) [
+      "--set PYTHON ${enable'.python}/bin/python"
+      "--set PYTHONPATH ${enable'.python}/${python3.sitePackages}"
     ]
     ++ makeWrapperArgs;
 in

@@ -71,15 +71,16 @@
             ];
           };
           name = "Example-Project";
-          extraBuildInputs = with inputs.nixpkgs.legacyPackages.${system}; [alejandra nixUnstable nix-prefetch cacert];
-          makeWrapperArgs = [
-            "--set NIX_PATH nixpkgs=${inputs.nixpkgs.legacyPackages.${system}.path}"
-          ];
+          julia = self.lib.${system}.julia-wrapped {
+            extraBuildInputs = with inputs.nixpkgs.legacyPackages.${system}; [alejandra nixUnstable nix-prefetch cacert];
+            makeWrapperArgs = [
+              "--set NIX_PATH nixpkgs=${inputs.nixpkgs.legacyPackages.${system}.path}"
+            ];
+          };
         };
 
         julia-wrapped = self.lib.${system}.julia-wrapped {
           julia = self.packages.${system}.julia_17-bin;
-
           makeWrapperArgs = [
             "--set NIX_PATH nixpkgs=${inputs.nixpkgs.legacyPackages.${system}.path}"
           ];
