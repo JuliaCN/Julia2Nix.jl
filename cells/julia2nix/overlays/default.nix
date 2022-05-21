@@ -36,6 +36,11 @@
     patch-sources = prev.callPackage ./patches/_sources/generated.nix {};
 
     gr = inputs.nixpkgs-release.legacyPackages.${prev.system}.callPackage ./patches/gr.nix {inherit patch-sources;};
+
+    julia-fhs = prev.callPackage ../packages/fhs.nix {
+      inherit gr;
+      package = final.julia_17-bin;
+    };
     conda = prev.callPackage ./patches/conda.nix {};
   };
 }

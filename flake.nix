@@ -54,6 +54,7 @@
           julia_17-bin
           gr
           conda
+          julia-fhs
           ;
 
         test-depot = self.lib.${system}.buildDepot {
@@ -63,14 +64,8 @@
         build-conda = self.lib.${system}.buildEnv {
           src = ./testenv/conda;
           name = "build-conda";
+          package = self.packages.${system}.julia-wrapped;
           extraInstallPhase = ''
-            mkdir -p $out/conda
-            cat > $out/packages/Conda/x2UxR/deps/deps.jl <<EOF
-            const ROOTENV = "$out/conda"
-            const MINICONDA_VERSION = "3"
-            const USE_MINIFORGE = true
-            const CONDA_EXE = "$out/conda/bin/conda"
-            EOF
           '';
         };
 
@@ -85,7 +80,7 @@
             ];
           };
           name = "Example-Project";
-          julia = self.lib.${system}.julia-wrapped {
+          package = self.lib.${system}.julia-wrapped {
             extraBuildInputs = with inputs.nixpkgs.legacyPackages.${system}; [alejandra nixUnstable nix-prefetch cacert];
             makeWrapperArgs = [
               "--set NIX_PATH nixpkgs=${inputs.nixpkgs.legacyPackages.${system}.path}"
@@ -94,7 +89,7 @@
         };
 
         julia-wrapped = self.lib.${system}.julia-wrapped {
-          julia = self.packages.${system}.julia_17-bin;
+          package = self.packages.${system}.julia_17-bin;
           enable = {
             GR = true;
             python =
@@ -109,7 +104,7 @@
         build-env = self.lib.${system}.buildEnv {
           src = ./.;
           name = "Example-PackageDeps";
-          julia = self.packages.${system}.julia-wrapped;
+          package = self.packages.${system}.julia-wrapped;
         };
       }) "x86_64-linux";
 

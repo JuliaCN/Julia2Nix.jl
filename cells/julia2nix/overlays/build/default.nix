@@ -9,7 +9,7 @@
   git,
   ...
 }: {
-  julia ? julia_17-bin,
+  package ? julia_17-bin,
   extraLibs ? [],
   src,
   importManifest ? src + "/Manifest.toml",
@@ -36,7 +36,7 @@
 in
   stdenv.mkDerivation {
     name = (lib.importTOML importProject).name or args.name;
-    buildInputs = [julia makeWrapper] ++ extraBuildInputs;
+    buildInputs = [package makeWrapper] ++ extraBuildInputs;
     inherit src precompile makeWrapperArgs depotPath;
 
     preInstall = ''
@@ -81,7 +81,7 @@ in
        TMPDIR=$(mktemp -d -p /tmp)
 
 
-       makeWrapper ${julia}/bin/julia $out/bin/julia \
+       makeWrapper ${package}/bin/julia $out/bin/julia \
        --add-flags "-L $out/startup.jl" \
        --suffix JULIA_DEPOT_PATH : $TMPDIR $makeWrapperArgs
 

@@ -7,7 +7,7 @@
   python3,
   ...
 }: {
-  julia ? julia_17-bin,
+  package ? julia_17-bin,
   makeWrapperArgs ? [],
   enable ? {},
   bin ? "julia",
@@ -36,10 +36,10 @@
     ++ makeWrapperArgs;
 in
   runCommand "julia-wrapped" {
-    buildInputs = [makeWrapper julia];
+    buildInputs = [makeWrapper package];
     inherit makeWrapperArgs_;
     meta.mainProgram = bin;
   } ''
     mkdir -p $out
-    makeWrapper ${julia}/bin/julia $out/bin/${bin} $makeWrapperArgs_
+    makeWrapper ${package}/bin/julia $out/bin/${bin} $makeWrapperArgs_
   ''
