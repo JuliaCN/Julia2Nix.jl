@@ -48,7 +48,7 @@ jobs:
 
     - name: Build Julia2Project and write Depot.nix
       run: |
-        nix develop -c nix run .#packages.x86_64-linux.build-project --print-build-logs -- testenv/writeDepot.jl
+        nix run .#packages.x86_64-linux.build-project --print-build-logs -- testenv/writeDepot.jl
 
     - name: Build jlrs -> call_julia
       run: |
