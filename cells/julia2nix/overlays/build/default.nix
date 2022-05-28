@@ -18,6 +18,7 @@
   extraStartup ? "",
   makeWrapperArgs ? [],
   extraBuildDepot ? {},
+  saveRegistry ? false,
   ...
 } @ args: let
   # Extra libraries for Julia's LD_LIBRARY_PATH.
@@ -52,11 +53,7 @@ in
       cp -rf --no-preserve=mode,ownership ${importManifest} Manifest.toml
 
       cat > $out/startup.jl <<EOF
-      push!(Base.DEPOT_PATH, "${
-        if extraInstallPhase != ""
-        then placeholder "out"
-        else depotPath
-      }")
+      push!(Base.DEPOT_PATH, "${placeholder "out"}")
       import Pkg
       Pkg.activate("${src}")
       ${extraStartup}
@@ -68,6 +65,11 @@ in
        echo "instantiating Packages"
 
        ${extraInstallPhase}
+
+       #exec patched.bash
+       for i in $(find $out/* -iname 'patched.bash' -type l); do
+           bash $i
+       done
 
        julia -e ' \
        using Pkg
@@ -95,8 +97,10 @@ in
       '
       fi
 
-      # Remove the registry to save space
-      julia -e 'using Pkg; Pkg.Registry.rm("General")'
+      # # Remove the registry to save space
+      ${lib.optionalString (!saveRegistry) ''
+        julia -e 'using Pkg; Pkg.Registry.rm("General")'
+      ''}
 
       runHook postInstall
     '';

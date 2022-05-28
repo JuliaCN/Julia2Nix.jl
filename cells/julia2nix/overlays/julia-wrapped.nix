@@ -31,9 +31,10 @@
     ]
     ++ lib.optionals (enable'.python != {}) [
       "--set PYTHON ${enable'.python}/bin/python"
-      "--set PYTHONPATH ${enable'.python}/${python3.sitePackages}"
-      "--set PYTHONLIB ${enable'.python}/lib/libpython${python3.pythonVersion}.so"
+      "--set PYTHONPATH ${enable'.python}/${enable'.python.sitePackages}"
+      "--set PYTHONLIB ${enable'.python}/lib/libpython${enable'.python.pythonVersion}.so"
       "--set PYTHONHOME ${enable'.python}"
+      "--set PYTHONVERSION ${enable'.python.pythonVersion}"
     ]
     ++ makeWrapperArgs;
 in

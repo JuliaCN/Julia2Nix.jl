@@ -57,8 +57,8 @@
           julia-fhs
           ;
 
-        test-depot = self.lib.${system}.buildDepot {
-          depot = ./Depot.nix;
+        build-depot = self.lib.${system}.buildDepot {
+          depot = ./testenv/conda/Depot.nix;
         };
 
         build-conda = self.lib.${system}.buildEnv {
@@ -66,24 +66,6 @@
           name = "build-conda";
           package = self.packages.${system}.julia-wrapped;
           extraInstallPhase = with inputs.nixpkgs.legacyPackages.${system}; ''
-            mkdir -p $out/conda/3
-
-            cat > $out/packages/Conda/x2UxR/deps/deps.jl <<EOF
-            const CONDA_EXE = "$out/conda/3/bin/conda"
-            const ROOTENV = "$out/conda/3"
-            const USE_MINIFORGE = true
-            const MINICONDA_VERSION = "3"
-            EOF
-
-            cat > $out/packages/PyCall/7a7w0/deps/deps.jl <<EOF
-            const python = "${python3.pythonVersion}"
-            const libpython = "$(julia -e 'println(ENV["PYTHONLIB"])')"
-            const pyprogramname = "$(julia -e 'println(ENV["PYTHON"])')"
-            const pyversion_build = v"${python3.pythonVersion}"
-            const PYTHONHOME = "$(julia -e 'println(ENV["PYTHONHOME"])')"
-            "True if we are using the Python distribution in the Conda package."
-            const conda = false
-            EOF
           '';
         };
 
@@ -104,6 +86,7 @@
               "--set NIX_PATH nixpkgs=${inputs.nixpkgs.legacyPackages.${system}.path}"
             ];
           };
+          saveRegistry = true;
         };
 
         julia-wrapped = self.lib.${system}.julia-wrapped {
