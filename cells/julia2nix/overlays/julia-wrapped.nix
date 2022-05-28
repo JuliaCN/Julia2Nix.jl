@@ -33,6 +33,7 @@
       "--set PYTHON ${enable'.python}/bin/python"
       "--set PYTHONPATH ${enable'.python}/${python3.sitePackages}"
       "--set PYTHONLIB ${enable'.python}/lib/libpython${python3.pythonVersion}.so"
+      "--set PYTHONHOME ${enable'.python}"
     ]
     ++ makeWrapperArgs;
 in

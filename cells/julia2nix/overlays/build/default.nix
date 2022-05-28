@@ -52,7 +52,11 @@ in
       cp -rf --no-preserve=mode,ownership ${importManifest} Manifest.toml
 
       cat > $out/startup.jl <<EOF
-      push!(Base.DEPOT_PATH, "${depotPath}")
+      push!(Base.DEPOT_PATH, "${
+        if extraInstallPhase != ""
+        then placeholder "out"
+        else depotPath
+      }")
       import Pkg
       Pkg.activate("${src}")
       ${extraStartup}
