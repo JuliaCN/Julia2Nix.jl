@@ -131,11 +131,18 @@ with pkgs.lib; let
     export GRDIR=${pkgs.gr}
   '';
 
+  python = pkgs.python3.buildEnv.override {
+    extraLibs = with pkgs.python3Packages; [xlrd matplotlib pyqt5];
+    ignoreCollisions = true;
+  };
+
   conda_envvars = ''
     export NIX_CFLAGS_COMPILE="-I${condaInstallationPath}/include"
     export NIX_CFLAGS_LINK="-L${condaInstallationPath}lib"
     export PATH=${condaInstallationPath}/bin:$PATH
-    source ${condaInstallationPath}/etc/profile.d/conda.sh
+    # source ${condaInstallationPath}/etc/profile.d/conda.sh
+    export PYTHON=${python}/bin/python
+    export PYTHONPATH=${python}/${pkgs.python3.sitePackages}
   '';
 
   conda_julia_envvars = ''

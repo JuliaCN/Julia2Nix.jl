@@ -4,9 +4,6 @@
   runCommand,
   makeWrapper,
   lib,
-  python3,
-  cacert,
-  git,
   ...
 }: {
   package ? julia_17-bin,

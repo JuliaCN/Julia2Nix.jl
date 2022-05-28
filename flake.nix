@@ -65,14 +65,28 @@
           src = ./testenv/conda;
           name = "build-conda";
           package = self.packages.${system}.julia-wrapped;
-          extraInstallPhase = ''
+          extraInstallPhase = with inputs.nixpkgs.legacyPackages.${system};''
             mkdir -p $out/conda
+            mkdir -p $out/conda/3
             cat > $out/packages/Conda/x2UxR/deps/deps.jl <<EOF
-            const ROOTENV = "$out/conda"
-            const MINICONDA_VERSION = "3"
+            const CONDA_EXE = "$out/conda/3/bin/conda"
+            const ROOTENV = "$out/conda/3"
             const USE_MINIFORGE = true
-            const CONDA_EXE = "$out/conda/bin/conda"
+            const USE_MINIFORGE = true
             EOF
+            cp $out/packages/Conda/x2UxR/deps/deps.jl $out/conda
+
+            cat > $out/packages/PyCall/7a7w0/deps/deps.jl <<EOF
+            const python = "${python3.pythonVersion}"
+            const libpython = "$(julia -e 'println(ENV["PYTHONLIB"])')"
+            const pyprogramname = "$(julia -e 'println(ENV["PYTHON"])')"
+            const pyversion_build = v"${python3.pythonVersion}"
+            const PYTHONHOME = "$(julia -e 'println(ENV["PYTHON"])')"
+            "True if we are using the Python distribution in the Conda package."
+            const conda = false
+            EOF
+
+            cat $out/packages/PyCall/7a7w0/deps/deps.jl
           '';
         };
 

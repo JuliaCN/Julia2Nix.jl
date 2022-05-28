@@ -6600,11 +6600,11 @@
         "yants": "yants_3"
       },
       "locked": {
-        "lastModified": 1652784712,
-        "narHash": "sha256-ofwGapSWqzUVgIxwwmjlrOVogfjV4yd6WpY8fNfMc2o=",
+        "lastModified": 1653719939,
+        "narHash": "sha256-2b1ITKet2PbncDmX5BtfLkAuu8LOnacEye47cTeyvGo=",
         "owner": "divnix",
         "repo": "std",
-        "rev": "3667d2d868352b0bf47c83440da48bee9f2fab47",
+        "rev": "39721132de197f49ec717285ce03f551bab3fee8",
         "type": "github"
       },
       "original": {
