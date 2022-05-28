@@ -44,7 +44,7 @@ jobs:
 
     - name: Build Depot Path
       run: |
-        nix build .#packages.x86_64-linux.test-depot --print-build-logs
+        nix build .#packages.x86_64-linux.build-depot --print-build-logs
 
     - name: Build Julia2Project and write Depot.nix
       run: |
