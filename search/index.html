@@ -40,9 +40,9 @@ window.store = {
     
     "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/posts\/api\/": {
         
-        "title": "Api",
+        "title": "API",
         "tags": [],
-        "content": "Working with a project To build the Manifest.toml of packages in the project run:\nnix build .\\#packages.x86_64-linux.build-package ", 
+        "content": " tags Library  Working with a project To build the Manifest.toml of packages in the project run:\nnix build .\\#packages.x86_64-linux.build-package ", 
         "url": "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/posts\/api\/"
     },
     
@@ -64,6 +64,16 @@ window.store = {
         "tags": [],
         "content": "", 
         "url": "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/categories\/"
+    },
+    
+    
+    
+    "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/posts\/enable\/": {
+        
+        "title": "Enable Option",
+        "tags": [],
+        "content": "Example Adding realted featrues into lib.julia-wrapped\njulia-wrapped {  enable = {  GR = true;  python =  inputs.nixpkgs.legacyPackages.${system}.python3.buildEnv.override  {  extraLibs = with inputs.nixpkgs.legacyPackages.${system}.python3Packages; [xlrd matplotlib pyqt5];  ignoreCollisions = true;  };  }; } Third part support DONE GR Python [1/1] DONE PyCall The PyCall needs PyCall to make the compiling passing.\n", 
+        "url": "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/posts\/enable\/"
     },
     
     
@@ -98,12 +108,62 @@ window.store = {
     
     
     
+    "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/posts\/julia-wrapped\/": {
+        
+        "title": "Julia Wrapped",
+        "tags": [],
+        "content": " tags Library  Vaules    name type     julia2nix.lib.${system}.julia-wrapped {}    Example Setting Here is the minimal configuration with additional Enable Option.\njulia-wrapped = self.lib.${system}.julia-wrapped {  package = self.packages.${system}.julia_17-bin;  enable = {  GR = true;  python =  inputs.nixpkgs.legacyPackages.${system}.python3.buildEnv.override  {  extraLibs = with inputs.nixpkgs.legacyPackages.${system}.python3Packages; [xlrd matplotlib pyqt5];  ignoreCollisions = true;  };  }; }; ", 
+        "url": "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/posts\/julia-wrapped\/"
+    },
+    
+    
+    
     "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/": {
         
         "title": "Julia2Nix.jl",
         "tags": [],
         "content": "", 
         "url": "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/"
+    },
+    
+    
+    
+    "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/posts\/library\/": {
+        
+        "title": "Library",
+        "tags": [],
+        "content": " Link: https://github.com/JuliaCN/Julia2Nix.jl/blob/main/cells/julia2nix/library/default.nix  julia-wrapped ", 
+        "url": "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/posts\/library\/"
+    },
+    
+    
+    
+    "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/posts\/overrides\/": {
+        
+        "title": "Overrides",
+        "tags": [],
+        "content": " issue: https://github.com/JuliaCN/Julia2Nix.jl/issues/10  DevShell dev ", 
+        "url": "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/posts\/overrides\/"
+    },
+    
+    
+    
+    "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/posts\/packages\/": {
+        
+        "title": "Packages",
+        "tags": [],
+        "content": " link: https://github.com/JuliaCN/Julia2Nix.jl/blob/main/cells/julia2nix/packages/default.nix  ", 
+        "url": "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/posts\/packages\/"
+    },
+    
+    
+    
+    "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/posts\/patches\/": {
+        
+        "title": "Patches",
+        "tags": [],
+        "content": "Patched Packages [2/2] DONE PyCall DONE Conda ", 
+        "url": "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/posts\/patches\/"
     },
     
     
@@ -142,7 +202,7 @@ window.store = {
         
         "title": "Usage",
         "tags": [],
-        "content": "JuNix JuNix provides an interface to call the nix-fetch from within Julia.\nFlakes Templates ", 
+        "content": " tags Packages, API, Library  JuNix JuNix provides an interface to call the nix-fetch from within Julia.\nFlakes Templates ", 
         "url": "https:\/\/JuliaCN.github.io\/Julia2Nix.jl\/posts\/usage\/"
     },
     
