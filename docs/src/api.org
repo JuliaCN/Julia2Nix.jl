@@ -1,8 +1,9 @@
 :PROPERTIES:
 :ID:       b2d8cee1-d99b-4e9e-b828-fc8b08548cc8
 :END:
-#+title: Api
+#+title: API
 
+- tags :: [[id:d343c886-9157-4ca6-89e0-f94b7906b115][Library]]
 
 * Working with a project
 

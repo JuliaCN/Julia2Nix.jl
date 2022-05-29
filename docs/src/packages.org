@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       84efef7c-ca27-4653-b11f-19d4133cbe2f
+:END:
+#+title: Packages
+
+- link: https://github.com/JuliaCN/Julia2Nix.jl/blob/main/cells/julia2nix/packages/default.nix

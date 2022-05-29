@@ -1,0 +1,12 @@
+:PROPERTIES:
+:ID:       e68ff144-97e2-4399-901d-a473415e618a
+:END:
+#+title: Overrides
+
+
+- issue: https://github.com/JuliaCN/Julia2Nix.jl/issues/10
+
+* DevShell :dev:
+:PROPERTIES:
+:ID:       3b7794be-21eb-4130-be6a-c51a9dd41ec6
+:END:

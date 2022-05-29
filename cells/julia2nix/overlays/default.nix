@@ -7,9 +7,9 @@
       lfinal: lprev: rec {
         installApp = import ./installApp.nix final;
 
-        buildDepot = args: import ./build/depot.nix final args;
+        buildDepot = args: import ./builder/depot.nix final args;
 
-        buildEnv = args: (import ./build final) args;
+        buildEnv = args: (import ./builder final) args;
 
         buildProject = {...} @ args:
           (buildEnv args

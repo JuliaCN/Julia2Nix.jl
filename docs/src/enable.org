@@ -1,0 +1,33 @@
+:PROPERTIES:
+:ID:       37fefcdf-c52a-41ed-b9d0-b7d821062441
+:END:
+#+title: Enable Option
+
+
+* Example
+
+ Adding realted featrues into [[id:d4257acf-b232-427b-b9d5-d25eee0cc706][lib.julia-wrapped]]
+
+#+begin_src nix :async :exports both :results output
+julia-wrapped {
+  enable = {
+  GR = true;
+  python =
+    inputs.nixpkgs.legacyPackages.${system}.python3.buildEnv.override
+      {
+        extraLibs = with inputs.nixpkgs.legacyPackages.${system}.python3Packages; [xlrd matplotlib pyqt5];
+        ignoreCollisions = true;
+      };
+  };
+}
+#+end_src
+
+
+
+* Third part support
+** DONE GR
+
+* Python [1/1]
+
+** DONE PyCall
+The PyCall needs [[id:b60adeb5-9309-4aab-89ea-2fa8938d19ab][PyCall]] to make the compiling passing.

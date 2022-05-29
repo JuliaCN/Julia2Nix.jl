@@ -1,0 +1,36 @@
+:PROPERTIES:
+:ID:       98106154-ca42-454e-8a3a-3f64d5a327ff
+:END:
+#+title: Julia Wrapped
+
+- tags :: [[id:d343c886-9157-4ca6-89e0-f94b7906b115][Library]]
+
+* Vaules
+:PROPERTIES:
+:ID:       d4257acf-b232-427b-b9d5-d25eee0cc706
+:END:
+
+ | name                                  | type |
+ |---------------------------------------+------|
+ | julia2nix.lib.${system}.julia-wrapped | {}   |
+
+* Example Setting
+:PROPERTIES:
+:ID:       8679132a-e620-40a1-b481-51dd7917b9b8
+:END:
+Here is the minimal configuration with additional [[id:37fefcdf-c52a-41ed-b9d0-b7d821062441][Enable Option]].
+
+#+begin_src nix :async :exports both :results output
+julia-wrapped = self.lib.${system}.julia-wrapped {
+  package = self.packages.${system}.julia_17-bin;
+  enable = {
+    GR = true;
+    python =
+      inputs.nixpkgs.legacyPackages.${system}.python3.buildEnv.override
+        {
+          extraLibs = with inputs.nixpkgs.legacyPackages.${system}.python3Packages; [xlrd matplotlib pyqt5];
+          ignoreCollisions = true;
+        };
+  };
+};
+#+end_src

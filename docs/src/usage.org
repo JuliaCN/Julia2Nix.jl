@@ -3,6 +3,8 @@
 :END:
 #+title: Usage
 
+- tags :: [[id:84efef7c-ca27-4653-b11f-19d4133cbe2f][Packages]], [[id:b2d8cee1-d99b-4e9e-b828-fc8b08548cc8][API]], [[id:d343c886-9157-4ca6-89e0-f94b7906b115][Library]]
+
 * JuNix
 
 JuNix provides an interface to call the nix-fetch from within Julia.

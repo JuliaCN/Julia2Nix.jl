@@ -1,0 +1,14 @@
+:PROPERTIES:
+:ID:       41a26090-e029-4331-b416-9de0f1eb720c
+:END:
+#+title: Patches
+
+
+* Patched Packages [2/2]
+
+** DONE PyCall
+:PROPERTIES:
+:ID:       b60adeb5-9309-4aab-89ea-2fa8938d19ab
+:END:
+
+** DONE Conda
