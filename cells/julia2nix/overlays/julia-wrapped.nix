@@ -44,5 +44,6 @@ in
     meta.mainProgram = bin;
   } ''
     mkdir -p $out
+    ln -s ${package}/{lib,include} $out
     makeWrapper ${package}/bin/julia $out/bin/${bin} $makeWrapperArgs_
   ''

@@ -49,7 +49,7 @@
           rustfmt = pkgs.rust-final;
         });
         julia-wrapped = inputs.julia2nix.lib.${system}.julia-wrapped {
-          julia = inputs.julia2nix.packages.${system}.julia_17-bin;
+          package = inputs.julia2nix.packages.${system}.julia_17-bin;
           enable = {
             python =
               pkgs.python3.buildEnv.override
@@ -59,23 +59,26 @@
               };
           };
         };
-        build-package = inputs.julia2nix.lib.${system}.buildPackage {
-          src = ./.;
+        build-package = inputs.julia2nix.lib.${system}.buildEnv {
+          src = inputs.nix-filter.lib.filter {
+            root = ./.;
+            include = [
+              ./Depot.nix
+              ./Project.toml
+              ./Manifest.toml
+            ];
+          };
           name = "Plot-PackageDeps";
-          julia = julia-wrapped;
-          extraInstallPhase = ''
-            mkdir -p $out/conda
-            cat > $out/packages/Conda/x2UxR/deps/deps.jl <<EOF
-            const ROOTENV = "$out/conda"
-            const MINICONDA_VERSION = "3"
-            const USE_MINIFORGE = true
-            const CONDA_EXE = "$out/conda/bin/conda"
-            EOF
-          '';
+          package = julia-wrapped;
         };
 
         plot = craneLib.buildPackage {
-          src = ./.;
+          src = inputs.nix-filter.lib.filter {
+            root = ./.;
+            include = [
+              (inputs.nix-filter.lib.inDirectory ./src)
+            ];
+          };
           # cargoExtraArgs = "--target wasm32-wasi";
           # Tests currently need to be run via `cargo wasi` which
           # isn't packaged in nixpkgs yet...
@@ -83,9 +86,17 @@
           JULIA_DIR = inputs.julia2nix.packages.${system}.julia_17-bin;
         };
         call-julia = craneLib.buildPackage {
-          src = ./call_julia;
+          src = inputs.nix-filter.lib.filter {
+            root = ./call_julia;
+            include = [
+              (inputs.nix-filter.lib.inDirectory ./call_julia)
+              ./Depot.nix
+              ./Project.toml
+              ./Manifest.toml
+            ];
+          };
           doCheck = true;
-          JULIA_DIR = inputs.julia2nix.packages.${system}.julia_17-bin;
+          JULIA_DIR = julia-wrapped;
         };
       in {
         packages = {

@@ -1,4 +1,9 @@
 module MyModule
+# import PyCall
+import Pkg
+push!(Base.DEPOT_PATH, (ENV["EXTRA_JULIA_DEPOT_PATH"]))
+Pkg.activate("..")
+import PyCall
 function complexfunc(a::Int, b::Int)::Float64
 
     x = rand(Float64, (a, a))

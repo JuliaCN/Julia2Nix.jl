@@ -3432,17 +3432,14 @@
         "std": "std_3"
       },
       "locked": {
-        "lastModified": 1653113072,
-        "narHash": "sha256-5X3Et2CJa74H5KFvCYSaZN5BFVpXL4v0SPMJ7rjfs9c=",
-        "owner": "JuliaCN",
-        "repo": "julia2nix",
-        "rev": "ee84c651af3ac824a5906bb2641e90e9b4935db8",
-        "type": "github"
+        "lastModified": 0,
+        "narHash": "sha256-kjYHAioI6eHqOxRDMZrxb+Lqi87+6Zdb/bDkrr0ENFw=",
+        "path": "/nix/store/n24pbfz0sbsqlys4117v4wlw003v7kvv-source",
+        "type": "path"
       },
       "original": {
-        "owner": "JuliaCN",
-        "repo": "julia2nix",
-        "type": "github"
+        "path": "/nix/store/n24pbfz0sbsqlys4117v4wlw003v7kvv-source",
+        "type": "path"
       }
     },
     "lambda-microvm-lab": {
@@ -7039,11 +7036,11 @@
         "yants": "yants_5"
       },
       "locked": {
-        "lastModified": 1652784712,
-        "narHash": "sha256-ofwGapSWqzUVgIxwwmjlrOVogfjV4yd6WpY8fNfMc2o=",
+        "lastModified": 1653758445,
+        "narHash": "sha256-cUDxh88U3PhrM0O/bGk4v31YXX8oXaA7/eBOOb1f98M=",
         "owner": "divnix",
         "repo": "std",
-        "rev": "3667d2d868352b0bf47c83440da48bee9f2fab47",
+        "rev": "ceaaea3e1935ca838f4a27160eef64659356f6fc",
         "type": "github"
       },
       "original": {

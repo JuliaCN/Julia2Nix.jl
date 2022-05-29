@@ -14,6 +14,11 @@
         pkgs.rust-final
         pkgs.cargo-edit
       ];
-      env = [];
+      env = [
+        {
+          name = "EXTRA_JULIA_DEPOT_PATH";
+          value = "${inputs.self.packages.${pkgs.system}.build-package}";
+        }
+      ];
     };
 }
