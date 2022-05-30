@@ -1,4 +1,4 @@
 [gr-latest-x86_64-linux]
 src.webpage = "https://gr-framework.org/downloads/"
 src.regex = "1\\d+"
-fetch.url = "https://gr-framework.org/downloads/gr-0.64.2-Debian-x86_64.tar.gz"
+fetch.url = "https://gr-framework.org/downloads/gr-0.64.3-Debian-x86_64.tar.gz"

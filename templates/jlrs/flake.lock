@@ -3432,14 +3432,17 @@
         "std": "std_3"
       },
       "locked": {
-        "lastModified": 0,
-        "narHash": "sha256-kjYHAioI6eHqOxRDMZrxb+Lqi87+6Zdb/bDkrr0ENFw=",
-        "path": "/nix/store/n24pbfz0sbsqlys4117v4wlw003v7kvv-source",
-        "type": "path"
+        "lastModified": 1653821896,
+        "narHash": "sha256-wbgOfIe1v3mRiAQBJe5vDB07g9ggyZ79J2NOoyWTyAc=",
+        "owner": "JuliaCN",
+        "repo": "julia2nix",
+        "rev": "415d95b17fa98e8ef2c701e6550d5528fb9b46f9",
+        "type": "github"
       },
       "original": {
-        "path": "/nix/store/n24pbfz0sbsqlys4117v4wlw003v7kvv-source",
-        "type": "path"
+        "owner": "JuliaCN",
+        "repo": "julia2nix",
+        "type": "github"
       }
     },
     "lambda-microvm-lab": {
