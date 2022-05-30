@@ -20,5 +20,15 @@
           value = "${inputs.self.packages.${pkgs.system}.build-package}";
         }
       ];
+      commands = [
+        {
+          name = "call-julia";
+          category = "tests";
+          command = ''
+            cd $PRJ_ROOT/templates/jlrs/call_julia
+            nix run $PRJ_ROOT/templates/jlrs#packages.x86_64-linux.call-julia --print-build-logs
+          '';
+        }
+      ];
     };
 }

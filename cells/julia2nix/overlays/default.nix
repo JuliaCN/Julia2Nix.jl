@@ -35,7 +35,7 @@
 
     patch-sources = prev.callPackage ./patches/_sources/generated.nix {};
 
-    gr = inputs.nixpkgs-release.legacyPackages.${prev.system}.callPackage ./patches/gr.nix {inherit patch-sources;};
+    gr = prev.callPackage ./patches/gr.nix {inherit patch-sources;};
 
     julia-fhs = prev.callPackage ../packages/fhs {pkgs = final;} {};
 

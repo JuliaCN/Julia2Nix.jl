@@ -52,7 +52,7 @@ jobs:
 
     - name: Build jlrs -> call_julia
       run: |
-        nix develop --show-trace --command -- jlrs-call-julia
+        nix develop ./templates/jlrs --show-trace --command -- call-julia
 
     - name: Build Doc
       run: |

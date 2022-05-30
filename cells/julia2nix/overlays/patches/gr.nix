@@ -55,4 +55,5 @@ in
         xorg.xcbproto
         xorg.xcbutil
       ];
+    meta.mainProgram = "gksqt";
   }
