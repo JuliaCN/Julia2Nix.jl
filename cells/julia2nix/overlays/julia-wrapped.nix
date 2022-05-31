@@ -10,7 +10,7 @@
   package ? julia_17-bin,
   makeWrapperArgs ? [],
   enable ? {},
-  bin ? "julia",
+  meta ? {},
   extraBuildInputs ? [],
   ...
 }: let
@@ -37,13 +37,18 @@
       "--set PYTHONVERSION ${enable'.python.pythonVersion}"
     ]
     ++ makeWrapperArgs;
+  meta' =
+    lib.recursiveUpdate {
+      mainProgram = "julia";
+      description = "julia-wrapped mainProgram";
+    }
+    meta;
 in
   runCommand "julia-wrapped" {
     buildInputs = [makeWrapper package];
     inherit makeWrapperArgs_;
-    meta.mainProgram = bin;
+    meta = meta';
   } ''
     mkdir -p $out
-    ln -s ${package}/{lib,include} $out
-    makeWrapper ${package}/bin/julia $out/bin/${bin} $makeWrapperArgs_
+    makeWrapper ${package}/bin/julia $out/bin/${meta'.mainProgram} $makeWrapperArgs_
   ''

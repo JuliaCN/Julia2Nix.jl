@@ -37,6 +37,7 @@
           (inputs.std.functions "library")
           (inputs.std.functions "flow")
           (inputs.std.functions "overlays")
+          (inputs.std.functions "compiler")
 
           (inputs.std.data "containerJobs")
         ];

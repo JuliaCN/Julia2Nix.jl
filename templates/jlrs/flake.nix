@@ -83,7 +83,7 @@
           # Tests currently need to be run via `cargo wasi` which
           # isn't packaged in nixpkgs yet...
           doCheck = false;
-          JULIA_DIR = inputs.julia2nix.packages.${system}.julia_17-bin;
+          JULIA_DIR = julia-wrapped.package;
         };
         call-julia = craneLib.buildPackage {
           src = inputs.nix-filter.lib.filter {
