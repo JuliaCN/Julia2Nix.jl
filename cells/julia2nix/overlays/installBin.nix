@@ -26,5 +26,8 @@ stdenv.mkDerivation {
 
     runHook postInstall
   '';
-  meta.mainProgram = "julia";
+  meta = {
+    mainProgram = "julia";
+    description = "${version}: High-level, high-performance, dynamic language for technical computing";
+  };
 }

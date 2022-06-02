@@ -34,7 +34,6 @@ in
         ];
 
       commands = [
-        (withCategory "hexagon" {package = nixpkgs.treefmt;})
         {
           name = "mktest";
           category = "tests";
@@ -64,17 +63,5 @@ in
           value = "nixpkgs=${pkgs.path}";
         }
       ];
-
-      packages = with nixpkgs; [
-        alejandra
-        nodePackages.prettier
-        nodePackages.prettier-plugin-toml
-      ];
-
-      devshell.startup.nodejs-setuphook =
-        l.stringsWithDeps.noDepEntry
-        ''
-          export NODE_PATH=${nixpkgs.nodePackages.prettier-plugin-toml}/lib/node_modules:$NODE_PATH
-        '';
     };
   }

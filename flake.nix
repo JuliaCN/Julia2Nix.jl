@@ -3,16 +3,14 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-release.url = "github:nixos/nixpkgs/release-21.11";
 
-    nix2container.url = "github:nlewo/nix2container";
-    nix2container.inputs.nixpkgs.follows = "nixpkgs";
-
-    std.url = "github:divnix/std";
-    std.inputs.nixpkgs.follows = "nixpkgs";
-
     nix-filter.url = "github:/numtide/nix-filter";
     nix-filter.inputs.nixpkgs.follows = "nixpkgs";
+  };
 
-    cells-lab.url = "github:gtrunsec/DevSecOps-Cells-Lab";
+  inputs = {
+    cells-lab.url = "github:gtrunsec/cells-lab";
+    std.follows = "cells-lab/std";
+    nix2container.follows = "cells-lab/nix2container";
     org-roam-book-template.follows = "cells-lab/org-roam-book-template";
   };
 
@@ -35,7 +33,7 @@
           (inputs.std.functions "devshellProfiles")
 
           (inputs.std.functions "library")
-          (inputs.std.functions "flow")
+          (inputs.std.functions "workflow")
           (inputs.std.functions "overlays")
           (inputs.std.functions "compiler")
 

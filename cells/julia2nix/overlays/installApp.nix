@@ -42,5 +42,6 @@ stdenvNoCC.mkDerivation rec {
   meta = {
     platforms = lib.platforms.darwin;
     mainProgram = "julia";
+    description = "${version}: High-level, high-performance, dynamic language for technical computing";
   };
 }

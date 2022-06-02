@@ -14,7 +14,7 @@ in {
       {
         name = "julia18";
         command = "${packages.julia_18-bin}/bin/julia";
-        help = packages.julia_18-bin.pname;
+        help = packages.julia_18-bin.meta.description;
       }
     ]
     ++ lib.optionals pkgs.stdenv.buildPlatform.isDarwin [
