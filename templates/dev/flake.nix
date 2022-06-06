@@ -23,7 +23,7 @@
           inputs.devshell.overlay
           self.overlays.default
         ];
-        julia-wrapped = julia2nix.lib.${system}.julia-wrapped {
+        julia-wrapped = inputs.julia2nix.lib.${system}.julia-wrapped {
           # package = pkgs.julia_17-bin;
           # package = julia2nix.packages.${system}.julia_18-bin;
           enable = {
@@ -39,7 +39,7 @@
 
         # run this command in your project: nix run github:JuliaCN/Julia2Nix.jl#packages.x86_64-linux.julia2nix
         # we need to generate the Depot.nix first
-        project = julia2nix.lib.${system}.buildProject {
+        project = inputs.julia2nix.lib.${system}.buildProject {
           src = ./.;
           name = "your julia project";
           package = julia-wrapped;
