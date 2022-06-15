@@ -64,4 +64,9 @@ in
         }
       ];
     };
+    packages = {pkgs, ...}: {
+      imports = [
+        cell.devshellProfiles.packages
+      ];
+    };
   }

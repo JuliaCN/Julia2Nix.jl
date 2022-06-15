@@ -12,7 +12,7 @@ in {
   commands =
     [
       {
-        name = "julia18";
+        name = "julia-18";
         command = "${packages.julia_18-bin}/bin/julia";
         help = packages.julia_18-bin.meta.description;
       }
@@ -20,11 +20,18 @@ in {
     ++ lib.optionals pkgs.stdenv.buildPlatform.isDarwin [
       {
         package = packages.julia_17-bin;
+        help = packages.julia_17-bin.version + packages.julia_17-bin.meta.description;
       }
     ]
     ++ lib.optionals pkgs.stdenv.buildPlatform.isLinux [
       {
         package = packages.julia_17-bin;
+        help = packages.julia_17-bin.version + " " + packages.julia_17-bin.meta.description;
+      }
+      {
+        name = "julia-fhs";
+        command = "${packages.julia-fhs}/bin/julia";
+        help = "julia with FHS";
       }
     ];
 
