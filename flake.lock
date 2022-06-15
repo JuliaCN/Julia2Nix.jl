@@ -81,11 +81,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1654552503,
-        "narHash": "sha256-4fSXHaApQ3GqKEw61EfLkKKxuzW0b+8P1VWQQj9nURQ=",
+        "lastModified": 1654629497,
+        "narHash": "sha256-9ZzTPJCUdeTmMKHzacOMOSW73H+4qZjuHpPDMTzbvJs=",
         "owner": "gtrunsec",
         "repo": "cells-lab",
-        "rev": "b29ad3340f3f444b82ce5d0d8854e007114798a3",
+        "rev": "5f70b60696497d54bb27d3f1d863076e6978c9bf",
         "type": "github"
       },
       "original": {
@@ -901,11 +901,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1653333750,
-        "narHash": "sha256-vyK112ZjNU/1ZEBimfKDs/0lynxfdSJnzvvDnYp5GGY=",
+        "lastModified": 1654530575,
+        "narHash": "sha256-2Qr3wGw009SHa/NFHYLZUQkoYyuxsSn6H1enjH5Ndtw=",
         "owner": "fluidattacks",
         "repo": "makes",
-        "rev": "26a5d1e291d252211b183af0ddc4da9679b7bdff",
+        "rev": "0ae2a40965eadcc19f6b9988d2ab1401fe665d70",
         "type": "github"
       },
       "original": {
@@ -963,11 +963,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1654014148,
-        "narHash": "sha256-WgYvtdBYS9oWz6fHbwIAH1XN9PURN88cwp2ffnMIP2M=",
+        "lastModified": 1654177952,
+        "narHash": "sha256-w9IVLWjG6ukvxHa4/9bZv6OgAhjlkS8bOMfezkjkIxk=",
         "owner": "tweag",
         "repo": "nickel",
-        "rev": "d33749dec505c811401f12fc3f7cb4c81672e2dd",
+        "rev": "f7e0ced275a71907bfd9b19072bffb92a3c8c376",
         "type": "github"
       },
       "original": {
@@ -1034,11 +1034,11 @@
     },
     "nix-filter_3": {
       "locked": {
-        "lastModified": 1649838635,
-        "narHash": "sha256-P1h48+l9vUvMz4JwHBgkTXiX6mE8oYR75vBVUbe6Cuc=",
+        "lastModified": 1653590866,
+        "narHash": "sha256-E4yKIrt/S//WfW5D9IhQ1dVuaAy8RE7EiCMfnbrOC78=",
         "owner": "numtide",
         "repo": "nix-filter",
-        "rev": "40a58baa248a8b335e2d66ca258a74248af9d834",
+        "rev": "3e81a637cdf9f6e9b39aeb4d6e6394d1ad158e16",
         "type": "github"
       },
       "original": {
@@ -1115,11 +1115,11 @@
         "utils": "utils_3"
       },
       "locked": {
-        "lastModified": 1654487911,
-        "narHash": "sha256-NU2j9jvm0pIyJm0aD++3U9F3/crvxUwJ8AVMg08Bh7w=",
+        "lastModified": 1654629318,
+        "narHash": "sha256-5K+zcK8qiajtiPj5mS6y8W5+aDRT8EBEqoln5RKeV8Y=",
         "owner": "hardenedlinux",
         "repo": "nixpkgs-hardenedlinux",
-        "rev": "a5fff6d0ee5e3e2ba9d79f4a258990ec198ee6e4",
+        "rev": "fc9421b4691c3b616a3d817bcb059791b6ead9d6",
         "type": "github"
       },
       "original": {
@@ -1130,16 +1130,16 @@
     },
     "nixpkgs-release": {
       "locked": {
-        "lastModified": 1652559422,
-        "narHash": "sha256-jPVTNImBTUIFdtur+d4IVot6eXmsvtOcBm0TzxmhWPk=",
+        "lastModified": 1655253430,
+        "narHash": "sha256-n3448ukTWgjE8KrBYMfUnPnXXsi2VkVpcXklPzJUyAE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8b3398bc7587ebb79f93dfeea1b8c574d3c6dba1",
+        "rev": "598e9baf7d86ed582e67075c6f201ce4d6d866bd",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "release-21.11",
+        "ref": "release-22.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -1192,11 +1192,11 @@
     },
     "nixpkgs_13": {
       "locked": {
-        "lastModified": 1652541622,
-        "narHash": "sha256-Z9BuUCS0IocoRahFvFDJNU5Q+xM5/lS8Ng4JJFH3+UU=",
+        "lastModified": 1655239344,
+        "narHash": "sha256-5Va2Qmy50AspTfyHvoWrwCpTuqArOg9LnvRPe8YW5no=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "f7a22851667ac89ac1863ede0d8c386fc6eb12a0",
+        "rev": "9ef09e06806e79e32e30d17aee6879d69c011037",
         "type": "github"
       },
       "original": {
@@ -1684,11 +1684,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1651418255,
-        "narHash": "sha256-GDQuU/IJHyu/4KF5HXi9YSAxut3TOHqTKQk5d2CTMJ8=",
+        "lastModified": 1654360256,
+        "narHash": "sha256-OQk80eTUufVUbYvZ38el2lmkgkU+5gr0hLTrBvzIp4A=",
         "owner": "nerdypepper",
         "repo": "statix",
-        "rev": "d197ae112457f68728e3495498b8ae1b6d087db0",
+        "rev": "60df6b320851e8c89e8c8f2d6f3b521ba14432b3",
         "type": "github"
       },
       "original": {

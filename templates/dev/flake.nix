@@ -50,7 +50,7 @@
         };
         devShells.default = pkgs.devshell.mkShell {
           # imports = [inputs.julia2nix.${pkgs.system}.julia2nix.devshellProfiles.packages];
-          commands = [ {package = julia-wrapped;}];
+          commands = [{package = julia-wrapped;}];
         };
       })
     )

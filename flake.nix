@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-release.url = "github:nixos/nixpkgs/release-21.11";
+    nixpkgs-release.url = "github:nixos/nixpkgs/release-22.05";
 
     nix-filter.url = "github:/numtide/nix-filter";
     nix-filter.inputs.nixpkgs.follows = "nixpkgs";
@@ -51,6 +51,7 @@
           (inputs.self.${system}.julia2nix.packages)
           julia_16-bin
           julia_17-bin
+          julia_18-bin
           gr
           conda
           julia-fhs
