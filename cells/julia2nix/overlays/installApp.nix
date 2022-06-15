@@ -15,6 +15,7 @@
 }:
 stdenvNoCC.mkDerivation rec {
   name = pname;
+  inherit version;
   inherit (julia-sources."julia-${version}-${system}") pname src;
 
   buildInputs = [undmg] ++ extraBuildInputs;
