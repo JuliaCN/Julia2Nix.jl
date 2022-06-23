@@ -7,30 +7,30 @@
   pkgs,
   ...
 }: let
-  inherit (cell) apps;
+  inherit (cell) packages;
 in {
   commands =
     [
       {
         name = "julia-18";
-        command = "${apps.julia_18-bin}/bin/julia";
-        help = apps.julia_18-bin.meta.description;
+        command = "${packages.julia_18-bin}/bin/julia";
+        help = packages.julia_18-bin.meta.description;
       }
     ]
     ++ lib.optionals pkgs.stdenv.buildPlatform.isDarwin [
       {
-        package = apps.julia_17-bin;
-        help = apps.julia_17-bin.version + apps.julia_17-bin.meta.description;
+        package = packages.julia_17-bin;
+        help = packages.julia_17-bin.version + packages.julia_17-bin.meta.description;
       }
     ]
     ++ lib.optionals pkgs.stdenv.buildPlatform.isLinux [
       {
-        package = apps.julia_17-bin;
-        help = apps.julia_17-bin.version + " " + apps.julia_17-bin.meta.description;
+        package = packages.julia_17-bin;
+        help = packages.julia_17-bin.version + " " + packages.julia_17-bin.meta.description;
       }
       {
         name = "julia-fhs";
-        command = "${apps.julia-fhs}/bin/julia";
+        command = "${packages.julia-fhs}/bin/julia";
         help = "julia with FHS";
       }
     ];

@@ -30,7 +30,7 @@
           "x86_64-linux"
         ];
         organelles = [
-          (cells-lab.installables "apps")
+          (cells-lab.installables "packages")
 
           (inputs.std.runnables "entrypoints")
 
@@ -53,7 +53,7 @@
     {
       packages.x86_64-linux = (system: {
         inherit
-          (inputs.self.${system}.julia2nix.apps)
+          (inputs.self.${system}.julia2nix.packages)
           julia_16-bin
           julia_17-bin
           julia_18-bin
@@ -124,13 +124,13 @@
 
       packages.aarch64-darwin = (system: {
         inherit
-          (inputs.self.${system}.julia2nix.apps)
+          (inputs.self.${system}.julia2nix.packages)
           julia_18-bin
           ;
       }) "aarch64-darwin";
 
       packages.x86_64-darwin = (system: {
-        inherit (inputs.self.${system}.julia2nix.apps) julia_17-bin julia_18-bin;
+        inherit (inputs.self.${system}.julia2nix.packages) julia_17-bin julia_18-bin;
 
         build-project = self.lib.${system}.buildProject {
           src = ./.;

@@ -42,5 +42,5 @@
       ];
     };
 in {
-  julia_18 = makeJulia "18-beta";
+  julia_18 = makeJulia "18-rc";
 }

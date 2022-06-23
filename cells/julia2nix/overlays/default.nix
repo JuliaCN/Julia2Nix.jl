@@ -31,13 +31,13 @@
       }
     );
 
-    julia-sources = prev.callPackage ../apps/toolchain/_sources/generated.nix {};
+    julia-sources = prev.callPackage ../packages/toolchain/_sources/generated.nix {};
 
     patch-sources = prev.callPackage ./patches/_sources/generated.nix {};
 
     gr = prev.callPackage ./patches/gr.nix {inherit patch-sources;};
 
-    julia-fhs = prev.callPackage ../apps/fhs {pkgs = final;} {};
+    julia-fhs = prev.callPackage ../packages/fhs {pkgs = final;} {};
 
     conda = prev.callPackage ./patches/conda.nix {};
   };
