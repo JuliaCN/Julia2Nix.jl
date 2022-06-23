@@ -15,11 +15,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1656012968,
-        "narHash": "sha256-9Q/p9EPA1l1kLFEn7xcuLFtxf2+X9laz65P45dch+h8=",
+        "lastModified": 1656015766,
+        "narHash": "sha256-M/vuQCYvYqTOuxdaN+EkWABfVyF4wx6XuLqT3dhi6RA=",
         "owner": "gtrunsec",
         "repo": "cells-lab",
-        "rev": "792723b1afbe6c56a826df1348aa8c43e2940035",
+        "rev": "73011aabb3c71972c2504abe1d11ee07e0ed9b68",
         "type": "github"
       },
       "original": {
