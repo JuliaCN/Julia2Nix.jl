@@ -69,7 +69,7 @@
         build-conda = self.lib.${system}.buildEnv {
           src = ./testenv/conda;
           name = "build-conda";
-          package = self.apps.${system}.julia-wrapped;
+          package = self.packages.${system}.julia-wrapped;
           extraInstallPhase = with inputs.nixpkgs.legacyPackages.${system}; ''
           '';
         };
@@ -95,7 +95,7 @@
         };
 
         julia-wrapped = self.lib.${system}.julia-wrapped {
-          package = self.apps.${system}.julia_17-bin;
+          package = self.packages.${system}.julia_17-bin;
           enable = {
             GR = true;
             python =
@@ -109,7 +109,7 @@
 
         julia2nix = inputs.cells-lab.${system}._writers.library.writeShellApplication {
           name = "julia2nix";
-          runtimeInputs = [self.apps.${system}.build-project];
+          runtimeInputs = [self.packages.${system}.build-project];
           text = ''
             julia ${./testenv/writeDepot.jl}
           '';
@@ -118,7 +118,7 @@
         build-env = self.lib.${system}.buildEnv {
           src = ./.;
           name = "Example-PackageDeps";
-          package = self.apps.${system}.julia-wrapped;
+          package = self.packages.${system}.julia-wrapped;
         };
       }) "x86_64-linux";
 
@@ -137,7 +137,7 @@
           name = "Example-PackageDeps";
           depot = ./Depot-darwin.nix;
           package = self.lib.${system}.julia-wrapped {
-            package = self.apps.${system}.julia_17-bin;
+            package = self.packages.${system}.julia_17-bin;
             extraBuildInputs = with inputs.nixpkgs.legacyPackages.${system}; [alejandra nixUnstable nix-prefetch cacert];
             makeWrapperArgs = [
               "--set NIX_PATH nixpkgs=${inputs.nixpkgs.legacyPackages.${system}.path}"

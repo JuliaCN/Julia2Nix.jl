@@ -30,5 +30,5 @@ in {
     })
     // lib.optionalAttrs (nixpkgs.system == "x86_64-linux" || nixpkgs.system == "aarch64-linux") (library.installBin {
       inherit version;
-    })) "18-beta";
+    })) "18-rc";
 }
