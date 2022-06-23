@@ -10,11 +10,16 @@
   inputs = {
     cells-lab.url = "github:gtrunsec/cells-lab";
     std.follows = "cells-lab/std";
-    nix2container.follows = "cells-lab/nix2container";
+    nix2container.url = "github:nlewo/nix2container";
     org-roam-book-template.follows = "cells-lab/org-roam-book-template";
   };
 
-  outputs = {self, ...} @ inputs:
+  outputs = {
+    self,
+    std,
+    cells-lab,
+    ...
+  } @ inputs:
     (inputs.std.growOn {
         inherit inputs;
         cellsFrom = ./cells;
@@ -25,7 +30,7 @@
           "x86_64-linux"
         ];
         organelles = [
-          (inputs.std.installables "packages")
+          (cells-lab.installables "apps")
 
           (inputs.std.runnables "entrypoints")
 
@@ -48,7 +53,7 @@
     {
       packages.x86_64-linux = (system: {
         inherit
-          (inputs.self.${system}.julia2nix.packages)
+          (inputs.self.${system}.julia2nix.apps)
           julia_16-bin
           julia_17-bin
           julia_18-bin
@@ -64,7 +69,7 @@
         build-conda = self.lib.${system}.buildEnv {
           src = ./testenv/conda;
           name = "build-conda";
-          package = self.packages.${system}.julia-wrapped;
+          package = self.apps.${system}.julia-wrapped;
           extraInstallPhase = with inputs.nixpkgs.legacyPackages.${system}; ''
           '';
         };
@@ -90,7 +95,7 @@
         };
 
         julia-wrapped = self.lib.${system}.julia-wrapped {
-          package = self.packages.${system}.julia_17-bin;
+          package = self.apps.${system}.julia_17-bin;
           enable = {
             GR = true;
             python =
@@ -104,7 +109,7 @@
 
         julia2nix = inputs.cells-lab.${system}._writers.library.writeShellApplication {
           name = "julia2nix";
-          runtimeInputs = [self.packages.${system}.build-project];
+          runtimeInputs = [self.apps.${system}.build-project];
           text = ''
             julia ${./testenv/writeDepot.jl}
           '';
@@ -113,26 +118,26 @@
         build-env = self.lib.${system}.buildEnv {
           src = ./.;
           name = "Example-PackageDeps";
-          package = self.packages.${system}.julia-wrapped;
+          package = self.apps.${system}.julia-wrapped;
         };
       }) "x86_64-linux";
 
       packages.aarch64-darwin = (system: {
         inherit
-          (inputs.self.${system}.julia2nix.packages)
+          (inputs.self.${system}.julia2nix.apps)
           julia_18-bin
           ;
       }) "aarch64-darwin";
 
       packages.x86_64-darwin = (system: {
-        inherit (inputs.self.${system}.julia2nix.packages) julia_17-bin julia_18-bin;
+        inherit (inputs.self.${system}.julia2nix.apps) julia_17-bin julia_18-bin;
 
         build-project = self.lib.${system}.buildProject {
           src = ./.;
           name = "Example-PackageDeps";
           depot = ./Depot-darwin.nix;
           package = self.lib.${system}.julia-wrapped {
-            package = self.packages.${system}.julia_17-bin;
+            package = self.apps.${system}.julia_17-bin;
             extraBuildInputs = with inputs.nixpkgs.legacyPackages.${system}; [alejandra nixUnstable nix-prefetch cacert];
             makeWrapperArgs = [
               "--set NIX_PATH nixpkgs=${inputs.nixpkgs.legacyPackages.${system}.path}"
