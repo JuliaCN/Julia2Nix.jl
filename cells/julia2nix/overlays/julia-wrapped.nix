@@ -45,16 +45,17 @@
     }
     meta;
 
-  julia-wrapped = runCommand "julia-wrapped" {
-    buildInputs = [makeWrapper package];
-    inherit makeWrapperArgs_;
-    meta = meta';
-  } ''
-    mkdir -p $out
-    makeWrapper ${package}/bin/julia $out/bin/${meta'.mainProgram} $makeWrapperArgs_
-  '';
+  julia-wrapped =
+    runCommand "julia-wrapped" {
+      buildInputs = [makeWrapper package];
+      inherit makeWrapperArgs_;
+      meta = meta';
+    } ''
+      mkdir -p $out
+      makeWrapper ${package}/bin/julia $out/bin/${meta'.mainProgram} $makeWrapperArgs_
+    '';
 in
   symlinkJoin {
     name = "julia-bin";
-    paths = [ julia-wrapped package ];
+    paths = [julia-wrapped package];
   }
