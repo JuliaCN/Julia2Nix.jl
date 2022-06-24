@@ -56,6 +56,6 @@
     '';
 in
   symlinkJoin {
-    name = "julia-bin";
+    name = "julia";
     paths = [julia-wrapped package];
   }
