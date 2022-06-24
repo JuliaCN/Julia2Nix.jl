@@ -5,6 +5,7 @@
   lib,
   julia_17-bin,
   python3,
+  symlinkJoin,
   ...
 }: {
   package ? julia_17-bin,
@@ -43,12 +44,17 @@
       description = "julia-wrapped mainProgram";
     }
     meta;
-in
-  runCommand "julia-wrapped" {
+
+  julia-wrapped = runCommand "julia-wrapped" {
     buildInputs = [makeWrapper package];
     inherit makeWrapperArgs_;
     meta = meta';
   } ''
     mkdir -p $out
     makeWrapper ${package}/bin/julia $out/bin/${meta'.mainProgram} $makeWrapperArgs_
-  ''
+  '';
+in
+  symlinkJoin {
+    name = "julia-bin";
+    paths = [ julia-wrapped package ];
+  }
