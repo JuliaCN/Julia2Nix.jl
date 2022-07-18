@@ -19,7 +19,7 @@
     cells-lab,
     ...
   } @ inputs:
-    (inputs.std.growOn {
+    (std.growOn {
         inherit inputs;
         cellsFrom = ./cells;
         systems = [
@@ -29,25 +29,25 @@
           "x86_64-linux"
         ];
         organelles = [
-          (cells-lab.installables "packages")
+          (std.installables "packages")
 
-          (inputs.std.runnables "entrypoints")
+          (std.runnables "entrypoints")
 
-          (inputs.std.devshells "devshells")
-          (inputs.std.functions "devshellProfiles")
+          (std.devshells "devshells")
+          (std.functions "devshellProfiles")
 
-          (inputs.std.functions "library")
-          (inputs.std.functions "workflow")
-          (inputs.std.functions "overlays")
-          (inputs.std.functions "compiler")
+          (std.functions "library")
+          (std.functions "workflow")
+          (std.functions "overlays")
+          (std.functions "compiler")
 
-          (inputs.std.data "containerJobs")
+          (std.data "containerJobs")
         ];
       }
       {
-        lib = inputs.std.harvest inputs.self ["julia2nix" "library"];
-        devShells = inputs.std.harvest inputs.self ["julia2nix" "devshells"];
-        overlays = inputs.std.harvest inputs.self ["julia2nix" "overlays"];
+        lib = std.harvest inputs.self ["julia2nix" "library"];
+        devShells = std.harvest inputs.self ["julia2nix" "devshells"];
+        overlays = std.harvest inputs.self ["julia2nix" "overlays"];
       })
     {
       packages.x86_64-linux = (system: {
