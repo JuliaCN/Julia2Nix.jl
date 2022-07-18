@@ -10,7 +10,6 @@
   inputs = {
     cells-lab.url = "github:gtrunsec/cells-lab";
     std.follows = "cells-lab/std";
-    nix2container.url = "github:nlewo/nix2container";
     org-roam-book-template.follows = "cells-lab/org-roam-book-template";
   };
 
