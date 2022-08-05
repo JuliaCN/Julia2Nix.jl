@@ -12,7 +12,7 @@
   importManifest ? src + "/Manifest.toml",
   importProject ? src + "/Project.toml",
   extraBuildInputs ? [],
-  depot ? src + "/Depot.nix",
+  julia2nix ? src + "/julia2nix.toml",
   precompile ? true,
   extraInstallPhase ? "",
   extraStartup ? "",
@@ -30,7 +30,7 @@
   # Wrapped Julia with libraries and environment variables.
   # Note: setting The PYTHON environment variable is recommended to prevent packages
   # from trying to obtain their own with Conda.
-  depotPath = lib.buildDepot (lib.recursiveUpdate {inherit depot;} extraBuildDepot);
+  depotPath = lib.buildDepot (lib.recursiveUpdate {inherit julia2nix;} extraBuildDepot);
 in
   stdenv.mkDerivation {
     name = (lib.importTOML importProject).name or args.name;

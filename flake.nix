@@ -78,7 +78,7 @@
             root = ./.;
             include = [
               (inputs.nix-filter.lib.inDirectory ./src)
-              ./Depot.nix
+              ./julia2nix.toml
               ./Project.toml
               ./Manifest.toml
             ];
@@ -134,7 +134,7 @@
         build-project = self.lib.${system}.buildProject {
           src = ./.;
           name = "Example-PackageDeps";
-          depot = ./Depot-darwin.nix;
+          julia2nix = ./julia2nix.toml;
           package = self.lib.${system}.julia-wrapped {
             package = self.packages.${system}.julia_17-bin;
             extraBuildInputs = with inputs.nixpkgs.legacyPackages.${system}; [alejandra nixUnstable nix-prefetch cacert];
