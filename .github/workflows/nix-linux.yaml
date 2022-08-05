@@ -46,9 +46,9 @@ jobs:
       run: |
         nix build .#packages.x86_64-linux.build-depot --print-build-logs
 
-    - name: Build Julia2Project and write Depot.nix
+    - name: Build Julia2Project and write julia2nix.toml
       run: |
-        nix run .#packages.x86_64-linux.build-project --print-build-logs -- testenv/writeDepot.jl
+        nix run .#packages.x86_64-linux.build-project --print-build-logs -- testenv/writejulia2nix.jl x86_64-linux
 
     - name: Build jlrs -> call_julia
       run: |
