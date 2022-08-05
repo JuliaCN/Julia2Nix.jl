@@ -110,7 +110,7 @@
           name = "julia2nix";
           runtimeInputs = [self.packages.${system}.build-project];
           text = ''
-            julia ${./testenv/writeDepot.jl}
+            julia ${./testenv/writejulia2nix.jl} ${system}
           '';
         };
 
