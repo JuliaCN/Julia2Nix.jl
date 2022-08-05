@@ -62,7 +62,7 @@
           ;
 
         build-depot = self.lib.${system}.buildDepot {
-          depot = ./testenv/conda/Depot.nix;
+          julia2nix = ./julia2nix.toml;
         };
 
         build-conda = self.lib.${system}.buildEnv {

@@ -4,14 +4,16 @@
   symlinkJoin,
   callPackage,
   git,
+  fetchzip,
   writers,
   ...
-}: {depot, ...}: let
-  depotFile = callPackage depot {};
+}: {julia2nix, ...}: let
+  depots = lib.mapAttrs (_: fetchzip) (lib.importTOML julia2nix).depot.${stdenvNoCC.system}.fetchzip;
+
   srcs = lib.mapAttrs (n: v: let
-    path = lib.replaceStrings ["-"] ["/"] n;
+    path = v.name;
     patches = import ./patches.nix {inherit path;};
-    name' = lib.last (lib.splitString "-" v.name);
+    name' = lib.last (lib.splitString "-" n);
     patch-context = lib.hasAttrByPath ["${name'}"] patches;
   in
     stdenvNoCC.mkDerivation {
@@ -40,7 +42,7 @@
           cp -rf --no-preserve=mode,ownership ${context} $out/${n}/patched.bash
         '');
     })
-  depotFile.depot;
+  depots;
 in
   symlinkJoin {
     name = "julia-depot";
