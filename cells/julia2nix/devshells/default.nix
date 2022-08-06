@@ -44,16 +44,10 @@ in
           help = "make runtests";
         }
         {
-          name = "writeDepot";
+          name = "writejulia2nix";
           category = "tests";
-          command =
-            l.optionalString pkgs.stdenv.buildPlatform.isDarwin ''
-              julia --project=./. testenv/writeDepotDarwin.jl
-            ''
-            + l.optionalString pkgs.stdenv.buildPlatform.isLinux ''
-              julia --project=./. testenv/writeDepot.jl
-            '';
-          help = "write Depot.nix";
+          command = "julia --project=./. testenv/writejulia2nix.jl ${nixpkgs.system}";
+          help = "write julia2nix.toml";
         }
         {
           name = "nvfetcher-update";

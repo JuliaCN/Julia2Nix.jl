@@ -20,9 +20,9 @@ jobs:
     #   run: |
     #     nix develop --show-trace --command -- mktest
 
-    - name: Write Depot.nix
+    - name: Write julia2nix.toml
       run: |
-        nix develop --show-trace --command -- writeDepot
+        nix develop --show-trace --command -- writejulia2nix
 
     - name: Build Julia2nix Project
       run: |

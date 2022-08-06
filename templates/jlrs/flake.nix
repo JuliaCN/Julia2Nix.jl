@@ -63,7 +63,7 @@
           src = inputs.nix-filter.lib.filter {
             root = ./.;
             include = [
-              ./Depot.nix
+              ./julia2nix.toml
               ./Project.toml
               ./Manifest.toml
             ];
@@ -90,7 +90,7 @@
             root = ./call_julia;
             include = [
               (inputs.nix-filter.lib.inDirectory ./call_julia)
-              ./Depot.nix
+              ./julia2nix.toml
               ./Project.toml
               ./Manifest.toml
             ];
@@ -102,6 +102,7 @@
         packages = {
           default = plot;
           julia = julia-wrapped;
+          julia2nix = inputs.julia2nix.packages.${system}.julia2nix;
           inherit build-package call-julia;
         };
         devShells = import ./devshell {inherit inputs pkgs;};

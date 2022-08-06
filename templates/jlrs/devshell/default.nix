@@ -29,6 +29,14 @@
             nix run $PRJ_ROOT/templates/jlrs#packages.x86_64-linux.call-julia  --override-input julia2nix ../../.. --print-build-logs
           '';
         }
+        {
+          name = "julia2nix";
+          category = "tests";
+          command = ''
+            cd $PRJ_ROOT/templates/jlrs
+            nix run $PRJ_ROOT/templates/jlrs#packages.x86_64-linux.julia2nix  --override-input julia2nix ../.. --print-build-logs
+          '';
+        }
       ];
     };
 }

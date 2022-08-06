@@ -13,7 +13,7 @@ jobs:
 
     - uses: cachix/install-nix-action@v17
       with:
-        install_url: https://github.com/numtide/nix-unstable-installer/releases/download/nix-2.10.0pre20220629_b7eb4ac/install
+        install_url: https://github.com/numtide/nix-unstable-installer/releases/download/nix-2.10.0pre20220728_86fcd4f/install
         extra_nix_config: |
           experimental-features = nix-command flakes
           system-features = nixos-test benchmark big-parallel kvm recursive-nix
@@ -46,13 +46,13 @@ jobs:
       run: |
         nix build .#packages.x86_64-linux.build-depot --print-build-logs
 
-    - name: Build Julia2Project and write Depot.nix
+    - name: Build Julia2Project and write julia2nix.toml
       run: |
-        nix run .#packages.x86_64-linux.build-project --print-build-logs -- testenv/writeDepot.jl
+        nix run .#packages.x86_64-linux.build-project --print-build-logs -- testenv/writejulia2nix.jl x86_64-linux
 
     - name: Build jlrs -> call_julia
       run: |
-        nix develop ./templates/jlrs --show-trace --command -- call-julia
+        nix develop ./templates/jlrs --override-input julia2nix ./. --show-trace --command -- call-julia
 
     - name: Build Doc
       run: |
@@ -64,6 +64,7 @@ jobs:
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4.4.0
+      if: ${{ github.event_name == 'push' }}
       with:
         branch: gh-pages
         folder: ./docs/publish/public

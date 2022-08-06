@@ -147,34 +147,35 @@ end
 
 function write_depot(
     depot::Dict{String,Fetcher},
-    meta::Dict{String,Any},
     opts::Options,
     package_path::String,
     out_path::String,
     name::String,
 )
     io = IOBuffer(; append = true)
-    write(io, "{ pkgs ? import <nixpkgs> {} }: {\n")
-    write(io, "meta = ")
-    Nix.print(io, meta)
-    write(io, ";\n")
-    write(io, "depot = {")
     for path in sort(collect(keys(depot)))
-        Nix.print(io, path)
-        write(io, " = (")
-        Nix.print(io, depot[path])
-        write(io, ");\n")
+        write(io, "[\"", depot[path].args["name"], "\"]\n")
+        TOML.print(io, Dict("path" => path))
+        TOML.print(io, depot[path].args)
+        write(io, "\n")
     end
-    write(io, "};\n")
-    write(io, '}')
 
-    depotfile_path = normpath(joinpath(package_path, "Depot.nix"))
+    toml = TOML.parse(io)
+    for path in sort(collect(keys(toml)))
+        toml[path]["name"] = toml[path]["path"]
+        pop!(toml[path], "path")
+    end
+
+    arch, os = get_os_from_opts(opts)
+    toml = Dict("depot" => Dict((arch * "-" * os) => Dict("fetchzip" => toml)))
+
+    depotfile_path = normpath(joinpath(package_path, "julia2nix.toml"))
     if ispath(depotfile_path) && !opts.force_overwrite
         error("$depotfile_path already exists!")
     else
         @info "Writing depot to $depotfile_path"
         open(normpath(joinpath(out_path, name)), "w") do f
-            Nix.nixfmt(f, io)
+            TOML.print(f, toml)
         end
     end
 end
@@ -190,8 +191,6 @@ function main(
         @assert Pkg.pkg_server() == opts.pkg_server
     end
 
-    meta = Dict{String,Any}("pkgServer" => opts.pkg_server)
-
     Pkg.Operations.with_temp_env(package_path) do
         ctx = Context()
         pkgs = load_packages(ctx)
@@ -206,7 +205,7 @@ function main(
         artifact_fetchers = select_artifact_fetchers(pkgs, opts)
 
         depot = generate_depot(registry_fetchers, pkg_fetchers, artifact_fetchers)
-        write_depot(depot, meta, opts, package_path, out_path, name)
+        write_depot(depot, opts, package_path, out_path, name)
         return pkgs
     end
 end
