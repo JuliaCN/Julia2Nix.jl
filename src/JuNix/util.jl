@@ -91,6 +91,16 @@ function parse_fetcher(fetcher::Fetcher, opts::Options = Options())
     return parsed
 end
 
+function get_os_from_opts(opts::Options)
+    archs = ["x86_64", "aarch64"]
+    oses = ["macos", "linux"]
+    for arch in archs, os in oses
+        if arch in opts.arch && os in opts.os
+            return arch, if os == "macos" "darwin" else os end
+        end
+    end
+end
+
 function is_git_repo(path::String)
     try
         GitRepo(path)

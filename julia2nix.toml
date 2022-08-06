@@ -157,9 +157,9 @@ url = "https://pkg.julialang.org/package/02c8fc9c-b97f-50b9-bbe4-9be30ff0a78a/1a
 
 [depot.x86_64-linux.fetchzip.registry-General]
 name = "registries/General"
-sha256 = "sha256-TBIdIo4BCj849Vqh30zEqvRgynk+oLfLASKg+Ghicdo="
+sha256 = "sha256-plCOUB4awiLOFvhP6FeVVq8APOg2Dbchc10/YXweAz8="
 stripRoot = false
-url = "https://pkg.julialang.org/registry/23338594-aafe-5451-b93e-139f81909106/1e52ee4e16e484185359c1d00c04a14884b8e98d#registry.tar.gz"
+url = "https://pkg.julialang.org/registry/23338594-aafe-5451-b93e-139f81909106/3bc28e7d497006708d8c2c74d9612ab95f696d5f#registry.tar.gz"
 
 [depot.x86_64-linux.fetchzip.artifact-75b2da9ed2ec48588460be0f3a8bb489212012e9]
 name = "artifacts/75b2da9ed2ec48588460be0f3a8bb489212012e9"

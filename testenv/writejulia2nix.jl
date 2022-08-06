@@ -15,22 +15,27 @@ function parse_commandline()
 end
 
 config = parse_commandline()
-system = split(config["system"], "-")
-arch = system[1]
-if system == "darwin"
-    os = "macos"
+arch, os = split(config["system"], "-")
+
+if os == "darwin"
+    opts = JuNix.Options(;
+        nworkers=8,
+        arch=Set([arch]),
+        os=Set(["macos"]),
+        force_overwrite=true,
+        check_store=true
+    )
 else
-    os = system[2]
+    opts = JuNix.Options(;
+        nworkers=8,
+        arch=Set([arch]),
+        os=Set([os]),
+        libc=Set(["glibc"]),
+        force_overwrite=true,
+        check_store=true
+    )
 end
 return nothing
 
-opts = JuNix.Options(;
-    nworkers = 8,
-    arch = Set([arch]),
-    os = Set([os]),
-    libc = Set(["glibc"]),
-    force_overwrite = true,
-    check_store = true
-)
 x = JuNix.main(".", "julia2nix.toml", opts)
 nothing

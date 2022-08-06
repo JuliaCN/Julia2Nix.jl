@@ -166,10 +166,8 @@ function write_depot(
         pop!(toml[path], "path")
     end
 
-    arch = if "x86_64" in opts.arch "x86_64" else "aarch64" end
-    os = if "linux" in opts.os "linux" else "darwin" end
-
-    toml = Dict("depot" => Dict(arch * "-" * os => Dict("fetchzip" => toml)))
+    arch, os = get_os_from_opts(opts)
+    toml = Dict("depot" => Dict((arch * "-" * os) => Dict("fetchzip" => toml)))
 
     depotfile_path = normpath(joinpath(package_path, "julia2nix.toml"))
     if ispath(depotfile_path) && !opts.force_overwrite
