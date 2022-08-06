@@ -50,6 +50,12 @@ in
           help = "write julia2nix.toml";
         }
         {
+          name = "buildProject";
+          category = "tests";
+          command = "nix run .#packages.${nixpkgs.system}.build-project --print-build-logs -- testenv/writejulia2nix.jl ${nixpkgs.system}";
+          help = "write julia2nix.toml with buildProject";
+        }
+        {
           name = "nvfetcher-update";
           command = ''
             nix develop github:GTrunSec/cells-lab#devShells.x86_64-linux.update \
