@@ -48,7 +48,7 @@ jobs:
 
     - name: Build Julia2Project and write julia2nix.toml
       run: |
-        nix run .#packages.x86_64-linux.build-project --print-build-logs -- testenv/writejulia2nix.jl x86_64-linux
+        nix -Lv develop --command buildProject
 
     - name: Build jlrs -> call_julia
       run: |
