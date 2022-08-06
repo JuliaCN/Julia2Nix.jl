@@ -12,7 +12,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://JuliaCN.github.io/Julia2Nix.jl/posts/api/</guid>
-      <description> tags Library  Working with a project To build the Manifest.toml of packages in the project run:
+      <description> tags Library Working with a project To build the Manifest.toml of packages in the project run:
 nix build .\#packages.x86_64-linux.build-package </description>
     </item>
     
@@ -32,7 +32,7 @@ nix build .\#packages.x86_64-linux.build-package </description>
       
       <guid>https://JuliaCN.github.io/Julia2Nix.jl/posts/enable/</guid>
       <description>Example Adding realted featrues into lib.julia-wrapped
-julia-wrapped {  enable = {  GR = true;  python =  inputs.nixpkgs.legacyPackages.${system}.python3.buildEnv.override  {  extraLibs = with inputs.nixpkgs.legacyPackages.${system}.python3Packages; [xlrd matplotlib pyqt5];  ignoreCollisions = true;  };  }; } Third part support DONE GR Python [1/1] DONE PyCall The PyCall needs PyCall to make the compiling passing.</description>
+julia-wrapped { enable = { GR = true; python = inputs.nixpkgs.legacyPackages.${system}.python3.buildEnv.override { extraLibs = with inputs.nixpkgs.legacyPackages.${system}.python3Packages; [xlrd matplotlib pyqt5]; ignoreCollisions = true; }; }; } Third part support DONE GR Python [1/1] DONE PyCall The PyCall needs PyCall to make the compiling passing.</description>
     </item>
     
     <item>
@@ -68,8 +68,8 @@ julia-wrapped {  enable = {  GR = true;  python =  inputs.nixpkgs.legacyPackages
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://JuliaCN.github.io/Julia2Nix.jl/posts/julia-wrapped/</guid>
-      <description> tags Library  Vaules    name type     julia2nix.lib.${system}.julia-wrapped {}    Example Setting Here is the minimal configuration with additional Enable Option.
-julia-wrapped = self.lib.${system}.julia-wrapped {  package = self.packages.${system}.julia_17-bin;  enable = {  GR = true;  python =  inputs.nixpkgs.legacyPackages.${system}.python3.buildEnv.override  {  extraLibs = with inputs.nixpkgs.legacyPackages.${system}.python3Packages; [xlrd matplotlib pyqt5];  ignoreCollisions = true;  };  }; }; </description>
+      <description> tags Library Vaules name type julia2nix.lib.${system}.julia-wrapped {} Example Setting Here is the minimal configuration with additional Enable Option.
+julia-wrapped = self.lib.${system}.julia-wrapped { package = self.packages.${system}.julia_17-bin; enable = { GR = true; python = inputs.nixpkgs.legacyPackages.${system}.python3.buildEnv.override { extraLibs = with inputs.nixpkgs.legacyPackages.${system}.python3Packages; [xlrd matplotlib pyqt5]; ignoreCollisions = true; }; }; }; </description>
     </item>
     
     <item>
@@ -78,7 +78,7 @@ julia-wrapped = self.lib.${system}.julia-wrapped {  package = self.packages.${sy
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://JuliaCN.github.io/Julia2Nix.jl/posts/library/</guid>
-      <description> Link: https://github.com/JuliaCN/Julia2Nix.jl/blob/main/cells/julia2nix/library/default.nix  julia-wrapped </description>
+      <description> Link: https://github.com/JuliaCN/Julia2Nix.jl/blob/main/cells/julia2nix/library/default.nix julia-wrapped </description>
     </item>
     
     <item>
@@ -87,7 +87,7 @@ julia-wrapped = self.lib.${system}.julia-wrapped {  package = self.packages.${sy
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://JuliaCN.github.io/Julia2Nix.jl/posts/overrides/</guid>
-      <description> issue: https://github.com/JuliaCN/Julia2Nix.jl/issues/10  DevShell dev </description>
+      <description> issue: https://github.com/JuliaCN/Julia2Nix.jl/issues/10 DevShell dev </description>
     </item>
     
     <item>
@@ -96,7 +96,7 @@ julia-wrapped = self.lib.${system}.julia-wrapped {  package = self.packages.${sy
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://JuliaCN.github.io/Julia2Nix.jl/posts/packages/</guid>
-      <description> link: https://github.com/JuliaCN/Julia2Nix.jl/blob/main/cells/julia2nix/packages/default.nix  </description>
+      <description> link: https://github.com/JuliaCN/Julia2Nix.jl/blob/main/cells/julia2nix/packages/default.nix </description>
     </item>
     
     <item>
@@ -114,7 +114,7 @@ julia-wrapped = self.lib.${system}.julia-wrapped {  package = self.packages.${sy
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://JuliaCN.github.io/Julia2Nix.jl/posts/usage/</guid>
-      <description> tags Packages, API, Library  JuNix JuNix provides an interface to call the nix-fetch from within Julia.
+      <description> tags Packages, API, Library JuNix JuNix provides an interface to call the nix-fetch from within Julia.
 Flakes Templates </description>
     </item>
     

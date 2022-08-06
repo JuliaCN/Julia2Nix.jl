@@ -33,9 +33,9 @@
 </span></span><span style="display:flex;"><span>  enable <span style="color:#666">=</span> {
 </span></span><span style="display:flex;"><span>  GR <span style="color:#666">=</span> <span style="color:#60add5">true</span>;
 </span></span><span style="display:flex;"><span>  python <span style="color:#666">=</span>
-</span></span><span style="display:flex;"><span>    inputs<span style="color:#666">.</span>nixpkgs<span style="color:#666">.</span>legacyPackages<span style="color:#666">.</span><span style="color:#70a0d0;font-style:italic">${</span>system<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#666">.</span>python3<span style="color:#666">.</span>buildEnv<span style="color:#666">.</span>override
+</span></span><span style="display:flex;"><span>    inputs<span style="color:#666">.</span>nixpkgs<span style="color:#666">.</span>legacyPackages<span style="color:#666">.</span><span style="color:#70a0d0">${</span>system<span style="color:#70a0d0">}</span><span style="color:#666">.</span>python3<span style="color:#666">.</span>buildEnv<span style="color:#666">.</span>override
 </span></span><span style="display:flex;"><span>      {
-</span></span><span style="display:flex;"><span>        extraLibs <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">with</span> inputs<span style="color:#666">.</span>nixpkgs<span style="color:#666">.</span>legacyPackages<span style="color:#666">.</span><span style="color:#70a0d0;font-style:italic">${</span>system<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#666">.</span>python3Packages; [xlrd matplotlib pyqt5];
+</span></span><span style="display:flex;"><span>        extraLibs <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">with</span> inputs<span style="color:#666">.</span>nixpkgs<span style="color:#666">.</span>legacyPackages<span style="color:#666">.</span><span style="color:#70a0d0">${</span>system<span style="color:#70a0d0">}</span><span style="color:#666">.</span>python3Packages; [xlrd matplotlib pyqt5];
 </span></span><span style="display:flex;"><span>        ignoreCollisions <span style="color:#666">=</span> <span style="color:#60add5">true</span>;
 </span></span><span style="display:flex;"><span>      };
 </span></span><span style="display:flex;"><span>  };
