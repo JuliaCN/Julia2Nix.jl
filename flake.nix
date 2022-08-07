@@ -138,7 +138,7 @@
           name = "Example-PackageDeps";
           julia2nix = ./julia2nix.toml;
           package = self.lib.${system}.julia-wrapped {
-            package = self.packages.${system}.julia_17-bin;
+            # package = self.packages.${system}.julia_18-bin;
             extraBuildInputs = with inputs.nixpkgs.legacyPackages.${system}; [alejandra nixUnstable nix-prefetch cacert];
             makeWrapperArgs = [
               "--set NIX_PATH nixpkgs=${inputs.nixpkgs.legacyPackages.${system}.path}"
