@@ -28,16 +28,3 @@ name = "mkdoc"
 category = "doc"
 command = "nix run .#x86_64-linux.julia2nix.entrypoints.mkdoc $@"
 help = "make org-roam doc"
-
-[[commands]]
-category = "fmt"
-package = "treefmt"
-
-
-[[commands]]
-name = "jlfmt"
-category = "fmt"
-command = '''
-        julia -e 'import Pkg; using JuliaFormatter;format(".")'
-'''
-help = "format julia code"

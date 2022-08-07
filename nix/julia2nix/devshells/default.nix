@@ -35,6 +35,7 @@ in
         ++ [
           cell.devshellProfiles.packages
           cell.devshellProfiles.checks
+          cell.devshellProfiles.dev
         ];
 
       commands = [
