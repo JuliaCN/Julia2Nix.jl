@@ -21,7 +21,7 @@
   } @ inputs:
     (std.growOn {
         inherit inputs;
-        cellsFrom = ./cells;
+        cellsFrom = ./nix;
         systems = [
           "aarch64-darwin"
           "aarch64-linux"
@@ -30,6 +30,8 @@
         ];
         organelles = [
           (std.installables "packages")
+
+          (std.nixago "nixago")
 
           (std.runnables "entrypoints")
 

@@ -19,20 +19,20 @@ arch, os = split(config["system"], "-")
 
 if os == "darwin"
     opts = JuNix.Options(;
-        nworkers=8,
-        arch=Set([arch]),
-        os=Set(["macos"]),
-        force_overwrite=true,
-        check_store=true
+        nworkers = 8,
+        arch = Set([arch]),
+        os = Set(["macos"]),
+        force_overwrite = true,
+        check_store = true,
     )
 else
     opts = JuNix.Options(;
-        nworkers=8,
-        arch=Set([arch]),
-        os=Set([os]),
-        libc=Set(["glibc"]),
-        force_overwrite=true,
-        check_store=true
+        nworkers = 8,
+        arch = Set([arch]),
+        os = Set([os]),
+        libc = Set(["glibc"]),
+        force_overwrite = true,
+        check_store = true,
     )
 end
 return nothing

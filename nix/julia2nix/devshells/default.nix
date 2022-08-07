@@ -22,6 +22,10 @@ in
         # pre-commit.text = builtins.readFile ./pre-flight-check.sh;
       };
 
+      nixago = [
+        cell.nixago.treefmt
+      ];
+
       imports =
         [
           std.std.devshellProfiles.default
@@ -60,7 +64,7 @@ in
           command = ''
             nix develop github:GTrunSec/cells-lab#devShells.x86_64-linux.update \
             --refresh --command \
-            nvfetcher-update cells/julia2nix/packages/toolchain/sources.toml
+            nvfetcher-update nix/julia2nix/packages/toolchain/sources.toml
           '';
         }
       ];

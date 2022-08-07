@@ -3,4 +3,4 @@
 :END:
 #+title: Packages
 
-- link: https://github.com/JuliaCN/Julia2Nix.jl/blob/main/cells/julia2nix/packages/default.nix
+- link: https://github.com/JuliaCN/Julia2Nix.jl/blob/main/nix/julia2nix/packages/default.nix

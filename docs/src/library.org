@@ -3,7 +3,7 @@
 :END:
 #+title: Library
 
-- Link: https://github.com/JuliaCN/Julia2Nix.jl/blob/main/cells/julia2nix/library/default.nix
+- Link: https://github.com/JuliaCN/Julia2Nix.jl/blob/main/nix/julia2nix/library/default.nix
 
 
 * [[id:d4257acf-b232-427b-b9d5-d25eee0cc706][julia-wrapped]]

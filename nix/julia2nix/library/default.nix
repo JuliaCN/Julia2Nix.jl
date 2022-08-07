@@ -9,7 +9,7 @@ in {
   inherit (nixpkgs.lib) installBin installApp buildDepot buildEnv buildProject julia-wrapped;
 
   /*
-   patches ["a" "b"]
-   */
+  patches ["a" "b"]
+  */
   # patches = list: ;
 }

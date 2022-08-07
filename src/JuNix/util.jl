@@ -96,7 +96,11 @@ function get_os_from_opts(opts::Options)
     oses = ["macos", "linux"]
     for arch in archs, os in oses
         if arch in opts.arch && os in opts.os
-            return arch, if os == "macos" "darwin" else os end
+            return arch, if os == "macos"
+                "darwin"
+            else
+                os
+            end
         end
     end
 end
