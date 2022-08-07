@@ -78,7 +78,7 @@ julia-wrapped = self.lib.${system}.julia-wrapped { package = self.packages.${sys
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://JuliaCN.github.io/Julia2Nix.jl/posts/library/</guid>
-      <description> Link: https://github.com/JuliaCN/Julia2Nix.jl/blob/main/cells/julia2nix/library/default.nix julia-wrapped </description>
+      <description> Link: https://github.com/JuliaCN/Julia2Nix.jl/blob/main/nix/julia2nix/library/default.nix julia-wrapped </description>
     </item>
     
     <item>
@@ -96,7 +96,7 @@ julia-wrapped = self.lib.${system}.julia-wrapped { package = self.packages.${sys
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://JuliaCN.github.io/Julia2Nix.jl/posts/packages/</guid>
-      <description> link: https://github.com/JuliaCN/Julia2Nix.jl/blob/main/cells/julia2nix/packages/default.nix </description>
+      <description> link: https://github.com/JuliaCN/Julia2Nix.jl/blob/main/nix/julia2nix/packages/default.nix </description>
     </item>
     
     <item>
