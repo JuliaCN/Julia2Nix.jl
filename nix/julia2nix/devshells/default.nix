@@ -9,7 +9,6 @@ in
   l.mapAttrs (_: std.std.lib.mkShell) {
     default = {
       extraModulesPath,
-      pkgs,
       ...
     }: {
       name = "Julia2Nix";
@@ -35,6 +34,7 @@ in
         ++ [
           cell.devshellProfiles.packages
           cell.devshellProfiles.checks
+        ] ++ l.optionals nixpkgs.stdenv.buildPlatform.isLinux [
           cell.devshellProfiles.dev
         ];
 
@@ -73,7 +73,7 @@ in
       env = [
         {
           name = "NIX_PATH";
-          value = "nixpkgs=${pkgs.path}";
+          value = "nixpkgs=${nixpkgs.path}";
         }
       ];
     };
