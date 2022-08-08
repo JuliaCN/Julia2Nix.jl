@@ -7,10 +7,7 @@
   withCategory = category: attrset: attrset // {inherit category;};
 in
   l.mapAttrs (_: std.std.lib.mkShell) {
-    default = {
-      extraModulesPath,
-      ...
-    }: {
+    default = {extraModulesPath, ...}: {
       name = "Julia2Nix";
 
       std.docs.enable = false;
@@ -34,7 +31,8 @@ in
         ++ [
           cell.devshellProfiles.packages
           cell.devshellProfiles.checks
-        ] ++ l.optionals nixpkgs.stdenv.buildPlatform.isLinux [
+        ]
+        ++ l.optionals nixpkgs.stdenv.buildPlatform.isLinux [
           cell.devshellProfiles.dev
         ];
 
