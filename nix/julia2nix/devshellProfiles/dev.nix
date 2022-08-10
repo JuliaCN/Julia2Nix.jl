@@ -16,4 +16,10 @@
       '';
     }
   ];
+  env = [
+    {
+      name = "SSL_CERT_FILE";
+      value = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+    }
+  ];
 }
