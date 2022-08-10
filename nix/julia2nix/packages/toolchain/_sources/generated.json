@@ -21,11 +21,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-5MS3IMjbc0LWJt+voXWpHaGS6zenaNpnkgHPUCziNhA=",
+            "sha256": "sha256-aOoxrTx391cGMNvAptK6mgnibk3B1xBFwsDqtM9fJEg=",
             "type": "url",
-            "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.8/julia-1.8.0-rc1-macaarch64.dmg"
+            "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.8/julia-1.8.0-rc4-macaarch64.dmg"
         },
-        "version": "1.8.0-rc1-macaarch64.dmg"
+        "version": "1.8.0-rc4-macaarch64.dmg"
     },
     "julia-18-rc-aarch64-linux": {
         "cargoLocks": null,
@@ -35,11 +35,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-Fd1VN1SqFeUU8o7QDtTP2x+M+IPzOYuAPvXPBednovs=",
+            "sha256": "sha256-XtkUM5TCLgRHd2dFyLxp4w89Mt9tNWN3ZObig9bE5OA=",
             "type": "url",
-            "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.8/julia-1.8.0-rc1-linux-aarch64.tar.gz"
+            "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.8/julia-1.8.0-rc4-linux-aarch64.tar.gz"
         },
-        "version": "1.8.0-rc1-linux-aarch64.tar.gz"
+        "version": "1.8.0-rc4-linux-aarch64.tar.gz"
     },
     "julia-18-rc-x86_64-darwin": {
         "cargoLocks": null,
@@ -49,11 +49,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-RpOC/nBd4M8Ouds1LIXbj5ql1Aa6u99Po54YFa6SYPk=",
+            "sha256": "sha256-sjgS11zwGoxbRIz7AFieX1LZUF7DMPJoqmf7U6Qe1Qs=",
             "type": "url",
-            "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.8/julia-1.8.0-rc1-mac64.dmg"
+            "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.8/julia-1.8.0-rc4-mac64.dmg"
         },
-        "version": "1.8.0-rc1-mac64.dmg"
+        "version": "1.8.0-rc4-mac64.dmg"
     },
     "julia-18-rc-x86_64-linux": {
         "cargoLocks": null,
@@ -63,10 +63,10 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-pH792qzLQk2tZJn4cKt/eSxQgn0jzGTLmHMoAxgzeWY=",
+            "sha256": "sha256-QH3TfJfhF8GIBta/C9mznwOWt+bC0Q6lADorRbka+xo=",
             "type": "url",
-            "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-1.8.0-rc1-linux-x86_64.tar.gz"
+            "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-1.8.0-rc4-linux-x86_64.tar.gz"
         },
-        "version": "1.8.0-rc1-linux-x86_64.tar.gz"
+        "version": "1.8.0-rc4-linux-x86_64.tar.gz"
     }
 }
