@@ -38,7 +38,7 @@
         };
 
         # run this command in your project: nix run github:JuliaCN/Julia2Nix.jl#packages.x86_64-linux.julia2nix
-        # we need to generate the Depot.nix first
+        # we need to generate the julia2nix.toml first
         project = inputs.julia2nix.lib.${system}.buildProject {
           src = ./.;
           name = "your julia project";
@@ -49,7 +49,10 @@
           default = project;
         };
         devShells.default = pkgs.devshell.mkShell {
-          # imports = [inputs.julia2nix.${pkgs.system}.julia2nix.devshellProfiles.packages];
+          imports = [
+            # inputs.julia2nix.${pkgs.system}.julia2nix.devshellProfiles.packages
+            inputs.julia2nix.${pkgs.system}.julia2nix.devshellProfiles.dev
+          ];
           commands = [{package = julia-wrapped;}];
         };
       })

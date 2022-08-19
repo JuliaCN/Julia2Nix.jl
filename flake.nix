@@ -1,7 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-release.url = "github:nixos/nixpkgs/release-22.05";
 
     nix-filter.url = "github:/numtide/nix-filter";
     nix-filter.inputs.nixpkgs.follows = "nixpkgs";

@@ -39,7 +39,7 @@
       flake-utils.lib.eachSystem ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"] (system: let
         pkgs = nixpkgs.legacyPackages.${system}.appendOverlays [
           self.overlays.default
-          inputs.rust-overlay.overlay
+          inputs.rust-overlay.overlays.default
           inputs.devshell.overlay
         ];
 
@@ -77,13 +77,15 @@
             root = ./.;
             include = [
               (inputs.nix-filter.lib.inDirectory ./src)
+              ./Cargo.toml
+              ./Cargo.lock
             ];
           };
           # cargoExtraArgs = "--target wasm32-wasi";
           # Tests currently need to be run via `cargo wasi` which
           # isn't packaged in nixpkgs yet...
           doCheck = false;
-          JULIA_DIR = julia-wrapped.package;
+          JULIA_DIR = julia-wrapped;
         };
         call-julia = craneLib.buildPackage {
           src = inputs.nix-filter.lib.filter {
@@ -93,6 +95,8 @@
               ./julia2nix.toml
               ./Project.toml
               ./Manifest.toml
+              ./Cargo.toml
+              ./Cargo.lock
             ];
           };
           doCheck = true;
@@ -102,7 +106,6 @@
         packages = {
           default = plot;
           julia = julia-wrapped;
-          julia2nix = inputs.julia2nix.packages.${system}.julia2nix;
           inherit build-package call-julia;
         };
         devShells = import ./devshell {inherit inputs pkgs;};
