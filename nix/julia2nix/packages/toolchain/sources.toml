@@ -1,6 +1,6 @@
 # nvfetcher.toml
 [julia-17-release-x86_64-darwin]
-src.webpage = "https://julialang.org/downloads/"
+src.webpage = "https://julialang.org/downloads/oldreleases/"
 src.regex = "1\\.7\\.\\d+-mac64.dmg"
 fetch.url = "https://julialang-s3.julialang.org/bin/mac/x64/1.7/julia-$ver"
 
@@ -9,23 +9,23 @@ fetch.url = "https://julialang-s3.julialang.org/bin/mac/x64/1.7/julia-$ver"
 # src.regex = "1\\.7\\.\\d+-macaarch64.dmg"
 # fetch.url = "https://julialang-s3.julialang.org/bin/mac/aarch64/1.7/julia-$ver"
 # https://julialang-s3.julialang.org/bin/mac/aarch64/1.7/julia-1.7.2-macaarch64.dmg
-[julia-18-rc-x86_64-darwin]
+[julia-18-release-x86_64-darwin]
 src.webpage = "https://julialang.org/downloads/"
-src.regex = "1\\.8\\.\\d+-rc.-mac64.dmg"
+src.regex = "1\\.8\\.\\d+-mac64.dmg"
 fetch.url = "https://julialang-s3.julialang.org/bin/mac/x64/1.8/julia-$ver"
 
-[julia-18-rc-aarch64-darwin]
+[julia-18-release-aarch64-darwin]
 src.webpage = "https://julialang.org/downloads/"
-src.regex = "1\\.8\\.\\d+-rc.-macaarch64.dmg"
+src.regex = "1\\.8\\.\\d+-macaarch64.dmg"
 fetch.url = "https://julialang-s3.julialang.org/bin/mac/aarch64/1.8/julia-$ver"
 
 # https://julialang-s3.julialang.org/bin/mac/aarch64/1.8/julia-1.8.0-rc3-macaarch64.dmg
-[julia-18-rc-x86_64-linux]
+[julia-18-release-x86_64-linux]
 src.webpage = "https://julialang.org/downloads/"
-src.regex = "1\\.8\\.\\d+-rc.-linux-x86_64.tar.gz"
+src.regex = "1\\.8\\.\\d+-linux-x86_64.tar.gz"
 fetch.url = "https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-$ver"
 
-[julia-18-rc-aarch64-linux]
+[julia-18-release-aarch64-linux]
 src.webpage = "https://julialang.org/downloads/"
-src.regex = "1\\.8\\.\\d+-rc.-linux-aarch64.tar.gz"
+src.regex = "1\\.8\\.\\d+-linux-aarch64.tar.gz"
 fetch.url = "https://julialang-s3.julialang.org/bin/linux/aarch64/1.8/julia-$ver"

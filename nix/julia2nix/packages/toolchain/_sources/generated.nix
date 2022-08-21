@@ -9,36 +9,36 @@
       sha256 = "sha256-Z3mewGz1e8qAqKHG5aFwSF07/ARhshdpmwcw2jfQZW8=";
     };
   };
-  julia-18-rc-aarch64-darwin = {
-    pname = "julia-18-rc-aarch64-darwin";
-    version = "1.8.0-rc4-macaarch64.dmg";
+  julia-18-release-aarch64-darwin = {
+    pname = "julia-18-release-aarch64-darwin";
+    version = "1.8.0-macaarch64.dmg";
     src = fetchurl {
-      url = "https://julialang-s3.julialang.org/bin/mac/aarch64/1.8/julia-1.8.0-rc4-macaarch64.dmg";
-      sha256 = "sha256-aOoxrTx391cGMNvAptK6mgnibk3B1xBFwsDqtM9fJEg=";
+      url = "https://julialang-s3.julialang.org/bin/mac/aarch64/1.8/julia-1.8.0-macaarch64.dmg";
+      sha256 = "sha256-jhE6Qv5OrHt1AjE2Z0RS9vCVkHF3VUF80TclhwfpZUA=";
     };
   };
-  julia-18-rc-aarch64-linux = {
-    pname = "julia-18-rc-aarch64-linux";
-    version = "1.8.0-rc4-linux-aarch64.tar.gz";
+  julia-18-release-aarch64-linux = {
+    pname = "julia-18-release-aarch64-linux";
+    version = "1.8.0-linux-aarch64.tar.gz";
     src = fetchurl {
-      url = "https://julialang-s3.julialang.org/bin/linux/aarch64/1.8/julia-1.8.0-rc4-linux-aarch64.tar.gz";
-      sha256 = "sha256-XtkUM5TCLgRHd2dFyLxp4w89Mt9tNWN3ZObig9bE5OA=";
+      url = "https://julialang-s3.julialang.org/bin/linux/aarch64/1.8/julia-1.8.0-linux-aarch64.tar.gz";
+      sha256 = "sha256-4APPuGgK8aZcO+VbU6SMxRhjAK2quokmIJgAtNH0yno=";
     };
   };
-  julia-18-rc-x86_64-darwin = {
-    pname = "julia-18-rc-x86_64-darwin";
-    version = "1.8.0-rc4-mac64.dmg";
+  julia-18-release-x86_64-darwin = {
+    pname = "julia-18-release-x86_64-darwin";
+    version = "1.8.0-mac64.dmg";
     src = fetchurl {
-      url = "https://julialang-s3.julialang.org/bin/mac/x64/1.8/julia-1.8.0-rc4-mac64.dmg";
-      sha256 = "sha256-sjgS11zwGoxbRIz7AFieX1LZUF7DMPJoqmf7U6Qe1Qs=";
+      url = "https://julialang-s3.julialang.org/bin/mac/x64/1.8/julia-1.8.0-mac64.dmg";
+      sha256 = "sha256-KYgLtXYUycWX7fU4SjUbPwKZ+gl7nrYs1kDJPN5YZ3s=";
     };
   };
-  julia-18-rc-x86_64-linux = {
-    pname = "julia-18-rc-x86_64-linux";
-    version = "1.8.0-rc4-linux-x86_64.tar.gz";
+  julia-18-release-x86_64-linux = {
+    pname = "julia-18-release-x86_64-linux";
+    version = "1.8.0-linux-x86_64.tar.gz";
     src = fetchurl {
-      url = "https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-1.8.0-rc4-linux-x86_64.tar.gz";
-      sha256 = "sha256-QH3TfJfhF8GIBta/C9mznwOWt+bC0Q6lADorRbka+xo=";
+      url = "https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-1.8.0-linux-x86_64.tar.gz";
+      sha256 = "sha256-6A1zLMt/eeAA15jLi2Vtw2QatZUW1uTlLhZ2UBeJKgA=";
     };
   };
 }

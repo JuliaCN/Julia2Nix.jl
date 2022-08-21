@@ -95,7 +95,7 @@
         };
 
         julia-wrapped = self.lib.${system}.julia-wrapped {
-          package = self.packages.${system}.julia_17-bin;
+          package = self.packages.${system}.julia_18-bin;
           enable = {
             GR = true;
             python =
