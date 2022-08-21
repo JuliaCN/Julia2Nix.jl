@@ -4,7 +4,6 @@
 } @ args: let
   l = nixpkgs.lib // builtins;
   inherit (inputs) nixpkgs std self;
-  withCategory = category: attrset: attrset // {inherit category;};
 in
   l.mapAttrs (_: std.std.lib.mkShell) {
     default = {extraModulesPath, ...}: {
