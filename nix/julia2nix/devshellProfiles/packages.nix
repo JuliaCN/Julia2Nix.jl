@@ -19,6 +19,7 @@ in {
     ]
     ++ lib.optionals (pkgs.system == "x86_64-darwin") [
       {
+        # FIXME: 1.8.0 init issue
         package = packages.julia_17-bin;
         help = packages.julia_17-bin.version + packages.julia_17-bin.meta.description;
       }
