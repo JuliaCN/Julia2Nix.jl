@@ -7,7 +7,7 @@
   pkgs,
   ...
 }: {
-  commands = [
+  commands = lib.optionalAttrs pkgs.stdenv.buildPlatform.isLinux [
     {
       name = "jlfmt";
       category = "dev";

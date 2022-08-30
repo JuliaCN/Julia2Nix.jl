@@ -15,7 +15,7 @@
     julia2nix.url = "github:JuliaCN/Julia2Nix.jl";
   };
 
-  outputs = inputs @ {self, ...}:
+  outputs = inputs @ {self, julia2nix, ...}:
     (
       inputs.flake-utils.lib.eachDefaultSystem
       (system: let
@@ -25,7 +25,7 @@
         ];
         julia-wrapped = inputs.julia2nix.lib.${system}.julia-wrapped {
           # package = pkgs.julia_17-bin;
-          # package = julia2nix.packages.${system}.julia_18-bin;
+          package = julia2nix.packages.${system}.julia_18-bin;
           enable = {
             GR = true;
             python =
@@ -46,7 +46,8 @@
         };
       in {
         packages = {
-          default = project;
+          # make sure you have generated the julia2nix.toml
+          # default = project;
         };
         devShells.default = pkgs.devshell.mkShell {
           imports = [
