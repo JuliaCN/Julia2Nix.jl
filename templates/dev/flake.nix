@@ -15,7 +15,11 @@
     julia2nix.url = "github:JuliaCN/Julia2Nix.jl";
   };
 
-  outputs = inputs @ {self, julia2nix, ...}:
+  outputs = inputs @ {
+    self,
+    julia2nix,
+    ...
+  }:
     (
       inputs.flake-utils.lib.eachDefaultSystem
       (system: let
@@ -51,7 +55,7 @@
         };
         devShells.default = pkgs.devshell.mkShell {
           imports = [
-            # inputs.julia2nix.${pkgs.system}.julia2nix.devshellProfiles.packages
+            inputs.julia2nix.${pkgs.system}.julia2nix.devshellProfiles.packages
             inputs.julia2nix.${pkgs.system}.julia2nix.devshellProfiles.dev
           ];
           commands = [{package = julia-wrapped;}];

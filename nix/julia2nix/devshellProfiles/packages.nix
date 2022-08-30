@@ -24,6 +24,12 @@ in {
         help = packages.julia_17-bin.version + packages.julia_17-bin.meta.description;
       }
     ]
+    ++ lib.optionals (pkgs.system == "aarch64-darwin") [
+      {
+        package = packages.julia_18-bin;
+        help = packages.julia_18-bin.version + packages.julia_18-bin.meta.description;
+      }
+    ]
     ++ lib.optionals pkgs.stdenv.buildPlatform.isLinux [
       {
         package = packages.julia_18-bin;
