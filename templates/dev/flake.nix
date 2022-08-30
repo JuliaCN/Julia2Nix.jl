@@ -31,6 +31,7 @@
           # package = pkgs.julia_17-bin;
           package = julia2nix.packages.${system}.julia_18-bin;
           enable = {
+            # only x86_64-linux is supported
             GR = true;
             python =
               pkgs.python3.buildEnv.override
@@ -55,7 +56,8 @@
         };
         devShells.default = pkgs.devshell.mkShell {
           imports = [
-            inputs.julia2nix.${pkgs.system}.julia2nix.devshellProfiles.packages
+            # you can keep either one of them devshellProfiles.packages or julia-wrapped
+            # inputs.julia2nix.${pkgs.system}.julia2nix.devshellProfiles.packages
             inputs.julia2nix.${pkgs.system}.julia2nix.devshellProfiles.dev
           ];
           commands = [{package = julia-wrapped;}];
