@@ -22,8 +22,6 @@ nix develop
 nix flake init --template github:JuliaCN/Julia2Nix.jl#templates.jlrs
 ```
 
-
 # LICENSE
 
-`Julia2nix` is licensed under the [`./LICENSE.md`][license].
-
+_`Julia2nix` is licensed under the [`LICENSE`](./LICENSE.md)._
