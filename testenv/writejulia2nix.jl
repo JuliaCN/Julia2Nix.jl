@@ -22,7 +22,6 @@ if os == "darwin"
         nworkers = 8,
         arch = Set([arch]),
         os = Set(["macos"]),
-        force_overwrite = true,
         check_store = true,
     )
 else
@@ -31,7 +30,6 @@ else
         arch = Set([arch]),
         os = Set([os]),
         libc = Set(["glibc"]),
-        force_overwrite = true,
         check_store = true,
     )
 end

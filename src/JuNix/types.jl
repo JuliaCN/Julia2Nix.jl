@@ -113,6 +113,5 @@ Base.@kwdef struct Options
     libc::Union{Set{String},Nothing} = nothing
     lazy_artifacts::Bool = false
     pkg_server::Union{String,Nothing} = pkg_server()
-    force_overwrite::Bool = false
     check_store::Bool = false
 end

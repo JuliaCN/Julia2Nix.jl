@@ -145,7 +145,7 @@ function generate_depot(
     return depot
 end
 
-function write_depot(
+function write_julia2nix(
     depot::Dict{String,Fetcher},
     opts::Options,
     package_path::String,
@@ -167,14 +167,18 @@ function write_depot(
     end
 
     arch, os = get_os_from_opts(opts)
-    toml = Dict("depot" => Dict((arch * "-" * os) => Dict("fetchzip" => toml)))
+    platform = arch * '-' * os
+    toml = Dict("depot" => Dict(platform => Dict("fetchzip" => toml)))
 
     depotfile_path = normpath(joinpath(package_path, "julia2nix.toml"))
-    if ispath(depotfile_path) && !opts.force_overwrite
-        error("$depotfile_path already exists!")
-    else
-        @info "Writing depot to $depotfile_path"
-        open(normpath(joinpath(out_path, name)), "w") do f
+
+    @info "Writing depot to $depotfile_path"
+    open(normpath(joinpath(out_path, name)), "w") do f
+        origin = TOML.parse(f)
+        if haskey(origin, "depot") && haskey(origin["depot"], platform)
+            origin["depot"][platform] = toml["depot"][platform]
+            TOML.print(f, origin)
+        else
             TOML.print(f, toml)
         end
     end
@@ -205,7 +209,7 @@ function main(
         artifact_fetchers = select_artifact_fetchers(pkgs, opts)
 
         depot = generate_depot(registry_fetchers, pkg_fetchers, artifact_fetchers)
-        write_depot(depot, opts, package_path, out_path, name)
+        write_julia2nix(depot, opts, package_path, out_path, name)
         return pkgs
     end
 end
