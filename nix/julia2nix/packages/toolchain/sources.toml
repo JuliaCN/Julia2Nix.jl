@@ -6,7 +6,7 @@ fetch.url = "https://julialang-s3.julialang.org/bin/mac/x64/1.7/julia-$ver"
 
 [julia-17-release-x86_64-linux]
 src.webpage = "https://julialang.org/downloads/oldreleases/"
-src.regex = "1\\.7\\.\\d+-mac64.dmg"
+src.regex = "1\\.7\\.\\d+-linux-x86_64.tar.gz"
 fetch.url = "https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.3-linux-x86_64.tar.gz"
 
 # [julia-17-release-aarach64-darwin]

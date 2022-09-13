@@ -11,7 +11,7 @@
   };
   julia-17-release-x86_64-linux = {
     pname = "julia-17-release-x86_64-linux";
-    version = "1.7.3-mac64.dmg";
+    version = "1.7.3-linux-x86_64.tar.gz";
     src = fetchurl {
       url = "https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.3-linux-x86_64.tar.gz";
       sha256 = "sha256-my9PoS2StNzF0R3Gb7EYxHaBp209+NoGTMl1c/L1xzk=";

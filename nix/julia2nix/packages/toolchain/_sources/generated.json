@@ -25,7 +25,7 @@
             "type": "url",
             "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.3-linux-x86_64.tar.gz"
         },
-        "version": "1.7.3-mac64.dmg"
+        "version": "1.7.3-linux-x86_64.tar.gz"
     },
     "julia-18-release-aarch64-darwin": {
         "cargoLocks": null,
