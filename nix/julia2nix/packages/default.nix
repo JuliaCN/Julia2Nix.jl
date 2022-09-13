@@ -15,12 +15,11 @@ in {
   julia-fhs = nixpkgs.julia-fhs "julia" "julia";
 
   julia_17-bin = (version:
-    (lib.optionalAttrs (nixpkgs.system == "x86_64-linux") nixpkgs.julia_17-bin)
-    // lib.optionalAttrs (nixpkgs.system == "x86_64-darwin" || nixpkgs.system == "aarch64-darwin")
+    lib.optionalAttrs (nixpkgs.system == "x86_64-darwin" || nixpkgs.system == "aarch64-darwin")
     (library.installApp {
       inherit version;
     })
-    // lib.optionalAttrs (nixpkgs.system == "aarch64-linux") (library.installBin {
+    // lib.optionalAttrs (nixpkgs.system == "aarch64-linux" || nixpkgs.system == "x86_64-linux") (library.installBin {
       inherit version;
     })) "17-release";
 

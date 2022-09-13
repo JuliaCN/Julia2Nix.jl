@@ -27,22 +27,22 @@
           "x86_64-darwin"
           "x86_64-linux"
         ];
-        organelles = [
-          (std.installables "packages")
+        cellBlocks = [
+          (std.blockTypes.installables "packages")
 
-          (std.nixago "nixago")
+          (std.blockTypes.nixago "nixago")
 
-          (std.runnables "entrypoints")
+          (std.blockTypes.runnables "entrypoints")
 
-          (std.devshells "devshells")
-          (std.functions "devshellProfiles")
+          (std.blockTypes.devshells "devshells")
+          (std.blockTypes.functions "devshellProfiles")
 
-          (std.functions "library")
-          (std.functions "workflow")
-          (std.functions "overlays")
-          (std.functions "compiler")
+          (std.blockTypes.functions "library")
+          (std.blockTypes.functions "workflow")
+          (std.blockTypes.functions "overlays")
+          (std.blockTypes.functions "compiler")
 
-          (std.data "containerJobs")
+          (std.blockTypes.data "containerJobs")
         ];
       }
       {

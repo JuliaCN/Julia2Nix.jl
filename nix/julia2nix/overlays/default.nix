@@ -31,10 +31,7 @@
       }
     );
 
-    julia_17-bin =
-      if prev.stdenv.buildPlatform.isLinux
-      then prev.julia_17-bin
-      else cell.packages.julia_17-bin;
+    julia_17-bin = cell.packages.julia_17-bin;
 
     julia-sources = prev.callPackage ../packages/toolchain/_sources/generated.nix {};
 
