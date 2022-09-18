@@ -57,14 +57,6 @@ jobs:
       run: |
         nix develop ./templates/jlrs --override-input julia2nix ./. --show-trace --command -- call-julia
 
-    - name: Build Doc
-      run: |
-        nix develop --show-trace --command -- init-dev docs
-        nix develop --show-trace --command -- mkdoc-jl
-        nix develop --show-trace --command -- mkdoc
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4.4.0
       if: ${{ github.event_name == 'push' }}
