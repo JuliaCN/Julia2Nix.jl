@@ -7,23 +7,18 @@
 in {
   mkdoc = let
     juliaDoc = cell.library.buildEnv {
-    src = inputs.nix-filter.lib.filter {
-      root = ./doc;
-      include = [
-        ./julia2nix.toml
-        ./Project.toml
-        ./Manifest.toml
-      ];
+      name = "julia-doc";
+      src = ./doc;
+      package = cell.library.julia-wrapped {
+        package = cell.packages.julia_18-bin;
+      };
     };
-    name = "juliaDoc";
-    package = cell.library.julia-wrapped {};
-  };
   in
     writeShellApplication {
       name = "mkdoc";
       runtimeInputs = [juliaDoc];
       text = ''
-      julia
+        julia --project=doc/ "$*"/make.jl deploy
       '';
     };
 }

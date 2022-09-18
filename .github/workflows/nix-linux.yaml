@@ -30,6 +30,9 @@ jobs:
     - name: Build julia2nix with nix develop
       run: nix develop --show-trace --command -- init
 
+    - name: Build JuliaDoc
+      run: nix run -Lv .#x86_64-linux.julia2nix.entrypoints.mkdoc docs
+
     - name: Check Template Shells
       run: |
         nix develop ./templates/dev --show-trace --override-input julia2nix ./. --command -- julia --version
