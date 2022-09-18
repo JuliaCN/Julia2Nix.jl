@@ -62,4 +62,4 @@ jobs:
       if: ${{ github.event_name == 'push' }}
       with:
         branch: gh-pages
-        folder: ./docs/publish/public
+        folder: ./docs/build
