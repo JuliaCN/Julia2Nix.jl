@@ -1,7 +1,0 @@
-:PROPERTIES:
-:ID:       e5972c44-1418-4b08-b125-5c99bfb2360b
-:END:
-#+title: Graph
-
-
-* GraphML

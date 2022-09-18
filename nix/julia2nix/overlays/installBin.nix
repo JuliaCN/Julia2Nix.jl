@@ -10,8 +10,7 @@
     v = builtins.head (lib.splitString "-" version);
     major = builtins.substring 0 1 v;
     minor = builtins.substring 1 2 v;
-  in
-    (major + "." + minor);
+  in (major + "." + minor);
 in
   stdenv.mkDerivation {
     inherit (julia-sources."julia-${version}-${system}") src pname version;

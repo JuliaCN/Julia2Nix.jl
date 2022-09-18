@@ -7,7 +7,6 @@ result
 docs/build
 docs/Manifest.toml
 .cache
-docs/src/*.md
 
 docs/publish
 templates/*/flake.lock
