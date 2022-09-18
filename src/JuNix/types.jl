@@ -42,8 +42,7 @@ function collect_registries()
         extract_tarball(tarball_path, reg_dir)
     end
     map(registry_instances) do regspec
-        repo = hasfield(typeof(regspec), :repo) ? regspec.repo : nothing
-        url = something(regspec.url, repo)
+        url = hasfield(typeof(regspec), :repo) ? regspec.repo : regspec.url
         path = if isnothing(get_tarball_registry_path(regspec.path))
             regspec.path
         else
