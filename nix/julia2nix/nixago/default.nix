@@ -18,7 +18,7 @@
 in {
   inherit juliaFormatter;
 
-  treefmt = std.std.nixago.treefmt {
+  treefmt = std.presets.nixago.treefmt {
     configData.formatter.prettier = {
       excludes = ["Manifest.toml" "Project.toml" "generated.json" "julia2nix.toml"];
     };

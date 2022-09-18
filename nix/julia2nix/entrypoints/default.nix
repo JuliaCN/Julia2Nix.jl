@@ -6,20 +6,24 @@
   inherit (inputs) self nixpkgs std;
 in {
   mkdoc = let
-    org-roam-book = inputs.org-roam-book-template.packages.${nixpkgs.system}.default.override {
-      org = "${(std.incl self [
-        (self + /docs/src)
-      ])}/docs/src";
+    juliaDoc = cell.library.buildEnv {
+    src = inputs.nix-filter.lib.filter {
+      root = ./doc;
+      include = [
+        ./julia2nix.toml
+        ./Project.toml
+        ./Manifest.toml
+      ];
     };
+    name = "juliaDoc";
+    package = cell.library.julia-wrapped {};
+  };
   in
     writeShellApplication {
       name = "mkdoc";
-      runtimeInputs = [nixpkgs.hugo];
+      runtimeInputs = [juliaDoc];
       text = ''
-        rsync -avzh ${org-roam-book}/* docs/publish
-        cd docs/publish && cp ../config.toml .
-        hugo "$@"
-        cp -rf --no-preserve=mode,ownership public/posts/index.html ./public/
+      julia
       '';
     };
 }

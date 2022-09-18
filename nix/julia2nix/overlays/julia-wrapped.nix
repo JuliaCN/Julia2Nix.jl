@@ -3,12 +3,12 @@
   makeWrapper,
   gr,
   lib,
-  julia_18-bin,
+  julia_17-bin,
   python3,
   symlinkJoin,
   ...
 }: {
-  package ? julia_18-bin,
+  package ? julia_17-bin,
   makeWrapperArgs ? [],
   enable ? {},
   meta ? {},
