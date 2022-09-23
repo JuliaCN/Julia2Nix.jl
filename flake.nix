@@ -115,6 +115,14 @@
           '';
         };
 
+        julia2nix-all = inputs.cells-lab.${system}._writers.library.writeShellApplication {
+          name = "julia2nix";
+          runtimeInputs = [self.packages.${system}.build-project];
+          text = ''
+            julia ${./testenv/writejulia2nix.jl}
+          '';
+        };
+
         build-env = self.lib.${system}.buildEnv {
           src = ./.;
           name = "Example-PackageDeps";
