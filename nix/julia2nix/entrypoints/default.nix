@@ -19,6 +19,7 @@ in {
       runtimeInputs = [juliaDoc];
       text = ''
         julia --project=doc/ "$*"/make.jl deploy
+        find "$*" -type l -exec bash ${./fix-symlink.sh} {} +
       '';
     };
 }

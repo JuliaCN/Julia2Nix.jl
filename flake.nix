@@ -3,7 +3,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     nix-filter.url = "github:/numtide/nix-filter";
-    nix-filter.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   inputs = {

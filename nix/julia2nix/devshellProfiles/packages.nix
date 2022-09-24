@@ -11,11 +11,6 @@
 in {
   commands =
     [
-      {
-        name = "julia-18";
-        command = "${packages.julia_18-bin}/bin/julia";
-        help = packages.julia_18-bin.meta.description;
-      }
     ]
     ++ lib.optionals (pkgs.system == "x86_64-darwin") [
       {
