@@ -173,9 +173,9 @@ function write_julia2nix(
     depotfile_path = normpath(joinpath(package_path, "julia2nix.toml"))
 
     @info "Writing depot to $depotfile_path"
-    open(normpath(joinpath(out_path, name)), "w") do f
+    open(normpath(joinpath(out_path, name)), "a+") do f
         origin = TOML.parse(f)
-        if haskey(origin, "depot") && haskey(origin["depot"], platform)
+        if haskey(origin, "depot")
             origin["depot"][platform] = toml["depot"][platform]
             TOML.print(f, origin)
         else
