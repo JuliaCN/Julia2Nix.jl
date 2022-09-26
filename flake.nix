@@ -1,14 +1,12 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-
     nix-filter.url = "github:/numtide/nix-filter";
   };
 
   inputs = {
     cells-lab.url = "github:gtrunsec/cells-lab";
     std.follows = "cells-lab/std";
-    org-roam-book-template.follows = "cells-lab/org-roam-book-template";
   };
 
   outputs = {

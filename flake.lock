@@ -391,10 +391,6 @@
         "cells-lab": "cells-lab",
         "nix-filter": "nix-filter_2",
         "nixpkgs": "nixpkgs_3",
-        "org-roam-book-template": [
-          "cells-lab",
-          "org-roam-book-template"
-        ],
         "std": [
           "cells-lab",
           "std"
