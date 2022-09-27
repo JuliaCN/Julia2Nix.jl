@@ -18,10 +18,6 @@
     devshell.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-filter.url = "github:/numtide/nix-filter";
-    nix-filter.inputs.nixpkgs.follows = "nixpkgs";
-
-    cheatsheet.url = "github:GTrunSec/cheatsheet";
-    cheatsheet.inputs.nixpkgs.follows = "nixpkgs";
 
     julia2nix.url = "github:JuliaCN/julia2nix";
 
