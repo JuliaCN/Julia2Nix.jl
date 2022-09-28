@@ -52,6 +52,6 @@ nix run github:JuliaCN/Julia2Nix.jl#packages.x86_64-linux.julia2nix-all
 
 ## Contents
 ```@contents
-Pages = ["types.md", "junix.md"]
+Pages = ["types.md", "junix.md", "devshell.md"]
 Depth = 2
 ```
