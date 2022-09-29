@@ -16,10 +16,14 @@ in {
   in
     writeShellApplication {
       name = "mkdoc";
-      runtimeInputs = [juliaDoc];
+      runtimeInputs = [
+        # juliaDoc
+        nixpkgs.julia_18-bin
+      ];
       text = ''
-        julia --project=doc/ "$*"/make.jl deploy
-        find "$*" -type l -exec bash ${./fix-symlink.sh} {} +
+        julia --project="$*" -e 'using Pkg; Pkg.develop(PackageSpec(; path=pwd())); Pkg.instantiate();'
+        julia --project="$*" "$*"/make.jl deploy
+        # find "$*" -type l -exec bash ${./fix-symlink.sh} {} +
       '';
     };
 }
