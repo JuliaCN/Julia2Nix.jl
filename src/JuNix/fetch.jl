@@ -164,7 +164,7 @@ function select_fetchers(tofetch::Dict{K,Vector{Fetcher}}, opts::Options) where 
         end
 
         # readers
-        for i = 1:(opts.nworkers)
+        for _ = 1:(opts.nworkers)
             @async begin
                 for (key, fetchers) in jobs
                     fetcher = select_fetcher(fetchers, opts)
