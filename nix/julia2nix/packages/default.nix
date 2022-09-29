@@ -30,4 +30,12 @@ in {
     // lib.optionalAttrs (nixpkgs.system == "x86_64-linux" || nixpkgs.system == "aarch64-linux") (library.installBin {
       inherit version;
     })) "18-release";
+
+  julia_nightly-bin = (version:
+    lib.optionalAttrs (nixpkgs.system == "aarch64-darwin" || nixpkgs.system == "x86_64-darwin") (library.installApp {
+      inherit version;
+    })
+    // lib.optionalAttrs (nixpkgs.system == "x86_64-linux" || nixpkgs.system == "aarch64-linux") (library.installBin {
+      inherit version;
+    })) "nightly";
 }

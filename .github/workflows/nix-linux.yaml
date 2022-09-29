@@ -13,16 +13,20 @@ jobs:
 
     - uses: cachix/install-nix-action@v17
       with:
-        install_url: https://github.com/numtide/nix-unstable-installer/releases/download/nix-2.10.0pre20220728_86fcd4f/install
+        install_url: https://github.com/numtide/nix-unstable-installer/releases/download/nix-2.12.0pre20220908_c8e8eea/install
         extra_nix_config: |
           experimental-features = nix-command flakes
           system-features = nixos-test benchmark big-parallel kvm recursive-nix
 
+    - uses: cachix/cachix-action@v10
+      with:
+        name: zeek
 
-    # - name: Nix Flake Check
-    #   run: nix -Lv flake check
     - name: Nix Flake Show
       run: nix flake show
+
+    - name: Julia Version Update
+      run: nix develop .#update --command nvfetcher-update
 
     - name: Check Julia Version
       run: nix develop --show-trace --command -- julia --version

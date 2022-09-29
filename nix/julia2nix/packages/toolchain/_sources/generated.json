@@ -1,6 +1,7 @@
 {
     "julia-17-release-x86_64-darwin": {
         "cargoLocks": null,
+        "date": null,
         "extract": null,
         "name": "julia-17-release-x86_64-darwin",
         "passthru": null,
@@ -15,6 +16,7 @@
     },
     "julia-17-release-x86_64-linux": {
         "cargoLocks": null,
+        "date": null,
         "extract": null,
         "name": "julia-17-release-x86_64-linux",
         "passthru": null,
@@ -29,6 +31,7 @@
     },
     "julia-18-release-aarch64-darwin": {
         "cargoLocks": null,
+        "date": null,
         "extract": null,
         "name": "julia-18-release-aarch64-darwin",
         "passthru": null,
@@ -43,6 +46,7 @@
     },
     "julia-18-release-aarch64-linux": {
         "cargoLocks": null,
+        "date": null,
         "extract": null,
         "name": "julia-18-release-aarch64-linux",
         "passthru": null,
@@ -57,6 +61,7 @@
     },
     "julia-18-release-x86_64-darwin": {
         "cargoLocks": null,
+        "date": null,
         "extract": null,
         "name": "julia-18-release-x86_64-darwin",
         "passthru": null,
@@ -71,6 +76,7 @@
     },
     "julia-18-release-x86_64-linux": {
         "cargoLocks": null,
+        "date": null,
         "extract": null,
         "name": "julia-18-release-x86_64-linux",
         "passthru": null,
@@ -82,5 +88,65 @@
             "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-1.8.1-linux-x86_64.tar.gz"
         },
         "version": "1.8.1-linux-x86_64.tar.gz"
+    },
+    "julia-nightly-aarch64-darwin": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "julia-nightly-aarch64-darwin",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-Ko4nCnttuD0GbQ63cXQwElTOPPR1spA/rVj0OyBAf1I=",
+            "type": "url",
+            "url": "https://julialangnightlies-s3.julialang.org/bin/macos/aarch64/julia-latest-macos-aarch64.dmg"
+        },
+        "version": "julia-latest-macos-aarch64.dmg"
+    },
+    "julia-nightly-aarch64-linux": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "julia-nightly-aarch64-linux",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-k1SO7aBPkPn7WBiQFDMVpvdcAh7k7hVpmpeGvZrZ9BA=",
+            "type": "url",
+            "url": "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linux-aarch64.tar.gz"
+        },
+        "version": "julia-latest-linux-aarch64.tar.gz"
+    },
+    "julia-nightly-x86_64-darwin": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "julia-nightly-x86_64-darwin",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-tVWGJQRMyPBpAknnZF/c4mn2tTW4QEWX0wVH35S5UNI=",
+            "type": "url",
+            "url": "https://julialangnightlies-s3.julialang.org/bin/macos/x86_64/julia-latest-macos-x86_64.dmg"
+        },
+        "version": "julia-latest-macos-x86_64.dmg"
+    },
+    "julia-nightly-x86_64-linux": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "julia-nightly-x86_64-linux",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-fKWDofAWVXfqUKZH8P6KV5d6BtEn7QqKzHIkJvisfIg=",
+            "type": "url",
+            "url": "https://julialangnightlies-s3.julialang.org/bin/linux/x86_64/julia-latest-linux-x86_64.tar.gz"
+        },
+        "version": "julia-latest-linux-x86_64.tar.gz"
     }
 }

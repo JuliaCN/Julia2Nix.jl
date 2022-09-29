@@ -1,0 +1,35 @@
+name: "nightly-update"
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch: # allows manual triggering
+  schedule:
+    - cron: "0 0 * * *" # runs daily at 00:00
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3.0.2
+    - uses: cachix/install-nix-action@v17
+      with:
+        install_url: https://github.com/numtide/nix-unstable-installer/releases/download/nix-2.12.0pre20220908_c8e8eea/install
+        extra_nix_config: |
+          experimental-features = nix-command flakes
+          system-features = nixos-test benchmark big-parallel kvm recursive-nix
+
+    - uses: cachix/cachix-action@v10
+      with:
+        name: zeek
+
+    - name: Julia Version Update
+      run: |
+        nix develop .#update --command nvfetcher-update
+
+    - name: Commit changes
+      if: ${{ env.COMMIT_MSG != null }}
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: ${{ env.COMMIT_MSG }}
