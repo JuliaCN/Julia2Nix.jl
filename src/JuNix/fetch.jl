@@ -137,6 +137,11 @@ function select_artifact_fetchers(pkgs::Vector{PackageInfo}, opts::Options)
     return selected
 end
 
+"""
+    is_artifact_required(artifact::ArtifactInfo, opts::Options)
+
+Return a `bool` By matching `lazy_matches`, `system_matches` in artifact and opts
+"""
 function is_artifact_required(artifact::ArtifactInfo, opts::Options)
     lazy_matches = !(artifact.lazy && !opts.lazy_artifacts)
     system_matches = (
@@ -197,6 +202,11 @@ function select_fetchers(tofetch::Dict{K,Vector{Fetcher}}, opts::Options) where 
     end
 end
 
+"""
+    select_fetcher(fetchers::Vector{Fetcher}, opts::Options)
+
+Return the right fetcher by comparing sha256
+"""
 function select_fetcher(fetchers::Vector{Fetcher}, opts::Options)
     for fetcher in fetchers
         try
