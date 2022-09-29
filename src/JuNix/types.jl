@@ -98,6 +98,18 @@ function registry_relpath(reg::RegistryInfo)
     return error("Could not locate $(reg.name) in $DEPOT_PATH")
 end
 
+"""
+    struct ArtifactInfo
+
+Fields
+------
+* `name`: artifact name
+* `tree_hash`: artifact hash
+* `path`: `artifact/tree_hash`
+* `arch`: aarch64, x86_64 ...
+* `os`: darwin, linux ...
+* `libc`: `glibc` on linux, nothing on darwin
+"""
 Base.@kwdef mutable struct ArtifactInfo
     name::String
     tree_hash::SHA1
@@ -125,6 +137,18 @@ Base.@kwdef mutable struct PackageInfo
     archives::Vector{String} = String[]
 end
 
+"""
+    struct Options
+
+Fields
+------
+* `nworkers`: [`select_fetcher`](@ref) threads
+* `arch`: aarch64, x86_64 ...
+* `os`: darwin, linux ...
+* `libc`: `glibc` on linux, nothing on darwin
+* `pkg_server`: package download url
+* `check_store`: whether to add the `--check-store` parameter
+"""
 Base.@kwdef struct Options
     nworkers::Int = 1
     arch::Union{Set{String},Nothing} = nothing

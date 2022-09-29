@@ -25,7 +25,6 @@ get_pkg_url
 get_source_path
 convert_sha256
 fetch_sha256
-parse_fetcher
 get_os_from_opts
 is_git_repo
 get_repo_meta

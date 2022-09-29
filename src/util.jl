@@ -1,9 +1,21 @@
+"""
+    get_sha256(args::Vector{String} = String[])
+
+Return a [`Hash`](@ref) by `nix-prefetch args` and `nix hash to-sri`
+"""
 function get_sha256(args::Vector{String} = String[])
     args = append!(["--hash-algo", "sha256", "--output", "raw"], args)
     hash = strip(run_suppress(`nix-prefetch $args`, out = true))
     return Hash(strip(run_suppress(`nix hash to-sri --type sha256 $hash`, out = true)))
 end
 
+"""
+    get_sha256_expr(expr::String, args::Vector{String} = String[])
+
+Return a [`Hash`](@ref)
+
+Add the processed `expr` to `args` and call [`get_sha256`](@ref)
+"""
 function get_sha256_expr(expr::String, args::Vector{String} = String[])
     expr = """
            with (import <nixpkgs> { });
