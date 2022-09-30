@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Nix · Julia2Nix.jl</title><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit">Julia2Nix.jl</span></div><form class="docs-search" action="../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../">Julia2Nix.jl Documentation</a></li><li><a class="tocitem" href="../devshell/">dev shell</a></li><li><a class="tocitem" href="../junix/">JuNix</a></li><li class="is-active"><a class="tocitem" href>Nix</a></li><li><a class="tocitem" href="../types/">Types</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Nix</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Nix</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/JuliaCN/Julia2Nix.jl/blob/master/docs/src/nix.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Nix"><a class="docs-heading-anchor" href="#Nix">Nix</a><a id="Nix-1"></a><a class="docs-heading-anchor-permalink" href="#Nix" title="Permalink"></a></h1><h3 id="Nix-flake-struct"><a class="docs-heading-anchor" href="#Nix-flake-struct">Nix flake struct</a><a id="Nix-flake-struct-1"></a><a class="docs-heading-anchor-permalink" href="#Nix-flake-struct" title="Permalink"></a></h3><pre><code class="language-none">Julia2Nix.jl
+├───devShells
+│   ├───aarch64-darwin
+│   │   ├───default: development environment &#39;Julia2Nix&#39;
+│   │   └───packages: development environment &#39;devshell&#39;
+│   ├───aarch64-linux
+│   │   ├───default: development environment &#39;Julia2Nix&#39;
+│   │   └───packages: development environment &#39;devshell&#39;
+│   ├───x86_64-darwin
+│   │   ├───default: development environment &#39;Julia2Nix&#39;
+│   │   └───packages: development environment &#39;devshell&#39;
+│   └───x86_64-linux
+│       ├───default: development environment &#39;Julia2Nix&#39;
+│       └───packages: development environment &#39;devshell&#39;
+├───overlays
+│   ├───aarch64-darwin: Nixpkgs overlay
+│   ├───aarch64-linux: Nixpkgs overlay
+│   ├───default: Nixpkgs overlay
+│   ├───x86_64-darwin: Nixpkgs overlay
+│   └───x86_64-linux: Nixpkgs overlay
+├───packages
+│   ├───aarch64-darwin
+│   │   └───julia_18-bin: package &#39;julia-18-release-aarch64-darwin&#39;
+│   ├───x86_64-darwin
+│   │   ├───build-project: package &#39;Julia2Nix&#39;
+│   │   ├───julia_17-bin: package &#39;julia-17-release-x86_64-darwin&#39;
+│   │   └───julia_18-bin: package &#39;julia-18-release-x86_64-darwin&#39;
+│   └───x86_64-linux
+│       ├───build-conda: package &#39;build-conda&#39;
+│       ├───build-depot: package &#39;julia-depot&#39;
+│       ├───build-env: package &#39;Julia2Nix&#39;
+│       ├───build-project: package &#39;Julia2Nix&#39;
+│       ├───conda: package &#39;conda-install&#39;
+│       ├───gr: julia package &#39;GR&#39;
+│       ├───julia-fhs: package &#39;julia&#39; with FHS
+│       ├───julia-wrapped: package &#39;julia&#39;
+│       ├───julia2nix: package &#39;julia2nix&#39;
+│       ├───julia2nix-all: package &#39;julia2nix-all&#39;
+│       ├───julia_16-bin: package &#39;julia-bin-1.6.6&#39;
+│       ├───julia_17-bin: package &#39;julia-17-release-x86_64-linux-1.7.3-linux-x86_64&#39;
+│       └───julia_18-bin: package &#39;julia-18-release-x86_64-linux-1.8.1-linux-x86_64&#39;
+└───templates
+    ├───devshell: template: The devshell template which contains several Julia Packages
+    └───jlrs: template: The tempalte which contains jlrs development of Nix</code></pre><p>You can simply use <code>nix run</code> and <code>nix build</code> to run or build them</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../junix/">« JuNix</a><a class="docs-footer-nextpage" href="../types/">Types »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Friday 30 September 2022 01:56">Friday 30 September 2022</span>. Using Julia version 1.8.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
