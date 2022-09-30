@@ -31,6 +31,12 @@ write julia2nix.toml in current project directory
 writejulia2nix
 ```
 
+Check `histogram(randn(10000))` in julia,
+[GR](https://github.com/jheinen/GR.jl) is it running normally
+```
+checks-GR
+```
+
 ### direnv
 Enable [direnv](https://github.com/nix-community/nix-direnv)
 so that you can automatically enter devshell when you enter the project directory
