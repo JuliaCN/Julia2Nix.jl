@@ -53,6 +53,10 @@ end
 #     "meta" => "meta",
 # )
 
+"""
+Packages source
+Include `pname` `version` `meta` and `fetcher_args`.
+"""
 mutable struct Source
     pname::String
     version::String
@@ -272,7 +276,9 @@ end
 ####
 #### Manifest
 ####
-
+"""
+Dictionary for storing source
+"""
 struct Manifest
     sources::Dict{String,Source}
 end
@@ -281,6 +287,11 @@ Manifest() = Manifest(Dict{String,Source}())
 
 function validate(manifest::Manifest) end
 
+"""
+    read_manifest(::AbstractString)
+
+Read manifest from File
+"""
 function read_manifest(manifest_file::AbstractString = MANIFEST_FILENAME)
     manifest_file = abspath(manifest_file)
     attrs = ["pname", "version", "name", "fetcherName", "fetcherArgs", "meta", "outPath"]
@@ -332,6 +343,11 @@ function read_manifest(manifest_file::AbstractString = MANIFEST_FILENAME)
     return manifest
 end
 
+"""
+    write_manifest(manifest::Manifest, manifest_file::AbstractString)
+
+Write manifest to `manifest_file`
+"""
 function write_manifest(
     manifest::Manifest,
     manifest_file::AbstractString = MANIFEST_FILENAME,
@@ -360,6 +376,11 @@ function validate(package::Package)
     return validate(package.manifest)
 end
 
+"""
+    read_package(path::AbstractString)
+
+Read `Package` from path. (`get_file` manifest)
+"""
 function read_package(path::AbstractString)
     project_file = get_project(path)
     manifest_file = get_manifest(path)
@@ -367,6 +388,11 @@ function read_package(path::AbstractString)
     return Package(read_project(project_file), manifest, project_file, manifest_file)
 end
 
+"""
+    write_package(package::Package)
+
+Write package manifest to manifest file.
+"""
 function write_package(package::Package)
     # TODO sort keys?
     # write_project(package.project, package.project_file)

@@ -1,4 +1,9 @@
 # TODO move to Julia2Nix?
+"""
+    get_archive_url_for_version(url::String, ref)
+
+Return archieve url use git url
+"""
 function get_archive_url_for_version(url::String, ref)
     if (m = match(r"https://github.com/(.*?)/(.*?).git", url)) !== nothing
         return "https://api.github.com/repos/$(m.captures[1])/$(m.captures[2])/tarball/$(ref)"
@@ -6,12 +11,22 @@ function get_archive_url_for_version(url::String, ref)
     return nothing
 end
 
+"""
+    get_pkg_url(uuid::UUID, tree_hash::String)
+
+Generate url by format with uuid and treehash
+"""
 function get_pkg_url(uuid::UUID, tree_hash::String)
     if (server = pkg_server()) !== nothing
         return "$server/package/$(uuid)/$(tree_hash)"
     end
 end
 
+"""
+    get_source_path(ctx::Context, name::String, uuid::UUID, tree_hash::SHA1)
+
+Get source real path
+"""
 function get_source_path(ctx::Context, name::String, uuid::UUID, tree_hash::SHA1)
     spec = Pkg.Types.PackageSpec(; name, uuid, tree_hash)
     # if VERSION <= v"1.7.0-"
@@ -25,6 +40,11 @@ function get_source_path(ctx::Context, name::String, uuid::UUID, tree_hash::SHA1
     return nothing
 end
 
+"""
+    convert_sha256(data::String, base::Symbol)
+
+Convert sha256 with `nix-hash`
+"""
 function convert_sha256(data::String, base::Symbol)
     flag = if base === :base16
         "--to-base16"
@@ -36,6 +56,11 @@ function convert_sha256(data::String, base::Symbol)
     return strip(run_suppress(`nix-hash --type sha256 $flag $data`, out = true))
 end
 
+"""
+    fetch_sha256(fetcher::Fetcher, opts::Options)
+    
+Prefetch sha256 with `nix-prefetch`
+"""
 function fetch_sha256(fetcher::Fetcher, opts::Options)
     parsed = parse_fetcher(fetcher, opts)
     expr = """
@@ -91,6 +116,11 @@ function parse_fetcher(fetcher::Fetcher, opts::Options = Options())
     return parsed
 end
 
+"""
+    get_os_from_opts(opts::Options)
+
+Get `arch` and `os` from `opts`
+"""
 function get_os_from_opts(opts::Options)
     archs = ["x86_64", "aarch64"]
     oses = ["macos", "linux"]
@@ -105,6 +135,11 @@ function get_os_from_opts(opts::Options)
     end
 end
 
+"""
+    is_git_repo(path::String)
+
+Return `bool`, is `path` a git repo
+"""
 function is_git_repo(path::String)
     try
         GitRepo(path)
@@ -114,6 +149,11 @@ function is_git_repo(path::String)
     end
 end
 
+"""
+    get_repo_meta(path::String)
+
+Get repo meta by `path`(git repo)
+"""
 function get_repo_meta(path::String)
     repo = GitRepo(path)
 

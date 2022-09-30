@@ -35,6 +35,11 @@ include("./types.jl")
 include("./util.jl")
 include("./fetch.jl")
 
+"""
+    load_registries!(pkgs::Vector{PackageInfo})
+
+Load registries from `Registry.toml`.
+"""
 function load_registries!(pkgs::Vector{PackageInfo})
     for reg in collect_registries()
         known = TOML.parsefile(joinpath(reg.path, "Registry.toml"))["packages"]
@@ -54,6 +59,11 @@ function load_registries!(pkgs::Vector{PackageInfo})
     return pkgs
 end
 
+"""
+    load_artifacts!(pkginfo::PackageInfo)
+
+Write meta to `PackageInfo` from toml
+"""
 function load_artifacts!(pkginfo::PackageInfo)
     artifacts_file =
         Pkg.Artifacts.find_artifacts_toml(joinpath(pkginfo.depot, pkginfo.path))
@@ -123,6 +133,11 @@ function load_packages(ctx::Context)
     return pkgs
 end
 
+"""
+    generate_depot(registry_fetchers, pkg_fetchers ,artifact_fetchers)
+
+generate `depot` by `registry` `pkg` and `artifact`
+"""
 function generate_depot(
     registry_fetchers::Dict{RegistryInfo,FetcherResult},
     pkg_fetchers::Dict{PackageInfo,FetcherResult},
@@ -145,6 +160,11 @@ function generate_depot(
     return depot
 end
 
+"""
+    write_julia2nix(depot, opts, package_path, name)
+
+Write `julia2nix.toml` to `out_path`
+"""
 function write_julia2nix(
     depot::Dict{String,Fetcher},
     opts::Options,

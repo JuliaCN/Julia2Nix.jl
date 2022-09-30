@@ -24,6 +24,11 @@ Base.@kwdef mutable struct RegistryInfo
 end
 
 # Old registry might use "url" while new registry uses "repo"
+"""
+    collect_registries()
+
+Collect registries from PkgInfo
+"""
 function collect_registries()
     registry_instances = if VERSION >= v"1.7.0"
         # https://github.com/JuliaLang/Pkg.jl/pull/2072
@@ -52,6 +57,11 @@ function collect_registries()
     end
 end
 
+"""
+    get_tarball_registry_path(path)
+
+Get tarball path from `path.toml`
+"""
 function get_tarball_registry_path(path)
     endswith(path, ".toml") || return nothing
     regspec = TOML.parsefile(path)
@@ -62,6 +72,11 @@ function get_tarball_registry_path(path)
     return tarball_path
 end
 
+"""
+    extract_tarball(tarball_path, dir)
+
+Extract tar file
+"""
 function extract_tarball(tarball_path, dir)
     open(tarball_path) do tar_gz
         tar = GzipDecompressorStream(tar_gz)
@@ -69,6 +84,11 @@ function extract_tarball(tarball_path, dir)
     end
 end
 
+"""
+    registry_relpath(reg::RegistryInfo)
+
+Get registry real path
+"""
 function registry_relpath(reg::RegistryInfo)
     reg = realpath(reg.path)
     for depot in DEPOT_PATH
@@ -78,6 +98,18 @@ function registry_relpath(reg::RegistryInfo)
     return error("Could not locate $(reg.name) in $DEPOT_PATH")
 end
 
+"""
+    struct ArtifactInfo
+
+Fields
+------
+* `name`: artifact name
+* `tree_hash`: artifact hash
+* `path`: `artifact/tree_hash`
+* `arch`: aarch64, x86_64 ...
+* `os`: darwin, linux ...
+* `libc`: `glibc` on linux, nothing on darwin
+"""
 Base.@kwdef mutable struct ArtifactInfo
     name::String
     tree_hash::SHA1
@@ -105,6 +137,18 @@ Base.@kwdef mutable struct PackageInfo
     archives::Vector{String} = String[]
 end
 
+"""
+    struct Options
+
+Fields
+------
+* `nworkers`: [`select_fetcher`](@ref) threads
+* `arch`: aarch64, x86_64 ...
+* `os`: darwin, linux ...
+* `libc`: `glibc` on linux, nothing on darwin
+* `pkg_server`: package download url
+* `check_store`: whether to add the `--check-store` parameter
+"""
 Base.@kwdef struct Options
     nworkers::Int = 1
     arch::Union{Set{String},Nothing} = nothing

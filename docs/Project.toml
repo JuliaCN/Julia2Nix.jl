@@ -1,0 +1,6 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+DocumenterLaTeX = "cd674d7a-5f81-5cf3-af33-235ef1834b99"
+Julia2Nix = "959efae9-d930-411d-bc19-361dc384df77"
+LiveServer = "16fef848-5104-11e9-1b77-fb7a48bbb589"
+Markdown = "d6f4376e-aef5-505a-96c1-9c027394607a"
