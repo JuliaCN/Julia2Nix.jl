@@ -55,7 +55,12 @@
           imports = [
             # you can keep either one of them devshellProfiles.packages or julia-wrapped
             # inputs.julia2nix.${pkgs.system}.julia2nix.devshellProfiles.packages
+
+            # add dev-tools in your devshell
             inputs.julia2nix.${pkgs.system}.julia2nix.devshellProfiles.dev
+
+            # add nightly julia
+            # inputs.julia2nix.${pkgs.system}.julia2nix.devshellProfiles.nightly
           ];
           commands = [{package = julia-wrapped;}];
         };

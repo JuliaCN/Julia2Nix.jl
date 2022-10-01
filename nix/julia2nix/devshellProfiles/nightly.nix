@@ -11,7 +11,7 @@
     {
       name = "julia-nightly";
       command = "${cell.packages.julia_nightly-bin}/bin/julia";
-      help = "julia nightly vesion";
+      help = "julia nightly version";
     }
   ];
 }
