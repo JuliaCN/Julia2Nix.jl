@@ -35,13 +35,6 @@ in {
         command = "${packages.julia-fhs}/bin/julia";
         help = "julia with FHS";
       }
-    ]
-    ++ lib.optionals (pkgs.system != "x86_64-darwin") [
-      {
-        name = "julia-nightly";
-        command = "${packages.julia_nightly-bin}/bin/julia";
-        help = "julia nightly vesion";
-      }
     ];
 
   packages = with pkgs;

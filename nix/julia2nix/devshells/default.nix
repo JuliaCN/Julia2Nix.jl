@@ -29,6 +29,7 @@ in
         ]
         ++ [
           cell.devshellProfiles.packages
+          cell.devshellProfiles.nightly
           cell.devshellProfiles.checks
         ]
         ++ l.optionals nixpkgs.stdenv.buildPlatform.isLinux [
