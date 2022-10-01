@@ -25,6 +25,8 @@ jobs:
         name: zeek
 
     - name: Julia Version Update
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         nix develop .#update --command nvfetcher-update
 
