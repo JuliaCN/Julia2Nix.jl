@@ -19,34 +19,34 @@
   };
   julia-18-release-aarch64-darwin = {
     pname = "julia-18-release-aarch64-darwin";
-    version = "1.8.1-macaarch64.dmg";
+    version = "1.8.2-macaarch64.dmg";
     src = fetchurl {
-      url = "https://julialang-s3.julialang.org/bin/mac/aarch64/1.8/julia-1.8.1-macaarch64.dmg";
-      sha256 = "sha256-70icBpME6djtvN24zs3NTFLx906BhgepXLJokT4F+U8=";
+      url = "https://julialang-s3.julialang.org/bin/mac/aarch64/1.8/julia-1.8.2-macaarch64.dmg";
+      sha256 = "sha256-BvLT3k5RT1GRU7FU+GfvvFPyHd/Il6Pruquz+VtUmqU=";
     };
   };
   julia-18-release-aarch64-linux = {
     pname = "julia-18-release-aarch64-linux";
-    version = "1.8.1-linux-aarch64.tar.gz";
+    version = "1.8.2-linux-aarch64.tar.gz";
     src = fetchurl {
-      url = "https://julialang-s3.julialang.org/bin/linux/aarch64/1.8/julia-1.8.1-linux-aarch64.tar.gz";
-      sha256 = "sha256-ugaDesKJlUe7t5mYnxFGT+zWeCImhxw7ekhhlIEEJnk=";
+      url = "https://julialang-s3.julialang.org/bin/linux/aarch64/1.8/julia-1.8.2-linux-aarch64.tar.gz";
+      sha256 = "sha256-+RwnZCj/swrMIJ4Os+cLHJEmDoh+EdS2b1VFCEtTBUc=";
     };
   };
   julia-18-release-x86_64-darwin = {
     pname = "julia-18-release-x86_64-darwin";
-    version = "1.8.1-mac64.dmg";
+    version = "1.8.2-mac64.dmg";
     src = fetchurl {
-      url = "https://julialang-s3.julialang.org/bin/mac/x64/1.8/julia-1.8.1-mac64.dmg";
-      sha256 = "sha256-MnTDs9vLbTTkKHl+FDOAtcWNtmiKXUTwk59jGbzzwYo=";
+      url = "https://julialang-s3.julialang.org/bin/mac/x64/1.8/julia-1.8.2-mac64.dmg";
+      sha256 = "sha256-jh/FeKFT+EFPFG3o8irL7P2S2CCBPDSqDB8n42NinhU=";
     };
   };
   julia-18-release-x86_64-linux = {
     pname = "julia-18-release-x86_64-linux";
-    version = "1.8.1-linux-x86_64.tar.gz";
+    version = "1.8.2-linux-x86_64.tar.gz";
     src = fetchurl {
-      url = "https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-1.8.1-linux-x86_64.tar.gz";
-      sha256 = "sha256-MwVO5kfuik+1T8BREOB+C1PgRZH+U9Cky0x+16BekfE=";
+      url = "https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-1.8.2-linux-x86_64.tar.gz";
+      sha256 = "sha256-ZxzzpFC2OnF+Hu3X9pCH44VvAVsuFGy1SSjxmjwF55Y=";
     };
   };
   julia-nightly-aarch64-darwin = {
@@ -54,7 +54,7 @@
     version = "julia-latest-macos-aarch64.dmg";
     src = fetchurl {
       url = "https://julialangnightlies-s3.julialang.org/bin/macos/aarch64/julia-latest-macos-aarch64.dmg";
-      sha256 = "sha256-Ko4nCnttuD0GbQ63cXQwElTOPPR1spA/rVj0OyBAf1I=";
+      sha256 = "sha256-RQ4prC/hE+qMWBe9EgmVaNU3NBt9Eg0L4zIyAHXyJsE=";
     };
   };
   julia-nightly-aarch64-linux = {
@@ -62,7 +62,7 @@
     version = "julia-latest-linux-aarch64.tar.gz";
     src = fetchurl {
       url = "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linux-aarch64.tar.gz";
-      sha256 = "sha256-k1SO7aBPkPn7WBiQFDMVpvdcAh7k7hVpmpeGvZrZ9BA=";
+      sha256 = "sha256-xFHhdkGk1u69iAE58VpFiVMQOr0LjXpFYKDYhGM04FQ=";
     };
   };
   julia-nightly-x86_64-darwin = {
@@ -70,7 +70,7 @@
     version = "julia-latest-macos-x86_64.dmg";
     src = fetchurl {
       url = "https://julialangnightlies-s3.julialang.org/bin/macos/x86_64/julia-latest-macos-x86_64.dmg";
-      sha256 = "sha256-tVWGJQRMyPBpAknnZF/c4mn2tTW4QEWX0wVH35S5UNI=";
+      sha256 = "sha256-PwBHxx2Qjd4AKaxCERGyxe5LOTtAb/zM9pDUGFM13iM=";
     };
   };
   julia-nightly-x86_64-linux = {
@@ -78,7 +78,7 @@
     version = "julia-latest-linux-x86_64.tar.gz";
     src = fetchurl {
       url = "https://julialangnightlies-s3.julialang.org/bin/linux/x86_64/julia-latest-linux-x86_64.tar.gz";
-      sha256 = "sha256-fKWDofAWVXfqUKZH8P6KV5d6BtEn7QqKzHIkJvisfIg=";
+      sha256 = "sha256-RasDQSrcq62R4HM+RDP2QuFeHbpemWtfnZLU/Y8VR+M=";
     };
   };
 }
