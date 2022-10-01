@@ -34,3 +34,28 @@ fetch.url = "https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-$ver"
 src.webpage = "https://julialang.org/downloads/"
 src.regex = "1\\.8\\.\\d+-linux-aarch64.tar.gz"
 fetch.url = "https://julialang-s3.julialang.org/bin/linux/aarch64/1.8/julia-$ver"
+
+# nightly versions
+[julia-nightly-x86_64-darwin]
+src.webpage = "https://julialang.org/downloads/nightlies"
+src.regex = "julia-latest-macos-x86_64.dmg"
+fetch.url = "https://julialangnightlies-s3.julialang.org/bin/macos/x86_64/$ver"
+fetch.force = true
+
+[julia-nightly-aarch64-darwin]
+src.webpage = "https://julialang.org/downloads/nightlies"
+src.regex = "julia-latest-macos-aarch64.dmg"
+fetch.url = "https://julialangnightlies-s3.julialang.org/bin/macos/aarch64/$ver"
+fetch.force = true
+
+[julia-nightly-x86_64-linux]
+src.webpage = "https://julialang.org/downloads/nightlies"
+src.regex = "julia-latest-linux-x86_64.tar.gz"
+fetch.url = "https://julialangnightlies-s3.julialang.org/bin/linux/x86_64/$ver"
+fetch.force = true
+
+[julia-nightly-aarch64-linux]
+src.webpage = "https://julialang.org/downloads/nightlies"
+src.regex = "julia-latest-linux-aarch64.tar.gz"
+fetch.url = "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/$ver"
+fetch.force = true

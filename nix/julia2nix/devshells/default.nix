@@ -29,6 +29,7 @@ in
         ]
         ++ [
           cell.devshellProfiles.packages
+          cell.devshellProfiles.nightly
           cell.devshellProfiles.checks
         ]
         ++ l.optionals nixpkgs.stdenv.buildPlatform.isLinux [
@@ -64,6 +65,7 @@ in
             --refresh --command \
             nvfetcher-update nix/julia2nix/packages/toolchain/sources.toml
           '';
+          help = "Generate nix sources expr for the latest version of packages";
         }
       ];
 
@@ -77,6 +79,20 @@ in
     packages = {pkgs, ...}: {
       imports = [
         cell.devshellProfiles.packages
+      ];
+    };
+
+    update = {...}: {
+      commands = [
+        {
+          name = "nvfetcher-update";
+          command = ''
+            nix develop github:GTrunSec/cells-lab#devShells.x86_64-linux.update \
+            --refresh --command \
+            nvfetcher-update nix/julia2nix/packages/toolchain/sources.toml
+          '';
+          help = "Generate nix sources expr for the latest version of packages";
+        }
       ];
     };
   }
