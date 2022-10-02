@@ -174,21 +174,23 @@ function write_julia2nix(
 )
     io = IOBuffer(; append = true)
     for path in sort(collect(keys(depot)))
-        write(io, "[\"", depot[path].args["name"], "\"]\n")
-        TOML.print(io, Dict("path" => path))
-        TOML.print(io, depot[path].args)
+        _, fetch = split(depot[path].name, ".")
+        write(io, "[", fetch, ".", depot[path].args["name"], "]\n")
+        TOML.print(io, Dict("name" => path))
+
+        for (k,v) in depot[path].args
+            if k != "name"
+                TOML.print(io, Dict(k => v))
+            end
+        end
         write(io, "\n")
     end
 
     toml = TOML.parse(io)
-    for path in sort(collect(keys(toml)))
-        toml[path]["name"] = toml[path]["path"]
-        pop!(toml[path], "path")
-    end
 
     arch, os = get_os_from_opts(opts)
     platform = arch * '-' * os
-    toml = Dict("depot" => Dict(platform => Dict("fetchzip" => toml)))
+    toml = Dict("depot" => Dict(platform => toml))
 
     depotfile_path = normpath(joinpath(package_path, "julia2nix.toml"))
 
