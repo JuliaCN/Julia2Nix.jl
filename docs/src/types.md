@@ -1,11 +1,11 @@
 # Types
 
-
 ```@meta
 CurrentModule = Julia2Nix
 ```
 
 ## Functions
+
 ```@docs
 read_manifest
 write_manifest
@@ -16,6 +16,7 @@ get_sha256_expr
 ```
 
 ## Structs
+
 ```@docs
 Source
 Manifest

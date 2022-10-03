@@ -7,4 +7,5 @@ in {
   checks = import ./checks.nix args;
   dev = import ./dev.nix args;
   nightly = import ./nightly.nix args;
+  update = import ./update.nix args;
 }
