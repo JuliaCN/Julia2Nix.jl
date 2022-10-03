@@ -75,5 +75,12 @@ in
       imports = [
         cell.devshellProfiles.update
       ];
+      # github CI issue: nvfetcher encoding problem
+      env = [
+        {
+          name = "LC_ALL";
+          value = "en_US.UTF-8";
+        }
+      ];
     };
   }

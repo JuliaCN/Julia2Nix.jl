@@ -18,10 +18,4 @@
       help = "Generate nix sources expr for the latest version of packages";
     }
   ];
-  env = [
-    {
-      name = "LC_ALL";
-      value = "en_US.UTF-8";
-    }
-  ];
 }
