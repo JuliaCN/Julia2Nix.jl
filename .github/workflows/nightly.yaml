@@ -6,7 +6,7 @@ on:
   pull_request:
   workflow_dispatch: # allows manual triggering
   schedule:
-    - cron: "0 0 * * *" # runs daily at 00:00
+    - cron: "30 * * * *" # runs every 30 mins
 
 jobs:
   check:
