@@ -7,7 +7,7 @@ jobs:
 
     runs-on: macOS-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3.1.0
     - uses: cachix/install-nix-action@v17
       with:
         skip_adding_nixpkgs_channel: true
