@@ -17,7 +17,7 @@ jobs:
           experimental-features = nix-command flakes
           system-features = nixos-test benchmark big-parallel kvm recursive-nix
 
-    - uses: cachix/cachix-action@v10
+    - uses: cachix/cachix-action@v11
       with:
         name: zeek
 
