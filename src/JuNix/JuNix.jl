@@ -178,8 +178,9 @@ function write_julia2nix(
         write(io, "[", fetch, ".", depot[path].args["name"], "]\n")
         TOML.print(io, Dict("name" => path))
 
-        for (k,v) in depot[path].args
+        for (k, v) in depot[path].args
             if k != "name"
+                v = typeof(v) == Base.SHA1 ? string(v) : v
                 TOML.print(io, Dict(k => v))
             end
         end
@@ -195,14 +196,14 @@ function write_julia2nix(
     depotfile_path = normpath(joinpath(package_path, "julia2nix.toml"))
 
     @info "Writing depot to $depotfile_path"
-    open(normpath(joinpath(out_path, name)), "a+") do f
+    open(normpath(joinpath(out_path, name)), "w") do f
         origin = TOML.parse(f)
         if haskey(origin, "depot")
             origin["depot"][platform] = toml["depot"][platform]
-            TOML.print(f, origin)
         else
-            TOML.print(f, toml)
+            origin = toml
         end
+        TOML.print(f, origin)
     end
 end
 
