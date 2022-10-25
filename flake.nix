@@ -7,6 +7,7 @@
   inputs = {
     cells-lab.url = "github:gtrunsec/cells-lab";
     std.follows = "cells-lab/std";
+    n2c.follows = "cells-lab/std/n2c";
   };
 
   outputs = {
@@ -39,7 +40,7 @@
           (functions "overlays")
           (functions "compiler")
 
-          (data "containerJobs")
+          (containers "containers")
         ];
       }
       {

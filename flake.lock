@@ -416,6 +416,11 @@
     "root": {
       "inputs": {
         "cells-lab": "cells-lab",
+        "n2c": [
+          "cells-lab",
+          "std",
+          "n2c"
+        ],
         "nix-filter": "nix-filter_2",
         "nixpkgs": "nixpkgs_3",
         "std": [
