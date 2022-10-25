@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
   workflow_dispatch: # allows manual triggering
   schedule:
     - cron: "30 * * * *" # runs every 30 mins
