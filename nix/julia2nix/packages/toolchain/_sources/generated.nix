@@ -51,34 +51,34 @@
   };
   julia-nightly-aarch64-darwin = {
     pname = "julia-nightly-aarch64-darwin";
-    version = "2022-10-25-22:50:04";
+    version = "2022-10-25-23:47:46";
     src = fetchurl {
       url = "https://julialangnightlies-s3.julialang.org/bin/macos/aarch64/julia-latest-macos-aarch64.dmg";
-      sha256 = "sha256-RhF/Fq70GsB3rHe27F7YpALoH9obNdkdKIe2JydD8Dg=";
+      sha256 = "sha256-qTboQ7I7SsN6kUM88kay7hTirUE1SVValMMRx2SgPko=";
     };
   };
   julia-nightly-aarch64-linux = {
     pname = "julia-nightly-aarch64-linux";
-    version = "2022-10-25-22:50:25";
+    version = "2022-10-25-23:47:46";
     src = fetchurl {
       url = "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linux-aarch64.tar.gz";
-      sha256 = "sha256-fmKaxHTPNkul1sLTfp4X6GqN9rcpXFpQHPL18K0grhE=";
+      sha256 = "sha256-ITTb+TD2GIMDlx3j8NRmRd9duQFTTwFIhfQ9itY6GOo=";
     };
   };
   julia-nightly-x86_64-darwin = {
     pname = "julia-nightly-x86_64-darwin";
-    version = "2022-10-25-22:50:15";
+    version = "2022-10-25-23:47:52";
     src = fetchurl {
       url = "https://julialangnightlies-s3.julialang.org/bin/macos/x86_64/julia-latest-macos-x86_64.dmg";
-      sha256 = "sha256-c1M6OT+S8ZnzV/UavPm7Mls3GVsbJU3L6UNvxU7I5Hc=";
+      sha256 = "sha256-Z28fksnbphNpdRSek9HzkRcqStC55Ojf4PljIs6OjXc=";
     };
   };
   julia-nightly-x86_64-linux = {
     pname = "julia-nightly-x86_64-linux";
-    version = "2022-10-25-22:50:15";
+    version = "2022-10-25-23:47:55";
     src = fetchurl {
       url = "https://julialangnightlies-s3.julialang.org/bin/linux/x86_64/julia-latest-linux-x86_64.tar.gz";
-      sha256 = "sha256-9IyuNUDM4KgZJHKJOwdEuRIizSyujK+3lUvz0GCOrS0=";
+      sha256 = "sha256-rdMIq8WI3SGsYf7IsKLMpl5i7WqS9U0cG0Ky9ZPCbBE=";
     };
   };
 }
