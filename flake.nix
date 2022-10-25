@@ -8,6 +8,12 @@
     cells-lab.url = "github:gtrunsec/cells-lab";
     std.follows = "cells-lab/std";
     n2c.follows = "cells-lab/std/n2c";
+
+    dataflow2nix.url = "github:gtrunsec/dataflow2nix";
+    dataflow2nix.inputs.cells-lab.follows = "cells-lab";
+    dataflow2nix.inputs.std.follows = "std";
+
+    tullia.follows = "dataflow2nix/tullia";
   };
 
   outputs = {
@@ -47,7 +53,10 @@
         lib = std.harvest inputs.self ["julia2nix" "lib"];
         devShells = std.harvest inputs.self ["julia2nix" "devshells"];
         overlays = (std.harvest inputs.self ["julia2nix" "overlays"]).x86_64-linux;
-      })
+      }) (inputs.tullia.fromStd {
+      tasks = inputs.std.harvest inputs.self ["tullia" "task"];
+      actions = inputs.std.harvest inputs.self ["tullia" "action"];
+    })
     {
       packages.x86_64-linux = (system: {
         inherit
