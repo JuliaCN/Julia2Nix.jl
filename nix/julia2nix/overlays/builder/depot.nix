@@ -8,7 +8,7 @@
   writers,
   ...
 }: {julia2nix, ...}: let
-  fetches = ["fetchzip" "fetchgit" "fetchTarball"];
+  fetches = ["fetchzip" "fetchgit" "fetchTarball" "fetchGit"];
 
   selectFetcher =
     lib.flatten ((attr: (map (name: (lib.optionals (lib.hasAttr name attr) name)) fetches))
@@ -24,7 +24,7 @@
   in
     concatAttrs (lib.listToAttrs (map (name: {
         inherit name;
-        value = lib.mapAttrs (_: (lib.getAttrFromPath [name]) pkgs) (lib.importTOML julia2nix).depot.${stdenvNoCC.system}."${name}";
+        value = lib.mapAttrs (_: (lib.getAttrFromPath [name]) (pkgs // builtins)) (lib.importTOML julia2nix).depot.${stdenvNoCC.system}."${name}";
       })
       selectFetcher));
 
