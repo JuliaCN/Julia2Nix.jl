@@ -26,7 +26,7 @@ in
         ]
         ++ [
           cell.devshellProfiles.packages
-          # cell.devshellProfiles.nightly
+          cell.devshellProfiles.nightly
           cell.devshellProfiles.checks
           cell.devshellProfiles.update
         ]
