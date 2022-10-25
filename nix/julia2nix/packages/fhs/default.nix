@@ -29,14 +29,14 @@ with pkgs.lib; let
         openssl
         stdenv.cc
         unzip
-        utillinux
+        util-linux
         which
       ]
       ++ lib.optional enableNode pkgs.nodejs;
 
   graphicalPackages = pkgs:
     with pkgs; [
-      alsaLib
+      alsa-lib
       at-spi2-atk
       at-spi2-core
       atk

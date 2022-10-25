@@ -5,12 +5,9 @@
   l = nixpkgs.lib // builtins;
   inherit (inputs) nixpkgs std self;
 in
-  l.mapAttrs (_: std.std.lib.mkShell) {
+  l.mapAttrs (_: std.lib.dev.mkShell) {
     default = {extraModulesPath, ...}: {
       name = "Julia2Nix";
-
-      std.docs.enable = false;
-      std.adr.enable = false;
 
       git.hooks = {
         enable = true;
@@ -29,7 +26,7 @@ in
         ]
         ++ [
           cell.devshellProfiles.packages
-          cell.devshellProfiles.nightly
+          # cell.devshellProfiles.nightly
           cell.devshellProfiles.checks
         ]
         ++ l.optionals nixpkgs.stdenv.buildPlatform.isLinux [
