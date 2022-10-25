@@ -43,7 +43,7 @@
         ];
       }
       {
-        lib = (std.harvest inputs.self ["julia2nix" "lib"]).x86_64-linux;
+        lib = std.harvest inputs.self ["julia2nix" "lib"];
         devShells = std.harvest inputs.self ["julia2nix" "devshells"];
         overlays = (std.harvest inputs.self ["julia2nix" "overlays"]).x86_64-linux;
       })
