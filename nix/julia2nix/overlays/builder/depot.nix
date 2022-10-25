@@ -4,11 +4,29 @@
   symlinkJoin,
   callPackage,
   git,
-  fetchzip,
+  pkgs,
   writers,
   ...
 }: {julia2nix, ...}: let
-  depots = lib.mapAttrs (_: fetchzip) (lib.importTOML julia2nix).depot.${stdenvNoCC.system}.fetchzip;
+  fetches = ["fetchzip" "fetchgit" "fetchTarball"];
+
+  selectFetcher =
+    lib.flatten ((attr: (map (name: (lib.optionals (lib.hasAttr name attr) name)) fetches))
+      (lib.importTOML julia2nix).depot.${stdenvNoCC.system});
+
+  depots = let
+    concatAttrs = let
+      f = x:
+        lib.foldr
+        (n: acc: acc // lib.mapAttrs (_: v: v) (x.${n})) {} (lib.attrNames x);
+    in
+      f;
+  in
+    concatAttrs (lib.listToAttrs (map (name: {
+        inherit name;
+        value = lib.mapAttrs (_: (lib.getAttrFromPath [name]) pkgs) (lib.importTOML julia2nix).depot.${stdenvNoCC.system}."${name}";
+      })
+      selectFetcher));
 
   srcs = lib.mapAttrs (n: v: let
     path = lib.replaceStrings ["-"] ["/"] v.name;
@@ -44,7 +62,7 @@
     })
   depots;
 in
-  symlinkJoin {
-    name = "julia-depot";
-    paths = lib.attrValues srcs;
-  }
+symlinkJoin {
+  name = "julia-depot";
+  paths = lib.attrValues srcs;
+}

@@ -49,7 +49,7 @@ in
         {
           name = "writejulia2nix";
           category = "tests";
-          command = "julia --project=./. testenv/writejulia2nix.jl ${nixpkgs.system}";
+          command = "julia --project=$PRJ_ROOT $PRJ_ROOT/testenv/writejulia2nix.jl ${nixpkgs.system}";
           help = "write julia2nix.toml";
         }
         {
