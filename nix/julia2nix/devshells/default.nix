@@ -28,6 +28,7 @@ in
           cell.devshellProfiles.packages
           # cell.devshellProfiles.nightly
           cell.devshellProfiles.checks
+          cell.devshellProfiles.update
         ]
         ++ l.optionals nixpkgs.stdenv.buildPlatform.isLinux [
           cell.devshellProfiles.dev
@@ -55,15 +56,6 @@ in
           command = "nix run .#packages.${nixpkgs.system}.build-project --print-build-logs -- testenv/writejulia2nix.jl ${nixpkgs.system}";
           help = "write julia2nix.toml with buildProject";
         }
-        {
-          name = "nvfetcher-update";
-          command = ''
-            nix develop github:GTrunSec/cells-lab#devShells.x86_64-linux.update \
-            --refresh --command \
-            nvfetcher-update nix/julia2nix/packages/toolchain/sources.toml
-          '';
-          help = "Generate nix sources expr for the latest version of packages";
-        }
       ];
 
       env = [
@@ -80,15 +72,14 @@ in
     };
 
     update = {...}: {
-      commands = [
+      imports = [
+        cell.devshellProfiles.update
+      ];
+      # github CI issue: nvfetcher encoding problem
+      env = [
         {
-          name = "nvfetcher-update";
-          command = ''
-            nix develop github:GTrunSec/cells-lab#devShells.x86_64-linux.update \
-            --refresh --command \
-            nvfetcher-update nix/julia2nix/packages/toolchain/sources.toml
-          '';
-          help = "Generate nix sources expr for the latest version of packages";
+          name = "LC_ALL";
+          value = "en_US.UTF-8";
         }
       ];
     };

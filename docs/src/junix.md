@@ -5,6 +5,7 @@ CurrentModule = Julia2Nix.JuNix
 ```
 
 ### types
+
 ```@docs
 collect_registries
 get_tarball_registry_path
@@ -13,12 +14,14 @@ registry_relpath
 ```
 
 ### fetch
+
 ```@docs
 is_artifact_required
 select_fetcher
 ```
 
 ### util
+
 ```@docs
 get_archive_url_for_version
 get_pkg_url
