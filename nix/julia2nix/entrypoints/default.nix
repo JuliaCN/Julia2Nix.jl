@@ -2,14 +2,14 @@
   inputs,
   cell,
 }: let
-  inherit (inputs.cells-lab._writers.library) writeShellApplication;
+  inherit (inputs.cells-lab._writers.lib) writeShellApplication;
   inherit (inputs) nixpkgs;
 in {
   mkdoc = let
-    juliaDoc = cell.library.buildEnv {
+    juliaDoc = cell.lib.buildEnv {
       name = "julia-doc";
       src = ./doc;
-      package = cell.library.julia-wrapped {
+      package = cell.lib.julia-wrapped {
         package = cell.packages.julia_18-bin;
       };
     };
@@ -28,10 +28,10 @@ in {
     };
 
   ion = let
-    julia-ion = cell.library.buildEnv {
+    julia-ion = cell.lib.buildEnv {
       name = "julia-ion";
       src = ./ion;
-      package = cell.library.julia-wrapped {
+      package = cell.lib.julia-wrapped {
         package = cell.packages.julia_18-bin;
       };
     };

@@ -24,28 +24,28 @@
           "x86_64-darwin"
           "x86_64-linux"
         ];
-        cellBlocks = [
-          (std.blockTypes.installables "packages")
+        cellBlocks = with std.blockTypes; [
+          (installables "packages")
 
-          (std.blockTypes.nixago "nixago")
+          (nixago "nixago")
 
-          (std.blockTypes.runnables "entrypoints")
+          (runnables "entrypoints")
 
-          (std.blockTypes.devshells "devshells")
-          (std.blockTypes.functions "devshellProfiles")
+          (devshells "devshells")
+          (functions "devshellProfiles")
 
-          (std.blockTypes.functions "library")
-          (std.blockTypes.functions "workflow")
-          (std.blockTypes.functions "overlays")
-          (std.blockTypes.functions "compiler")
+          (functions "lib")
+          (functions "workflow")
+          (functions "overlays")
+          (functions "compiler")
 
-          (std.blockTypes.data "containerJobs")
+          (data "containerJobs")
         ];
       }
       {
-        lib = inputs.std.deSystemize "x86_64-linux" (std.harvest inputs.self ["julia2nix" "library"]);
+        lib = (std.harvest inputs.self ["julia2nix" "lib"]).x86_64-linux;
         devShells = std.harvest inputs.self ["julia2nix" "devshells"];
-        overlays = inputs.std.deSystemize "x86_64-linux" (std.harvest inputs.self ["julia2nix" "overlays"]);
+        overlays = (std.harvest inputs.self ["julia2nix" "overlays"]).x86_64-linux;
       })
     {
       packages.x86_64-linux = (system: {
@@ -104,7 +104,7 @@
           };
         };
 
-        julia2nix = inputs.cells-lab.${system}._writers.library.writeShellApplication {
+        julia2nix = inputs.cells-lab.${system}._writers.lib.writeShellApplication {
           name = "julia2nix";
           runtimeInputs = [self.packages.${system}.build-project];
           text = ''
@@ -112,7 +112,7 @@
           '';
         };
 
-        julia2nix-all = inputs.cells-lab.${system}._writers.library.writeShellApplication {
+        julia2nix-all = inputs.cells-lab.${system}._writers.lib.writeShellApplication {
           name = "julia2nix";
           runtimeInputs = [self.packages.${system}.build-project];
           text = ''

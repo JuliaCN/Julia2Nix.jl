@@ -3,7 +3,7 @@
   cell,
 }: let
   inherit (inputs) std;
-  juliaFormatter = cell.library.buildEnv {
+  juliaFormatter = cell.lib.buildEnv {
     src = inputs.nix-filter.lib.filter {
       root = ./.;
       include = [
@@ -13,7 +13,7 @@
       ];
     };
     name = "juliaFormatter";
-    package = cell.library.julia-wrapped {};
+    package = cell.lib.julia-wrapped {};
   };
 in {
   inherit juliaFormatter;

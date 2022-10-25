@@ -3,8 +3,8 @@
   cell,
 }: let
   inherit (inputs) std self;
-  inherit (inputs.nixpkgs) lib;
-  inherit (cell) library;
+
+  l = inputs.nixpkgs.lib // builtins;
 
   nixpkgs = inputs.nixpkgs.appendOverlays [
     cell.overlays.default
@@ -15,27 +15,27 @@ in {
   julia-fhs = nixpkgs.julia-fhs "julia" "julia";
 
   julia_17-bin = (version:
-    lib.optionalAttrs (nixpkgs.system == "x86_64-darwin" || nixpkgs.system == "aarch64-darwin")
-    (library.installApp {
+    l.optionalAttrs (nixpkgs.system == "x86_64-darwin" || nixpkgs.system == "aarch64-darwin")
+    (cell.lib.installApp {
       inherit version;
     })
-    // lib.optionalAttrs (nixpkgs.system == "aarch64-linux" || nixpkgs.system == "x86_64-linux") (library.installBin {
+    // l.optionalAttrs (nixpkgs.system == "aarch64-linux" || nixpkgs.system == "x86_64-linux") (cell.lib.installBin {
       inherit version;
     })) "17-release";
 
   julia_18-bin = (version:
-    lib.optionalAttrs (nixpkgs.system == "aarch64-darwin" || nixpkgs.system == "x86_64-darwin") (library.installApp {
+    l.optionalAttrs (nixpkgs.system == "aarch64-darwin" || nixpkgs.system == "x86_64-darwin") (cell.lib.installApp {
       inherit version;
     })
-    // lib.optionalAttrs (nixpkgs.system == "x86_64-linux" || nixpkgs.system == "aarch64-linux") (library.installBin {
+    // l.optionalAttrs (nixpkgs.system == "x86_64-linux" || nixpkgs.system == "aarch64-linux") (cell.lib.installBin {
       inherit version;
     })) "18-release";
 
   julia_nightly-bin = (version:
-    lib.optionalAttrs (nixpkgs.system == "aarch64-darwin" || nixpkgs.system == "x86_64-darwin") (library.installApp {
+    l.optionalAttrs (nixpkgs.system == "aarch64-darwin" || nixpkgs.system == "x86_64-darwin") (cell.lib.installApp {
       inherit version;
     })
-    // lib.optionalAttrs (nixpkgs.system == "x86_64-linux" || nixpkgs.system == "aarch64-linux") (library.installBin {
+    // l.optionalAttrs (nixpkgs.system == "x86_64-linux" || nixpkgs.system == "aarch64-linux") (cell.lib.installBin {
       inherit version;
     })) "nightly";
 }
