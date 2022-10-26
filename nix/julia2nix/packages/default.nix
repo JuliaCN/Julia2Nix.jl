@@ -37,5 +37,5 @@ in {
     })
     // l.optionalAttrs (nixpkgs.system == "x86_64-linux" || nixpkgs.system == "aarch64-linux") (cell.lib.installBin {
       inherit version;
-    })) "nightly";
+    })) "nightly-19";
 }
