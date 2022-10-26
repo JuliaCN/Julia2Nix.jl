@@ -29,7 +29,7 @@ const BUILTINS_ARCHIVE_FETCHER = "builtins.fetchTarball"
 const BUILTINS_GIT_FETCHER = "builtins.fetchGit"
 
 const ARCHIVE_FETCHER = PKGS_ARCHIVE_FETCHER
-const GIT_FETCHER = BUILTINS_GIT_FETCHER
+const GIT_FETCHER = "pkgs.fetchgit"
 
 include("./types.jl")
 include("./util.jl")
