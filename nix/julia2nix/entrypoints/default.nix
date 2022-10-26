@@ -62,7 +62,7 @@ in {
         julia-ion
       ];
       text = ''
-        ion --help
+        ion "$@"
       '';
     };
 }

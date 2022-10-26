@@ -56,6 +56,12 @@ nix run github:JuliaCN/Julia2Nix.jl#packages.x86_64-linux.julia2nix
 nix run github:JuliaCN/Julia2Nix.jl#packages.x86_64-linux.julia2nix-all
 ```
 
+### Lanuching Ion Project only one command
+
+```sh
+nix run github:JuliaCN/Julia2Nix.jl#x86_64-linux.julia2nix.entrypoints.ion --refresh -- --help
+```
+
 ## Contents
 
 ```@contents
