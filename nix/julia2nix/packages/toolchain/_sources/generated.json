@@ -102,7 +102,7 @@
             "type": "url",
             "url": "https://julialangnightlies-s3.julialang.org/bin/macos/aarch64/julia-latest-macos-aarch64.dmg"
         },
-        "version": "2022-10-25-23:47:46"
+        "version": "2022-10-26-02:57:11"
     },
     "julia-nightly-aarch64-linux": {
         "cargoLocks": null,
@@ -113,11 +113,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-ITTb+TD2GIMDlx3j8NRmRd9duQFTTwFIhfQ9itY6GOo=",
+            "sha256": "sha256-5ShgUglutc+OfUBhM20XQzb1FQB9B2WgQuwUV4ABGdM=",
             "type": "url",
             "url": "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linux-aarch64.tar.gz"
         },
-        "version": "2022-10-25-23:47:46"
+        "version": "2022-10-26-02:56:57"
     },
     "julia-nightly-x86_64-darwin": {
         "cargoLocks": null,
@@ -132,7 +132,7 @@
             "type": "url",
             "url": "https://julialangnightlies-s3.julialang.org/bin/macos/x86_64/julia-latest-macos-x86_64.dmg"
         },
-        "version": "2022-10-25-23:47:52"
+        "version": "2022-10-26-02:57:04"
     },
     "julia-nightly-x86_64-linux": {
         "cargoLocks": null,
@@ -143,10 +143,10 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-rdMIq8WI3SGsYf7IsKLMpl5i7WqS9U0cG0Ky9ZPCbBE=",
+            "sha256": "sha256-hM/WqpUhnwS8hYBsKGBLUgLIc+ZgRDv3moV7xtPLH0A=",
             "type": "url",
             "url": "https://julialangnightlies-s3.julialang.org/bin/linux/x86_64/julia-latest-linux-x86_64.tar.gz"
         },
-        "version": "2022-10-25-23:47:55"
+        "version": "2022-10-26-02:57:18"
     }
 }
