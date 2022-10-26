@@ -29,7 +29,7 @@ const BUILTINS_ARCHIVE_FETCHER = "builtins.fetchTarball"
 const BUILTINS_GIT_FETCHER = "builtins.fetchGit"
 
 const ARCHIVE_FETCHER = PKGS_ARCHIVE_FETCHER
-const GIT_FETCHER = BUILTINS_GIT_FETCHER
+const GIT_FETCHER = "pkgs.fetchgit"
 
 include("./types.jl")
 include("./util.jl")
@@ -174,33 +174,36 @@ function write_julia2nix(
 )
     io = IOBuffer(; append = true)
     for path in sort(collect(keys(depot)))
-        write(io, "[\"", depot[path].args["name"], "\"]\n")
-        TOML.print(io, Dict("path" => path))
-        TOML.print(io, depot[path].args)
+        _, fetch = split(depot[path].name, ".")
+        write(io, "[", fetch, ".", depot[path].args["name"], "]\n")
+        TOML.print(io, Dict("name" => path))
+
+        for (k, v) in depot[path].args
+            if k != "name"
+                v = typeof(v) == Base.SHA1 ? string(v) : v
+                TOML.print(io, Dict(k => v))
+            end
+        end
         write(io, "\n")
     end
 
     toml = TOML.parse(io)
-    for path in sort(collect(keys(toml)))
-        toml[path]["name"] = toml[path]["path"]
-        pop!(toml[path], "path")
-    end
 
     arch, os = get_os_from_opts(opts)
     platform = arch * '-' * os
-    toml = Dict("depot" => Dict(platform => Dict("fetchzip" => toml)))
+    toml = Dict("depot" => Dict(platform => toml))
 
     depotfile_path = normpath(joinpath(package_path, "julia2nix.toml"))
 
     @info "Writing depot to $depotfile_path"
-    open(normpath(joinpath(out_path, name)), "a+") do f
+    open(normpath(joinpath(out_path, name)), "w") do f
         origin = TOML.parse(f)
         if haskey(origin, "depot")
             origin["depot"][platform] = toml["depot"][platform]
-            TOML.print(f, origin)
         else
-            TOML.print(f, toml)
+            origin = toml
         end
+        TOML.print(f, origin)
     end
 end
 

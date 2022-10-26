@@ -53,7 +53,7 @@ function select_pkg_fetchers(pkgs::Vector{PackageInfo}, opts::Options)
     for pkg in pkgs
         fetchers = tofetch[pkg] = Fetcher[]
         name = "package-$(pkg.name)"
-        if opts.pkg_server !== nothing
+        if length(pkg.repos) == 0
             url = "$(opts.pkg_server)/package/$(pkg.uuid)/$(pkg.tree_hash)#package.tar.gz"
             push!(
                 fetchers,

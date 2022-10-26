@@ -1,45 +1,39 @@
 
-[depot.x86_64-linux.fetchzip.package-Git]
-name = "packages/Git/EnxqL"
-sha256 = "sha256-BqIhF5JJjruCf6jsW5YGKG1RG7FxNn3/X3sxYMb79i8="
+[depot.x86_64-linux.fetchzip.artifact-2e8fae88dcadc37883e31246fe7397f4f1039f88]
+name = "artifacts/2e8fae88dcadc37883e31246fe7397f4f1039f88"
+sha256 = "sha256-lRAr3t81krlKh9H+nX0+3l0lLS8ndwth6DiZl//MDdU="
 stripRoot = false
-url = "https://pkg.julialang.org/package/d7ba0133-e1db-5d97-8f8c-041e4b3a1eb2/d7bffc3fe097e9589145493c08c41297b457e5d0#package.tar.gz"
+url = "https://pkg.julialang.org/artifact/2e8fae88dcadc37883e31246fe7397f4f1039f88#artifact.tar.gz"
 
-[depot.x86_64-linux.fetchzip.package-Libiconv_jll]
-name = "packages/Libiconv_jll/tGWLj"
-sha256 = "sha256-q0+kpW58lKLih0e2I7IVeb/Um+O3LmiaqgSHQOWhPDM="
+[depot.x86_64-linux.fetchzip.artifact-4f01ca82b02afe6cdbe200a8f5c9849eac642482]
+name = "artifacts/4f01ca82b02afe6cdbe200a8f5c9849eac642482"
+sha256 = "sha256-hTvFbVORfMtTcljGl1LY7kgFXlNE5kO41v0R4IlLhFY="
 stripRoot = false
-url = "https://pkg.julialang.org/package/94ce4f54-9a6c-5748-9c1c-f9c7231a4531/42b62845d70a619f063a7da093d995ec8e15e778#package.tar.gz"
+url = "https://pkg.julialang.org/artifact/4f01ca82b02afe6cdbe200a8f5c9849eac642482#artifact.tar.gz"
 
-[depot.x86_64-linux.fetchzip.package-TranscodingStreams]
-name = "packages/TranscodingStreams/DYpJd"
-sha256 = "sha256-hdHVTW2azsr2/zNV0B2XX5pdsQSD7YKOUa1tBm3R3i0="
+[depot.x86_64-linux.fetchzip.artifact-fac7e6d8fc4c5775bf5118ab494120d2a0db4d64]
+name = "artifacts/fac7e6d8fc4c5775bf5118ab494120d2a0db4d64"
+sha256 = "sha256-wuSLI2PZ4SczLDqodN7CYjI7hswN1ZegUo86Tvnawq4="
 stripRoot = false
-url = "https://pkg.julialang.org/package/3bb67fe8-82b1-5028-8e26-92a6c54297fa/8a75929dcd3c38611db2f8d08546decb514fcadf#package.tar.gz"
+url = "https://pkg.julialang.org/artifact/fac7e6d8fc4c5775bf5118ab494120d2a0db4d64#artifact.tar.gz"
 
-[depot.x86_64-linux.fetchzip.package-Preferences]
-name = "packages/Preferences/VmJXL"
-sha256 = "sha256-xLlPqNWnuXQX03jlVyaDW4X6HEWgCJrv448gDHPQSbk="
+[depot.x86_64-linux.fetchzip.artifact-dc526f26fb179a3f68eb13fcbe5d2d2a5aa7eeac]
+name = "artifacts/dc526f26fb179a3f68eb13fcbe5d2d2a5aa7eeac"
+sha256 = "sha256-27PVVCJaJplznvzgGGwQE3ksOuaUarHOYmDfMKSbUug="
 stripRoot = false
-url = "https://pkg.julialang.org/package/21216c6a-2e73-6563-6e65-726566657250/47e5f437cc0e7ef2ce8406ce1e7e24d44915f88d#package.tar.gz"
+url = "https://pkg.julialang.org/artifact/dc526f26fb179a3f68eb13fcbe5d2d2a5aa7eeac#artifact.tar.gz"
 
-[depot.x86_64-linux.fetchzip.package-Expat_jll]
-name = "packages/Expat_jll/34w3j"
-sha256 = "sha256-76MUkP7Yx5UrJpBeauMVJ0TYCdhYJiGyF4xWei2ZBxw="
+[depot.x86_64-linux.fetchzip.registry-General]
+name = "registries/General"
+sha256 = "sha256-G+yMoVKxz6kJSMdpJfmgq8aXrLQryLeNf45NTFTedqQ="
 stripRoot = false
-url = "https://pkg.julialang.org/package/2e619515-83b5-522b-bb60-26c02a35a201/bad72f730e9e91c08d9427d5e8db95478a3c323d#package.tar.gz"
+url = "https://pkg.julialang.org/registry/23338594-aafe-5451-b93e-139f81909106/eee82f698053dcb8c5a6758161fddcd0dd9b24d5#registry.tar.gz"
 
-[depot.x86_64-linux.fetchzip.package-JSON]
-name = "packages/JSON/NeJ9k"
-sha256 = "sha256-n2oLLNDn7qsRytMKXKUB653A14Yat+GiK9DgrkVBV9A="
+[depot.x86_64-linux.fetchzip.artifact-33c5e3a13ad6427f86436f577c0edce1e468ac80]
+name = "artifacts/33c5e3a13ad6427f86436f577c0edce1e468ac80"
+sha256 = "sha256-yHv+b8WLS2yJKgp6tbVsvEtiki5DNBKGuXiNaRjo+Oo="
 stripRoot = false
-url = "https://pkg.julialang.org/package/682c06a0-de6a-54ab-a142-c8b1cf79cde6/3c837543ddb02250ef42f4738347454f95079d4e#package.tar.gz"
-
-[depot.x86_64-linux.fetchzip.package-Parsers]
-name = "packages/Parsers/34hDN"
-sha256 = "sha256-m7AlGdiKQoUSdgUOAsZ6FUFQLAUotX1wYhtTTRHGL7k="
-stripRoot = false
-url = "https://pkg.julialang.org/package/69de0a69-1ddd-5017-9359-2bf0b02dc9f0/3d5bf43e3e8b412656404ed9466f1dcbf7c50269#package.tar.gz"
+url = "https://pkg.julialang.org/artifact/33c5e3a13ad6427f86436f577c0edce1e468ac80#artifact.tar.gz"
 
 [depot.x86_64-linux.fetchzip.artifact-3e19866657986912870f596aecfee137473965a9]
 name = "artifacts/3e19866657986912870f596aecfee137473965a9"
@@ -53,128 +47,134 @@ sha256 = "sha256-C+jXI3NPFkz3mRtxTm0CWKk4U/GukzkPBF+BH8HC89E="
 stripRoot = false
 url = "https://pkg.julialang.org/artifact/25fa81dbac6496585a91dbdc258273d39442466f#artifact.tar.gz"
 
-[depot.x86_64-linux.fetchzip.package-MbedTLS]
+[depot.x86_64-linux.fetchgit.package-Git]
+name = "packages/Git/EnxqL"
+sha256 = "sha256-BqIhF5JJjruCf6jsW5YGKG1RG7FxNn3/X3sxYMb79i8="
+rev = "d7bffc3fe097e9589145493c08c41297b457e5d0"
+url = "https://github.com/JuliaVersionControl/Git.jl.git"
+
+[depot.x86_64-linux.fetchgit.package-Libiconv_jll]
+name = "packages/Libiconv_jll/tGWLj"
+sha256 = "sha256-q0+kpW58lKLih0e2I7IVeb/Um+O3LmiaqgSHQOWhPDM="
+rev = "42b62845d70a619f063a7da093d995ec8e15e778"
+url = "https://github.com/JuliaBinaryWrappers/Libiconv_jll.jl.git"
+
+[depot.x86_64-linux.fetchgit.package-TranscodingStreams]
+name = "packages/TranscodingStreams/DYpJd"
+sha256 = "sha256-hdHVTW2azsr2/zNV0B2XX5pdsQSD7YKOUa1tBm3R3i0="
+rev = "8a75929dcd3c38611db2f8d08546decb514fcadf"
+url = "https://github.com/JuliaIO/TranscodingStreams.jl.git"
+
+[depot.x86_64-linux.fetchgit.package-Preferences]
+name = "packages/Preferences/VmJXL"
+sha256 = "sha256-xLlPqNWnuXQX03jlVyaDW4X6HEWgCJrv448gDHPQSbk="
+rev = "47e5f437cc0e7ef2ce8406ce1e7e24d44915f88d"
+url = "https://github.com/JuliaPackaging/Preferences.jl.git"
+
+[depot.x86_64-linux.fetchgit.package-Expat_jll]
+name = "packages/Expat_jll/34w3j"
+sha256 = "sha256-76MUkP7Yx5UrJpBeauMVJ0TYCdhYJiGyF4xWei2ZBxw="
+rev = "bad72f730e9e91c08d9427d5e8db95478a3c323d"
+url = "https://github.com/JuliaBinaryWrappers/Expat_jll.jl.git"
+
+[depot.x86_64-linux.fetchgit.package-JSON]
+name = "packages/JSON/NeJ9k"
+sha256 = "sha256-n2oLLNDn7qsRytMKXKUB653A14Yat+GiK9DgrkVBV9A="
+rev = "3c837543ddb02250ef42f4738347454f95079d4e"
+url = "https://github.com/JuliaIO/JSON.jl.git"
+
+[depot.x86_64-linux.fetchgit.package-Parsers]
+name = "packages/Parsers/34hDN"
+sha256 = "sha256-m7AlGdiKQoUSdgUOAsZ6FUFQLAUotX1wYhtTTRHGL7k="
+rev = "3d5bf43e3e8b412656404ed9466f1dcbf7c50269"
+url = "https://github.com/JuliaData/Parsers.jl.git"
+
+[depot.x86_64-linux.fetchgit.package-MbedTLS]
 name = "packages/MbedTLS/yELM7"
 sha256 = "sha256-W6G0C7HDds740mu8roRMAAGRPxtf5M2vb4Zgep84ABU="
-stripRoot = false
-url = "https://pkg.julialang.org/package/739be429-bea8-5141-9913-cc70e7f3736d/6872f9594ff273da6d13c7c1a1545d5a8c7d0c1c#package.tar.gz"
+rev = "6872f9594ff273da6d13c7c1a1545d5a8c7d0c1c"
+url = "https://github.com/JuliaLang/MbedTLS.jl.git"
 
-[depot.x86_64-linux.fetchzip.package-Git_jll]
+[depot.x86_64-linux.fetchgit.package-Git_jll]
 name = "packages/Git_jll/G4IMQ"
 sha256 = "sha256-rEjJehQYEKInDVQMWp4GpE//T6wqsOy4L6rRpiWgdqc="
-stripRoot = false
-url = "https://pkg.julialang.org/package/f8c6e375-362e-5223-8a59-34ff63f689eb/6e93d42b97978709e9c941fa43d0f01701f0d290#package.tar.gz"
+rev = "6e93d42b97978709e9c941fa43d0f01701f0d290"
+url = "https://github.com/JuliaBinaryWrappers/Git_jll.jl.git"
 
-[depot.x86_64-linux.fetchzip.package-TextWrap]
+[depot.x86_64-linux.fetchgit.package-TextWrap]
 name = "packages/TextWrap/DsImh"
 sha256 = "sha256-vn0TEXG+NUvX+SDKkdhbV6o0KAampR+wtNUan1yKkNo="
-stripRoot = false
-url = "https://pkg.julialang.org/package/b718987f-49a8-5099-9789-dcd902bef87d/9250ef9b01b66667380cf3275b3f7488d0e25faf#package.tar.gz"
+rev = "9250ef9b01b66667380cf3275b3f7488d0e25faf"
+url = "https://github.com/carlobaldassi/TextWrap.jl.git"
 
-[depot.x86_64-linux.fetchzip.artifact-4f01ca82b02afe6cdbe200a8f5c9849eac642482]
-name = "artifacts/4f01ca82b02afe6cdbe200a8f5c9849eac642482"
-sha256 = "sha256-hTvFbVORfMtTcljGl1LY7kgFXlNE5kO41v0R4IlLhFY="
-stripRoot = false
-url = "https://pkg.julialang.org/artifact/4f01ca82b02afe6cdbe200a8f5c9849eac642482#artifact.tar.gz"
-
-[depot.x86_64-linux.fetchzip.package-SimpleBufferStream]
+[depot.x86_64-linux.fetchgit.package-SimpleBufferStream]
 name = "packages/SimpleBufferStream/N1BA4"
 sha256 = "sha256-oiV4k4jh+sJLWgbHoO0RWnpPVXHIlENIarRfEnBdqhw="
-stripRoot = false
-url = "https://pkg.julialang.org/package/777ac1f9-54b0-4bf8-805c-2214025038e7/874e8867b33a00e784c8a7e4b60afe9e037b74e1#package.tar.gz"
+rev = "874e8867b33a00e784c8a7e4b60afe9e037b74e1"
+url = "https://github.com/staticfloat/SimpleBufferStream.jl.git"
 
-[depot.x86_64-linux.fetchzip.package-ArgParse]
+[depot.x86_64-linux.fetchgit.package-ArgParse]
 name = "packages/ArgParse/bylyV"
 sha256 = "sha256-qBM1thqt0id4UridMeChGWigvDVP+PuOBpSyIT9YJAs="
-stripRoot = false
-url = "https://pkg.julialang.org/package/c7e460c6-2fb9-53a9-8c5b-16f535851c63/3102bce13da501c9104df33549f511cd25264d7d#package.tar.gz"
+rev = "3102bce13da501c9104df33549f511cd25264d7d"
+url = "https://github.com/carlobaldassi/ArgParse.jl.git"
 
-[depot.x86_64-linux.fetchzip.package-CodecBase]
+[depot.x86_64-linux.fetchgit.package-CodecBase]
 name = "packages/CodecBase/JP712"
 sha256 = "sha256-WJ4fn9m8zlpOYS9oZSU0fwYxDTJwjujXDcIBL9IJdwo="
-stripRoot = false
-url = "https://pkg.julialang.org/package/6c391c72-fb7b-5838-ba82-7cfb1bcfecbf/744128fbfc6fe0739085d995b1756f1856964d4c#package.tar.gz"
+rev = "744128fbfc6fe0739085d995b1756f1856964d4c"
+url = "https://github.com/JuliaIO/CodecBase.jl.git"
 
-[depot.x86_64-linux.fetchzip.package-Gettext_jll]
+[depot.x86_64-linux.fetchgit.package-Gettext_jll]
 name = "packages/Gettext_jll/5wIPp"
 sha256 = "sha256-rvbsJ0HAiGvY/CIWn0bLqEPqsqcf0PlekgaDkzafHD4="
-stripRoot = false
-url = "https://pkg.julialang.org/package/78b55507-aeef-58d4-861c-77aaff3498b1/9b02998aba7bf074d14de89f9d37ca24a1a0b046#package.tar.gz"
+rev = "9b02998aba7bf074d14de89f9d37ca24a1a0b046"
+url = "https://github.com/JuliaBinaryWrappers/Gettext_jll.jl.git"
 
-[depot.x86_64-linux.fetchzip.package-JLLWrappers]
+[depot.x86_64-linux.fetchgit.package-JLLWrappers]
 name = "packages/JLLWrappers/QpMQW"
 sha256 = "sha256-HCas3QrKJJu2CPtTfe6HLCdajP5j84fxqvXmw6BJGHk="
-stripRoot = false
-url = "https://pkg.julialang.org/package/692b3bcd-3c85-4b1f-b108-f13ce0eb3210/abc9885a7ca2052a736a600f7fa66209f96506e1#package.tar.gz"
+rev = "abc9885a7ca2052a736a600f7fa66209f96506e1"
+url = "https://github.com/JuliaPackaging/JLLWrappers.jl.git"
 
-[depot.x86_64-linux.fetchzip.artifact-33c5e3a13ad6427f86436f577c0edce1e468ac80]
-name = "artifacts/33c5e3a13ad6427f86436f577c0edce1e468ac80"
-sha256 = "sha256-yHv+b8WLS2yJKgp6tbVsvEtiki5DNBKGuXiNaRjo+Oo="
-stripRoot = false
-url = "https://pkg.julialang.org/artifact/33c5e3a13ad6427f86436f577c0edce1e468ac80#artifact.tar.gz"
-
-[depot.x86_64-linux.fetchzip.package-HTTP]
+[depot.x86_64-linux.fetchgit.package-HTTP]
 name = "packages/HTTP/PesRN"
 sha256 = "sha256-LjfKMrHdk2UtCAA+Bcn0B7SMhu3kNDYOZu2ADm3T2QY="
-stripRoot = false
-url = "https://pkg.julialang.org/package/cd3eb016-35fb-5094-929b-558a96fad6f3/59ba44e0aa49b87a8c7a8920ec76f8afe87ed502#package.tar.gz"
+rev = "59ba44e0aa49b87a8c7a8920ec76f8afe87ed502"
+url = "https://github.com/JuliaWeb/HTTP.jl.git"
 
-[depot.x86_64-linux.fetchzip.artifact-fac7e6d8fc4c5775bf5118ab494120d2a0db4d64]
-name = "artifacts/fac7e6d8fc4c5775bf5118ab494120d2a0db4d64"
-sha256 = "sha256-wuSLI2PZ4SczLDqodN7CYjI7hswN1ZegUo86Tvnawq4="
-stripRoot = false
-url = "https://pkg.julialang.org/artifact/fac7e6d8fc4c5775bf5118ab494120d2a0db4d64#artifact.tar.gz"
-
-[depot.x86_64-linux.fetchzip.package-LoggingExtras]
+[depot.x86_64-linux.fetchgit.package-LoggingExtras]
 name = "packages/LoggingExtras/zT9ZU"
 sha256 = "sha256-dh6B2gKpHH+26SMCK56yRq9GC6HDs7fCW8ILwgj8l/Q="
-stripRoot = false
-url = "https://pkg.julialang.org/package/e6f89c97-d47a-5376-807f-9c37f3926c36/5d4d2d9904227b8bd66386c1138cf4d5ffa826bf#package.tar.gz"
+rev = "5d4d2d9904227b8bd66386c1138cf4d5ffa826bf"
+url = "https://github.com/JuliaLogging/LoggingExtras.jl.git"
 
-[depot.x86_64-linux.fetchzip.artifact-dc526f26fb179a3f68eb13fcbe5d2d2a5aa7eeac]
-name = "artifacts/dc526f26fb179a3f68eb13fcbe5d2d2a5aa7eeac"
-sha256 = "sha256-27PVVCJaJplznvzgGGwQE3ksOuaUarHOYmDfMKSbUug="
-stripRoot = false
-url = "https://pkg.julialang.org/artifact/dc526f26fb179a3f68eb13fcbe5d2d2a5aa7eeac#artifact.tar.gz"
-
-[depot.x86_64-linux.fetchzip.package-URIs]
+[depot.x86_64-linux.fetchgit.package-URIs]
 name = "packages/URIs/JmxRD"
 sha256 = "sha256-yW+GHRfEnzbVD2OjxrjIUutx6cBNhqVT8S/v9jaP6MI="
-stripRoot = false
-url = "https://pkg.julialang.org/package/5c2747f8-b7ea-4ff2-ba2e-563bfd36b1d4/e59ecc5a41b000fa94423a578d29290c7266fc10#package.tar.gz"
+rev = "e59ecc5a41b000fa94423a578d29290c7266fc10"
+url = "https://github.com/JuliaWeb/URIs.jl.git"
 
-[depot.x86_64-linux.fetchzip.package-CodecZlib]
+[depot.x86_64-linux.fetchgit.package-CodecZlib]
 name = "packages/CodecZlib/ruMLE"
 sha256 = "sha256-BL6c/f/6bbbn6e3qBOWwO3+vxwv7G9P/IpNP6u0ApnY="
-stripRoot = false
-url = "https://pkg.julialang.org/package/944b1d66-785c-5afd-91f1-9de20f533193/ded953804d019afa9a3f98981d99b33e3db7b6da#package.tar.gz"
+rev = "ded953804d019afa9a3f98981d99b33e3db7b6da"
+url = "https://github.com/JuliaIO/CodecZlib.jl.git"
 
-[depot.x86_64-linux.fetchzip.artifact-2e8fae88dcadc37883e31246fe7397f4f1039f88]
-name = "artifacts/2e8fae88dcadc37883e31246fe7397f4f1039f88"
-sha256 = "sha256-lRAr3t81krlKh9H+nX0+3l0lLS8ndwth6DiZl//MDdU="
-stripRoot = false
-url = "https://pkg.julialang.org/artifact/2e8fae88dcadc37883e31246fe7397f4f1039f88#artifact.tar.gz"
-
-[depot.x86_64-linux.fetchzip.package-OpenSSL_jll]
+[depot.x86_64-linux.fetchgit.package-OpenSSL_jll]
 name = "packages/OpenSSL_jll/FyLfZ"
 sha256 = "sha256-qrsDPBjz/nlQZ1k++u9HYiWeowFaWNmT6WjP3qvB2n4="
-stripRoot = false
-url = "https://pkg.julialang.org/package/458c3c95-2e84-50aa-8efc-19380b2a3a95/e60321e3f2616584ff98f0a4f18d98ae6f89bbb3#package.tar.gz"
+rev = "e60321e3f2616584ff98f0a4f18d98ae6f89bbb3"
+url = "https://github.com/JuliaBinaryWrappers/OpenSSL_jll.jl.git"
 
-[depot.x86_64-linux.fetchzip.package-IniFile]
+[depot.x86_64-linux.fetchgit.package-IniFile]
 name = "packages/IniFile/LzI2G"
 sha256 = "sha256-7uQSdBYwRvH3/4aKXEE6U+AEMQnPmEGgl6sZt+U6vu4="
-stripRoot = false
-url = "https://pkg.julialang.org/package/83e8ac13-25f8-5344-8a64-a9f2b223428f/f550e6e32074c939295eb5ea6de31849ac2c9625#package.tar.gz"
+rev = "f550e6e32074c939295eb5ea6de31849ac2c9625"
+url = "https://github.com/JuliaIO/IniFile.jl.git"
 
-[depot.x86_64-linux.fetchzip.package-XML2_jll]
+[depot.x86_64-linux.fetchgit.package-XML2_jll]
 name = "packages/XML2_jll/Zf4Jm"
 sha256 = "sha256-iS/con9/4+UO/oBmIM0PX7qnfEPCKn60MkX8J3PVaPY="
-stripRoot = false
-url = "https://pkg.julialang.org/package/02c8fc9c-b97f-50b9-bbe4-9be30ff0a78a/58443b63fb7e465a8a7210828c91c08b92132dff#package.tar.gz"
-
-[depot.x86_64-linux.fetchzip.registry-General]
-name = "registries/General"
-sha256 = "sha256-zxMhuvTHx1ICD5p3s9pwvqCmtfPHB4xPTnbKAQtXZJU="
-stripRoot = false
-url = "https://pkg.julialang.org/registry/23338594-aafe-5451-b93e-139f81909106/2c7aace86f615932f40f3968e81796a3ff6ecaef#registry.tar.gz"
+rev = "58443b63fb7e465a8a7210828c91c08b92132dff"
+url = "https://github.com/JuliaBinaryWrappers/XML2_jll.jl.git"
