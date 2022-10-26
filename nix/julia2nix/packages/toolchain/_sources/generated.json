@@ -1,4 +1,34 @@
 {
+    "julia-17-release-aarch64-darwin": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "julia-17-release-aarch64-darwin",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-Qg2OODnD45QH9TZc6zv7hImaRAkV7IljkFaAFbP/pLk=",
+            "type": "url",
+            "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.7/julia-1.7.2-macaarch64.dmg"
+        },
+        "version": "1.7.2-macaarch64.dmg"
+    },
+    "julia-17-release-aarch64-linux": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "julia-17-release-aarch64-linux",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-2eizQsgK0TcVIO1tEfVbeKpgdGc3+/V+yv1qI7Ut1x0=",
+            "type": "url",
+            "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.7/julia-1.7.3-linux-aarch64.tar.gz"
+        },
+        "version": "1.7.2-macaarch64.dmg"
+    },
     "julia-17-release-x86_64-darwin": {
         "cargoLocks": null,
         "date": null,

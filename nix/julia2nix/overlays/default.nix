@@ -33,6 +33,8 @@
 
     julia_17-bin = cell.packages.julia_17-bin;
 
+    julia_18-bin = cell.packages.julia_18-bin;
+
     julia-sources = prev.callPackage ../packages/toolchain/_sources/generated.nix {};
 
     patch-sources = prev.callPackage ./patches/_sources/generated.nix {};

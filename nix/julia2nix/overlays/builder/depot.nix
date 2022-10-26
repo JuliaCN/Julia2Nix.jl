@@ -62,7 +62,7 @@
     })
   depots;
 in
-symlinkJoin {
-  name = "julia-depot";
-  paths = lib.attrValues srcs;
-}
+  symlinkJoin {
+    name = "julia-depot";
+    paths = lib.attrValues srcs;
+  }
