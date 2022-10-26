@@ -87,7 +87,7 @@ in {
     name = "julia2nix";
     runtimeInputs = [cell.packages.build-project];
     text = ''
-      julia ${std.incl self ["testenv"]}/testenv/writejulia2nix.jl" ${nixpkgs.system}
+      julia ${std.incl self ["testenv"]}/testenv/writejulia2nix.jl ${nixpkgs.system}
     '';
   };
 

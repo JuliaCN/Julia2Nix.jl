@@ -27,6 +27,17 @@ in {
       '';
     };
 
+  julia-ion = cell.lib.buildEnv {
+      name = "julia-ion";
+      src = ./ion;
+      extraBuildInputs = [
+        nixpkgs.libsodium
+      ];
+      package = cell.lib.julia-wrapped {
+        package = cell.packages.julia_18-bin;
+      };
+    };
+
   ion = let
     julia-ion = cell.lib.buildEnv {
       name = "julia-ion";
