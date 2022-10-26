@@ -1,12 +1,12 @@
 {
   stdenv,
-  julia_17-bin,
+  julia_18-bin,
   runCommand,
   makeWrapper,
   lib,
   ...
 }: {
-  package ? julia_17-bin,
+  package ? julia_18-bin,
   extraLibs ? [],
   src,
   importManifest ? src + "/Manifest.toml",
@@ -17,7 +17,7 @@
   extraInstallPhase ? "",
   extraStartup ? "",
   makeWrapperArgs ? [],
-  extraBuildDepot ? {},
+  extraDepot ? {},
   saveRegistry ? false,
   ...
 } @ args: let
@@ -30,7 +30,7 @@
   # Wrapped Julia with libraries and environment variables.
   # Note: setting The PYTHON environment variable is recommended to prevent packages
   # from trying to obtain their own with Conda.
-  depotPath = lib.buildDepot (lib.recursiveUpdate {inherit julia2nix;} extraBuildDepot);
+  depotPath = lib.buildDepot (lib.recursiveUpdate {inherit julia2nix;} extraDepot);
 in
   stdenv.mkDerivation {
     name = (lib.importTOML importProject).name or args.name;
@@ -97,13 +97,14 @@ in
       '
       fi
 
-      # # Remove the registry to save space
-      ${lib.optionalString (!saveRegistry) ''
-        julia -e 'using Pkg; Pkg.Registry.rm("General")'
-      ''}
-
       runHook postInstall
     '';
 
+    postFixup = ''
+      # Remove the registry to save space
+      ${lib.optionalString (!saveRegistry) ''
+        julia -e 'using Pkg; Pkg.Registry.rm("General")'
+      ''}
+    '';
     meta.mainProgram = "julia";
   }
