@@ -5,7 +5,7 @@ on:
       - main
   workflow_dispatch: # allows manual triggering
   schedule:
-    - cron: "30 * * * *" # runs every 30 mins
+    - cron: "0 0 * * SUN" # every sunday
 
 jobs:
   check:
