@@ -89,11 +89,11 @@
         },
         "version": "1.8.2-linux-x86_64.tar.gz"
     },
-    "julia-nightly-aarch64-darwin": {
+    "julia-nightly-19-aarch64-darwin": {
         "cargoLocks": null,
         "date": null,
         "extract": null,
-        "name": "julia-nightly-aarch64-darwin",
+        "name": "julia-nightly-19-aarch64-darwin",
         "passthru": null,
         "pinned": false,
         "src": {
@@ -104,11 +104,11 @@
         },
         "version": "06b74c7d90"
     },
-    "julia-nightly-aarch64-linux": {
+    "julia-nightly-19-aarch64-linux": {
         "cargoLocks": null,
         "date": null,
         "extract": null,
-        "name": "julia-nightly-aarch64-linux",
+        "name": "julia-nightly-19-aarch64-linux",
         "passthru": null,
         "pinned": false,
         "src": {
@@ -119,11 +119,11 @@
         },
         "version": "06b74c7d90"
     },
-    "julia-nightly-x86_64-darwin": {
+    "julia-nightly-19-x86_64-darwin": {
         "cargoLocks": null,
         "date": null,
         "extract": null,
-        "name": "julia-nightly-x86_64-darwin",
+        "name": "julia-nightly-19-x86_64-darwin",
         "passthru": null,
         "pinned": false,
         "src": {
@@ -134,11 +134,11 @@
         },
         "version": "06b74c7d90"
     },
-    "julia-nightly-x86_64-linux": {
+    "julia-nightly-19-x86_64-linux": {
         "cargoLocks": null,
         "date": null,
         "extract": null,
-        "name": "julia-nightly-x86_64-linux",
+        "name": "julia-nightly-19-x86_64-linux",
         "passthru": null,
         "pinned": false,
         "src": {
