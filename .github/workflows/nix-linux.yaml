@@ -24,11 +24,6 @@ jobs:
     - name: Nix Flake Show
       run: nix flake show
 
-    - name: Julia Version Update
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: nix develop .#update --command nvfetcher-update
-
     - name: Check Julia Version
       run: nix develop --show-trace --command -- julia --version
 
