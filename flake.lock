@@ -17,17 +17,18 @@
     },
     "cells-lab": {
       "inputs": {
+        "incl": "incl",
         "nixos": "nixos",
         "nixpkgs": "nixpkgs",
         "org-roam-book-template": "org-roam-book-template",
         "std": "std"
       },
       "locked": {
-        "lastModified": 1669085561,
-        "narHash": "sha256-KQjbXLdE50hr7vhO30+3zKPBuT9Y7XbShbsEkyy70ZI=",
+        "lastModified": 1669086490,
+        "narHash": "sha256-oB8lA/87ZMnqDijB+1PIOsTQLejuKu+BN/4DGCeRgpI=",
         "owner": "gtrunsec",
         "repo": "cells-lab",
-        "rev": "a9263d2e2923a2c7a53b623ce633756e0f1ba870",
+        "rev": "156f7fe91e1cc869f5a1a1fe91f59cced0098e05",
         "type": "github"
       },
       "original": {
@@ -188,23 +189,20 @@
     },
     "incl": {
       "inputs": {
-        "nixlib": [
-          "cells-lab",
-          "std",
-          "nixpkgs"
-        ]
+        "nixlib": "nixlib"
       },
       "locked": {
-        "lastModified": 1669064039,
-        "narHash": "sha256-pQVq4ZmUcU46kaGAYQwlwpNHmL+jFNuQm3TYDZChggQ=",
+        "lastModified": 1667701840,
+        "narHash": "sha256-Nib6hrSFvZWO+20A/8vHtbSEi8YHdnOFXg/52Ff3R8w=",
         "owner": "divnix",
         "repo": "incl",
-        "rev": "6793404bbada643beef45abb8d2d646db9a3ba66",
+        "rev": "bb3a06f5dd32738fa02999bd1e1c0b41cc4a234e",
         "type": "github"
       },
       "original": {
         "owner": "divnix",
         "repo": "incl",
+        "rev": "bb3a06f5dd32738fa02999bd1e1c0b41cc4a234e",
         "type": "github"
       }
     },
@@ -310,6 +308,21 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixago",
+        "type": "github"
+      }
+    },
+    "nixlib": {
+      "locked": {
+        "lastModified": 1667696192,
+        "narHash": "sha256-hOdbIhnpWvtmVynKcsj10nxz9WROjZja+1wRAJ/C9+s=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "babd9cd2ca6e413372ed59fbb1ecc3c3a5fd3e5b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
         "type": "github"
       }
     },
@@ -455,7 +468,10 @@
         "devshell": "devshell",
         "dmerge": "dmerge",
         "flake-utils": "flake-utils_3",
-        "incl": "incl",
+        "incl": [
+          "cells-lab",
+          "incl"
+        ],
         "makes": [
           "cells-lab",
           "std",
