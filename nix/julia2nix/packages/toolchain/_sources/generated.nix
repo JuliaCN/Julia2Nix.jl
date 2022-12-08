@@ -67,34 +67,34 @@
   };
   julia-nightly-19-aarch64-darwin = {
     pname = "julia-nightly-19-aarch64-darwin";
-    version = "06b74c7d90";
+    version = "495a004bda";
     src = fetchurl {
-      url = "https://julialangnightlies-s3.julialang.org/bin/macos/aarch64/1.9/julia-06b74c7d90-macos-aarch64.dmg";
-      sha256 = "sha256-SwcZQQ3xwOEYppokiSr4zKZ6PCCtn7j+JfVvBVJmVTc=";
+      url = "https://julialangnightlies-s3.julialang.org/bin/macos/aarch64/1.10/julia-495a004bda-macos-aarch64.dmg";
+      sha256 = "sha256-fqocVseSI6xp/HA+UnrLnKP09/in1KclGMI/i/GuEwU=";
     };
   };
   julia-nightly-19-aarch64-linux = {
     pname = "julia-nightly-19-aarch64-linux";
-    version = "06b74c7d90";
+    version = "495a004bda";
     src = fetchurl {
-      url = "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/1.9/julia-06b74c7d90-linux-aarch64.tar.gz";
-      sha256 = "sha256-juBbE7baWTA56uYqqeD0IIM/c5s24ux6sjxmTNihhfA=";
+      url = "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/1.10/julia-495a004bda-linux-aarch64.tar.gz";
+      sha256 = "sha256-3VtMDDhdngdFcUiaCKS+czWSKfi29KDbb0R+zL8Vx2U=";
     };
   };
   julia-nightly-19-x86_64-darwin = {
     pname = "julia-nightly-19-x86_64-darwin";
-    version = "06b74c7d90";
+    version = "495a004bda";
     src = fetchurl {
-      url = "https://julialangnightlies-s3.julialang.org/bin/macos/x86_64/1.9/julia-06b74c7d90-macos-x86_64.dmg";
-      sha256 = "sha256-nF70+i1UjdK7wyVygxke0pMXqh1gS0txQlKbHcIp4ZE=";
+      url = "https://julialangnightlies-s3.julialang.org/bin/macos/x86_64/1.10/julia-495a004bda-macos-x86_64.dmg";
+      sha256 = "sha256-++JplPJAfZxpx/Z5jKteOWV9+yv8TBdn/JhXvkSF8yo=";
     };
   };
   julia-nightly-19-x86_64-linux = {
     pname = "julia-nightly-19-x86_64-linux";
-    version = "06b74c7d90";
+    version = "495a004bda";
     src = fetchurl {
-      url = "https://julialangnightlies-s3.julialang.org/bin/linux/x86_64/1.9/julia-06b74c7d90-linux-x86_64.tar.gz";
-      sha256 = "sha256-+Xu8ZblwfxDqWgQjy1vYaifvazTfPRVxe6VqcyJ6E20=";
+      url = "https://julialangnightlies-s3.julialang.org/bin/linux/x86_64/1.10/julia-495a004bda-linux-x86_64.tar.gz";
+      sha256 = "sha256-PBrlx//NKeRai6U3nfGckXuL2HpKNK4LFShtGMBMduM=";
     };
   };
 }

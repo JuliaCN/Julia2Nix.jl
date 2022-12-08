@@ -42,18 +42,18 @@ fetch.url = "https://julialang-s3.julialang.org/bin/linux/aarch64/1.8/julia-$ver
 
 # nightly versions
 [julia-nightly-19-x86_64-darwin]
-fetch.url = "https://julialangnightlies-s3.julialang.org/bin/macos/x86_64/1.9/julia-$ver-macos-x86_64.dmg"
-src.cmd = "git --git-dir=$HOME/ghq/github.com/JuliaLang/julia/.git rev-list HEAD --max-count 10 | tail -n 1 | head -c 10"
+fetch.url = "https://julialangnightlies-s3.julialang.org/bin/macos/x86_64/1.10/julia-$ver-macos-x86_64.dmg"
+src.cmd = "git --git-dir=$HOME/ghq/github.com/JuliaLang/julia/.git rev-list HEAD --max-count 4 | tail -n 1 | head -c 10"
 
 [julia-nightly-19-aarch64-darwin]
-fetch.url = "https://julialangnightlies-s3.julialang.org/bin/macos/aarch64/1.9/julia-$ver-macos-aarch64.dmg"
-src.cmd = "git --git-dir=$HOME/ghq/github.com/JuliaLang/julia/.git rev-list HEAD --max-count 10 | tail -n 1 | head -c 10"
+fetch.url = "https://julialangnightlies-s3.julialang.org/bin/macos/aarch64/1.10/julia-$ver-macos-aarch64.dmg"
+src.cmd = "git --git-dir=$HOME/ghq/github.com/JuliaLang/julia/.git rev-list HEAD --max-count 4 | tail -n 1 | head -c 10"
 
 [julia-nightly-19-x86_64-linux]
-fetch.url = "https://julialangnightlies-s3.julialang.org/bin/linux/x86_64/1.9/julia-$ver-linux-x86_64.tar.gz"
-src.cmd = "git --git-dir=$HOME/ghq/github.com/JuliaLang/julia/.git rev-list HEAD --max-count 10 | tail -n 1 | head -c 10"
+fetch.url = "https://julialangnightlies-s3.julialang.org/bin/linux/x86_64/1.10/julia-$ver-linux-x86_64.tar.gz"
+src.cmd = "git --git-dir=$HOME/ghq/github.com/JuliaLang/julia/.git rev-list HEAD --max-count 4 | tail -n 1 | head -c 10"
 
 # https://buildkite.com/julialang/julia-master/builds/17477#018411b9-e0ec-4d8b-9c15-deeca1114190
 [julia-nightly-19-aarch64-linux]
-fetch.url = "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/1.9/julia-$ver-linux-aarch64.tar.gz"
-src.cmd = "git --git-dir=$HOME/ghq/github.com/JuliaLang/julia/.git rev-list HEAD --max-count 10 | tail -n 1 | head -c 10"
+fetch.url = "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/1.10/julia-$ver-linux-aarch64.tar.gz"
+src.cmd = "git --git-dir=$HOME/ghq/github.com/JuliaLang/julia/.git rev-list HEAD --max-count 4 | tail -n 1 | head -c 10"
