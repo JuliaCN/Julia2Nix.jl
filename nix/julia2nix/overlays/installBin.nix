@@ -16,7 +16,7 @@ in
       autoPatchelfHook
     ];
 
-    postPatch = lib.optionalString (version != "nightly-19") ''
+    postPatch = lib.optionalString (version != "nightly-110") ''
       # Julia fails to pick up our Certification Authority root certificates, but
       # it provides its own so we can simply disable the test. Patching in the
       # dynamic path to ours require us to rebuild the Julia system image.
