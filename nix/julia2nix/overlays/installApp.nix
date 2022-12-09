@@ -12,37 +12,39 @@
   sourceRoot ? ".",
   extraBuildInputs ? [],
   ...
-}:
-stdenvNoCC.mkDerivation rec {
-  name = pname;
-  inherit version;
-  inherit (julia-sources."julia-${version}-${system}") pname src;
+}: let
+  majorVersion = import ./version.nix {inherit lib version;};
+in
+  stdenvNoCC.mkDerivation {
+    pname = lib.elemAt (lib.splitString "-" julia-sources."julia-${version}-${system}".pname) 0;
+    inherit (julia-sources."julia-${version}-${system}") src;
+    version = majorVersion;
 
-  buildInputs = [undmg] ++ extraBuildInputs;
+    buildInputs = [undmg] ++ extraBuildInputs;
 
-  inherit sourceRoot;
+    inherit sourceRoot;
 
-  phases = [
-    "unpackPhase"
-    "installPhase"
-  ];
+    phases = [
+      "unpackPhase"
+      "installPhase"
+    ];
 
-  installPhase = let
-    appname = "Julia-${version}";
-  in
-    ''
-      runHook preInstall
+    installPhase = let
+      appname = "Julia-${version}";
+    in
+      ''
+        runHook preInstall
 
-      mkdir -p "$out/Applications"
-      cp -r *.app "$out/Applications"
-      ln -s $out/Applications/*.app/Contents/Resources/julia/bin $out/bin
+        mkdir -p "$out/Applications"
+        cp -r *.app "$out/Applications"
+        ln -s $out/Applications/*.app/Contents/Resources/julia/bin $out/bin
 
-    ''
-    + postInstall;
+      ''
+      + postInstall;
 
-  meta = {
-    platforms = lib.platforms.darwin;
-    mainProgram = "julia";
-    description = "${version}: High-level, high-performance, dynamic language for technical computing";
-  };
-}
+    meta = {
+      platforms = lib.platforms.darwin;
+      mainProgram = "julia";
+      description = "${version}: High-level, high-performance, dynamic language for technical computing";
+    };
+  }

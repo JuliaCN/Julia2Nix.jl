@@ -34,7 +34,7 @@
               pkgs.python3.buildEnv.override
               {
                 extraLibs = with pkgs.python3Packages; [xlrd matplotlib pyqt5];
-                ignoreCollisions = true;
+                # ignoreCollisions = true;
               };
           };
         };
@@ -62,7 +62,12 @@
             # add nightly julia
             # inputs.julia2nix.${pkgs.system}.julia2nix.devshellProfiles.nightly
           ];
-          commands = [{package = julia-wrapped;}];
+          commands = [
+            {
+              package = julia-wrapped;
+              help = julia2nix.packages.${pkgs.system}.julia_18-bin.meta.description;
+            }
+          ];
         };
       })
     )

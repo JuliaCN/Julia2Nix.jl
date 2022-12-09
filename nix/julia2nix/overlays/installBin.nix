@@ -6,15 +6,12 @@
   system,
   ...
 }: {version}: let
-  majorVersion = let
-    v = builtins.head (lib.splitString "-" version);
-    major = builtins.substring 0 1 v;
-    minor = builtins.substring 1 2 v;
-  in (major + "." + minor);
+  majorVersion = import ./version.nix {inherit lib version;};
 in
   stdenv.mkDerivation {
-    inherit (julia-sources."julia-${version}-${system}") src pname version;
-
+    inherit (julia-sources."julia-${version}-${system}") src;
+    pname = lib.elemAt (lib.splitString "-" julia-sources."julia-${version}-${system}".pname) 0;
+    version = majorVersion;
     nativeBuildInputs = lib.optionals stdenv.hostPlatform.isLinux [
       autoPatchelfHook
     ];
