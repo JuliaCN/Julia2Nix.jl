@@ -44,7 +44,7 @@ in {
     })
     // l.optionalAttrs (nixpkgs.system == "x86_64-linux" || nixpkgs.system == "aarch64-linux") (cell.lib.installBin {
       inherit version;
-    })) "nightly-19";
+    })) "nightly-110";
 
   julia-wrapped = cell.lib.julia-wrapped {
     package = cell.packages.julia_18-bin;
