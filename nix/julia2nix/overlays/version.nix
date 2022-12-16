@@ -1,12 +1,12 @@
 {
   lib,
   version,
+  julia-sources,
+  system,
 }: let
   l = lib // builtins;
-  v = l.head (lib.splitString "-" version);
-  major = l.substring 0 1 v;
-  minor = l.substring 1 2 v;
+  version' = lib.elemAt (lib.splitString "-" julia-sources."julia-${version}-${system}".version) 0;
 in
-  if v == "nightly"
+  if version' == "nightly"
   then "nightly"
-  else (major + "." + minor)
+  else version'

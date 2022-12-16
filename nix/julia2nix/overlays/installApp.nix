@@ -13,12 +13,12 @@
   extraBuildInputs ? [],
   ...
 }: let
-  majorVersion = import ./version.nix {inherit lib version;};
+  version' = import ./version.nix { inherit lib version julia-sources system;};
 in
   stdenvNoCC.mkDerivation {
     pname = lib.elemAt (lib.splitString "-" julia-sources."julia-${version}-${system}".pname) 0;
     inherit (julia-sources."julia-${version}-${system}") src;
-    version = majorVersion;
+    version = version';
 
     buildInputs = [undmg] ++ extraBuildInputs;
 
