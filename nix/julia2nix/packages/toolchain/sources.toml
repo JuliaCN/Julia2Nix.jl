@@ -1,41 +1,41 @@
 # nvfetcher.toml
-[julia-17-release-x86_64-darwin]
+[julia-17-x86_64-darwin]
 src.webpage = "https://julialang.org/downloads/oldreleases/"
 src.regex = "1\\.7\\.\\d+-mac64.dmg"
 fetch.url = "https://julialang-s3.julialang.org/bin/mac/x64/1.7/julia-$ver"
 
-[julia-17-release-x86_64-linux]
+[julia-17-x86_64-linux]
 src.webpage = "https://julialang.org/downloads/oldreleases/"
 src.regex = "1\\.7\\.\\d+-linux-x86_64.tar.gz"
 fetch.url = "https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.3-linux-x86_64.tar.gz"
 
-[julia-17-release-aarch64-darwin]
+[julia-17-aarch64-darwin]
 src.webpage = "https://julialang.org/downloads/oldreleases/"
 src.regex = "1\\.7\\.\\d+-macaarch64.dmg"
 fetch.url = "https://julialang-s3.julialang.org/bin/mac/aarch64/1.7/julia-1.7.2-macaarch64.dmg"
 
-[julia-17-release-aarch64-linux]
+[julia-17-aarch64-linux]
 src.webpage = "https://julialang.org/downloads/oldreleases/"
 src.regex = "1\\.7\\.\\d+-macaarch64.dmg"
 fetch.url = "https://julialang-s3.julialang.org/bin/linux/aarch64/1.7/julia-1.7.3-linux-aarch64.tar.gz"
 
-[julia-18-release-x86_64-darwin]
+[julia-18-x86_64-darwin]
 src.webpage = "https://julialang.org/downloads/"
 src.regex = "1\\.8\\.\\d+-mac64.dmg"
 fetch.url = "https://julialang-s3.julialang.org/bin/mac/x64/1.8/julia-$ver"
 
-[julia-18-release-aarch64-darwin]
+[julia-18-aarch64-darwin]
 src.webpage = "https://julialang.org/downloads/"
 src.regex = "1\\.8\\.\\d+-macaarch64.dmg"
 fetch.url = "https://julialang-s3.julialang.org/bin/mac/aarch64/1.8/julia-$ver"
 
 # https://julialang-s3.julialang.org/bin/mac/aarch64/1.8/julia-1.8.0-rc3-macaarch64.dmg
-[julia-18-release-x86_64-linux]
+[julia-18-x86_64-linux]
 src.webpage = "https://julialang.org/downloads/"
 src.regex = "1\\.8\\.\\d+-linux-x86_64.tar.gz"
 fetch.url = "https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-$ver"
 
-[julia-18-release-aarch64-linux]
+[julia-18-aarch64-linux]
 src.webpage = "https://julialang.org/downloads/"
 src.regex = "1\\.8\\.\\d+-linux-aarch64.tar.gz"
 fetch.url = "https://julialang-s3.julialang.org/bin/linux/aarch64/1.8/julia-$ver"

@@ -18,7 +18,7 @@ in
   stdenvNoCC.mkDerivation {
     pname = lib.elemAt (lib.splitString "-" julia-sources."julia-${version}-${system}".pname) 0;
     inherit (julia-sources."julia-${version}-${system}") src;
-    version = version';
+    version = version'.default;
 
     buildInputs = [undmg] ++ extraBuildInputs;
 

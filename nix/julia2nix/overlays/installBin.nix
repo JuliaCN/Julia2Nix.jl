@@ -11,16 +11,16 @@ in
   stdenv.mkDerivation {
     inherit (julia-sources."julia-${version}-${system}") src;
     pname = lib.elemAt (lib.splitString "-" julia-sources."julia-${version}-${system}".pname) 0;
-    version = version';
+    version = version'.default;
     nativeBuildInputs = lib.optionals stdenv.hostPlatform.isLinux [
       autoPatchelfHook
     ];
 
-    postPatch = lib.optionalString (version != "nightly") ''
+    postPatch = ''
       # Julia fails to pick up our Certification Authority root certificates, but
       # it provides its own so we can simply disable the test. Patching in the
       # dynamic path to ours require us to rebuild the Julia system image.
-      substituteInPlace share/julia/stdlib/v${version}/NetworkOptions/test/runtests.jl \
+      substituteInPlace share/julia/stdlib/v${version'.major}/NetworkOptions/test/runtests.jl \
         --replace '@test ca_roots_path() != bundled_ca_roots()' \
           '@test_skip ca_roots_path() != bundled_ca_roots()'
     '';

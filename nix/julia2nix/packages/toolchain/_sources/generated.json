@@ -1,9 +1,9 @@
 {
-    "julia-17-release-aarch64-darwin": {
+    "julia-17-aarch64-darwin": {
         "cargoLocks": null,
         "date": null,
         "extract": null,
-        "name": "julia-17-release-aarch64-darwin",
+        "name": "julia-17-aarch64-darwin",
         "passthru": null,
         "pinned": false,
         "src": {
@@ -14,11 +14,11 @@
         },
         "version": "1.7.2-macaarch64.dmg"
     },
-    "julia-17-release-aarch64-linux": {
+    "julia-17-aarch64-linux": {
         "cargoLocks": null,
         "date": null,
         "extract": null,
-        "name": "julia-17-release-aarch64-linux",
+        "name": "julia-17-aarch64-linux",
         "passthru": null,
         "pinned": false,
         "src": {
@@ -29,11 +29,11 @@
         },
         "version": "1.7.2-macaarch64.dmg"
     },
-    "julia-17-release-x86_64-darwin": {
+    "julia-17-x86_64-darwin": {
         "cargoLocks": null,
         "date": null,
         "extract": null,
-        "name": "julia-17-release-x86_64-darwin",
+        "name": "julia-17-x86_64-darwin",
         "passthru": null,
         "pinned": false,
         "src": {
@@ -44,11 +44,11 @@
         },
         "version": "1.7.3-mac64.dmg"
     },
-    "julia-17-release-x86_64-linux": {
+    "julia-17-x86_64-linux": {
         "cargoLocks": null,
         "date": null,
         "extract": null,
-        "name": "julia-17-release-x86_64-linux",
+        "name": "julia-17-x86_64-linux",
         "passthru": null,
         "pinned": false,
         "src": {
@@ -59,11 +59,11 @@
         },
         "version": "1.7.3-linux-x86_64.tar.gz"
     },
-    "julia-18-release-aarch64-darwin": {
+    "julia-18-aarch64-darwin": {
         "cargoLocks": null,
         "date": null,
         "extract": null,
-        "name": "julia-18-release-aarch64-darwin",
+        "name": "julia-18-aarch64-darwin",
         "passthru": null,
         "pinned": false,
         "src": {
@@ -74,11 +74,11 @@
         },
         "version": "1.8.3-macaarch64.dmg"
     },
-    "julia-18-release-aarch64-linux": {
+    "julia-18-aarch64-linux": {
         "cargoLocks": null,
         "date": null,
         "extract": null,
-        "name": "julia-18-release-aarch64-linux",
+        "name": "julia-18-aarch64-linux",
         "passthru": null,
         "pinned": false,
         "src": {
@@ -89,11 +89,11 @@
         },
         "version": "1.8.3-linux-aarch64.tar.gz"
     },
-    "julia-18-release-x86_64-darwin": {
+    "julia-18-x86_64-darwin": {
         "cargoLocks": null,
         "date": null,
         "extract": null,
-        "name": "julia-18-release-x86_64-darwin",
+        "name": "julia-18-x86_64-darwin",
         "passthru": null,
         "pinned": false,
         "src": {
@@ -104,11 +104,11 @@
         },
         "version": "1.8.3-mac64.dmg"
     },
-    "julia-18-release-x86_64-linux": {
+    "julia-18-x86_64-linux": {
         "cargoLocks": null,
         "date": null,
         "extract": null,
-        "name": "julia-18-release-x86_64-linux",
+        "name": "julia-18-x86_64-linux",
         "passthru": null,
         "pinned": false,
         "src": {
@@ -128,11 +128,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-ng9u6mLdoWKmyHjnoQjtgoUfM33Qa+ET8NSQl6QXkro=",
+            "sha256": "sha256-fqocVseSI6xp/HA+UnrLnKP09/in1KclGMI/i/GuEwU=",
             "type": "url",
-            "url": "https://julialangnightlies-s3.julialang.org/bin/macos/aarch64/1.10/julia-cbcae07f2c-macos-aarch64.dmg"
+            "url": "https://julialangnightlies-s3.julialang.org/bin/macos/aarch64/1.10/julia-495a004bda-macos-aarch64.dmg"
         },
-        "version": "cbcae07f2c"
+        "version": "495a004bda"
     },
     "julia-nightly-110-aarch64-linux": {
         "cargoLocks": null,
@@ -143,11 +143,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-BhRMyBXT1m8oDpno8RrXDQajecmyJ2pvMd3CwnBiKB4=",
+            "sha256": "sha256-3VtMDDhdngdFcUiaCKS+czWSKfi29KDbb0R+zL8Vx2U=",
             "type": "url",
-            "url": "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/1.10/julia-cbcae07f2c-linux-aarch64.tar.gz"
+            "url": "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/1.10/julia-495a004bda-linux-aarch64.tar.gz"
         },
-        "version": "cbcae07f2c"
+        "version": "495a004bda"
     },
     "julia-nightly-110-x86_64-darwin": {
         "cargoLocks": null,
@@ -158,11 +158,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-0VHVPfLObOr7s9ymayRgGRDDISXCIUwCu1+450avTZw=",
+            "sha256": "sha256-++JplPJAfZxpx/Z5jKteOWV9+yv8TBdn/JhXvkSF8yo=",
             "type": "url",
-            "url": "https://julialangnightlies-s3.julialang.org/bin/macos/x86_64/1.10/julia-cbcae07f2c-macos-x86_64.dmg"
+            "url": "https://julialangnightlies-s3.julialang.org/bin/macos/x86_64/1.10/julia-495a004bda-macos-x86_64.dmg"
         },
-        "version": "cbcae07f2c"
+        "version": "495a004bda"
     },
     "julia-nightly-110-x86_64-linux": {
         "cargoLocks": null,
@@ -173,10 +173,10 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-3C+gds2vT1AXES379mSLc3lRa7W3DTUil4+nt4YeGbQ=",
+            "sha256": "sha256-PBrlx//NKeRai6U3nfGckXuL2HpKNK4LFShtGMBMduM=",
             "type": "url",
-            "url": "https://julialangnightlies-s3.julialang.org/bin/linux/x86_64/1.10/julia-cbcae07f2c-linux-x86_64.tar.gz"
+            "url": "https://julialangnightlies-s3.julialang.org/bin/linux/x86_64/1.10/julia-495a004bda-linux-x86_64.tar.gz"
         },
-        "version": "cbcae07f2c"
+        "version": "495a004bda"
     }
 }

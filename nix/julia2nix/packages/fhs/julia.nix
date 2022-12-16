@@ -42,5 +42,5 @@
       ];
     };
 in {
-  julia_18 = makeJulia "18-release";
+  julia_18 = makeJulia "18";
 }

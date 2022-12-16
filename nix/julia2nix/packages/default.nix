@@ -28,7 +28,7 @@ in {
     })
     // l.optionalAttrs (nixpkgs.system == "aarch64-linux" || nixpkgs.system == "x86_64-linux") (cell.lib.installBin {
       inherit version;
-    })) "17-release";
+    })) "17";
 
   julia_18-bin = (version:
     l.optionalAttrs (nixpkgs.system == "aarch64-darwin" || nixpkgs.system == "x86_64-darwin") (cell.lib.installApp {
@@ -36,7 +36,7 @@ in {
     })
     // l.optionalAttrs (nixpkgs.system == "x86_64-linux" || nixpkgs.system == "aarch64-linux") (cell.lib.installBin {
       inherit version;
-    })) "18-release";
+    })) "18";
 
   julia_nightly-bin = (version:
     l.optionalAttrs (nixpkgs.system == "aarch64-darwin" || nixpkgs.system == "x86_64-darwin") (cell.lib.installApp {
