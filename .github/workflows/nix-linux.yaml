@@ -9,7 +9,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3.2.0
+    - uses: actions/checkout@v3.3.0
     - uses: cachix/install-nix-action@v18
       with:
         install_url: https://github.com/numtide/nix-unstable-installer/releases/download/nix-2.13.0pre20221215_26c7602/install
