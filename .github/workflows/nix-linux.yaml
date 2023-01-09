@@ -10,12 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3.3.0
-    - uses: cachix/install-nix-action@v18
+    - uses: nixbuild/nix-quick-install-action@v21
       with:
-        install_url: https://github.com/numtide/nix-unstable-installer/releases/download/nix-2.13.0pre20221215_26c7602/install
-        extra_nix_config: |
+        nix_conf: |
           experimental-features = nix-command flakes
-          system-features = nixos-test benchmark big-parallel kvm recursive-nix
+          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
 
     - uses: cachix/cachix-action@v12
       with:

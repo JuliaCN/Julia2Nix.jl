@@ -8,9 +8,12 @@ jobs:
     runs-on: macOS-latest
     steps:
     - uses: actions/checkout@v3.3.0
-    - uses: cachix/install-nix-action@v18
+
+    - uses: nixbuild/nix-quick-install-action@v21
       with:
-        skip_adding_nixpkgs_channel: true
+        nix_conf: |
+          experimental-features = nix-command flakes
+          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
 
     - name: Init julia2nix.jl with nix develop
       run: |
