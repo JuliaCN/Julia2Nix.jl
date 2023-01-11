@@ -23,10 +23,10 @@
     enable;
 
   makeWrapperArgs_ =
-    (lib.optionals (extraBuildInputs != []) [
+    lib.optionals (extraBuildInputs != []) [
       "--prefix PATH : ${lib.makeBinPath extraBuildInputs}"
       "--suffix LD_LIBRARY_PATH ':' ${lib.makeLibraryPath extraBuildInputs}"
-    ])
+    ]
     ++ lib.optionals enable'.GR [
       "--set GRDIR ${gr}"
     ]
