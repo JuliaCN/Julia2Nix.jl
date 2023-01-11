@@ -6,7 +6,7 @@
   system,
   ...
 }: {version}: let
-  version' = import ./version.nix { inherit lib version julia-sources system;};
+  version' = import ./version.nix {inherit lib version julia-sources system;};
 in
   stdenv.mkDerivation {
     inherit (julia-sources."julia-${version}-${system}") src;

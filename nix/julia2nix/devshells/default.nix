@@ -31,7 +31,7 @@ in
           cell.devshellProfiles.update
         ]
         ++ l.optionals nixpkgs.stdenv.buildPlatform.isLinux [
-          cell.devshellProfiles.dev
+          # cell.devshellProfiles.dev
         ];
 
       commands = [

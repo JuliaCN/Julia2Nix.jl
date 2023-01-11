@@ -27,7 +27,7 @@ in {
     ]
     ++ lib.optionals pkgs.stdenv.buildPlatform.isLinux [
       {
-        package = packages.julia_18-bin;
+        package = packages.julia-wrapped;
         help = packages.julia_18-bin.meta.description;
       }
       {

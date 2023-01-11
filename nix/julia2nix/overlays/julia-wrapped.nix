@@ -23,10 +23,10 @@
     enable;
 
   makeWrapperArgs_ =
-    lib.optionals (extraBuildInputs != []) [
+    (lib.optionals (extraBuildInputs != []) [
       "--prefix PATH : ${lib.makeBinPath extraBuildInputs}"
       "--suffix LD_LIBRARY_PATH ':' ${lib.makeLibraryPath extraBuildInputs}"
-    ]
+    ])
     ++ lib.optionals enable'.GR [
       "--set GRDIR ${gr}"
     ]
@@ -37,7 +37,10 @@
       "--set PYTHONHOME ${enable'.python}"
       "--set PYTHONVERSION ${enable'.python.pythonVersion}"
     ]
-    ++ makeWrapperArgs;
+    ++ makeWrapperArgs
+    ++ [
+      "--set FONTCONFIG_FILE /etc/fonts/fonts.conf"
+    ];
   meta' =
     lib.recursiveUpdate {
       mainProgram = "julia";
@@ -52,7 +55,8 @@
       meta = meta';
     } ''
       mkdir -p $out
-      makeWrapper ${package}/bin/julia $out/bin/${meta'.mainProgram} $makeWrapperArgs_
+      makeWrapper ${package}/bin/julia $out/bin/${meta'.mainProgram} $makeWrapperArgs_ \
+      --set GDK_BACKEND "x11,*"
     '';
 in
   symlinkJoin {
