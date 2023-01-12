@@ -128,11 +128,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-SqgHKsmztjufugmGNRVHkThOwfnzGtMPTUCGmA4HSsY=",
+            "sha256": "sha256-mg0hU3SXqC8kKWKKTwdp5jUun6Cac6k9uC3G4RICzak=",
             "type": "url",
-            "url": "https://julialangnightlies-s3.julialang.org/bin/macos/aarch64/1.10/julia-79ceb8dbea-macos-aarch64.dmg"
+            "url": "https://julialangnightlies-s3.julialang.org/bin/macos/aarch64/1.10/julia-a526a4a4b3-macos-aarch64.dmg"
         },
-        "version": "79ceb8dbea"
+        "version": "a526a4a4b3"
     },
     "julia-nightly-110-aarch64-linux": {
         "cargoLocks": null,
@@ -143,11 +143,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-0FPgyD+p5/jCKs2fg//YYiNewQIZ4n9k21uNN6CUxsY=",
+            "sha256": "sha256-289ChkwbqBUC2+e9hRoyOeTFnru0QS6WmpITQY1nCjo=",
             "type": "url",
-            "url": "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/1.10/julia-79ceb8dbea-linux-aarch64.tar.gz"
+            "url": "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/1.10/julia-a526a4a4b3-linux-aarch64.tar.gz"
         },
-        "version": "79ceb8dbea"
+        "version": "a526a4a4b3"
     },
     "julia-nightly-110-x86_64-darwin": {
         "cargoLocks": null,
@@ -158,11 +158,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-KtIBrmWj3YMaBlxxyXLVxuX43aThQbgNazMb6vdSQCY=",
+            "sha256": "sha256-+sbTgIe4RCv3HxrsDe68/crPC5nFzyRGDZVYOZTD1gg=",
             "type": "url",
-            "url": "https://julialangnightlies-s3.julialang.org/bin/macos/x86_64/1.10/julia-79ceb8dbea-macos-x86_64.dmg"
+            "url": "https://julialangnightlies-s3.julialang.org/bin/macos/x86_64/1.10/julia-a526a4a4b3-macos-x86_64.dmg"
         },
-        "version": "79ceb8dbea"
+        "version": "a526a4a4b3"
     },
     "julia-nightly-110-x86_64-linux": {
         "cargoLocks": null,
@@ -173,10 +173,10 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-xKKDVOk9igVZ2hMYedyzuP3LIOgUF2Qzij5XqDhgkfE=",
+            "sha256": "sha256-AKQEwON+1jzwPGP3gaQ3GktMz0Zs0puSiiL9/go9ZDM=",
             "type": "url",
-            "url": "https://julialangnightlies-s3.julialang.org/bin/linux/x86_64/1.10/julia-79ceb8dbea-linux-x86_64.tar.gz"
+            "url": "https://julialangnightlies-s3.julialang.org/bin/linux/x86_64/1.10/julia-a526a4a4b3-linux-x86_64.tar.gz"
         },
-        "version": "79ceb8dbea"
+        "version": "a526a4a4b3"
     }
 }
