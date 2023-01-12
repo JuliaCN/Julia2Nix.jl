@@ -6,6 +6,7 @@
   julia_18-bin,
   python3,
   symlinkJoin,
+  cacert,
   ...
 }: {
   package ? julia_18-bin,
@@ -37,10 +38,11 @@
       "--set PYTHONHOME ${enable'.python}"
       "--set PYTHONVERSION ${enable'.python.pythonVersion}"
     ]
-    ++ makeWrapperArgs
     ++ [
       "--set FONTCONFIG_FILE /etc/fonts/fonts.conf"
-    ];
+      "--set JULIA_SSL_CA_ROOTS_PATH ${cacert}/etc/ssl/certs/ca-bundle.crt"
+    ]
+    ++ makeWrapperArgs;
   meta' =
     lib.recursiveUpdate {
       mainProgram = "julia";
