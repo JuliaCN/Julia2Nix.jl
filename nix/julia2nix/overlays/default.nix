@@ -35,6 +35,8 @@
 
     julia_18-bin = cell.packages.julia_18-bin;
 
+    julia_nightly-bin = cell.packages.julia_nightly-bin;
+
     julia-sources = prev.callPackage ../packages/toolchain/_sources/generated.nix {};
 
     patch-sources = prev.callPackage ./patches/_sources/generated.nix {};
