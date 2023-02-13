@@ -2,7 +2,7 @@
   inputs,
   cell,
 }: let
-  inherit (inputs) std;
+  inherit (inputs) std-data-collection;
   juliaFormatter = cell.lib.buildEnv {
     src = inputs.nix-filter.lib.filter {
       root = ./.;
@@ -18,11 +18,11 @@
 in {
   inherit juliaFormatter;
 
-  treefmt = std.presets.nixago.treefmt {
-    configData.formatter.prettier = {
+  treefmt = std-data-collection.data.configs.treefmt {
+    data.formatter.prettier = {
       excludes = ["Manifest.toml" "Project.toml" "generated.json" "julia2nix.toml"];
     };
-    configData.formatter.nix = {
+    data.formatter.nix = {
       excludes = ["generated.nix"];
     };
     # configData.formatter.julia = {

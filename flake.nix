@@ -7,6 +7,7 @@
   inputs = {
     cells-lab.url = "github:gtrunsec/cells-lab";
     std.follows = "cells-lab/std";
+    std-data-collection.follows = "cells-lab/std-data-collection";
   };
 
   outputs = {
