@@ -21,7 +21,7 @@
       inputs.flake-utils.lib.eachDefaultSystem
       (system: let
         pkgs = inputs.nixpkgs.legacyPackages.${system}.appendOverlays [
-          inputs.devshell.overlay
+          inputs.devshell.overlays.default
           self.overlays.default
         ];
         julia-wrapped = inputs.julia2nix.lib.${system}.julia-wrapped {

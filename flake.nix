@@ -5,15 +5,14 @@
   };
 
   inputs = {
-    cells-lab.url = "github:gtrunsec/cells-lab";
-    std.follows = "cells-lab/std";
-    std-data-collection.follows = "cells-lab/std-data-collection";
+    std-ext.url = "github:gtrunsec/std-ext";
+    std.follows = "std-ext/std";
+    std-data-collection.follows = "std-ext/std-data-collection";
   };
 
   outputs = {
     self,
     std,
-    cells-lab,
     ...
   } @ inputs:
     (std.growOn {

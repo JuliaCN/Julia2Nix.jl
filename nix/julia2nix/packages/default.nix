@@ -83,7 +83,7 @@ in {
     saveRegistry = true;
   };
 
-  julia2nix = inputs.cells-lab.writers.lib.writeShellApplication {
+  julia2nix = inputs.std-ext.writers.lib.writeShellApplication {
     name = "julia2nix";
     runtimeInputs = [cell.packages.build-project];
     text = ''
@@ -91,7 +91,7 @@ in {
     '';
   };
 
-  julia2nix-all = inputs.cells-lab.writers.lib.writeShellApplication {
+  julia2nix-all = inputs.std-ext.writers.lib.writeShellApplication {
     name = "julia2nix-write-all-systems";
     runtimeInputs = [cell.packages.build-project];
     text = ''

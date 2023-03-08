@@ -14,7 +14,7 @@
         if [ ! -d $HOME/ghq/github.com/JuliaLang/julia/.git ]; then
         ${lib.getExe pkgs.ghq} get https://github.com/JuliaLang/julia
         fi
-        nix develop github:GTrunSec/cells-lab#devShells.x86_64-linux.update \
+        nix develop github:GTrunSec/std-ext#devShells.x86_64-linux.update \
         --refresh --command \
         nvfetcher-update nix/julia2nix/packages/toolchain/sources.toml
       '';

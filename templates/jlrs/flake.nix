@@ -36,7 +36,7 @@
         pkgs = nixpkgs.legacyPackages.${system}.appendOverlays [
           self.overlays.default
           inputs.rust-overlay.overlays.default
-          inputs.devshell.overlay
+          inputs.devshell.overlays.default
         ];
 
         craneLib = (inputs.crane.mkLib pkgs).overrideScope' (final: prev: {
