@@ -9,7 +9,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3.3.0
+    - uses: actions/checkout@v3.4.0
     - uses: nixbuild/nix-quick-install-action@v21
       with:
         nix_conf: |
