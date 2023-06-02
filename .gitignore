@@ -13,4 +13,5 @@ templates/*/flake.lock
 target
 
 # nixago: ignore-linked-files
+/treefmt.toml
 treefmt.toml

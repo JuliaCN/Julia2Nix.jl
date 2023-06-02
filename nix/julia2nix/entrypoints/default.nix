@@ -10,7 +10,7 @@ in {
       name = "julia-doc";
       src = ./doc;
       package = cell.lib.julia-wrapped {
-        package = cell.packages.julia_18-bin;
+        package = cell.packages.julia_19-bin;
       };
     };
   in
@@ -18,7 +18,7 @@ in {
       name = "mkdoc";
       runtimeInputs = [
         # juliaDoc
-        nixpkgs.julia_18-bin
+        nixpkgs.julia_19-bin
       ];
       text = ''
         julia --project="$*" -e 'using Pkg; Pkg.develop(PackageSpec(; path=pwd())); Pkg.instantiate();'
@@ -43,7 +43,7 @@ in {
           };
         };
         package = cell.lib.julia-wrapped {
-          package = cell.packages.julia_18-bin;
+          package = cell.packages.julia_19-bin;
         };
       })
       .overrideAttrs (old: {

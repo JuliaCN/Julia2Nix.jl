@@ -42,5 +42,6 @@
       ];
     };
 in {
+  julia_19 = makeJulia "19";
   julia_18 = makeJulia "18";
 }
