@@ -33,7 +33,7 @@
 
     julia_17-bin = cell.packages.julia_17-bin;
 
-    julia_18-bin = cell.packages.julia_18-bin;
+    julia_19-bin = cell.packages.julia_19-bin;
 
     julia_nightly-bin = cell.packages.julia_nightly-bin;
 

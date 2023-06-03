@@ -1,7 +1,7 @@
 {pkgs}: {
   enableJulia ? true,
   enableConda ? true,
-  juliaVersion ? "julia_18",
+  juliaVersion ? "julia_19",
   condaInstallationPath ? "~/.conda",
   condaJlEnv ? "conda_jl",
   pythonVersion ? "3.9",

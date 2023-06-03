@@ -1,12 +1,12 @@
 {
   stdenv,
-  julia_18-bin,
+  julia_19-bin,
   runCommand,
   makeWrapper,
   lib,
   ...
 }: {
-  package ? julia_18-bin,
+  package ? julia_19-bin,
   extraLibs ? [],
   src,
   importManifest ? src + "/Manifest.toml",

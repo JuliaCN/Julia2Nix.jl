@@ -30,13 +30,13 @@ in {
       inherit version;
     })) "17";
 
-  julia_18-bin = (version:
+  julia_19-bin = (version:
     l.optionalAttrs (nixpkgs.system == "aarch64-darwin" || nixpkgs.system == "x86_64-darwin") (cell.lib.installApp {
       inherit version;
     })
     // l.optionalAttrs (nixpkgs.system == "x86_64-linux" || nixpkgs.system == "aarch64-linux") (cell.lib.installBin {
       inherit version;
-    })) "18";
+    })) "19";
 
   julia_nightly-bin = (version:
     l.optionalAttrs (nixpkgs.system == "aarch64-darwin" || nixpkgs.system == "x86_64-darwin") (cell.lib.installApp {
@@ -47,7 +47,7 @@ in {
     })) "nightly-110";
 
   julia-wrapped = cell.lib.julia-wrapped {
-    package = cell.packages.julia_18-bin;
+    package = cell.packages.julia_19-bin;
     enable = {
       GR = true;
       python =

@@ -26,7 +26,7 @@
         ];
         julia-wrapped = inputs.julia2nix.lib.${system}.julia-wrapped {
           # package = pkgs.julia_17-bin;
-          package = julia2nix.packages.${system}.julia_18-bin;
+          package = julia2nix.packages.${system}.julia_19-bin;
           enable = {
             # only x86_64-linux is supported
             GR = true;
@@ -65,7 +65,7 @@
           commands = [
             {
               package = julia-wrapped;
-              help = julia2nix.packages.${pkgs.system}.julia_18-bin.meta.description;
+              help = julia2nix.packages.${pkgs.system}.julia_19-bin.meta.description;
             }
           ];
         };

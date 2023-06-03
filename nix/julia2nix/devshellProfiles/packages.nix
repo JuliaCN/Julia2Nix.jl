@@ -21,14 +21,14 @@ in {
     ]
     ++ lib.optionals (pkgs.system == "aarch64-darwin") [
       {
-        package = packages.julia_18-bin;
-        help = packages.julia_18-bin.meta.description;
+        package = packages.julia_19-bin;
+        help = packages.julia_19-bin.meta.description;
       }
     ]
     ++ lib.optionals pkgs.stdenv.buildPlatform.isLinux [
       {
         package = packages.julia-wrapped;
-        help = packages.julia_18-bin.meta.description;
+        help = packages.julia_19-bin.meta.description;
       }
       {
         name = "julia-fhs";
