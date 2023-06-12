@@ -37,6 +37,9 @@
       "--set PYTHONLIB ${enable'.python}/lib/libpython${enable'.python.pythonVersion}.so"
       "--set PYTHONHOME ${enable'.python}"
       "--set PYTHONVERSION ${enable'.python.pythonVersion}"
+      "--set JULIA_CONDAPKG_OFFLINE yes"
+      "--set JULIA_CONDAPKG_BACKEND Null"
+      "--set JULIA_PYTHONCALL_EXE @PyCall"
     ]
     ++ [
       "--set FONTCONFIG_FILE /etc/fonts/fonts.conf"

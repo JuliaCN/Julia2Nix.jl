@@ -17,7 +17,7 @@
     cell.overlays.default
   ];
 in {
-  inherit (nixpkgs) julia_16-bin gr conda;
+  inherit (nixpkgs) gr conda;
 
   julia-fhs = nixpkgs.julia-fhs "julia" "julia";
 
