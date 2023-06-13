@@ -2,7 +2,9 @@
   inputs,
   cell,
 }: let
-  inherit (inputs) std-data-collection;
+  inherit (inputs) std-data-collection nixpkgs;
+  l = inputs.nixpkgs.lib // builtins;
+  inherit (nixpkgs) stdenv;
   juliaFormatter = cell.lib.buildEnv {
     src = inputs.nix-filter.lib.filter {
       root = ./.;
@@ -39,7 +41,7 @@ in {
     data.formatter.nix = {
       excludes = ["generated.nix"];
     };
-    data.formatter.julia = {
+    data.formatter.julia = l.mkIf stdenv.isLinux {
       command = "${juliaFormatter}/bin/format.jl";
       includes = ["*.jl"];
     };

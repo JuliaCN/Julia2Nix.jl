@@ -93,7 +93,8 @@ in {
     name = "julia2nix-write-all-systems";
     runtimeInputs = [cell.packages.build-project];
     text = ''
-      julia ${std.incl self ["testenv"]}/testenv/writejulia2nix.jl"
+    export NIX_PATH=${inputs.nixpkgs-lock.outPath}
+    julia ${std.incl self ["testenv"]}/testenv/writejulia2nix.jl
     '';
   };
 
