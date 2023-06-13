@@ -2,6 +2,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nix-filter.url = "github:/numtide/nix-filter";
+    # TOOD: use the locked prefetch version, will be removed by replacing with nix-prefetch-url
+    nixpkgs-lock.url = "github:NixOS/nixpkgs/0cfb3c002b61807ca0bab3efe514476bdf2e5478";
   };
 
   inputs = {

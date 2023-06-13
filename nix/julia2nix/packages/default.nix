@@ -73,12 +73,9 @@ in {
 
   build-project = cell.lib.buildProject {
     inherit src;
-    name = "Example-Project";
+    name = "julia-wrapped-julia2nix";
     package = cell.lib.julia-wrapped {
       extraBuildInputs = with inputs.nixpkgs; [alejandra nixUnstable nix-prefetch cacert];
-      makeWrapperArgs = [
-        "--set NIX_PATH nixpkgs=${inputs.nixpkgs.path}"
-      ];
     };
     saveRegistry = true;
   };
@@ -87,6 +84,7 @@ in {
     name = "julia2nix";
     runtimeInputs = [cell.packages.build-project];
     text = ''
+      export NIX_PATH=${inputs.nixpkgs-lock.outPath}
       julia ${std.incl self ["testenv"]}/testenv/writejulia2nix.jl ${nixpkgs.system}
     '';
   };

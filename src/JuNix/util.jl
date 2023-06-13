@@ -64,8 +64,7 @@ Prefetch sha256 with `nix-prefetch`
 function fetch_sha256(fetcher::Fetcher, opts::Options)
     parsed = parse_fetcher(fetcher, opts)
     expr = """
-               { nixpkgs ? <nixpkgs> }:
-               let pkgs = import nixpkgs { };
+               let pkgs = import "/nix/store/cwr7p465zbfp60hg3jng1cfkmq14ka49-source" { };
                in with pkgs; $(fetcher.name)
            """
     cmd = `nix-prefetch $expr $(parsed)`

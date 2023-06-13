@@ -12,7 +12,7 @@
       name = "jlfmt";
       category = "dev";
       command = ''
-        ${cell.nixago.juliaFormatter}/bin/julia -e 'import Pkg; using JuliaFormatter;format(".")'
+        ${cell.nixago.juliaFormatter}/bin/julia -e 'import Pkg; using JuliaFormatter;format(\"$@\")'
       '';
     }
   ];

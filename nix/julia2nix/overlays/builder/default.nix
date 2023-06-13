@@ -34,7 +34,7 @@
 in
   stdenv.mkDerivation {
     name = (lib.importTOML importProject).name or args.name;
-    buildInputs = [package makeWrapper] ++ extraBuildInputs;
+    buildInputs = [makeWrapper] ++ extraBuildInputs;
     inherit src precompile makeWrapperArgs depotPath;
 
     preInstall = ''
@@ -71,7 +71,7 @@ in
            bash $i
        done
 
-       julia -e ' \
+       ${package}/bin/julia -e ' \
        using Pkg
          Pkg.Registry.add(RegistrySpec(path="${depotPath}/registries/General"))
          Pkg.activate(".")
@@ -88,6 +88,9 @@ in
        --add-flags "-L $out/startup.jl" \
        --suffix JULIA_DEPOT_PATH : $TMPDIR $makeWrapperArgs
 
+      # make sure the patchShebangs replaces the shebangs with the $out/bin/julia path
+      export PATH=$out/bin:$PATH
+      patchShebangs --build $out/bin
 
       if [[ -n "$precompile" ]]; then
       $out/bin/julia -e ' \

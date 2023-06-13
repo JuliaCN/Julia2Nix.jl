@@ -13,7 +13,21 @@
       ];
     };
     name = "juliaFormatter";
-    package = cell.lib.julia-wrapped {};
+    # allow to format the JuliaFormatter package when compiling the package
+    # use copy instead of symlink to let the package being modified in the store
+    extraInstallPhase = ''
+      source_file=$(dirname $(readlink $out/packages/JuliaFormatter/*/src/JuliaFormatter.jl))
+      rm -rf $out/packages/JuliaFormatter/*/src
+      cp -rf --no-preserve=mode,ownership $source_file $out/packages/JuliaFormatter/*/.
+      mkdir -p $out/bin
+      cp $out/packages/JuliaFormatter/*/bin/* $out/bin/.
+      chmod +x $out/bin/*.jl
+    '';
+    package = cell.lib.julia-wrapped {
+      makeWrapperArgs = [
+        "--add-flags --compile=min"
+      ];
+    };
   };
 in {
   inherit juliaFormatter;
@@ -25,10 +39,9 @@ in {
     data.formatter.nix = {
       excludes = ["generated.nix"];
     };
-    # configData.formatter.julia = {
-    #   command = "${juliaFormatter}/bin/julia";
-    #   options = ["${./format.jl}"];
-    #   includes = ["*.jl"];
-    # };
+    data.formatter.julia = {
+      command = "${juliaFormatter}/bin/format.jl";
+      includes = ["*.jl"];
+    };
   };
 }

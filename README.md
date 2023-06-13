@@ -22,6 +22,12 @@ nix develop
 nix flake init --template github:JuliaCN/Julia2Nix.jl#templates.jlrs
 ```
 
+### learn-julia
+
+```sh
+git clone https://github.com/GTrunSec/learn-julia
+```
+
 # Attribution
 
 _This project was forked from [NixSourcerer.jl](https://github.com/colinxs/NixSourcerer.jl)._

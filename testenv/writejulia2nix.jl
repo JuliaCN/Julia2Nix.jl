@@ -17,18 +17,18 @@ function opts_gene(arch, os)
     os = os == "darwin" ? "macos" : os
     if os == "macos"
         opts = JuNix.Options(;
-            nworkers=8,
-            arch=Set([arch]),
-            os=Set([os]),
-            check_store=true
+            nworkers = 8,
+            arch = Set([arch]),
+            os = Set([os]),
+            check_store = true,
         )
     else
         opts = JuNix.Options(;
-            nworkers=8,
-            arch=Set([arch]),
-            os=Set([os]),
-            libc=Set(["glibc"]),
-            check_store=true
+            nworkers = 8,
+            arch = Set([arch]),
+            os = Set([os]),
+            libc = Set(["glibc"]),
+            check_store = true,
         )
     end
     opts

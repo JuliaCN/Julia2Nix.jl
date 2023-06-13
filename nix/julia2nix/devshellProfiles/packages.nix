@@ -45,10 +45,4 @@ in {
       nix-prefetch
       cacert # Needed for network access
     ];
-  env = [
-    {
-      name = "NIX_PATH";
-      value = "nixpkgs=${pkgs.path}";
-    }
-  ];
 }
