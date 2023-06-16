@@ -11,8 +11,9 @@
     {
       name = "jlfmt";
       category = "dev";
+      help = "Julia formatter";
       command = ''
-        ${cell.nixago.juliaFormatter}/bin/julia -e 'import Pkg; using JuliaFormatter;format(\"$@\")'
+        ${cell.nixago.juliaFormatter}/bin/format.jl "$@"
       '';
     }
   ];
