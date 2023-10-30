@@ -64,7 +64,7 @@ l.mapAttrs (_: std.lib.dev.mkShell) {
       env = [
         {
           name = "NIX_PATH";
-          value = "nixpkgs=${nixpkgs.path}";
+          value = "nixpkgs=${inputs.nixpkgs-lock.outPath}";
         }
       ];
     };

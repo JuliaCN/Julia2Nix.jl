@@ -87,9 +87,7 @@ in
     inherit src;
     name = "julia-wrapped-julia2nix";
     package = cell.lib.julia-wrapped {
-      extraInstallPhase = ''
-        export nixpkgs-prefetch=${inputs.nixpkgs-lock.outPath}"
-      '';
+      makeWrapperArgs = [ "--set NIX_PATH nixpkgs=${inputs.nixpkgs-lock.outPath}" ];
       extraBuildInputs = with inputs.nixpkgs; [
         alejandra
         nixUnstable
@@ -113,7 +111,7 @@ in
     name = "julia2nix-write-all-systems";
     runtimeInputs = [ cell.packages.build-project ];
     text = ''
-      export NIX_PATH=${inputs.main.inputs.nixpkgs-lock.outPath}
+      export NIX_PATH=${inputs.nixpkgs-lock.outPath}
       julia ${std.incl self [ "testenv" ]}/testenv/writejulia2nix.jl
     '';
   };
