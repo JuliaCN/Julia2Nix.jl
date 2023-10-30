@@ -15,7 +15,7 @@ in
       };
 
       nixago = [
-        cell.nixago.treefmt
+        # cell.nixago.treefmt
       ];
 
       imports =

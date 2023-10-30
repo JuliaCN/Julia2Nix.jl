@@ -2,11 +2,11 @@
   inputs,
   cell,
 }: let
-  inherit (inputs) std self;
+  inherit (inputs) std self toplevel;
 
   l = inputs.nixpkgs.lib // builtins;
 
-  src = std.incl self [
+  src = std.incl toplevel [
     "src"
     "julia2nix.toml"
     "Project.toml"
@@ -60,11 +60,11 @@ in {
   };
 
   build-depot = cell.lib.buildDepot {
-    julia2nix = "${std.incl self ["julia2nix.toml"]}/julia2nix.toml";
+    julia2nix = "${std.incl inputs.toplevel ["julia2nix.toml"]}/julia2nix.toml";
   };
 
   build-conda = cell.lib.buildEnv {
-    src = "${std.incl self ["testenv"]}/testenv/conda";
+    src = "${std.incl inputs.toplevel ["testenv"]}/testenv/conda";
     name = "build-conda";
     package = cell.packages.julia-wrapped;
     extraInstallPhase = with nixpkgs; ''
@@ -93,8 +93,8 @@ in {
     name = "julia2nix-write-all-systems";
     runtimeInputs = [cell.packages.build-project];
     text = ''
-    export NIX_PATH=${inputs.nixpkgs-lock.outPath}
-    julia ${std.incl self ["testenv"]}/testenv/writejulia2nix.jl
+      export NIX_PATH=${inputs.nixpkgs-lock.outPath}
+      julia ${std.incl self ["testenv"]}/testenv/writejulia2nix.jl
     '';
   };
 

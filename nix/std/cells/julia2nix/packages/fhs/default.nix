@@ -72,7 +72,7 @@ with pkgs.lib; let
       pango
       pango.out
       pdf2svg
-      qt4
+      qt5.qtbase
       systemd
       xorg.libICE
       xorg.libSM

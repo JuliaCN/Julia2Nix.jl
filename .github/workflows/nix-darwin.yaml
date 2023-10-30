@@ -11,13 +11,9 @@ jobs:
 
     runs-on: macOS-latest
     steps:
-    - uses: actions/checkout@v3.5.3
-
-    - uses: nixbuild/nix-quick-install-action@v21
-      with:
-        nix_conf: |
-          experimental-features = nix-command flakes
-          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@main
+    - uses: DeterminateSystems/nix-installer-action@main
+    - uses: DeterminateSystems/magic-nix-cache-action@main
 
     - name: Init julia2nix.jl with nix develop
       run: |

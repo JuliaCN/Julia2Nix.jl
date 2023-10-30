@@ -48,17 +48,13 @@
       dontBuild = true;
       dontFixup = true;
       sourceRoot = ".";
-      unpackPhase = ''
-        unpackDir="$TMPDIR/unpack"
-        unpackFile "$src"
-        cp -r "$src" "package"
-      '';
       installPhase =
         ''
           runHook preInstall
 
           mkdir -p $out/${path}
-          cp -rf --no-preserve=mode,ownership package/* $out/${path}
+          cp -rf --no-preserve=mode,ownership $src/* $out/${path}
+
           runHook postInstall
         ''
         + lib.optionalString patch-context (let

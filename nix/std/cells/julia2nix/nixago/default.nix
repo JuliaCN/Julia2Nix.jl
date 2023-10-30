@@ -2,7 +2,7 @@
   inputs,
   cell,
 }: let
-  inherit (inputs) std-data-collection nixpkgs;
+  inherit (inputs) nixpkgs;
   l = inputs.nixpkgs.lib // builtins;
   inherit (nixpkgs) stdenv;
   juliaFormatter = cell.lib.buildEnv {
@@ -34,16 +34,16 @@
 in {
   inherit juliaFormatter;
 
-  treefmt = std-data-collection.data.configs.treefmt {
-    data.formatter.prettier = {
-      excludes = ["Manifest.toml" "Project.toml" "generated.json" "julia2nix.toml"];
-    };
-    data.formatter.nix = {
-      excludes = ["generated.nix"];
-    };
-    data.formatter.julia = l.mkIf stdenv.isLinux {
-      command = "${juliaFormatter}/bin/format.jl";
-      includes = ["*.jl"];
-    };
-  };
+  # treefmt = std-data-collection.data.configs.treefmt {
+  #   data.formatter.prettier = {
+  #     excludes = ["Manifest.toml" "Project.toml" "generated.json" "julia2nix.toml"];
+  #   };
+  #   data.formatter.nix = {
+  #     excludes = ["generated.nix"];
+  #   };
+  #   data.formatter.julia = l.mkIf stdenv.isLinux {
+  #     command = "${juliaFormatter}/bin/format.jl";
+  #     includes = ["*.jl"];
+  #   };
+  # };
 }
