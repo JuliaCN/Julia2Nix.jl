@@ -45,9 +45,9 @@ jobs:
       run: |
         nix -Lv develop --command buildProject
 
-    - name: Build jlrs -> call_julia
-      run: |
-        nix develop ./templates/jlrs --override-input julia2nix ./. --show-trace --command -- call-julia
+    # - name: Build jlrs -> call_julia
+    #   run: |
+    #     nix develop ./templates/jlrs --override-input julia2nix ./. --show-trace --command -- call-julia
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4.4.2
