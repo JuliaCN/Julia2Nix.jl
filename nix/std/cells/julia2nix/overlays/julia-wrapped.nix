@@ -8,30 +8,31 @@
   symlinkJoin,
   cacert,
   ...
-}: {
+}:
+{
   package ? julia_19-bin,
-  makeWrapperArgs ? [],
-  enable ? {},
-  meta ? {},
-  extraBuildInputs ? [],
+  makeWrapperArgs ? [ ],
+  enable ? { },
+  meta ? { },
+  extraBuildInputs ? [ ],
   ...
-}: let
+}:
+let
   enable' =
-    lib.recursiveUpdate {
-      GR = false;
-      python = {};
-    }
-    enable;
+    lib.recursiveUpdate
+      {
+        GR = false;
+        python = { };
+      }
+      enable;
 
   makeWrapperArgs_ =
-    lib.optionals (extraBuildInputs != []) [
+    lib.optionals (extraBuildInputs != [ ]) [
       "--prefix PATH : ${lib.makeBinPath extraBuildInputs}"
       "--suffix LD_LIBRARY_PATH ':' ${lib.makeLibraryPath extraBuildInputs}"
     ]
-    ++ lib.optionals enable'.GR [
-      "--set GRDIR ${gr}"
-    ]
-    ++ lib.optionals (enable'.python != {}) [
+    ++ lib.optionals enable'.GR [ "--set GRDIR ${gr}" ]
+    ++ lib.optionals (enable'.python != { }) [
       "--set PYTHON ${enable'.python}/bin/python"
       "--set PYTHONPATH ${enable'.python}/${enable'.python.sitePackages}"
       "--set PYTHONLIB ${enable'.python}/lib/libpython${enable'.python.pythonVersion}.so"
@@ -47,24 +48,33 @@
     ]
     ++ makeWrapperArgs;
   meta' =
-    lib.recursiveUpdate {
-      mainProgram = "julia";
-      description = "julia-wrapped mainProgram";
-    }
-    meta;
+    lib.recursiveUpdate
+      {
+        mainProgram = "julia";
+        description = "julia-wrapped mainProgram";
+      }
+      meta;
 
   julia-wrapped =
-    runCommand "julia-wrapped" {
-      buildInputs = [makeWrapper package];
-      inherit makeWrapperArgs_;
-      meta = meta';
-    } ''
-      mkdir -p $out
-      makeWrapper ${package}/bin/julia $out/bin/${meta'.mainProgram} $makeWrapperArgs_ \
-      --set GDK_BACKEND "x11,*"
-    '';
+    runCommand "julia-wrapped"
+      {
+        buildInputs = [
+          makeWrapper
+          package
+        ];
+        inherit makeWrapperArgs_;
+        meta = meta';
+      }
+      ''
+        mkdir -p $out
+        makeWrapper ${package}/bin/julia $out/bin/${meta'.mainProgram} $makeWrapperArgs_ \
+        --set GDK_BACKEND "x11,*"
+      '';
 in
-  symlinkJoin {
-    name = "julia";
-    paths = [julia-wrapped package];
-  }
+symlinkJoin {
+  name = "julia";
+  paths = [
+    julia-wrapped
+    package
+  ];
+}

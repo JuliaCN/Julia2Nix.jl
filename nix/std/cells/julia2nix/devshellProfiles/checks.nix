@@ -1,12 +1,11 @@
+{ inputs, cell }:
 {
-  inputs,
-  cell,
-}: {
   config,
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   commands = [
     {
       name = "checks-GR";

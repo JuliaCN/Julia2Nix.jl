@@ -1,25 +1,24 @@
-{
-  inputs,
-  cell,
-}: let
-  inherit (inputs.std-ext.writers.lib) writeShellApplication;
+{ inputs, cell }:
+let
+  inherit (nixpkgs) writeShellApplication;
   inherit (inputs) nixpkgs;
-in {
-  mkdoc = let
-    juliaDoc = cell.lib.buildEnv {
-      name = "julia-doc";
-      src = ./doc;
-      package = cell.lib.julia-wrapped {
-        package = cell.packages.julia_19-bin;
+in
+{
+  mkdoc =
+    let
+      juliaDoc = cell.lib.buildEnv {
+        name = "julia-doc";
+        src = ./doc;
+        package = cell.lib.julia-wrapped { package = cell.packages.julia_19-bin; };
       };
-    };
-  in
+    in
     writeShellApplication {
       name = "mkdoc";
-      runtimeInputs = [
-        # juliaDoc
-        nixpkgs.julia_19-bin
-      ];
+      runtimeInputs =
+        [
+          # juliaDoc
+          nixpkgs.julia_19-bin
+        ];
       text = ''
         julia --project="$*" -e 'using Pkg; Pkg.develop(PackageSpec(; path=pwd())); Pkg.instantiate();'
         julia --project="$*" "$*"/make.jl deploy
@@ -27,40 +26,39 @@ in {
       '';
     };
 
-  ion = let
-    julia-ion =
-      (cell.lib.buildEnv {
-        name = "julia-ion";
-        src = ./ion;
-        extraDepot = {
-          extraJulia2nix = {
-            fetchzip.artifact-1fce04a1a7eedfdf2b0b81ca9001494525764e11 = {
-              name = "artifacts/1fce04a1a7eedfdf2b0b81ca9001494525764e11";
-              sha256 = "sha256-YlrXTPJLJGjHLjoVkuygwtTV6kFUIO2VHZXwf3COIt0=";
-              stripRoot = false;
-              url = "https://pkg.julialang.org/artifact/1fce04a1a7eedfdf2b0b81ca9001494525764e11#artifact.tar.gz";
+  ion =
+    let
+      julia-ion =
+        (cell.lib.buildEnv {
+          name = "julia-ion";
+          src = ./ion;
+          extraDepot = {
+            extraJulia2nix = {
+              fetchzip.artifact-1fce04a1a7eedfdf2b0b81ca9001494525764e11 = {
+                name = "artifacts/1fce04a1a7eedfdf2b0b81ca9001494525764e11";
+                sha256 = "sha256-YlrXTPJLJGjHLjoVkuygwtTV6kFUIO2VHZXwf3COIt0=";
+                stripRoot = false;
+                url = "https://pkg.julialang.org/artifact/1fce04a1a7eedfdf2b0b81ca9001494525764e11#artifact.tar.gz";
+              };
             };
           };
-        };
-        package = cell.lib.julia-wrapped {
-          package = cell.packages.julia_19-bin;
-        };
-      })
-      .overrideAttrs (old: {
-        buildInputs = old.buildInputs ++ [nixpkgs.rsync];
-        postInstall = ''
+          package = cell.lib.julia-wrapped { package = cell.packages.julia_19-bin; };
+        }).overrideAttrs
+          (
+            old: {
+              buildInputs = old.buildInputs ++ [ nixpkgs.rsync ];
+              postInstall = ''
 
-          $out/bin/julia -e 'using Ion; Ion.comonicon_install()';
-          # make sure we can write the ./julia/bin/* in our $out/store
-          rsync -avzhr $HOME/.julia/ $out
-        '';
-      });
-  in
+                $out/bin/julia -e 'using Ion; Ion.comonicon_install()';
+                # make sure we can write the ./julia/bin/* in our $out/store
+                rsync -avzhr $HOME/.julia/ $out
+              '';
+            }
+          );
+    in
     writeShellApplication {
       name = "julia-ion";
-      runtimeInputs = [
-        julia-ion
-      ];
+      runtimeInputs = [ julia-ion ];
       text = ''
         ion "$@"
       '';

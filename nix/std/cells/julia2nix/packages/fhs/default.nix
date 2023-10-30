@@ -1,4 +1,5 @@
-{pkgs}: {
+{ pkgs }:
+{
   enableJulia ? true,
   enableConda ? true,
   juliaVersion ? "julia_19",
@@ -10,31 +11,34 @@
   enableNode ? true,
   ...
 }:
-with pkgs.lib; let
-  standardPackages = pkgs:
+with pkgs.lib;
+let
+  standardPackages =
+    pkgs:
     with pkgs;
-      [
-        autoconf
-        binutils
-        clang
-        cmake
-        curl
-        expat
-        gmp
-        gnumake
-        gperf
-        libxml2
-        m4
-        nss
-        openssl
-        stdenv.cc
-        unzip
-        util-linux
-        which
-      ]
-      ++ lib.optional enableNode pkgs.nodejs;
+    [
+      autoconf
+      binutils
+      clang
+      cmake
+      curl
+      expat
+      gmp
+      gnumake
+      gperf
+      libxml2
+      m4
+      nss
+      openssl
+      stdenv.cc
+      unzip
+      util-linux
+      which
+    ]
+    ++ lib.optional enableNode pkgs.nodejs;
 
-  graphicalPackages = pkgs:
+  graphicalPackages =
+    pkgs:
     with pkgs; [
       alsa-lib
       at-spi2-atk
@@ -97,22 +101,32 @@ with pkgs.lib; let
       zlib
     ];
 
-  nvidiaPackages = pkgs:
+  nvidiaPackages =
+    pkgs:
     with pkgs; [
       cudatoolkit_11
       cudnn_cudatoolkit_11
       linuxPackages.nvidia_x11
     ];
 
-  juliaPackages = pkgs: version:
-    with pkgs; let
-      julias = callPackage ./julia.nix {};
-    in [julias."${version}"];
+  juliaPackages =
+    pkgs: version:
+    with pkgs;
+    let
+      julias = callPackage ./julia.nix { };
+    in
+    [ julias."${version}" ];
 
-  condaPackages = pkgs:
-    with pkgs; [(callPackage ../../overlays/patches/conda.nix {installationPath = condaInstallationPath;})];
+  condaPackages =
+    pkgs:
+    with pkgs; [
+      (callPackage ../../overlays/patches/conda.nix {
+        installationPath = condaInstallationPath;
+      })
+    ];
 
-  targetPkgs = pkgs:
+  targetPkgs =
+    pkgs:
     (standardPackages pkgs)
     ++ optionals enableGraphical (graphicalPackages pkgs)
     ++ optionals enableJulia (juliaPackages pkgs juliaVersion)
@@ -132,7 +146,11 @@ with pkgs.lib; let
   '';
 
   python = pkgs.python3.buildEnv.override {
-    extraLibs = with pkgs.python3Packages; [xlrd matplotlib pyqt5];
+    extraLibs = with pkgs.python3Packages; [
+      xlrd
+      matplotlib
+      pyqt5
+    ];
     ignoreCollisions = true;
   };
 
@@ -162,16 +180,20 @@ with pkgs.lib; let
     + optionalString (enableConda && enableJulia) conda_julia_envvars
     + optionalString enableNVIDIA nvidia_envvars;
 
-  extraOutputsToInstall = ["man" "dev"];
+  extraOutputsToInstall = [
+    "man"
+    "dev"
+  ];
 
-  multiPkgs = pkgs: with pkgs; [zlib];
+  multiPkgs = pkgs: with pkgs; [ zlib ];
 
   condaInitScript = ''
     conda-install
     conda create -n ${condaJlEnv} python=${pythonVersion}
   '';
 
-  fhsCommand = commandName: commandScript:
+  fhsCommand =
+    commandName: commandScript:
     pkgs.buildFHSUserEnv {
       targetPkgs = targetPkgs;
       name = commandName; # Name used to start this UserEnv
@@ -181,4 +203,4 @@ with pkgs.lib; let
       profile = envvars;
     };
 in
-  fhsCommand
+fhsCommand

@@ -1,12 +1,13 @@
-{
-  inputs,
-  cell,
-} @ args: let
+{ inputs, cell }@args:
+let
   l = nixpkgs.lib // builtins;
+  inherit (std) lib;
   inherit (inputs) nixpkgs std self;
 in
-  l.mapAttrs (_: std.lib.dev.mkShell) {
-    default = {extraModulesPath, ...}: {
+l.mapAttrs (_: std.lib.dev.mkShell) {
+  default =
+    { extraModulesPath, ... }:
+    {
       name = "Julia2Nix";
 
       git.hooks = {
@@ -15,7 +16,9 @@ in
       };
 
       nixago = [
-        # cell.nixago.treefmt
+        (lib.dev.mkNixago std.lib.cfg.treefmt cell.configs.treefmt.default
+          cell.configs.treefmt.custom
+        )
       ];
 
       imports =
@@ -65,15 +68,7 @@ in
         }
       ];
     };
-    packages = {pkgs, ...}: {
-      imports = [
-        cell.devshellProfiles.packages
-      ];
-    };
+  packages = { pkgs, ... }: { imports = [ cell.devshellProfiles.packages ]; };
 
-    update = {...}: {
-      imports = [
-        cell.devshellProfiles.update
-      ];
-    };
-  }
+  update = { ... }: { imports = [ cell.devshellProfiles.update ]; };
+}

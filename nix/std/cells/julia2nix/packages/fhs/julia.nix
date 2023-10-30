@@ -11,8 +11,10 @@
   libGL,
   julia-sources,
   system,
-}: let
-  makeJulia = version:
+}:
+let
+  makeJulia =
+    version:
     stdenv.mkDerivation {
       name = "julia-${version}";
       inherit (julia-sources."julia-${version}-${system}") src pname version;
@@ -41,7 +43,8 @@
         libGL
       ];
     };
-in {
+in
+{
   julia_19 = makeJulia "19";
   julia_18 = makeJulia "18";
 }

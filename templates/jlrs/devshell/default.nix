@@ -1,12 +1,9 @@
+{ inputs, pkgs }:
 {
-  inputs,
-  pkgs,
-}: {
-  default = with pkgs;
+  default =
+    with pkgs;
     devshell.mkShell {
-      imports = [
-        (devshell.importTOML ./commands.toml)
-      ];
+      imports = [ (devshell.importTOML ./commands.toml) ];
 
       packages = [
         pkgs.rust-final

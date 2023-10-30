@@ -7,45 +7,70 @@
   };
 
   inputs = {
-    std-ext.url = "github:gtrunsec/std-ext";
-    std.follows = "std-ext/std";
+    omnibus.url = "github:gtrunsec/omnibus";
+
+    std.url = "github:divnix/std";
+    std.inputs.nixpkgs.follows = "nixpkgs";
+    std.inputs.devshell.follows = "devshell";
+    std.inputs.nixago.follows = "nixago";
+
+    devshell.url = "github:numtide/devshell";
+    nixago.url = "github:nix-community/nixago";
+    nixago.inputs.nixpkgs.follows = "nixpkgs";
+    nixago.inputs.nixago-exts.follows = "";
   };
 
-  outputs = {
-    self,
-    std,
-    ...
-  } @ inputs: (std.growOn {
-      inputs = inputs // {toplevel = ../..;};
-      cellsFrom = ./cells;
-      systems = [
-        "aarch64-darwin"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "x86_64-linux"
-      ];
-      cellBlocks = with std.blockTypes; [
-        (installables "packages")
+  outputs =
+    { self, std, ... }@inputs:
+    (std.growOn
+      {
+        inputs = inputs // {
+          toplevel = ../..;
+        };
+        cellsFrom = ./cells;
+        systems = [
+          "aarch64-darwin"
+          "aarch64-linux"
+          "x86_64-darwin"
+          "x86_64-linux"
+        ];
+        cellBlocks = with std.blockTypes; [
+          (installables "packages")
 
-        (nixago "nixago")
+          (nixago "nixago")
 
-        (runnables "entrypoints")
+          (runnables "entrypoints")
 
-        (devshells "devshells")
-        (functions "devshellProfiles")
+          (devshells "devshells")
+          (functions "devshellProfiles")
 
-        (functions "lib")
-        (functions "workflow")
-        (functions "overlays")
-        (functions "compiler")
+          (functions "lib")
+          (functions "configs")
+          (functions "workflow")
+          (functions "overlays")
+          (functions "compiler")
 
-        (data "containerJobs")
-      ];
-    }
-    {
-      lib = std.harvest inputs.self ["julia2nix" "lib"];
-      devShells = std.harvest inputs.self ["julia2nix" "devshells"];
-      overlays = (std.harvest inputs.self ["julia2nix" "overlays"]).x86_64-linux;
-      packages = std.harvest inputs.self ["julia2nix" "packages"];
-    });
+          (data "containerJobs")
+        ];
+      }
+      {
+        lib = std.harvest inputs.self [
+          "julia2nix"
+          "lib"
+        ];
+        devShells = std.harvest inputs.self [
+          "julia2nix"
+          "devshells"
+        ];
+        overlays =
+          (std.harvest inputs.self [
+            "julia2nix"
+            "overlays"
+          ]).x86_64-linux;
+        packages = std.harvest inputs.self [
+          "julia2nix"
+          "packages"
+        ];
+      }
+    );
 }

@@ -31,10 +31,27 @@
         "type": "github"
       }
     },
+    "nixpkgs-julia": {
+      "locked": {
+        "lastModified": 1694073329,
+        "narHash": "sha256-F6+k1FSgtFSXaGSQqf00u/jBHhvUvrsTx9qjEWAk0E0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "ddadf5f46ac96423efbd67228ffe84361743c253",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "refs/pull/225513/head",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "call-flake": "call-flake",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-julia": "nixpkgs-julia"
       }
     }
   },

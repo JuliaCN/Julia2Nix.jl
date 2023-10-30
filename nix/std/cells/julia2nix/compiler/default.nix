@@ -1,5 +1,1 @@
-{
-  inputs,
-  cell,
-}: {
-}
+{ inputs, cell }: { }

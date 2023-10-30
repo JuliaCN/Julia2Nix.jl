@@ -1,17 +1,16 @@
+{ inputs, cell }:
 {
-  inputs,
-  cell,
-}: {
   config,
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (cell) packages;
-in {
+in
+{
   commands =
-    [
-    ]
+    [ ]
     ++ lib.optionals (pkgs.system == "x86_64-darwin") [
       {
         # FIXME: 1.8.0 init issue
@@ -37,8 +36,9 @@ in {
       }
     ];
 
-  packages = with pkgs;
-    lib.optionals pkgs.stdenv.isLinux []
+  packages =
+    with pkgs;
+    lib.optionals pkgs.stdenv.isLinux [ ]
     ++ [
       alejandra
       nixUnstable

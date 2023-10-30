@@ -1,14 +1,12 @@
-{
-  inputs,
-  cell,
-}: let
+{ inputs, cell }:
+let
   inherit (inputs) nixpkgs;
-in {
-  default = let
-    libPath =
-      nixpkgs.lib.makeLibraryPath [
-      ];
-  in
+in
+{
+  default =
+    let
+      libPath = nixpkgs.lib.makeLibraryPath [ ];
+    in
     nixpkgs.mkShell {
       shellHook = ''
         patchelf \

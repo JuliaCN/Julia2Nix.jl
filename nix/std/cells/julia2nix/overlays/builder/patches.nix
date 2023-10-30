@@ -1,4 +1,5 @@
-{path}: {
+{ path }:
+{
   Conda = ''
     mkdir -p $out/conda/3
     cat > $out/${path}/deps/deps.jl <<EOF

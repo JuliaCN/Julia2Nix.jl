@@ -1,19 +1,18 @@
+{ inputs, cell }:
 {
-  inputs,
-  cell,
-}: {
   config,
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   commands = lib.optionals pkgs.stdenv.buildPlatform.isLinux [
     {
       name = "jlfmt";
       category = "dev";
       help = "Julia formatter";
       command = ''
-        ${cell.nixago.juliaFormatter}/bin/format.jl "$@"
+        ${cell.configs.juliaFormatter}/bin/format.jl "$@"
       '';
     }
   ];

@@ -7,7 +7,8 @@
   libGL,
   xorg,
   system,
-}: let
+}:
+let
   mainDependencies = [
     qt5.qtbase
     qt5.qtsvg
@@ -19,41 +20,38 @@
     xorg.libXext
   ];
 in
-  stdenv.mkDerivation {
-    name = "GR";
+stdenv.mkDerivation {
+  name = "GR";
 
-    version = "latest";
+  version = "latest";
 
-    inherit (patch-sources."gr-latest-${system}") pname src;
+  inherit (patch-sources."gr-latest-${system}") pname src;
 
-    dontConfigure = true;
-    dontBuild = true;
+  dontConfigure = true;
+  dontBuild = true;
 
-    nativeBuildInputs = [qt5.wrapQtAppsHook];
+  nativeBuildInputs = [ qt5.wrapQtAppsHook ];
 
-    installPhase = ''
-      mkdir -p $out
-      cp -r ./* $out
-    '';
+  installPhase = ''
+    mkdir -p $out
+    cp -r ./* $out
+  '';
 
-    preFixup = let
-      libPath = lib.makeLibraryPath (mainDependencies
-        ++ [
-          xorg.libxcb
-        ]);
-    in ''
+  preFixup =
+    let
+      libPath = lib.makeLibraryPath (mainDependencies ++ [ xorg.libxcb ]);
+    in
+    ''
       patchelf \
         --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
         --set-rpath "${libPath}" \
         $out/bin/gksqt
     '';
 
-    propagatedBuildInputs =
-      mainDependencies
-      ++ [
-        xorg.libxcb
-        xorg.xcbproto
-        xorg.xcbutil
-      ];
-    meta.mainProgram = "gksqt";
-  }
+  propagatedBuildInputs = mainDependencies ++ [
+    xorg.libxcb
+    xorg.xcbproto
+    xorg.xcbutil
+  ];
+  meta.mainProgram = "gksqt";
+}
