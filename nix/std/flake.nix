@@ -25,7 +25,7 @@
     (std.growOn
       {
         inputs = inputs // {
-          toplevel = ../..;
+          main = ../..;
         };
         cellsFrom = ./cells;
         systems = [

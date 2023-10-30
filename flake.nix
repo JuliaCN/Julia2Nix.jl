@@ -14,15 +14,16 @@
         "aarch64-linux"
         "aarch64-darwin"
       ];
-      src = std.inputs.omnibus.inputs.flops.haumea.pops.default.setInit {
-        load = {
-          src = ./nix/src;
+      units = std.inputs.omnibus.inputs.flops.lib.haumea.pops.default.setInit {
+        src = ./nix/units;
+        inputs = {
           inputs = std.inputs // inputs;
         };
       };
     in
     (eachSystem (system: std.${system}))
     // {
+      inherit units;
       inherit (std)
         lib
         packages
