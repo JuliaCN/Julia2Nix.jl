@@ -11,18 +11,22 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@main
-    - uses: DeterminateSystems/nix-installer-action@main
-    - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: actions/checkout@main
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
 
-    - name: Julia Version Update
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        nix develop .#update --command nvfetcher-update
+      - name: Julia Version Update
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          nix develop .#update --command nvfetcher-update
 
-    - name: Commit changes
-      if: ${{ env.COMMIT_MSG != null }}
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: ${{ env.COMMIT_MSG }}
+      - name: "Create Pull Request"
+        uses: "peter-evans/create-pull-request@v5"
+        with:
+          branch: "auto_update_nightly"
+          title: "Update nightly versions"
+          body: |
+            Automatically updated the nightly version

@@ -2,7 +2,7 @@
 let
   inherit (inputs) omnibus;
   inherit
-    (omnibus.lib.errors.requiredInputs inputs "jupyenv.pops" [
+    (omnibus.lib.errors.requiredInputs inputs "julia2nix.pops" [
       "nixpkgs"
       "jupyenv"
     ])
@@ -11,4 +11,6 @@ let
   ;
   inherit (jupyenv.lib.${nixpkgs.system}) mkJupyterlabNew;
 in
-{ }
+{
+  inherit mkJupyterlabNew;
+}
