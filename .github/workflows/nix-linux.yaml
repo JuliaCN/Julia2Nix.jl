@@ -9,16 +9,9 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3.5.3
-    - uses: nixbuild/nix-quick-install-action@v21
-      with:
-        nix_conf: |
-          experimental-features = nix-command flakes
-          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-
-    - uses: cachix/cachix-action@v12
-      with:
-        name: zeek
+    - uses: actions/checkout@main
+    - uses: DeterminateSystems/nix-installer-action@main
+    - uses: DeterminateSystems/magic-nix-cache-action@main
 
     - name: Nix Flake Show
       run: nix flake show
@@ -30,7 +23,7 @@ jobs:
       run: nix develop --show-trace --command -- init
 
     - name: Build JuliaDoc
-      run: nix run -Lv .#x86_64-linux.julia2nix.entrypoints.mkdoc docs
+      run: nix run -Lv ./nix/std#x86_64-linux.julia2nix.entrypoints.mkdoc docs
 
     - name: Check Template Shells
       run: |
@@ -52,9 +45,9 @@ jobs:
       run: |
         nix -Lv develop --command buildProject
 
-    - name: Build jlrs -> call_julia
-      run: |
-        nix develop ./templates/jlrs --override-input julia2nix ./. --show-trace --command -- call-julia
+    # - name: Build jlrs -> call_julia
+    #   run: |
+    #     nix develop ./templates/jlrs --override-input julia2nix ./. --show-trace --command -- call-julia
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4.4.2

@@ -12,14 +12,11 @@
     julia2nix.url = "github:JuliaCN/Julia2Nix.jl";
   };
 
-  outputs = inputs @ {
-    self,
-    julia2nix,
-    ...
-  }:
-    (
-      inputs.flake-utils.lib.eachDefaultSystem
-      (system: let
+  outputs =
+    inputs@{ self, julia2nix, ... }:
+    (inputs.flake-utils.lib.eachDefaultSystem (
+      system:
+      let
         pkgs = inputs.nixpkgs.legacyPackages.${system}.appendOverlays [
           inputs.devshell.overlays.default
           self.overlays.default
@@ -30,12 +27,14 @@
           enable = {
             # only x86_64-linux is supported
             GR = true;
-            python =
-              pkgs.python3.buildEnv.override
-              {
-                extraLibs = with pkgs.python3Packages; [xlrd matplotlib pyqt5];
-                # ignoreCollisions = true;
-              };
+            python = pkgs.python3.buildEnv.override {
+              extraLibs = with pkgs.python3Packages; [
+                xlrd
+                matplotlib
+                pyqt5
+              ];
+              # ignoreCollisions = true;
+            };
           };
         };
 
@@ -46,7 +45,8 @@
           name = "your julia project";
           package = julia-wrapped;
         };
-      in {
+      in
+      {
         packages = {
           # make sure you have generated the julia2nix.toml
           # default = project;
@@ -69,9 +69,9 @@
             }
           ];
         };
-      })
-    )
+      }
+    ))
     // {
-      overlays.default = final: prev: {};
+      overlays.default = final: prev: { };
     };
 }
